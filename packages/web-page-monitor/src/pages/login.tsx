@@ -3,17 +3,15 @@ import React, { useState, useEffect, } from 'react';
 import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring';
 import CONFIG from '../../CONFIG';
-import { useAtom } from 'jotai';
-import { userAtoms } from '../atoms';
+import { useImmerAtom } from 'jotai/immer';
+import { userInfoAtom } from '../atoms';
 
 
 const LoginPage: NextPage = () => {
   let url = `https://gitee.com/oauth/authorize?client_id=${CONFIG.giteeOauthClientId}&redirect_uri=${encodeURIComponent(CONFIG.giteeRedirectUri)}&response_type=code`;
   
   const router = useRouter();
-  const [email, setEmail] = useAtom(userAtoms.emailA);
-  const [logged] = useAtom(userAtoms.loggedA);
-  const [, setEmailState] = useAtom(userAtoms.emailStateA);
+  const [userInfo, setUserInfo] = useImmerAtom(userInfoAtom);
 
   /**
    * get user info from gitee
@@ -23,9 +21,9 @@ const LoginPage: NextPage = () => {
   
     console.log(router.query)
     if(code && provider){
-      getEmail(router.query);
+      getUserInfo(router.query);
     }
-    async function getEmail(query:ParsedUrlQuery){
+    async function getUserInfo(query:ParsedUrlQuery){
       let { code, provider } = query;
       if( provider === 'gitee' && code){
         // if we have code, then ask for access_token
@@ -47,8 +45,11 @@ const LoginPage: NextPage = () => {
           // emails, array, may have multiple emails
           console.log(emails)
           if(emails && emails.length && emails[0] && emails[0].email ){
-            setEmail(emails[0].email)
-            setEmailState(emails[0].state)
+            setUserInfo((v) => {
+              v.email = emails[0].email;
+              v.emailState = emails[0].state;
+              v.logged = true;
+            });
           }
         }
       }
@@ -60,14 +61,17 @@ const LoginPage: NextPage = () => {
    * Events
    */
   function logOut(){
-    setEmail(null);
-    setEmailState('');
+    setUserInfo((v) => {
+      v.email = undefined;
+      v.emailState = '';
+      v.logged = false;
+    });
     router.push('/login');
   }
 
-  if( logged ) {
+  if( userInfo.logged ) {
     return (
-      <div>Welcome, {email} <br />
+      <div>Welcome, {userInfo.email} <br />
         <button onClick={logOut}>Log Out</button>
       </div>
     )

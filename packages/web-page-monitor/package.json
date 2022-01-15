@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "immer": "^9.0.12",
     "jotai": "^1.5.2",
     "next": "12.0.8",
     "optics-ts": "^2.3.0",
