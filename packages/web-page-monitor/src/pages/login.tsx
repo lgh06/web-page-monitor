@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import React, { useState, useLayoutEffect, useEffect, MouseEventHandler } from 'react';
 import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring';
-import CONFIG from '../CONFIG';
+import CONFIG from '../../CONFIG';
 
 
 const LoginPage: NextPage = () => {
