@@ -1,25 +1,28 @@
 import type { NextPage } from 'next'
-import React, { useState, useLayoutEffect, useEffect, MouseEventHandler } from 'react';
+import React, { useState, useEffect, } from 'react';
 import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring';
 import CONFIG from '../../CONFIG';
+import { useAtom } from 'jotai';
+import { userAtoms } from '../atoms';
 
 
 const LoginPage: NextPage = () => {
   let url = `https://gitee.com/oauth/authorize?client_id=${CONFIG.giteeOauthClientId}&redirect_uri=${encodeURIComponent(CONFIG.giteeRedirectUri)}&response_type=code`;
-  const [logged, setLogged] = useState(false);
-  const [user, setUser] = useState({email: '',});
+  
   const router = useRouter();
+  const [email, setEmail] = useAtom(userAtoms.emailA);
+  const [logged] = useAtom(userAtoms.loggedA);
+  const [, setConfirmed] = useAtom(userAtoms.confirmedA);
 
   /**
    * get user info from gitee
    */
-  useLayoutEffect(()=>{
+  useEffect(()=>{
     let { code, provider } = router.query;
   
     console.log(router.query)
     if(code && provider){
-      setLogged(true);
       getEmail(router.query);
     }
     async function getEmail(query:ParsedUrlQuery){
@@ -44,9 +47,8 @@ const LoginPage: NextPage = () => {
           // emails, array, may have multiple emails
           console.log(emails)
           if(emails && emails.length && emails[0] && emails[0].email ){
-            setUser({
-              email: emails[0].email
-            })
+            setEmail(emails[0].email)
+            setConfirmed(emails[0].state)
           }
         }
       }
@@ -54,19 +56,17 @@ const LoginPage: NextPage = () => {
 
   }, [router.query]);
 
-
   /**
    * Events
    */
   function logOut(){
-    setLogged(false);
-    setUser({email:''});
+    setEmail(null);
     router.push('/login');
   }
 
   if( logged ) {
     return (
-      <div>Welcome, {user.email} <br />
+      <div>Welcome, {email} <br />
         <button onClick={logOut}>Log Out</button>
       </div>
     )
