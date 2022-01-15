@@ -13,7 +13,7 @@ const LoginPage: NextPage = () => {
   const router = useRouter();
   const [email, setEmail] = useAtom(userAtoms.emailA);
   const [logged] = useAtom(userAtoms.loggedA);
-  const [, setConfirmed] = useAtom(userAtoms.confirmedA);
+  const [, setEmailState] = useAtom(userAtoms.emailStateA);
 
   /**
    * get user info from gitee
@@ -48,7 +48,7 @@ const LoginPage: NextPage = () => {
           console.log(emails)
           if(emails && emails.length && emails[0] && emails[0].email ){
             setEmail(emails[0].email)
-            setConfirmed(emails[0].state)
+            setEmailState(emails[0].state)
           }
         }
       }
@@ -61,6 +61,7 @@ const LoginPage: NextPage = () => {
    */
   function logOut(){
     setEmail(null);
+    setEmailState('');
     router.push('/login');
   }
 
