@@ -5,7 +5,7 @@
   "author": "Daniel Liu <hnnk@qq.com>",
   "homepage": "",
   "license": "GPL-3.0",
-  "main": "lib/socketio.js",
+  "main": "lib/socketio.mjs",
   "directories": {
     "lib": "lib"
   },
@@ -16,7 +16,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "dev": "node lib/socketio.mjs"
   },
   "dependencies": {
     "socket.io": "~4.4.1"

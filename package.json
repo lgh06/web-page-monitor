@@ -3,10 +3,11 @@
   "private": true,
   "scripts": {
     "init": "lerna bootstrap",
-    "postinstall": "npm run init",
-    "dev-web": "lerna run --scope @webest/web-page-monitor-web dev"
+    "postinstall": "npm i lerna@3.22.1 -g && npm run init",
+    "dev-web": "lerna run --scope @webest/web-page-monitor-web dev",
+    "dev": "lerna run dev --parallel"
   },
   "devDependencies": {
-    "lerna": "^4.0.0"
+    "lerna": "3.22.1"
   }
 }
