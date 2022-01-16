@@ -1,0 +1,24 @@
+{
+  "name": "@webest/web-page-monitor-socketio",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Daniel Liu <hnnk@qq.com>",
+  "homepage": "",
+  "license": "GPL-3.0",
+  "main": "lib/socketio.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "socket.io": "~4.4.1"
+  }
+}

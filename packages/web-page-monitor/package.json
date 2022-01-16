@@ -1,5 +1,5 @@
 {
-  "name": "web-page-monitor",
+  "name": "@webest/web-page-monitor",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3002",
@@ -9,19 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "immer": "^9.0.12",
-    "jotai": "^1.5.2",
-    "next": "12.0.8",
-    "optics-ts": "^2.3.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "immer": "~9.0.12",
+    "jotai": "~1.5.2",
+    "next": "~12.0.8",
+    "optics-ts": "~2.3.0",
+    "react": "~17.0.2",
+    "react-dom": "~17.0.2",
+    "socket.io-client": "~4.4.1"
   },
   "devDependencies": {
-    "@types/node": "17.0.8",
-    "@types/react": "17.0.38",
-    "concurrently": "^7.0.0",
-    "eslint": "8.6.0",
-    "eslint-config-next": "12.0.8",
-    "typescript": "4.5.4"
+    "@types/node": "~17.0.8",
+    "@types/react": "~17.0.38",
+    "concurrently": "~7.0.0",
+    "eslint": "~8.6.0",
+    "eslint-config-next": "~12.0.8",
+    "typescript": "~4.5.4"
   }
 }
