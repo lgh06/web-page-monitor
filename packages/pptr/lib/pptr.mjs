@@ -2,13 +2,35 @@
 import puppeteer from 'puppeteer';
 import { CONFIG } from "./CONFIG.mjs"
 import { io } from "socket.io-client";
+import fs from "fs";
+
 
 async function pptr() {
 
-  const browser = await puppeteer.launch();
+  // debug use.
+  let debugLaunchOption = {
+    slowMo: 250,
+    headless: false,
+  }
+  const browser = await puppeteer.launch(CONFIG.debug ? debugLaunchOption : {});
   const page = await browser.newPage();
-  await page.goto('https://www.baidu.com');
+  await page.setViewport({
+    width: 1902,
+    height: 1080,
+    deviceScaleFactor: 1,
+  });
+  let url = "http://www.yuanyang.gov.cn/channels/443.html"
+  await page.goto('http://www.yuanyang.gov.cn/channels/443.html');
   let now = Date.now()
+  let selector = ".neirong table";
+  await page.waitForSelector(selector);
+  let matchedElement = await page.$(selector);
+  let textContent = await matchedElement.evaluate((node) => node.textContent);
+  textContent = String(textContent).trim().replace(/\n\ +\n/g, '\n')
+
+  let filename = `${encodeURIComponent(url)}_${selector.replace(" ", "")}_${now}.txt`
+  fs.writeFileSync(`shots/${filename}`, textContent)
+
   await page.screenshot({ path: `shots/${now}.png` });
 
   await browser.close();
