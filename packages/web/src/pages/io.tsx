@@ -16,10 +16,19 @@ const IOTestPage: NextPage = () => {
     // client-side
     // https://socket.io/docs/v4/client-socket-instance/
     socket.auth = { userInfo: userInfo };
+    if(userInfo.email && !socket.connected){
+      connectSocketIO();
+    }
+    return ()=>{
+      socket.disconnect();
+    };
 
   }, [userInfo]);
 
   async function connectSocketIO(){
+    if(socket.connected) {
+      return;
+    }
     socket.on("connect", () => {
       console.log(socket.id);
     });
@@ -32,7 +41,6 @@ const IOTestPage: NextPage = () => {
       console.log('frontend recieved data from server' , arg)
     })
 
-
     socket.connect();
   }
 
@@ -40,7 +48,7 @@ const IOTestPage: NextPage = () => {
   return (
     <div>
       Welcome {userInfo.email} <br />
-      <button onClick={connectSocketIO}>socket.io Connect</button>
+      {/* <button onClick={connectSocketIO}>socket.io Connect</button> */}
     </div>
   )
 

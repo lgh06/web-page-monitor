@@ -24,21 +24,26 @@ function socketio() {
     socket.userInfo = userInfo;
     next();
   });
-  io.on('connection', (socket) => {
-    console.log('a user connected');
-    console.log(socket.userInfo)
-    const { email } = socket.userInfo;
-    let i = 1;
+  let tmpSocket;
+  setInterval(() => {
+    if (tmpSocket !== undefined && tmpSocket.connected) {
+      const { email } = tmpSocket.userInfo;
 
-    setInterval(()=>{
-      socket.timeout(60 * 1000).emit('room' + email, 
-        { 
+      io.to('room' + email) .emit('room' + email,
+        {
           msg: `Welcome user ${email} from server`,
-         time: new Date().toLocaleString(),
-         i: i++
+          time: new Date().toLocaleString(),
         }
       );
-    }, 2000);
+    }
+  }, 2000);
+  io.on('connection',(socket) => {
+    console.log('a user connected');
+    console.log(socket.userInfo.email)
+    const { email } = socket.userInfo;
+    socket.join('room' + email);
+    tmpSocket = socket;
+
     socket.on('disconnect', () => {
       console.log('user disconnected');
     });
