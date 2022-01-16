@@ -1,5 +1,5 @@
 {
-  "name": "@webest/web-page-monitor",
+  "name": "@webest/web-page-monitor-web",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3002",

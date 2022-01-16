@@ -2,7 +2,9 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "init": "lerna bootstrap"
+    "init": "lerna bootstrap",
+    "postinstall": "npm run init",
+    "dev-web": "lerna run --scope @webest/web-page-monitor-web dev"
   },
   "devDependencies": {
     "lerna": "^4.0.0"

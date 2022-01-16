@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import React, { useState, useEffect, } from 'react';
+import React, { useEffect, } from 'react';
 import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring';
 import CONFIG from '../../CONFIG';
