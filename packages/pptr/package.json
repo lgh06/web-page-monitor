@@ -10,9 +10,13 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "dev": "node lib/pptr.mjs"
+    "dev": "nodemon lib/pptr.mjs"
   },
   "dependencies": {
-    "puppeteer": "~13.0.1"
+    "puppeteer": "~13.0.1",
+    "socket.io-client": "^4.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }

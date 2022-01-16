@@ -2,7 +2,7 @@
 import { createServer } from "http";
 import { SocketAddress } from "net";
 import { Server } from "socket.io";
-
+import { CONFIG } from "./CONFIG.mjs";
 
 
 function socketio() {
@@ -24,32 +24,29 @@ function socketio() {
     socket.userInfo = userInfo;
     next();
   });
-  let tmpSocket;
-  setInterval(() => {
-    if (tmpSocket !== undefined && tmpSocket.connected) {
-      const { email } = tmpSocket.userInfo;
 
-      io.to('room' + email) .emit('room' + email,
-        {
-          msg: `Welcome user ${email} from server`,
-          time: new Date().toLocaleString(),
-        }
-      );
-    }
+  setInterval(() => {
+    let email = "hnnk@qq.com";
+    io.to('room' + email).emit('room' + email,
+      {
+        msg: `Welcome user ${email} from server`,
+        time: new Date().toLocaleString(),
+      }
+    );
   }, 2000);
-  io.on('connection',(socket) => {
+  io.on('connection', (socket) => {
     console.log('a user connected');
-    console.log(socket.userInfo.email)
+    console.log(socket.userInfo.email, socket.userInfo.type)
     const { email } = socket.userInfo;
     socket.join('room' + email);
-    tmpSocket = socket;
+    // tmpSocket = socket;
 
     socket.on('disconnect', () => {
       console.log('user disconnected');
     });
   });
 
-  httpServer.listen(3003);
+  httpServer.listen(CONFIG.socketioPort);
 
 }
 

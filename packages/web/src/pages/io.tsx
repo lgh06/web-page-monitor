@@ -4,13 +4,14 @@ import { useRouter } from 'next/router'
 import { useImmerAtom } from 'jotai/immer';
 import { userInfoAtom } from '../atoms';
 import { io } from "socket.io-client";
+import { CONFIG } from '../../CONFIG';
 
 
 /**
  * https://socket.io/docs/v4/client-initialization/
  */
 const IOTestPage: NextPage = () => {
-  const socket = io("http://localhost:3003/", { autoConnect: false });
+  const socket = io(CONFIG.socketio, { autoConnect: false });
   const [userInfo] = useImmerAtom(userInfoAtom);
   useEffect(() => {
     // client-side
