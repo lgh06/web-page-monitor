@@ -5,7 +5,7 @@
   "author": "Daniel Liu <hnnk@qq.com>",
   "homepage": "",
   "license": "GPL-3.0",
-  "main": "lib/pptr.js",
+  "main": "lib/pptr.mjs",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
