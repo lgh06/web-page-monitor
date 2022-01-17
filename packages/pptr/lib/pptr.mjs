@@ -18,25 +18,9 @@ async function pptr() {
     headless: false,
   }
   const browser = await puppeteer.launch(CONFIG.debug ? debugLaunchOption : {});
-  // const page = await browser.newPage();
-  // await page.setViewport({
-  //   width: 1902,
-  //   height: 1080,
-  //   deviceScaleFactor: 1,
-  // });
-  // let url = "http://www.yuanyang.gov.cn/channels/443.html"
-  // await page.goto(url);
-  // let now = Date.now()
-  // let selector = ".neirong table";
-  // await page.waitForSelector(selector);
-  // let matchedElement = await page.$(selector);
-  // let textContent = await matchedElement.evaluate((node) => node.textContent);
-  // textContent = String(textContent).trim().replace(/\n\ +\n/g, '\n')
 
-  // let filename = `${encodeURIComponent(url)}_${selector.replace(" ", "")}_${now}.txt`
-  // fs.writeFileSync(`shots/${filename}`, textContent)
-
-  // await page.screenshot({ path: `shots/${now}.png` });
+  // DO NOT DELETE.  BELOW LOGICS ARE LOAD DYNAMICALLY FROM
+  // packages\web\src\pages\api\dynjs\[filename].ts
 
   await task({browser, fs});
   await browser.close();
