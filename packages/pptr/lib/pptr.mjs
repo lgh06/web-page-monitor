@@ -56,13 +56,20 @@ async function connectSocketIO({socket}){
   });
 
   let times = 0
-  socket.on('room' + socket.auth.userInfo.email, (arg) => {
-    times++;
-    console.log(times, arg)
-    if(times % 5 === 0){
-      pptr();
-    }
+  // socket.on('room' + socket.auth.userInfo.email, (arg) => {
+  //   times++;
+  //   console.log(times, arg)
+  //   if(times % 5 === 0){
+  //     pptr();
+  //   }
+  // })
+
+  socket.on('backroom', arg =>{
+    console.log( new Date().toLocaleString(), arg)
   })
+  setInterval(() =>{
+    socket.emit("backroom", "hi from pptr")
+  }, 7000)
   socket.on("disconnect", (arg) => {
     console.log("disconnected by some reason")
   })

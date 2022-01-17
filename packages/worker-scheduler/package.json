@@ -1,0 +1,27 @@
+{
+  "name": "@webest/web-page-monitor-worker-scheduler",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Daniel Liu <hnnk@qq.com>",
+  "homepage": "",
+  "license": "GPL-3.0",
+  "main": "lib/worker-scheduler.mjs",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "dev": "nodemon lib/pptr.mjs"
+  },
+  "dependencies": {
+    "socket.io-client": "^4.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

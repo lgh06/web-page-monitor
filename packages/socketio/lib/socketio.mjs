@@ -33,17 +33,28 @@ function socketio() {
         time: new Date().toLocaleString(),
       }
     );
-  }, 2000);
+  }, 10000);
   io.on('connection', (socket) => {
     console.log('a user connected');
     console.log(socket.userInfo.email, socket.userInfo.type)
-    const { email } = socket.userInfo;
-    socket.join('room' + email);
-    // tmpSocket = socket;
+    const { email, type } = socket.userInfo;
+    let roomArr = ['room' + email];
+
+    if(type === "pptr" || type === "worker"){
+      roomArr.push("backroom")
+    }
+    socket.join(roomArr);
 
     socket.on('disconnect', () => {
       console.log('user disconnected');
     });
+
+    socket.on('backroom', arg =>{
+      // console.log( new Date().toLocaleString(), arg)
+      socket.to("backroom").emit("backroom", arg)
+    })
+    setInterval(() =>{
+    }, 5500)
   });
 
   httpServer.listen(CONFIG.socketioPort);
