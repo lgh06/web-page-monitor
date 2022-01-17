@@ -23,14 +23,17 @@ export const nodeFetch = url =>
                         let rawData = '';
                         //res.setEncoding('utf8');
                         res.on('data', d => rawData += d);
-                        res.on('end', () => resolve(rawData));
+                        // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs
+                        // https://datatracker.ietf.org/doc/html/rfc3986#section-2.2
+                        // https://developer.mozilla.org/en-US/docs/Glossary/percent-encoding
+                        res.on('end', () => resolve(encodeURIComponent(rawData)));
                         res.on('error', rej)
                     } else {
                         rej({ url, statusCode, headers })
                     }
                 });
             })
-    );
+        );
 
 
 export const fetch = typeof window !== 'undefined' ? window.fetch : nodeFetch;
@@ -44,7 +47,7 @@ export const dynamicImport = url => {
 // ./ === url split / last item if that gets added it would behave consistent as long as all dependencys 
 // are using ESMImport thats why its not documented or added to external api till import.meta is solved.
 export const ESMImport = url => typeof window === 'undefined' ? fetchImport(url) : import(url);
-export { ESMImport as importScript}
+export { ESMImport as importScript }
 
 // Exports a Module that exports a str object
 // Usage importStrToExport('https://mytemplate.com/index.html').then(({ str })=>console.log(str))
