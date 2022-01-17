@@ -7,7 +7,7 @@ import { fetchImport } from "@webest/web-page-monitor-esm-loader"
 
 
 async function pptr() {
-  let { task } = await fetchImport (`${CONFIG.dynJSPath}dyn.mjs`);
+  let { task } = await fetchImport (`${CONFIG.dynJSPath}dyntest.mjs`);
 
   // fetchImport(`${CONFIG.dynJSPath}dyn.mjs`)
   //   .then(mod=>console.log(mod))
