@@ -5,12 +5,11 @@ import { io } from "socket.io-client";
 import fs from "fs";
 import { fetchImport } from "@webest/web-page-monitor-esm-loader"
 
-
+// https://github.com/puppeteer/puppeteer/blob/v13.0.1/docs/api.md
+// https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=outline
 async function pptr() {
+  let beginTime = Date.now()
   let { task } = await fetchImport (`${CONFIG.dynJSPath}dyntest.mjs`);
-
-  // fetchImport(`${CONFIG.dynJSPath}dyn.mjs`)
-  //   .then(mod=>console.log(mod))
 
   // debug use.
   let debugLaunchOption = {
@@ -24,6 +23,11 @@ async function pptr() {
 
   await task({browser, fs});
   await browser.close();
+  let endTime = Date.now()
+
+  let lastedSeconds = parseInt((endTime - beginTime ) / 1000)
+
+  console.log('pptr executed seconds: ' + lastedSeconds)
 
 }
 
