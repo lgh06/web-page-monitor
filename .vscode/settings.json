@@ -1,0 +1,7 @@
+{
+  "eslint.workingDirectories": [
+    "./packages/pptr",
+    "./packages/web",
+    "./packages/socketio"
+  ]
+}
