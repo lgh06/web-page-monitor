@@ -3,7 +3,10 @@
  * Add Core Method ESMLoader
  */
 
-export const moduleString = str => `data:text/javascript,${str}`;
+// https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs
+// https://datatracker.ietf.org/doc/html/rfc3986#section-2.2
+// https://developer.mozilla.org/en-US/docs/Glossary/percent-encoding
+export const moduleString = str => `data:text/javascript,${encodeURIComponent(str)}`;
 export const ESMLoader = str => import(moduleString(str));
 export const strToESM = str => {
     console.log('deprecated: strToESM() use ESMLoader()')
@@ -23,10 +26,7 @@ export const nodeFetch = url =>
                         let rawData = '';
                         //res.setEncoding('utf8');
                         res.on('data', d => rawData += d);
-                        // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs
-                        // https://datatracker.ietf.org/doc/html/rfc3986#section-2.2
-                        // https://developer.mozilla.org/en-US/docs/Glossary/percent-encoding
-                        res.on('end', () => resolve(encodeURIComponent(rawData)));
+                        res.on('end', () => resolve(rawData));
                         res.on('error', rej)
                     } else {
                         rej({ url, statusCode, headers })
