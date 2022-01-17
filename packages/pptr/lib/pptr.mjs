@@ -1,11 +1,14 @@
-'use strict';
+// 'use strict';
 import puppeteer from 'puppeteer';
 import { CONFIG } from "./CONFIG.mjs"
 import { io } from "socket.io-client";
 import fs from "fs";
+import { fetchImport } from "@webest/web-page-monitor-esm-loader"
 
 
 async function pptr() {
+  // let { task } = await fetchImport (`${CONFIG.dynJSPath}dyn.mjs`);
+  // console.log(task)
 
   // debug use.
   let debugLaunchOption = {
@@ -20,7 +23,7 @@ async function pptr() {
     deviceScaleFactor: 1,
   });
   let url = "http://www.yuanyang.gov.cn/channels/443.html"
-  await page.goto('http://www.yuanyang.gov.cn/channels/443.html');
+  await page.goto(url);
   let now = Date.now()
   let selector = ".neirong table";
   await page.waitForSelector(selector);
@@ -33,6 +36,7 @@ async function pptr() {
 
   await page.screenshot({ path: `shots/${now}.png` });
 
+  // await task({browser});
   await browser.close();
 
 }

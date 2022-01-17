@@ -14,7 +14,8 @@
   },
   "dependencies": {
     "puppeteer": "=13.0.1",
-    "socket.io-client": "^4.4.1"
+    "socket.io-client": "^4.4.1",
+    "@webest/web-page-monitor-esm-loader": "*"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

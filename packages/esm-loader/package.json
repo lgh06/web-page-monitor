@@ -1,0 +1,34 @@
+{
+  "name": "@webest/web-page-monitor-esm-loader",
+  "version": "0.1.0",
+  "description": "A ESM Loader for NodeJS and Browsers Allows to import modules from any source is extendible via modules.",
+  "main": "esm-loader.mjs",
+  "module": "esm-loader.mjs",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/direktspeed/esm-loader.git"
+  },
+  "keywords": [
+    "ES",
+    "ESM",
+    "Module",
+    "Loader",
+    "Protocol",
+    "Support",
+    "http",
+    "any"
+  ],
+  "author": "Frank Lemanschik <frank@dspeed.eu>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/direktspeed/esm-loader/issues"
+  },
+  "homepage": "https://github.com/direktspeed/esm-loader#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
+}
