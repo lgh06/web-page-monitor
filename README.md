@@ -16,7 +16,7 @@ Not released a minimal version yet.
 `web` is the website, for end users to use. created by Next.js. Connected to MongoDB. **NO CONNECT** socketio for now.  
 `pptr` is the puppeteer, connect socket.io.  
 `socketio` is the data communication center. Connected with pptr and worker-scheduler.  
-`worker-scheduler` need to connect to MongoDB  
+`worker-scheduler` connect to MongoDB and socket.io   
 `esm-loader` NodeJS import(esm).then(..) from user defined js ( http URL ) .  
 
 
@@ -44,4 +44,9 @@ npm install && npm run dev
 ```  
 
 ## License / 许可协议  
-see [LICENSE.md](./LICENSE.md)
+see [LICENSE.md](./LICENSE.md)  
+
+##### Other Notes  
+> https://daniel-gehuan-liu.notion.site/Web-Page-Monitor-b5910402c741496ea46cecd1a055eb25  
+> https://www.wolai.com/ahuan/xvh7PRocdkApx5p9rTmrDc  
+> https://github.com/lgh06/web-page-monitor/projects/1  

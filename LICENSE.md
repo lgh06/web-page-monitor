@@ -15,3 +15,7 @@ Individuals can provide helps to one friend, to help her / him for non-commercia
 However, if you help two or more friends with using / modifying this project, for one same task/goal,for any purpose, all of you will be treated as a **group**. For group use, see above.  
 个人用户可以向一个朋友提供帮助，为了非商业性的目的。
 然而，如果你为了同一个任务/目标而向两个或两个以上的朋友提供使用或修改本项目的帮助，无论任何目的，你们都被视为是一个**团体**. 团体的使用，参见上文。
+
+The `esm-loader` sub-package have its own license, it is created by github user direktspeed, see https://github.com/direktspeed/esm-loader 's license.  
+`esm-loader`有自己的License，参见 https://github.com/direktspeed/esm-loader .
+
