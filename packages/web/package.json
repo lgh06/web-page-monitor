@@ -1,6 +1,7 @@
 {
   "name": "@webest/web-page-monitor-web",
   "private": true,
+  "license": "See monorepo's LICENSE.md",
   "scripts": {
     "dev": "concurrently --kill-others-on-fail \"next dev -p 3002\" \"wait-on http://localhost:3002/io && start http://localhost:3002/io\"",
     "build": "next build",

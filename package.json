@@ -1,6 +1,7 @@
 {
   "name": "root",
   "private": true,
+  "license": "See monorepo's LICENSE.md",
   "scripts": {
     "init": "lerna bootstrap",
     "postinstall": "npm i lerna@3.22.1 -g && npm run init",

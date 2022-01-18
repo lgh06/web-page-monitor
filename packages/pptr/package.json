@@ -4,7 +4,7 @@
   "description": "> TODO: description",
   "author": "Daniel Liu <hnnk@qq.com>",
   "homepage": "",
-  "license": "GPL-3.0",
+  "license": "See monorepo's LICENSE.md",
   "main": "lib/pptr.mjs",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
