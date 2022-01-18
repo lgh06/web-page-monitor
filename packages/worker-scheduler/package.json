@@ -6,12 +6,6 @@
   "homepage": "",
   "license": "See monorepo's LICENSE.md",
   "main": "lib/worker-scheduler.mjs",
-  "directories": {
-    "lib": "lib"
-  },
-  "files": [
-    "lib"
-  ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -20,7 +14,8 @@
   },
   "dependencies": {
     "cron": "1.8.2",
-    "socket.io-client": "^4.4.1"
+    "socket.io-client": "^4.4.1",
+    "mongodb": "^4.3.0"
   },
   "devDependencies": {
     "@types/cron": "1.7.3",
