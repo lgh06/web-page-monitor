@@ -5,12 +5,12 @@
   "author": "Daniel Liu <hnnk@qq.com>",
   "homepage": "",
   "license": "See monorepo's LICENSE.md",
-  "main": "lib/worker-scheduler.mjs",
+  "main": "worker-scheduler.mjs",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "dev": "nodemon lib/pptr.mjs"
+    "dev": "nodemon worker-scheduler.mjs"
   },
   "dependencies": {
     "cron": "1.8.2",
