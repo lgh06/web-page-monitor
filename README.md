@@ -16,7 +16,7 @@ Not released a minimal version yet.
 `web` is the website, for end users to use. created by Next.js. Connected to MongoDB. **NO CONNECT** socketio for now.  
 `pptr` is the puppeteer, connect socket.io.  
 `socketio` is the data communication center. Connected with pptr and worker-scheduler.  
-`worker-scheduler` need to connect to MongoDB  
+`worker-scheduler` connect to MongoDB and socket.io   
 `esm-loader` NodeJS import(esm).then(..) from user defined js ( http URL ) .  
 
 
