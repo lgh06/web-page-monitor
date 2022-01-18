@@ -44,4 +44,8 @@ npm install && npm run dev
 ```  
 
 ## License / 许可协议  
-see [LICENSE.md](./LICENSE.md)
+see [LICENSE.md](./LICENSE.md)  
+
+##### Other Notes  
+> https://daniel-gehuan-liu.notion.site/Web-Page-Monitor-b5910402c741496ea46cecd1a055eb25  
+> https://www.wolai.com/ahuan/xvh7PRocdkApx5p9rTmrDc  
