@@ -4,6 +4,8 @@
 // https://docs.mongodb.com/drivers/node/v4.3/usage-examples/findOne/  Version 4.3
 // https://mongodb.github.io/node-mongodb-native/4.3/
 // https://github.com/mongodb/node-mongodb-native
+// https://docs.mongodb.com/v5.0/tutorial/query-arrays/
+// https://docs.mongodb.com/v5.0/reference/operator/query/gte/#mongodb-query-op.-gte
 // Mongodb connection , used in Next.js backend API side.
 import { MongoClient, Db } from "mongodb";
 
