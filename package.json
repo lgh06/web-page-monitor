@@ -6,7 +6,7 @@
     "init": "lerna bootstrap",
     "postinstall": "npm run init",
     "dev-web": "lerna run --scope @webest/web-page-monitor-web dev",
-    "dev": "lerna run dev --parallel --no-bail"
+    "dev": "lerna bootstrap && lerna run dev --parallel --no-bail"
   },
   "devDependencies": {
     "lerna": "3.22.1"

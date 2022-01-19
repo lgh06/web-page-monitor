@@ -1,4 +1,4 @@
-export const  sampleFunction = `async function task({browser}){
+export const  sampleFunction = `async function task({browser}: {browser: Browser}){
   const page = await browser.newPage();
   await page.setViewport({
     width: 1902,

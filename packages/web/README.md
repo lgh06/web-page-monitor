@@ -1,5 +1,11 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).  
 
+## Note by Daniel Liu:
+Puppeteer-core is used for monaco-editor's hint.  
+Do not upgrade, see https://github.com/lgh06/web-page-monitor/issues/9  
+```
+    "puppeteer-core": "10.0.0",
+```
 ## Getting Started
 
 First, run the development server:
