@@ -22,5 +22,7 @@ export namespace  CronTime {
    */
   function checkTimes(timestampArr:Array<number>):[true | false, errorMessage];
 
-} 
+}
+
+export let sampleFunction = '';
 

@@ -1,0 +1,9 @@
+{
+  "https://cdn.jsdelivr.net/npm/@monaco-editor/loader@1.2.0/+esm": { "integrity": "sha512-oFPiBtI1Iw7JDSG8aa0gCQa92zaxJ90cnyfjxw1uuvvE2pKuItNW+3RQe7fyYNN9Ulmy5z9St7dRAF874sxTeA==", "contentType": "application/javascript; charset=utf-8" },
+  "https://cdn.jsdelivr.net/npm/@monaco-editor/react/+esm": { "integrity": "sha512-i72VxZoNP6aLCWUpCxquHiIOxapTiVnQLuux9e6CqCMs736ngDoCaQm3Y6BlazqmD+VMf/atlPVbHvmOuGqr1A==", "contentType": "application/javascript; charset=utf-8" },
+  "https://cdn.jsdelivr.net/npm/@monaco-editor/react@4.3.1": { "integrity": "sha512-do1O3R0QMgxSD1zobmFLhNartvXO448rKIs899e3/jREOGPDZ8pP59qQCtwS8PszxkymK30SLY/97fpJQZltLA==", "contentType": "application/javascript; charset=utf-8" },
+  "https://cdn.jsdelivr.net/npm/prop-types@15.8.1/+esm": { "integrity": "sha512-fX7Ilaf6yK0eAyfiJBCy8TXWptF3tJ1RGOvS9peTnkz2EjENzE/Ns2c7aPxe0aSV2HsG54qWZlt5V/3HY30ykA==", "contentType": "application/javascript; charset=utf-8" },
+  "https://cdn.jsdelivr.net/npm/react@17.0.2/+esm": { "integrity": "sha512-SIoZA/cQwuBjDNqszkgL0mgFKwUsZoiZ0frsZ3bN+fxzqnxnBT9NkLKODkI6Q80Ja8JLyHnttxH3EFLkOudYcw==", "contentType": "application/javascript; charset=utf-8" },
+  "https://cdn.jsdelivr.net/npm/state-local@1.0.7/+esm": { "integrity": "sha512-OOc1FgNrLyIjNhnzBySjZRFpzVk6+KDa5y/CJVwTGoSmmpkZ3DFro455UzBcp1ye09UMC0xbsmveDB1OHJf2tg==", "contentType": "application/javascript; charset=utf-8" },
+  "version": 1
+}
