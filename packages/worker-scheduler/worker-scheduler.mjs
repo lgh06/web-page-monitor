@@ -1,6 +1,6 @@
 import { io } from "socket.io-client";
 import { CONFIG } from "./CONFIG.mjs"
-import { cron } from "@webest/web-page-monitor-helper";
+import { CronTime } from "@webest/web-page-monitor-helper";
 
 
 async function workerScheduler() {
@@ -15,7 +15,7 @@ async function main() {
   if (userInfo.email && !socket.connected) {
     connectSocketIO({ socket });
   }
-  let nextArr = cron.getNextTimes('6 * * * * *');
+  let nextArr = CronTime.getNextTimes('6 * * * * *');
   console.log(nextArr)
 }
 

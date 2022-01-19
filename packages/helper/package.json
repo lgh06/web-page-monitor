@@ -6,7 +6,7 @@
   "homepage": "",
   "license": "SEE LICENSE IN LICENSE.md",
   "main": "src/helper.mjs",
-  "typings": "src/helper.d.ts",
+  "types": "src/helper.d.ts",
   "publishConfig": {
     "registry": "https://registry.npmmirror.com/"
   },

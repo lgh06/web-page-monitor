@@ -1,4 +1,4 @@
-import { CronTime } from "cron"
+import { CronTime as CT } from "cron"
 /**
  * get next 3 timestamps (13 digit, miliseconds) from cron syntax
  * UTC timestamp
@@ -6,7 +6,7 @@ import { CronTime } from "cron"
  * @returns {Array} 3 timestamps (13 digit, miliseconds)
  */
  function getNextTimes(cron){
-  let ctArr = new CronTime(cron).sendAt(3);
+  let ctArr = new CT(cron).sendAt(3);
   // UTC timestamp in miliseconds / English time
   // time return by CronTime are in Momentjs format, using luxon lib.
   // .toISOString() / .valueOf() / .format('ddd')
@@ -17,8 +17,22 @@ import { CronTime } from "cron"
   return convertedArr
 }
 
-let cron = {
-  getNextTimes
+  // 
+  /**
+   * Calculate a ISO string in local time, minute, without end 'Z'
+   * 
+   * @param {Date} oneDate 
+   * @param {number} plusMinutes 
+   * @returns a string, in your timezone 2022-01-19T13:14
+   */
+  function toLocalISOString(oneDate, plusMinutes = 0){
+    let offset = oneDate.getTimezoneOffset();
+    return new Date(oneDate.setMinutes(oneDate.getMinutes()-offset + plusMinutes)).toISOString().substring(0, 16)
+  }
+
+let CronTime = {
+  getNextTimes,
+  toLocalISOString,
 }
 
-export { cron }
+export { CronTime }

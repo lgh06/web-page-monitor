@@ -2,7 +2,7 @@ import { NextPage } from "next/types";
 import { ChangeEvent, useEffect, } from 'react';
 import { useImmerAtom } from 'jotai/immer';
 import { creatingTaskDetailAtom } from '../atoms';
-import { cron } from '@webest/web-page-monitor-helper';
+import { CronTime } from '@webest/web-page-monitor-helper';
 
 const CreateTaskPage: NextPage = () => {
 
@@ -41,7 +41,7 @@ const CreateTaskPage: NextPage = () => {
   function updateDate(){
     setTaskDetail(v => {
       let nowDate = new Date();
-      v.endLocalMinuteString = toLocalISOString(nowDate, 6);
+      v.endLocalMinuteString = CronTime.toLocalISOString(nowDate, 6);
     })
   }
 
@@ -49,7 +49,7 @@ const CreateTaskPage: NextPage = () => {
     let inputElement = ev.target;
     let index = ev.target.dataset.inputIndex;
     if(index === '0'){
-      let nextArr = cron.getNextTimes(inputElement.value);
+      let nextArr = CronTime.getNextTimes(inputElement.value);
       console.log(nextArr)
       setTaskDetail(v => {
         v.cronSyntax = inputElement.value;
