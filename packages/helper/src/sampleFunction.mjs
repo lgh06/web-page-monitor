@@ -7,12 +7,11 @@ export const  sampleFunction = `async function task({browser}){
   });
   let url = "http://www.yuanyang.gov.cn/channels/443.html"
   await page.goto(url);
-  let now = Date.now()
   let selector = ".neirong table";
   await page.waitForSelector(selector);
   let matchedElement = await page.$(selector);
   let textContent = await matchedElement.evaluate((node) => node.textContent);
-  textContent = String(textContent).trim().replace(/\\n\\ +\\n/g, '\\n')` + '\n' +
+  // to do something else, like post this textContent to another URL ? ...` + '\n' +
 '\
 }' + '\n' + '\
 export { task }';

@@ -3,8 +3,13 @@ import { ChangeEvent, useEffect, } from 'react';
 import { useImmerAtom } from 'jotai/immer';
 import { creatingTaskDetailAtom } from '../atoms';
 import { CronTime, sampleFunction } from '@webest/web-page-monitor-helper';
-import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react";
 
+import dynamic from 'next/dynamic'
+
+const MonacoEditor = dynamic(
+  () => import('../components/monaco-editor'),
+  { ssr: false }
+)
 
 const CreateTaskPage: NextPage = () => {
 
@@ -87,11 +92,7 @@ const CreateTaskPage: NextPage = () => {
     <div>
       <button disabled={!taskDetail.cronPassed}>Create Now</button>
     </div>
-    <Editor
-      height="90vh"
-      defaultLanguage="javascript"
-      defaultValue={sampleFunction}
-    />
+    <MonacoEditor></MonacoEditor>
   </>);
 }
 
