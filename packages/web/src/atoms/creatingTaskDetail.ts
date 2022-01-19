@@ -1,8 +1,7 @@
 import { atom } from 'jotai'
 
-const creatingTaskDetail = {
-  nowTimestamp: Date.now(),
-  nowLocalMinuteString: '',
+let creatingTaskDetail = {
+  endLocalMinuteString: '',
   cronSyntax: '0 0 * * * *',
 }
 
