@@ -13,7 +13,8 @@ const CreateTaskPage: NextPage = () => {
   function updateDate() {
     setTaskDetail(v => {
       let nowDate = new Date();
-      v.endLocalMinuteString = CronTime.toLocalISOString(nowDate, 6);
+      // TODO different type user, diff end time
+      v.endLocalMinuteString = CronTime.toLocalISOString(nowDate, 60*24);
     })
   }
 

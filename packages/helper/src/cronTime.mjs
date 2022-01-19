@@ -31,6 +31,7 @@ function checkTimes(timestampArr) {
   let now = Date.now();
   let errors = new Set();
   timestampArr.forEach((v, i, a) => {
+    // TODO different type user, diff later / between time
     if (i === 0) {
       if ((v - now) < 60 * 6 * 1000) {
         errors.add('first job need 6 minutes later, please check. ');
