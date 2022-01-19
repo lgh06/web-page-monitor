@@ -20,8 +20,9 @@ function getNextTimes(cron) {
 
 
 function toLocalISOString(oneDate, plusMinutes = 0) {
-  let offset = oneDate.getTimezoneOffset();
-  return new Date(oneDate.setMinutes(oneDate.getMinutes() - offset + plusMinutes)).toISOString().substring(0, 16)
+  let aNewDate = new Date(oneDate);
+  let offset = aNewDate.getTimezoneOffset();
+  return new Date(aNewDate.setMinutes(aNewDate.getMinutes() - offset + plusMinutes)).toISOString().substring(0, 16)
 }
 
 function checkTimes(timestampArr) {

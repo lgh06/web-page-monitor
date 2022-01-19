@@ -5,6 +5,7 @@ import { ParsedUrlQuery } from 'querystring';
 import CONFIG from '../../CONFIG';
 import { useImmerAtom } from 'jotai/immer';
 import { userInfoAtom } from '../atoms';
+import Link from 'next/link';
 
 
 const LoginPage: NextPage = () => {
@@ -72,6 +73,7 @@ const LoginPage: NextPage = () => {
   if( userInfo.logged ) {
     return (
       <div>Welcome, {userInfo.email} <br />
+        <Link href='./create_task'><a >Please create a task</a></Link>
         <button onClick={logOut}>Log Out</button>
       </div>
     )

@@ -14,7 +14,8 @@ const CreateTaskPage: NextPage = () => {
     setTaskDetail(v => {
       let nowDate = new Date();
       // TODO different type user, diff end time
-      v.endLocalMinuteString = CronTime.toLocalISOString(nowDate, 60*24);
+      v.endLocalMinuteString = CronTime.toLocalISOString(nowDate, 7*60*24);
+      v.startLocalMinuteString = CronTime.toLocalISOString(nowDate, 10);
     })
   }
 
@@ -30,10 +31,12 @@ const CreateTaskPage: NextPage = () => {
       console.log(nextArr, passed, errorMsg)
       if (passed) {
         setTaskDetail(v => {
+          v.cronPassed = true;
           v.cronMsg = 'cron syntax check passed. ';
         })
       } else {
         setTaskDetail(v => {
+          v.cronPassed = false;
           v.cronMsg = Array(errorMsg).join(' ');
         })
       }
@@ -74,9 +77,13 @@ const CreateTaskPage: NextPage = () => {
         data-input-index="1"
         onChange={handleInputChange}
         type="datetime-local"
-        min={taskDetail.endLocalMinuteString}
+        min={taskDetail.startLocalMinuteString}
+        max={taskDetail.endLocalMinuteString}
       >
       </input>
+    </div>
+    <div>
+      <button disabled={!taskDetail.cronPassed}>Create Now</button>
     </div>
   </>);
 }
