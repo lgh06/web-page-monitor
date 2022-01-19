@@ -1,6 +1,6 @@
 import { CronTime as CT } from "cron"
 
- function getNextTimes(cron){
+function getNextTimes(cron) {
   let ctArr = new CT(cron).sendAt(3);
   // UTC timestamp in miliseconds / English time
   // time return by CronTime are in Momentjs format, using luxon lib.
@@ -13,10 +13,10 @@ import { CronTime as CT } from "cron"
 }
 
 
-  function toLocalISOString(oneDate, plusMinutes = 0){
-    let offset = oneDate.getTimezoneOffset();
-    return new Date(oneDate.setMinutes(oneDate.getMinutes()-offset + plusMinutes)).toISOString().substring(0, 16)
-  }
+function toLocalISOString(oneDate, plusMinutes = 0) {
+  let offset = oneDate.getTimezoneOffset();
+  return new Date(oneDate.setMinutes(oneDate.getMinutes() - offset + plusMinutes)).toISOString().substring(0, 16)
+}
 
 let CronTime = {
   getNextTimes,
