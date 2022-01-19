@@ -2,8 +2,8 @@ import { NextComponentType } from "next/types";
 import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react";
 import { useEffect } from "react";
 import { sampleFunction } from '@webest/web-page-monitor-helper';
-const nodeTypes = (require as any).context('!!raw-loader!@types/node/', true, /\.d.ts$/);
-const puppeteerTypes = require('!!raw-loader!puppeteer-core/lib/types.d.ts');
+// const nodeTypes = (require as any).context('!!raw-loader!@types/node/', true, /\.d.ts$/);
+// const puppeteerTypes = require('!!raw-loader!puppeteer-core/lib/types.d.ts');
 
 
 const MonacoEditor: NextComponentType = () => {
@@ -24,19 +24,19 @@ const MonacoEditor: NextComponentType = () => {
       });
 
 
-      nodeTypes.keys().forEach((key: string) => {
-        monaco.languages.typescript.typescriptDefaults.addExtraLib(
-          nodeTypes(key).default,
-          'node_modules/@types/node/' + key.substr(2)
-        );
-      });
+      // nodeTypes.keys().forEach((key: string) => {
+      //   monaco.languages.typescript.typescriptDefaults.addExtraLib(
+      //     nodeTypes(key).default,
+      //     'node_modules/@types/node/' + key.substr(2)
+      //   );
+      // });
 
-      monaco.languages.typescript.typescriptDefaults.addExtraLib(
-        puppeteerTypes.default
-          .replace('import { ChildProcess } from \'child_process\';', '')
-          .replace(/export /g, 'declare '),
-        'node_modules/puppeteer-core/lib/types.d.ts',
-      );
+      // monaco.languages.typescript.typescriptDefaults.addExtraLib(
+      //   puppeteerTypes.default
+      //     .replace('import { ChildProcess } from \'child_process\';', '')
+      //     .replace(/export /g, 'declare '),
+      //   'node_modules/puppeteer-core/lib/types.d.ts',
+      // );
       console.log("here is the monaco instance:", monaco.languages.typescript.typescriptDefaults.getExtraLibs());
     }
   }, [monaco]);
@@ -44,13 +44,14 @@ const MonacoEditor: NextComponentType = () => {
   return (
     <div style={{ backgroundColor: '#eee' }}>
       <Editor
-        height="40vh"
+        height="500px"
         defaultLanguage="typescript"
         defaultValue={sampleFunction}
         options={{
           minimap: { enabled: false },
           renderWhitespace: 'all',
           scrollBeyondLastLine: false,
+          fontSize: 20,
         }}
       />
     </div>);
