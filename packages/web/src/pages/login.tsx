@@ -10,23 +10,23 @@ import Link from 'next/link';
 
 const LoginPage: NextPage = () => {
   let url = `https://gitee.com/oauth/authorize?client_id=${CONFIG.giteeOauthClientId}&redirect_uri=${encodeURIComponent(CONFIG.giteeRedirectUri)}&response_type=code`;
-  
+
   const router = useRouter();
   const [userInfo, setUserInfo] = useImmerAtom(userInfoAtom);
 
   /**
    * get user info from gitee
    */
-  useEffect(()=>{
+  useEffect(() => {
     let { code, provider } = router.query;
-  
+
     console.log(router.query)
-    if(code && provider){
+    if (code && provider) {
       getUserInfo(router.query);
     }
-    async function getUserInfo(query:ParsedUrlQuery){
+    async function getUserInfo(query: ParsedUrlQuery) {
       let { code, provider } = query;
-      if( provider === 'gitee' && code){
+      if (provider === 'gitee' && code) {
         // if we have code, then ask for access_token
         // https://gitee.com/api/v5/oauth_doc#/list-item-2
         let resp = await fetch(`https://gitee.com/oauth/token?grant_type=authorization_code&code=${code}&client_id=${CONFIG.giteeOauthClientId}&redirect_uri=${CONFIG.giteeRedirectUri}`, {
@@ -35,8 +35,8 @@ const LoginPage: NextPage = () => {
         });
         const data = await resp.json();
         // got access_token
-        const {access_token, refresh_token, scope } = data;
-        if (String(scope).includes('email')){
+        const { access_token, refresh_token, scope } = data;
+        if (String(scope).includes('email')) {
           // ask for emails
           // https://gitee.com/api/v5/swagger#/getV5Emails
           let resp2 = await fetch(`https://gitee.com/api/v5/emails?access_token=${access_token}`, {
@@ -45,7 +45,7 @@ const LoginPage: NextPage = () => {
           const emails = await resp2.json();
           // emails, array, may have multiple emails
           console.log(emails)
-          if(emails && emails.length && emails[0] && emails[0].email ){
+          if (emails && emails.length && emails[0] && emails[0].email) {
             setUserInfo((v) => {
               v.email = emails[0].email;
               v.emailState = emails[0].state;
@@ -61,7 +61,7 @@ const LoginPage: NextPage = () => {
   /**
    * Events
    */
-  function logOut(){
+  function logOut() {
     setUserInfo((v) => {
       v.email = undefined;
       v.emailState = '';
@@ -70,12 +70,19 @@ const LoginPage: NextPage = () => {
     router.push('/login');
   }
 
-  if( userInfo.logged ) {
-    return (
+  const linkStyle = {
+    textDecoration: "underline"
+  }
+
+  if (userInfo.logged) {
+    return (<>
       <div>Welcome, {userInfo.email} <br />
-        <Link href='./create_task'><a >Please create a task</a></Link>
         <button onClick={logOut}>Log Out</button>
       </div>
+      <div>
+        <Link href='./create_task'><a style={linkStyle}>Please create a task</a></Link>
+      </div>
+    </>
     )
   } else {
     return (
