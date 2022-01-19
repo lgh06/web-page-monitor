@@ -3,7 +3,7 @@
   "private": true,
   "license": "See monorepo's LICENSE.md",
   "scripts": {
-    "dev": "concurrently --kill-others-on-fail \"next dev -p 3002\" \"wait-on http://localhost:3002/io && start http://localhost:3002/io\"",
+    "dev": "concurrently --kill-others-on-fail \"next dev -p 3002\" \"wait-on http://localhost:3002/create_task && start http://localhost:3002/create_task\"",
     "build": "next build",
     "static": "next build && next export",
     "start": "npm run static && concurrently \"next start -p 3002\" \"npx serve out -p 3001\"",
@@ -18,7 +18,7 @@
     "react-dom": "~17.0.2",
     "socket.io-client": "~4.4.1",
     "mongodb": "^4.3.0",
-    "cron": "1.8.2"
+    "@webest/web-page-monitor-helper": "*"
   },
   "devDependencies": {
     "@types/node": "~17.0.8",
@@ -27,7 +27,6 @@
     "eslint": "~8.6.0",
     "eslint-config-next": "~12.0.8",
     "typescript": "~4.5.4",
-    "wait-on": "^6.0.0",
-    "@types/cron": "1.7.3"
+    "wait-on": "^6.0.0"
   }
 }

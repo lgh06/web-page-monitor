@@ -1,0 +1,22 @@
+{
+  "name": "@webest/web-page-monitor-helper",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Daniel Liu <hnnk@qq.com>",
+  "homepage": "",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "main": "src/helper.mjs",
+  "typings": "src/helper.d.ts",
+  "publishConfig": {
+    "registry": "https://registry.npmmirror.com/"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "cron": "1.8.2"
+  },
+  "devDependencies": {
+    "@types/cron": "1.7.3"
+  }
+}

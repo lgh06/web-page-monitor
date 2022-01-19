@@ -13,12 +13,11 @@
     "dev": "nodemon worker-scheduler.mjs"
   },
   "dependencies": {
-    "cron": "1.8.2",
     "socket.io-client": "^4.4.1",
-    "mongodb": "^4.3.0"
+    "mongodb": "^4.3.0",
+    "@webest/web-page-monitor-helper": "*"
   },
   "devDependencies": {
-    "@types/cron": "1.7.3",
     "nodemon": "^2.0.15"
   }
 }

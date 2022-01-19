@@ -1,8 +1,8 @@
 import { NextPage } from "next/types";
-import { CronTime } from "cron";
 import { ChangeEvent, useEffect, } from 'react';
 import { useImmerAtom } from 'jotai/immer';
 import { creatingTaskDetailAtom } from '../atoms';
+import { cron } from '@webest/web-page-monitor-helper';
 
 const CreateTaskPage: NextPage = () => {
 
@@ -14,11 +14,6 @@ const CreateTaskPage: NextPage = () => {
     return new Date(oneDate.setMinutes(oneDate.getMinutes()-offset + plusMinutes)).toISOString().substring(0, 16)
   }
 
-  function getNextTimes(cron: string){
-    let ctArr = new CronTime(cron).sendAt(100) as moment.Moment[];
-    let convertedArr = ctArr.map(v => v.valueOf());
-    return convertedArr
-  }
 
   function checkTimes(timestampArr : Array<number>){
     let now = Date.now();
@@ -54,7 +49,7 @@ const CreateTaskPage: NextPage = () => {
     let inputElement = ev.target;
     let index = ev.target.dataset.inputIndex;
     if(index === '0'){
-      let nextArr = getNextTimes(inputElement.value);
+      let nextArr = cron.getNextTimes(inputElement.value);
       console.log(nextArr)
       setTaskDetail(v => {
         v.cronSyntax = inputElement.value;
