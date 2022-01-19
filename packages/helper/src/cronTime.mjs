@@ -1,7 +1,13 @@
 import { CronTime as CT } from "cron"
 
 function getNextTimes(cron) {
-  let ctArr = new CT(cron).sendAt(3);
+  let ctArr;
+  try {
+    ctArr = new CT(cron).sendAt(3);
+  } catch (error) {
+    ctArr = null;
+    return ctArr
+  }
   // UTC timestamp in miliseconds / English time
   // time return by CronTime are in Momentjs format, using luxon lib.
   // .toISOString() / .valueOf() / .format('ddd')
@@ -18,9 +24,36 @@ function toLocalISOString(oneDate, plusMinutes = 0) {
   return new Date(oneDate.setMinutes(oneDate.getMinutes() - offset + plusMinutes)).toISOString().substring(0, 16)
 }
 
+function checkTimes(timestampArr) {
+  if(!timestampArr || !timestampArr[0]){
+    return [false, ['please check the cron syntax']]
+  }
+  let now = Date.now();
+  let errors = new Set();
+  timestampArr.forEach((v, i, a) => {
+    if (i === 0) {
+      if ((v - now) < 60 * 6 * 1000) {
+        errors.add('first job need 6 minutes later, please check. ');
+      }
+    }
+    if (i >= 1) {
+      if ((v - a[i - 1]) < 60 * 5 * 1000) {
+        errors.add('between every jobs, need >= 5 minutes, please check. ');
+      }
+    }
+  });
+  let errorArr = Array.from(errors);
+  if (errorArr.length) {
+    return [false, errorArr]
+  } else {
+    return [true];
+  }
+}
+
 let CronTime = {
   getNextTimes,
   toLocalISOString,
+  checkTimes,
 }
 
 export { CronTime }

@@ -8,56 +8,38 @@ const CreateTaskPage: NextPage = () => {
 
   const [taskDetail, setTaskDetail] = useImmerAtom(creatingTaskDetailAtom);
 
-  // Calculate a ISO string in local time, minute, without end 'Z'
-  function toLocalISOString(oneDate: Date, plusMinutes = 0){
-    let offset = oneDate.getTimezoneOffset();
-    return new Date(oneDate.setMinutes(oneDate.getMinutes()-offset + plusMinutes)).toISOString().substring(0, 16)
-  }
 
-
-  function checkTimes(timestampArr : Array<number>){
-    let now = Date.now();
-    let errors = new Set();
-    timestampArr.forEach((v, i, a) => {
-      if(i === 0) {
-        if((v - now) < 60*6*1000){
-          errors.add('first job need 6 minutes later, please check');
-        }
-      }
-      if(i >= 1){
-        if((v - a[i-1]) < 60*5*1000){
-          errors.add('jobs between need >= 5 minutes later, please check');
-        }
-      }
-      let errorArr = Array.from(errors);
-      if(errorArr.length){
-        return [false, errorArr]
-      }else{
-        return [true];
-      }
-    })
-  }
   // update input date when first entry
-  function updateDate(){
+  function updateDate() {
     setTaskDetail(v => {
       let nowDate = new Date();
       v.endLocalMinuteString = CronTime.toLocalISOString(nowDate, 6);
     })
   }
 
-  function handleInputChange(ev: ChangeEvent<HTMLInputElement>){
+  function handleInputChange(ev: ChangeEvent<HTMLInputElement>) {
     let inputElement = ev.target;
     let index = ev.target.dataset.inputIndex;
-    if(index === '0'){
-      let nextArr = CronTime.getNextTimes(inputElement.value);
-      console.log(nextArr)
+    if (index === '0') {
       setTaskDetail(v => {
         v.cronSyntax = inputElement.value;
       })
+      let nextArr = CronTime.getNextTimes(inputElement.value);
+      let [passed, errorMsg] = CronTime.checkTimes(nextArr);
+      console.log(nextArr, passed, errorMsg)
+      if (passed) {
+        setTaskDetail(v => {
+          v.cronMsg = 'cron syntax check passed. ';
+        })
+      } else {
+        setTaskDetail(v => {
+          v.cronMsg = Array(errorMsg).join(' ');
+        })
+      }
     }
-    if(index === '1'){
+    if (index === '1') {
       if (!inputElement.validity.valid) return;
-      const dtISO = toLocalISOString( new Date(inputElement.value) );
+      const dtISO = CronTime.toLocalISOString(new Date(inputElement.value));
       setTaskDetail(v => {
         v.endLocalMinuteString = dtISO;
       })
@@ -71,11 +53,11 @@ const CreateTaskPage: NextPage = () => {
     // return ()=>{
     //   clearInterval(intervalId)
     // };
-  },[]);
+  }, []);
 
   return (<>
-    <div>input cron syntax <br/>{taskDetail.endLocalMinuteString}
-      <input 
+    <div>input cron syntax <br />{taskDetail.cronMsg}<br/>
+      <input
         placeholder="cron syntax"
         data-input-index="0"
         value={taskDetail.cronSyntax}
@@ -84,15 +66,15 @@ const CreateTaskPage: NextPage = () => {
 
       </input>
     </div>
-    <div>continue loops,  until<br/>
-      <input 
-        placeholder="choose a time" 
+    <div>continue loops,  until<br />
+      <input
+        placeholder="choose a time"
         value={taskDetail.endLocalMinuteString}
         data-input-index="1"
         onChange={handleInputChange}
-        type="datetime-local" 
+        type="datetime-local"
         min={taskDetail.endLocalMinuteString}
-        >
+      >
       </input>
     </div>
   </>);

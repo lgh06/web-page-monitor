@@ -15,5 +15,12 @@ export namespace  CronTime {
    * @returns a string, in your timezone 2022-01-19T13:14
    */
   function toLocalISOString(oneDate: Date, plusMinutes = 0):string;
+  /**
+   * check if a timestampArr's first time is 6 minutes later.  
+   * and check if time between them >= 5 minutes.
+   * @param  timestampArr
+   */
+  function checkTimes(timestampArr:Array<number>):[true | false, errorMessage];
+
 } 
 
