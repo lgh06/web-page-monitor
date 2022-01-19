@@ -10,6 +10,13 @@ const nextConfig = {
       'https://cdn.jsdelivr.net/npm/state-local@1.0.7/+esm',
     ],
   },
+  // webpack: (config) => {
+  //   config.module.rules.push({
+  //     test: /\.d\.ts$/,
+  //     use: 'raw-loader',
+  //   });
+  //   return config;
+  // },
 }
 
 module.exports = nextConfig
