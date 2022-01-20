@@ -1,8 +1,9 @@
 import { NextPage } from "next/types";
 import { ChangeEvent, useEffect, MouseEvent } from 'react';
 import { useImmerAtom } from 'jotai/immer';
-import { creatingTaskDetailAtom, monacoEditorAtom, useReq } from '../atoms';
-import { CronTime, sampleFunction } from '@webest/web-page-monitor-helper';
+import { creatingTaskDetailAtom, monacoEditorAtom } from '../atoms';
+import { CronTime } from '@webest/web-page-monitor-helper';
+import { useReq } from "../hooks/index";
 
 import dynamic from 'next/dynamic'
 
@@ -75,7 +76,8 @@ const CreateTaskPage: NextPage = () => {
     // };
   }, []);
   
-  useReq();
+  let data = useReq('/api/task/create_task');
+  console.log(data)
 
 
   return (<>

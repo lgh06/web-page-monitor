@@ -2,4 +2,5 @@
 
 
 // used in Next.js backend API side.
+// DO NOT USE In FRONTEND
 export * from './dbClient';
