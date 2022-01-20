@@ -36,7 +36,7 @@ const CreateTaskPage: NextPage = () => {
       })
       let nextArr = CronTime.getNextTimes(inputElement.value);
       let [passed, errorMsg] = CronTime.checkTimes(nextArr);
-      console.log(nextArr, passed, errorMsg)
+      // console.log(nextArr, passed, errorMsg)
       if (passed) {
         setTaskDetail(v => {
           v.cronPassed = true;
@@ -60,6 +60,7 @@ const CreateTaskPage: NextPage = () => {
 
   function handleBtnClick(ev: MouseEvent<HTMLButtonElement> ) {
     ev.preventDefault()
+    console.log(editorValue);
     return true;
   }
 

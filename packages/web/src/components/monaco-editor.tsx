@@ -21,7 +21,7 @@ const MonacoEditor: NextPage<Props> = ({defaultValue}) => {
 
   // @ts-ignore
   function handleEditorChange(value, event) {
-    console.log("here is the current model value:", value);
+    // console.log("here is the current model value:", value);
     setEditorValue(v => {
       v.value = value;
     })
@@ -60,7 +60,7 @@ const MonacoEditor: NextPage<Props> = ({defaultValue}) => {
       //     .replace(/export /g, 'declare '),
       //   'node_modules/puppeteer-core/lib/types.d.ts',
       // );
-      console.log("here is the monaco instance:", monaco.languages.typescript.typescriptDefaults.getExtraLibs());
+      // console.log("here is the monaco instance:", monaco.languages.typescript.typescriptDefaults.getExtraLibs());
     }
   }, [monaco]);
 
