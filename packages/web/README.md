@@ -8,10 +8,10 @@ Do not upgrade, see https://github.com/lgh06/web-page-monitor/issues/9
 ```
 
 ## table / collection design  
-| userId | email|countryCode | mobile | password(sha256) | oauthProvider |vipLevel | vipEnd | createdTime |
-|---|---|---|---|---|---|---|---|---|
-|   |   | global phone code   |  |  gitee or github  |  |     |    |
-|1|hnnk@qq.com|+86| `155****555*` |asdfasdf|gitee| null | null  |  2022-01-20T11:20:19.210Z  |
+| userId | email| emailVerified  |countryCode | mobile | password(sha256) | oauthProvider |vipLevel | vipEnd | createdTime |
+|---|---|---|---|---|---|---|---|---|---|
+|   |   |   | global phone code   |  |  gitee or github  |  |     |    |
+|1|hnnk@qq.com| true  |+86| `155****555*` |asdfasdf|gitee| null | null  |  2022-01-20T11:20:19.210Z  |
 
 ## Getting Started
 

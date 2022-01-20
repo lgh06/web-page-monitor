@@ -6,7 +6,7 @@ let userInfo = {
   email: undefined,
   emailState: '', // like confirmed, unverified, ... 
   code: '',
-  provider: '',
+  oauthProvider: '',
   logged: false,
 }
 

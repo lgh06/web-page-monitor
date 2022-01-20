@@ -8,6 +8,11 @@ export function useAPI(endPoint: string, postedObject: undefined | object = unde
     async function http() {
       let resp = await fetch(`${CONFIG.backHost}/api${endPoint}`, {
         method: postedObject ? 'POST' : 'GET',
+        headers: typeof postedObject === 'object' ? {
+          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        } : {},
+        redirect: 'follow',
         body: typeof postedObject === 'object' ? JSON.stringify(postedObject) : null
       });
       const res = await resp.json();
@@ -22,6 +27,11 @@ export function useAPI(endPoint: string, postedObject: undefined | object = unde
 export async function fetchAPI(endPoint: string, postedObject: undefined | object = undefined) {
   let resp = await fetch(`${CONFIG.backHost}/api${endPoint}`, {
     method: postedObject ? 'POST' : 'GET',
+    headers: typeof postedObject === 'object' ? {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    } : {},
+    redirect: 'follow',
     body: typeof postedObject === 'object' ? JSON.stringify(postedObject) : null
   });
   const res = await resp.json();

@@ -5,6 +5,7 @@ import { ParsedUrlQuery } from 'querystring';
 import CONFIG from '../../CONFIG';
 import { useImmerAtom } from 'jotai/immer';
 import { userInfoAtom } from '../atoms';
+import { useAPI, fetchAPI } from '../helpers';
 import Link from 'next/link';
 
 
@@ -42,15 +43,22 @@ const LoginPage: NextPage = () => {
           let resp2 = await fetch(`https://gitee.com/api/v5/emails?access_token=${access_token}`, {
             method: 'GET',
           });
-          const emails = await resp2.json();
-          // emails, array, may have multiple emails
-          console.log(emails)
-          if (emails && emails.length && emails[0] && emails[0].email) {
+          const emailResp = await resp2.json();
+          // emailResp, array, may have multiple emailResp
+          console.log(emailResp)
+          if (emailResp && emailResp.length && emailResp[0] && emailResp[0].email) {
+            router.replace("/login")
             setUserInfo((v) => {
-              v.email = emails[0].email;
-              v.emailState = emails[0].state;
+              v.email = emailResp[0].email;
+              v.emailState = emailResp[0].state;
               v.logged = true;
             });
+            let {data: saveResult} = await fetchAPI('/user/save',{
+              email: emailResp[0].email, 
+              oauthProvider: provider,
+              emailVerified: emailResp[0].state === 'confirmed'
+            })
+            console.log(saveResult)
           }
         }
       }
