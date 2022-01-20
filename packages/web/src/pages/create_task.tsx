@@ -1,9 +1,9 @@
 import { NextPage } from "next/types";
 import { ChangeEvent, useEffect, MouseEvent } from 'react';
 import { useImmerAtom } from 'jotai/immer';
-import { creatingTaskDetailAtom, monacoEditorAtom } from '../atoms';
+import { createTaskDetailAtom, monacoEditorAtom } from '../atoms';
 import { CronTime } from '@webest/web-page-monitor-helper';
-import { useAPI } from "../hooks/index";
+import { fetchAPI } from "../helpers/index";
 
 import dynamic from 'next/dynamic'
 
@@ -15,7 +15,7 @@ const MonacoEditor = dynamic(
 
 const CreateTaskPage: NextPage = () => {
 
-  const [taskDetail, setTaskDetail] = useImmerAtom(creatingTaskDetailAtom);
+  const [taskDetail, setTaskDetail] = useImmerAtom(createTaskDetailAtom);
   const [editorValue] = useImmerAtom(monacoEditorAtom);
 
 
@@ -60,9 +60,12 @@ const CreateTaskPage: NextPage = () => {
     }
   }
 
-  function handleBtnClick(ev: MouseEvent<HTMLButtonElement> ) {
+  async function handleBtnClick(ev: MouseEvent<HTMLButtonElement> ) {
     ev.preventDefault()
     console.log(editorValue);
+    let { data } = await fetchAPI('/task/create_task', {test: "string one"});
+    console.log(data)
+
     return true;
   }
 
@@ -76,12 +79,6 @@ const CreateTaskPage: NextPage = () => {
     // };
   }, []);
   
-  let { data, loading } = useAPI('/task/create_task', {test: "string one"});
-  if(!loading){
-    console.log(data)
-  }
-
-
   return (<>
     <div>input cron syntax <br />{taskDetail.cronMsg}<br/>
       <input

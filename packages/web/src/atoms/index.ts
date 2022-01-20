@@ -3,5 +3,5 @@
  */
 
 export * from './user';
-export * from './creatingTaskDetail';
+export * from './createTaskDetail';
 export * from './monacoEditor';

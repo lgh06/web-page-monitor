@@ -1,6 +1,6 @@
 import { atom } from 'jotai'
 
-let creatingTaskDetail = {
+let createTaskDetail = {
   endLocalMinuteString: '',
   startLocalMinuteString: '',
   cronSyntax: '0 0 * * * *',
@@ -8,4 +8,4 @@ let creatingTaskDetail = {
   cronPassed: true,
 }
 
-export const creatingTaskDetailAtom = atom(creatingTaskDetail);
+export const createTaskDetailAtom = atom(createTaskDetail);
