@@ -6,6 +6,13 @@ Do not upgrade, see https://github.com/lgh06/web-page-monitor/issues/9
 ```
     "puppeteer-core": "10.0.0",
 ```
+
+## table / collection design  
+| userId | email|countryCode | mobile | password(sha256) | oauthProvider |vipLevel | vipEnd | createdTime |
+|---|---|---|---|---|---|---|---|---|
+|   |   | global phone code   |  |  gitee or github  |  |     |    |
+|1|hnnk@qq.com|+86| `155****555*` |asdfasdf|gitee| null | null  |  2022-01-20T11:20:19.210Z  |
+
 ## Getting Started
 
 First, run the development server:
