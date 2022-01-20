@@ -35,5 +35,5 @@ export async function fetchAPI(endPoint: string, postedObject: undefined | objec
     body: typeof postedObject === 'object' ? JSON.stringify(postedObject) : null
   });
   const res = await resp.json();
-  return { data: res };
+  return res;
 }

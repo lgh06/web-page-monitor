@@ -63,7 +63,7 @@ const CreateTaskPage: NextPage = () => {
   async function handleBtnClick(ev: MouseEvent<HTMLButtonElement> ) {
     ev.preventDefault()
     console.log(editorValue);
-    let { data } = await fetchAPI('/task/create_task', {test: "string one"});
+    let data = await fetchAPI('/task/create_task', {test: "string one"});
     console.log(data)
 
     return true;

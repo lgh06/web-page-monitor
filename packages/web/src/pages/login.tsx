@@ -48,17 +48,18 @@ const LoginPage: NextPage = () => {
           console.log(emailResp)
           if (emailResp && emailResp.length && emailResp[0] && emailResp[0].email) {
             router.replace("/login")
-            setUserInfo((v) => {
-              v.email = emailResp[0].email;
-              v.emailState = emailResp[0].state;
-              v.logged = true;
-            });
-            let {data: saveResult} = await fetchAPI('/user/save',{
+            // TODO error catch and hint
+            let {value: {_id}} = await fetchAPI('/user/save',{
               email: emailResp[0].email, 
               oauthProvider: provider,
               emailVerified: emailResp[0].state === 'confirmed'
             })
-            console.log(saveResult)
+            setUserInfo((v) => {
+              v.email = emailResp[0].email;
+              v.emailState = emailResp[0].state;
+              v.logged = true;
+              v._id= _id;
+            });
           }
         }
       }

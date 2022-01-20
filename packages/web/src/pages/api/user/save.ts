@@ -26,11 +26,8 @@ export default async function handler(
   // https://mongodb.github.io/node-mongodb-native/4.3/classes/Collection.html#replaceOne
   // https://mongodb.github.io/node-mongodb-native/4.3/classes/Collection.html#findOneAndReplace
 
-  db.collection('user').replaceOne(filter, newDoc , options).then(doc => {
-    if(doc){
-      return res.status(200).send({result: doc})
-    }else{
-      return res.status(200).send({result: null})
-    }
+  return db.collection('user').findOneAndReplace(filter, newDoc , options).then(doc => {
+    // TODO hide password
+    return res.status(200).json(doc)
   })
 }
