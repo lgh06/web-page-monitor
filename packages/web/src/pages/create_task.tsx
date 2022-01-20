@@ -6,6 +6,7 @@ import { CronTime, sampleFunction } from '@webest/web-page-monitor-helper';
 
 import dynamic from 'next/dynamic'
 
+// https://nextjs.org/docs/advanced-features/dynamic-import#with-no-ssr
 const MonacoEditor = dynamic(
   () => import('../components/monaco-editor'),
   { ssr: false }
