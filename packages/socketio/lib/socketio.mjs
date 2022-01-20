@@ -33,7 +33,7 @@ function socketio() {
         time: new Date().toLocaleString(),
       }
     );
-  }, 10000);
+  }, 5000);
   io.on('connection', (socket) => {
     console.log('a user connected');
     console.log(socket.userInfo.email, socket.userInfo.type)

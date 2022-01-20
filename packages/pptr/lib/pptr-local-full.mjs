@@ -19,17 +19,39 @@ async function pptr() {
   let debugLaunchOption = {
     slowMo: 250,
     headless: false,
+    // one script cannot exceed this limit, in seconds. 
+    // also used in production.
+    limit: 15, 
   }
-  const browser = await puppeteer.launch(CONFIG.debug ? debugLaunchOption : {});
 
-  await task({browser, fs});
-  await browser.close();
-  let endTime = Date.now()
+  let prodLauchOption = {
+    limit: 5,
+  }
+  let usedLauchOption = CONFIG.debug ? debugLaunchOption : prodLauchOption
 
-  let lastedSeconds = parseInt((endTime - beginTime ) / 1000)
+  const browser = await puppeteer.launch(usedLauchOption);
 
-  console.log('pptr executed seconds: ' + lastedSeconds)
+  let p1 =  task({browser, fs});
 
+  // close puppeteer browser after a timeout
+  Promise.race([
+    p1,
+    new Promise((_, reject) => setTimeout(() => reject(('pptr script timeout')), usedLauchOption.limit * 1000))
+  ]).then(async (value) => {
+    await browser.close();
+    console.log('browser closed after script quit ok')
+  }, async (reason)=>{
+    if(reason === 'pptr script timeout'){
+      await browser.close();
+      console.log('browser closed after exceed time limit')
+    }
+  }).finally(()=>{
+    let endTime = Date.now()
+    let lastedSeconds = parseInt((endTime - beginTime ) / 1000)
+    console.log('pptr executed seconds: ' + lastedSeconds)
+  }).catch(function(err) {
+      console.log('error in tasks', err)
+  })
 }
 
 // pptr();
