@@ -10,7 +10,8 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "dev": "nodemon lib/pptr.mjs"
+    "dev:bak": "nodemon lib/pptr.mjs",
+    "dev": "nodemon lib/pptr-local-full.mjs"
   },
   "dependencies": {
     "puppeteer": "=13.0.1",

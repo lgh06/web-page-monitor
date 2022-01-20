@@ -3,7 +3,7 @@ import puppeteer from 'puppeteer';
 import { CONFIG } from "./CONFIG.mjs"
 import { io } from "socket.io-client";
 import fs from "fs";
-import { fetchImport } from "@webest/web-page-monitor-esm-loader"
+import { task } from "./dyntest-example.mjs"
 
 // https://github.com/puppeteer/puppeteer/blob/v13.0.1/docs/api.md
 // https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=outline
@@ -13,7 +13,7 @@ async function pptr() {
   // TODO get taskId and userInfo from socketio
   // let {taskId, userInfo} = infoFromSocketio
 
-  let { task } = await fetchImport (`${CONFIG.dynJSPath}dyntest.mjs`);
+  // let { task } = await fetchImport (`${CONFIG.dynJSPath}dyntest.mjs`);
 
   // debug use.
   let debugLaunchOption = {
@@ -21,9 +21,6 @@ async function pptr() {
     headless: false,
   }
   const browser = await puppeteer.launch(CONFIG.debug ? debugLaunchOption : {});
-
-  // DO NOT DELETE.  BELOW LOGICS ARE LOAD DYNAMICALLY FROM
-  // packages\web\src\pages\api\dynjs\[filename].ts
 
   await task({browser, fs});
   await browser.close();
@@ -60,13 +57,13 @@ async function connectSocketIO({socket}){
   });
 
   let times = 0
-  // socket.on('room' + socket.auth.userInfo.email, (arg) => {
-  //   times++;
-  //   console.log(times, arg)
-  //   if(times % 5 === 0){
-  //     pptr();
-  //   }
-  // })
+  socket.on('room' + socket.auth.userInfo.email, (arg) => {
+    times++;
+    console.log(times, arg)
+    if(times % 5 === 0){
+      pptr();
+    }
+  })
 
   socket.on('backroom', arg =>{
     console.log( new Date().toLocaleString(), arg)
