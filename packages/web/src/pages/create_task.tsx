@@ -3,7 +3,7 @@ import { ChangeEvent, useEffect, MouseEvent } from 'react';
 import { useImmerAtom } from 'jotai/immer';
 import { creatingTaskDetailAtom, monacoEditorAtom } from '../atoms';
 import { CronTime } from '@webest/web-page-monitor-helper';
-import { useReq } from "../hooks/index";
+import { useAPI } from "../hooks/index";
 
 import dynamic from 'next/dynamic'
 
@@ -76,8 +76,10 @@ const CreateTaskPage: NextPage = () => {
     // };
   }, []);
   
-  let data = useReq('/api/task/create_task');
-  console.log(data)
+  let { data, loading } = useAPI('/task/create_task', {test: "string one"});
+  if(!loading){
+    console.log(data)
+  }
 
 
   return (<>
