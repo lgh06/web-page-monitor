@@ -2,6 +2,12 @@
 
 > TODO: description  
 
+## file-name or fileName?  
+all files routed to a page or an API, should be `file_name.[ts|tsx]`.  
+all files used as a component / lib / helper, without route, should be `fileName.[ts|tsx|js|mjs]`.  
+an jotai atom config (initial) should be exported as `oneAtom` .  
+a React component or a Next.js Page should us `ComponentName` or `PageName`
+
 ## Table / Collection design  
 - task  
 

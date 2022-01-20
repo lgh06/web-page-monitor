@@ -1,14 +1,14 @@
 import { NextPage } from "next/types";
 import { ChangeEvent, useEffect, MouseEvent } from 'react';
 import { useImmerAtom } from 'jotai/immer';
-import { creatingTaskDetailAtom, monacoEditorAtom } from '../atoms';
+import { creatingTaskDetailAtom, monacoEditorAtom, useReq } from '../atoms';
 import { CronTime, sampleFunction } from '@webest/web-page-monitor-helper';
 
 import dynamic from 'next/dynamic'
 
 // https://nextjs.org/docs/advanced-features/dynamic-import#with-no-ssr
 const MonacoEditor = dynamic(
-  () => import('../components/monaco-editor'),
+  () => import('../components/monacoEditor'),
   { ssr: false }
 )
 
@@ -74,6 +74,9 @@ const CreateTaskPage: NextPage = () => {
     //   clearInterval(intervalId)
     // };
   }, []);
+  
+  useReq();
+
 
   return (<>
     <div>input cron syntax <br />{taskDetail.cronMsg}<br/>
