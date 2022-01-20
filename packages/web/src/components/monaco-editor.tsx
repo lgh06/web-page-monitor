@@ -1,13 +1,36 @@
-import { NextComponentType } from "next/types";
+import { NextPage  } from "next/types";
 import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react";
-import { useEffect } from "react";
-import { sampleFunction } from '@webest/web-page-monitor-helper';
+import { useEffect, useRef } from "react";
 // const nodeTypes = (require as any).context('!!raw-loader!@types/node/', true, /\.d.ts$/);
 // const puppeteerTypes = require('!!raw-loader!puppeteer-core/lib/types.d.ts');
+import { useImmerAtom } from 'jotai/immer';
+import { monacoEditorAtom } from '../atoms';
 
+interface Props {
+  defaultValue: string;
+}
 
-const MonacoEditor: NextComponentType = () => {
+const MonacoEditor: NextPage<Props> = ({defaultValue}) => {
   const monaco = useMonaco();
+  const editorRef = useRef(null);
+  const [editorValue, setEditorValue] = useImmerAtom(monacoEditorAtom);
+
+  function handleEditorDidMount(editor: any, monaco: any) {
+    editorRef.current = editor; 
+  }
+
+  // @ts-ignore
+  function handleEditorChange(value, event) {
+    console.log("here is the current model value:", value);
+    setEditorValue(v => {
+      v.value = value;
+    })
+  }
+
+  // function showValue() {
+    // @ts-ignore: Unreachable code error
+    // alert(editorRef.current.getValue());
+  // }
 
   useEffect(() => {
 
@@ -46,7 +69,9 @@ const MonacoEditor: NextComponentType = () => {
       <Editor
         height="500px"
         defaultLanguage="typescript"
-        defaultValue={sampleFunction}
+        defaultValue={defaultValue}
+        onMount={handleEditorDidMount}
+        onChange={handleEditorChange}
         options={{
           minimap: { enabled: false },
           renderWhitespace: 'all',
@@ -54,6 +79,7 @@ const MonacoEditor: NextComponentType = () => {
           fontSize: 20,
         }}
       />
+      {/* <button onClick={showValue}>Show value</button> */}
     </div>);
 }
 

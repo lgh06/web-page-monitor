@@ -1,7 +1,7 @@
 import { NextPage } from "next/types";
-import { ChangeEvent, useEffect, } from 'react';
+import { ChangeEvent, useEffect, MouseEvent } from 'react';
 import { useImmerAtom } from 'jotai/immer';
-import { creatingTaskDetailAtom } from '../atoms';
+import { creatingTaskDetailAtom, monacoEditorAtom } from '../atoms';
 import { CronTime, sampleFunction } from '@webest/web-page-monitor-helper';
 
 import dynamic from 'next/dynamic'
@@ -14,6 +14,7 @@ const MonacoEditor = dynamic(
 const CreateTaskPage: NextPage = () => {
 
   const [taskDetail, setTaskDetail] = useImmerAtom(creatingTaskDetailAtom);
+  const [editorValue] = useImmerAtom(monacoEditorAtom);
 
 
   // update input date when first entry
@@ -56,6 +57,12 @@ const CreateTaskPage: NextPage = () => {
       })
     }
   }
+
+  function handleBtnClick(ev: MouseEvent<HTMLButtonElement> ) {
+    ev.preventDefault()
+    return true;
+  }
+
   useEffect(() => {
     // https://stackoverflow.com/questions/53090432/
     // react-hooks-right-way-to-clear-timeouts-and-intervals
@@ -90,9 +97,12 @@ const CreateTaskPage: NextPage = () => {
       </input>
     </div>
     <div>
-      <button disabled={!taskDetail.cronPassed}>Create Now</button>
+      <MonacoEditor defaultValue={editorValue.createTaskDefaultValue}></MonacoEditor>
+      {/* <MonacoEditor defaultValue={'111' + editorValue.createTaskDefaultValue }></MonacoEditor> */}
     </div>
-    <MonacoEditor></MonacoEditor>
+    <div>
+      <button data-btn-index="0" onClick={handleBtnClick} disabled={!taskDetail.cronPassed}>Create Now</button>
+    </div>
   </>);
 }
 

@@ -4,3 +4,4 @@
 
 export * from './user';
 export * from './creatingTaskDetail';
+export * from './monacoEditor';
