@@ -3,7 +3,7 @@ import { CronTime as CT } from "cron"
 function getNextTimes(cron) {
   let ctArr;
   try {
-    ctArr = new CT(cron).sendAt(3);
+    ctArr = new CT(cron).sendAt(500);
   } catch (error) {
     ctArr = null;
     return ctArr

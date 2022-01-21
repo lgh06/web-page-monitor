@@ -37,10 +37,15 @@ const CreateTaskGeekPage: NextPage = () => {
     if (index === '0') {
       setTaskDetail(v => {
         v.cronSyntax = inputElement.value;
-      })
-      let nextArr = CronTime.getNextTimes(inputElement.value);
-      let [passed, errorMsg] = CronTime.checkTimes(nextArr);
-      // console.log(nextArr, passed, errorMsg)
+      });
+      let passed = false, errorMsg = '';
+      if(String(inputElement.value).includes('/')){
+        [passed, errorMsg] = [false, 'Please remove / in your syntax, see FAQ for details']
+      }else{
+        let nextArr = CronTime.getNextTimes(inputElement.value);
+        [passed, errorMsg] = CronTime.checkTimes(nextArr);
+        // console.log(nextArr, passed, errorMsg)
+      }
       if (passed) {
         setTaskDetail(v => {
           v.cronPassed = true;
