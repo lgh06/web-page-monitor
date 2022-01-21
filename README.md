@@ -38,8 +38,8 @@ RabbitMQ (3.9+) windows version.
 
 MongoDB (5.0)  
 Node.JS (16)  
-if you run packages on different servers, socket.io and web and MongoDB's server should have a permanent public Internet IP address.  
-if you install all of sub-packages on one machine, the machine should have Internet access.  
+For production, socket.io and web and MongoDB's server should have a permanent public Internet IP address.  
+for local development, you can install all of sub-packages on one machine, the machine should have Internet access.  
 
 > Windows installer mirror for China users:  
 > https://trip.feishu.cn/docs/doccnHqaEoNo48vzqyWqgkxkm1s  
@@ -55,8 +55,8 @@ RabbitMQ （版本3.9） windows 版本.
 
 MongoDB (5.0)  
 Node.JS (16)  
-如果不同子包部署在不同服务器上，socket.io 和 web 和 MongoDB 所在服务器应该有固定公网IP。  
-如果所有子包都部署在同一服务器上，有访问公网的权限即可，不必有公网IP.  
+生产环境，socket.io 和 web 和 MongoDB 所在服务器应该有固定公网IP。  
+开发环境，可以把所有子包都部署在同一服务器上，有访问公网的权限即可，不必有公网IP.  
 
 > Windows 安装包镜像:  
 > https://trip.feishu.cn/docs/doccnHqaEoNo48vzqyWqgkxkm1s  
