@@ -6,10 +6,29 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+div > a {
+  color: blue;
+  &:link{
+    color: blue;
+  }
+
+  &:visited{
+    color: blue;
+  }
 }
+
+a {
+  text-decoration: none;
+  &:link{
+    color: inherit;
+  }
+
+  &:visited{
+    color: inherit;
+  }
+}
+
+
 
 * {
   box-sizing: border-box;

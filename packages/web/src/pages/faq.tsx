@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { NextPage } from "next/types";
-// import styles from "../styles/modules/faq.module.css"
 import { clickGoBack } from "../helpers";
 
 const FaqPage: NextPage = () => {
@@ -9,9 +8,12 @@ const FaqPage: NextPage = () => {
   return (<>
     <style jsx>{`
       a{
-        color: blue;
         margin-left: 3rem;
         cursor: pointer;
+        color: blue;
+      }
+      a:hover{
+        text-decoration: underline;
       }
       h1, h2{
         margin-left: 3rem;

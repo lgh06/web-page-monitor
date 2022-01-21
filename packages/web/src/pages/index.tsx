@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 // import Image from 'next/image'
-import styles from '../styles/modules/Home.module.css'
+import styles from '../styles/modules/Home.module.scss'
 import Link from 'next/link'
 
 

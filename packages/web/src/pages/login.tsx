@@ -89,28 +89,31 @@ const LoginPage: NextPage = () => {
     textDecoration: "underline"
   }
 
+  let res;
+  let backLink = <><div><Link href="./"><a>Go Back to home</a></Link></div></>;
 
   if (userInfo.logged) {
-    return (<>
+    res = (<>
       <div>Welcome, {userInfo.email} <br />
         <button onClick={logOut}>Log Out</button>
       </div>
       <div>
-        <Link href='./create_task_simp'><a style={linkStyle}>create a task in Simple Mode (Recommended)</a></Link>
+        <Link href='./create_task_simp'><a>create a task in Simple Mode (Recommended)</a></Link>
       </div>
       <div>
-        <Link href='./create_task_geek'><a style={linkStyle}>create a task in Geek Mode (Code Mode)</a></Link>
+        <Link href='./create_task_geek'><a>create a task in Geek Mode (Code Mode)</a></Link>
       </div>
-      <Back />
+      <Back/>
     </>
     )
   } else {
-    return (<>
+    res = (<>
         <a href={url}>Login</a>
-        <Back />
+        <Back/>
       </>
     )
   }
+  return res;
 }
 
 export default LoginPage

@@ -5,6 +5,5 @@ export function clickGoBack(router:NextRouter){
   return (e:MouseEvent)=> {
     e.preventDefault();
     router.back();
-    // return false;
   }
 }
