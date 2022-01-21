@@ -89,7 +89,10 @@ const LoginPage: NextPage = () => {
         <button onClick={logOut}>Log Out</button>
       </div>
       <div>
-        <Link href='./create_task'><a style={linkStyle}>Please create a task</a></Link>
+        <Link href='./create_task_simp'><a style={linkStyle}>create a task in Simple Mode (Recommended)</a></Link>
+      </div>
+      <div>
+        <Link href='./create_task_geek'><a style={linkStyle}>create a task in Geek Mode (Code Mode)</a></Link>
       </div>
     </>
     )

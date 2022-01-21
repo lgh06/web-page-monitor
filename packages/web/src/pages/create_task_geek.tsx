@@ -13,7 +13,7 @@ const MonacoEditor = dynamic(
   { ssr: false }
 )
 
-const CreateTaskPage: NextPage = () => {
+const CreateTaskGeekPage: NextPage = () => {
 
   const [taskDetail, setTaskDetail] = useImmerAtom(createTaskDetailAtom);
   const [editorValue] = useImmerAtom(monacoEditorAtom);
@@ -22,6 +22,7 @@ const CreateTaskPage: NextPage = () => {
   // update input date when first entry
   function updateDate() {
     setTaskDetail(v => {
+      v.mode = 'geek'; // this page for geek mode
       let nowDate = new Date();
       // TODO different type user, diff end time
       v.endLocalMinuteString = CronTime.toLocalISOString(nowDate, 7*60*24);
@@ -112,4 +113,4 @@ const CreateTaskPage: NextPage = () => {
   </>);
 }
 
-export default CreateTaskPage
+export default CreateTaskGeekPage
