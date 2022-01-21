@@ -1,9 +1,10 @@
 .container {
   padding: 0 2rem;
+  height: 100vh;
 }
 
 .main {
-  min-height: 100vh;
+  height: calc( 100% - 86px );
   padding: 4rem 0;
   flex: 1;
   display: flex;
@@ -82,7 +83,8 @@
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+  width: 300px;
+  height: 160px;
 }
 
 .card:hover,
@@ -104,7 +106,7 @@
 }
 
 .logo {
-  height: 1em;
+  /* height: 1em; */
   margin-left: 0.5rem;
 }
 

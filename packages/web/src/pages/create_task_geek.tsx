@@ -4,6 +4,7 @@ import { useImmerAtom } from 'jotai/immer';
 import { createTaskDetailAtom, monacoEditorAtom } from '../atoms';
 import { CronTime } from '@webest/web-page-monitor-helper';
 import { fetchAPI } from "../helpers/index";
+import Link from "next/link";
 
 import dynamic from 'next/dynamic'
 
@@ -81,17 +82,28 @@ const CreateTaskGeekPage: NextPage = () => {
   }, []);
   
   return (<>
-    <div>input cron syntax <br />{taskDetail.cronMsg}<br/>
+    <style jsx>{`
+      div > input + a {
+        color:blue;
+        margin-left: 3em;
+      }
+    `}</style>
+    <div>
+      {/* input cron syntax <br /> */}
+      {taskDetail.cronMsg}<br/>
       <input
         placeholder="cron syntax"
         data-input-index="0"
         value={taskDetail.cronSyntax}
         onChange={handleInputChange}
       >
-
       </input>
+      <Link href="./faq#WhatIsACronSyntaxCronPattern"><a>Cron Syntax Help in FAQ</a></Link>
+
     </div>
-    <div>continue loops,  until<br />
+    <div>
+      continue loops,  until<br />
+
       <input
         placeholder="choose a time"
         value={taskDetail.endLocalMinuteString}
