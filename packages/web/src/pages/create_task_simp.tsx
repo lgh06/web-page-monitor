@@ -95,6 +95,9 @@ const CreateTaskGeekPage: NextPage = () => {
       div > a {
         color:blue;
       }
+      a:hover{
+        text-decoration: underline;
+      }
     `}</style>
     <div>
       {/* input cron syntax <br /> */}

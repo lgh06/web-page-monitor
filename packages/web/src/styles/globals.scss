@@ -6,17 +6,6 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-div > a {
-  color: blue;
-  &:link{
-    color: blue;
-  }
-
-  &:visited{
-    color: blue;
-  }
-}
-
 a {
   text-decoration: none;
   &:link{

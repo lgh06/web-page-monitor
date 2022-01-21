@@ -5,16 +5,18 @@ import { ParsedUrlQuery } from 'querystring';
 import CONFIG from '../../CONFIG';
 import { useImmerAtom } from 'jotai/immer';
 import { userInfoAtom } from '../atoms';
-import { useAPI, fetchAPI } from '../helpers';
+import { useAPI, fetchAPI, genClassNameAndString } from '../helpers';
 import Link from 'next/link';
+import styles from '../styles/modules/login.module.scss';
 
 
 const Back = () => {
   return (<div>
-        <Link href="./"><a>Go Back to home</a></Link>
+        <Link href="./"><a {...cn('link')}>Go Back to home</a></Link>
     </div>)
 }
 
+let [cn, cs] = genClassNameAndString(styles);
 const LoginPage: NextPage = () => {
   let url = `https://gitee.com/oauth/authorize?client_id=${CONFIG.giteeOauthClientId}&redirect_uri=${encodeURIComponent(CONFIG.giteeRedirectUri)}&response_type=code`;
 
@@ -90,7 +92,7 @@ const LoginPage: NextPage = () => {
   }
 
   let res;
-  let backLink = <><div><Link href="./"><a>Go Back to home</a></Link></div></>;
+  let backLink = <><div><Link href="./"><a {...cn('link')}>Go Back to home</a></Link></div></>;
 
   if (userInfo.logged) {
     res = (<>
@@ -98,17 +100,19 @@ const LoginPage: NextPage = () => {
         <button onClick={logOut}>Log Out</button>
       </div>
       <div>
-        <Link href='./create_task_simp'><a>create a task in Simple Mode (Recommended)</a></Link>
+        <Link href='./create_task_simp'><a {...cn('link')}> create a task in Simple Mode (Recommended)</a></Link>
       </div>
       <div>
-        <Link href='./create_task_geek'><a>create a task in Geek Mode (Code Mode)</a></Link>
+        <Link href='./create_task_geek'><a {...cn('link')}>create a task in Geek Mode (Code Mode)</a></Link>
       </div>
       <Back/>
     </>
     )
   } else {
     res = (<>
-        <a href={url}>Login</a>
+        <a {...cn('link')} href={url}>Login with Gitee.com OAuth</a>
+        {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
+        <div>// TODO other OAuth login providers</div>
         <Back/>
       </>
     )
