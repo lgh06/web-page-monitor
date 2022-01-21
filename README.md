@@ -27,10 +27,40 @@ Not released a minimal version yet.
 `worker-scheduler` 调度/分发控制器, 连接socket.io与MongoDB  
 `esm-loader` NodeJS import(esm).then(..) from remote js ( http URL ) .  
 
-## Requirements  
+## Requirements / Dependencies
+> if you are on windows:  
+
+Erlang (23), required by RabbitMQ windows version  
+RabbitMQ (3.9+) windows version.  
+> Notice: install path should only use ASCII compatible charactors.  
+
+> Notice: If you are on other OS, install RabbitMQ manually.  
+
 MongoDB (5.0)  
 Node.JS (16)  
-socket.io and web and MongoDB's server should have a public IP address.  
+if you run packages on different servers, socket.io and web and MongoDB's server should have a permanent public Internet IP address.  
+if you install all of sub-packages on one machine, the machine should have Internet access.  
+
+> Windows installer mirror for China users:  
+> https://trip.feishu.cn/docs/doccnHqaEoNo48vzqyWqgkxkm1s  
+
+## 要求与依赖  
+> 如果在windows上跑本项目，需要:  
+
+Erlang (版本23), 因为RabbitMQ windows 版本依赖此语言  
+RabbitMQ （版本3.9） windows 版本.  
+> 注意：安装路径不要有中文和奇怪符号，否则会安装失败  
+
+> 注意：如果你用其他操作系统, 自己安装好RabbitMQ.  
+
+MongoDB (5.0)  
+Node.JS (16)  
+如果不同子包部署在不同服务器上，socket.io 和 web 和 MongoDB 所在服务器应该有固定公网IP。  
+如果所有子包都部署在同一服务器上，有访问公网的权限即可，不必有公网IP.  
+
+> Windows 安装包镜像:  
+> https://trip.feishu.cn/docs/doccnHqaEoNo48vzqyWqgkxkm1s  
+
 
 ## ports (for dev)
 Next.js 3002 ( will be on 80 / 443 in production, someday)  
