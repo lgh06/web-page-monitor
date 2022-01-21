@@ -56,7 +56,7 @@ const CreateTaskGeekPage: NextPage = () => {
       })
       // console.log(nextArr, passed, errorMsg)
       let str = String(inputElement.value);
-      let passed = (str.startsWith('https://') || str.startsWith('http://')) && str.includes('.');
+      let passed = (str.startsWith('https://') || str.startsWith('http://')) && str.match(/http.+\..+/);
       if (passed) {
         setTaskDetail(v => {
           v.pageURLPassed = true;
