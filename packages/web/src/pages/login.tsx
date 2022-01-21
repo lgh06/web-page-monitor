@@ -9,6 +9,12 @@ import { useAPI, fetchAPI } from '../helpers';
 import Link from 'next/link';
 
 
+const Back = () => {
+  return (<div>
+        <Link href="./"><a>Go Back to home</a></Link>
+    </div>)
+}
+
 const LoginPage: NextPage = () => {
   let url = `https://gitee.com/oauth/authorize?client_id=${CONFIG.giteeOauthClientId}&redirect_uri=${encodeURIComponent(CONFIG.giteeRedirectUri)}&response_type=code`;
 
@@ -49,8 +55,8 @@ const LoginPage: NextPage = () => {
           if (emailResp && emailResp.length && emailResp[0] && emailResp[0].email) {
             router.replace("/login")
             // TODO error catch and hint
-            let {value: {_id}} = await fetchAPI('/user/save',{
-              email: emailResp[0].email, 
+            let { value: { _id } } = await fetchAPI('/user/save', {
+              email: emailResp[0].email,
               oauthProvider: provider,
               emailVerified: emailResp[0].state === 'confirmed'
             })
@@ -58,7 +64,7 @@ const LoginPage: NextPage = () => {
               v.email = emailResp[0].email;
               v.emailState = emailResp[0].state;
               v.logged = true;
-              v._id= _id;
+              v._id = _id;
             });
           }
         }
@@ -83,6 +89,7 @@ const LoginPage: NextPage = () => {
     textDecoration: "underline"
   }
 
+
   if (userInfo.logged) {
     return (<>
       <div>Welcome, {userInfo.email} <br />
@@ -94,11 +101,14 @@ const LoginPage: NextPage = () => {
       <div>
         <Link href='./create_task_geek'><a style={linkStyle}>create a task in Geek Mode (Code Mode)</a></Link>
       </div>
+      <Back />
     </>
     )
   } else {
-    return (
-      <a href={url}>Login</a>
+    return (<>
+        <a href={url}>Login</a>
+        <Back />
+      </>
     )
   }
 }

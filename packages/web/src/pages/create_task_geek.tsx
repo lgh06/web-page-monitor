@@ -87,6 +87,9 @@ const CreateTaskGeekPage: NextPage = () => {
         color:blue;
         margin-left: 3em;
       }
+      div > a {
+        color:blue;
+      }
     `}</style>
     <div>
       {/* input cron syntax <br /> */}
@@ -121,6 +124,9 @@ const CreateTaskGeekPage: NextPage = () => {
     </div>
     <div>
       <button data-btn-index="0" onClick={handleBtnClick} disabled={!taskDetail.cronPassed}>Create Now</button>
+    </div>
+    <div>
+      <Link href="./login"><a>Go Back to user center</a></Link>
     </div>
   </>);
 }
