@@ -82,7 +82,7 @@ npm install && npm run dev
 ```  
 
 ## other running notes  
-[**/*/*packages/vendor-scripts-n-configs/README.md/*/***](packages/vendor-scripts-n-configs/README.md)  
+[**\*\*packages/vendor-scripts-n-configs/README.md\*\***](packages/vendor-scripts-n-configs/README.md)  
 [packages/web/README.md](packages/web/README.md)  
 [packages/worker-scheduler/README.md](packages/worker-scheduler/README.md)  
 [packages/helper/README.md](packages/helper/README.md)  
