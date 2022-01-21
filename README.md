@@ -30,43 +30,43 @@ Not released a minimal version yet.
 ## Requirements / Dependencies
 > if you are on windows:  
 
-Erlang (23), required by RabbitMQ windows version  
-RabbitMQ (3.9+) windows version.  
-> Notice: install path should only use ASCII compatible charactors.  
+- Erlang (23), required by RabbitMQ windows version  
+- RabbitMQ (3.9+) windows version.  
+> Notice: above two softwares' install path should only use ASCII compatible charactors.  
 
 > Notice: If you are on other OS, install RabbitMQ manually.  
 
-MongoDB (5.0)  
-Node.JS (16)  
-For production, socket.io and web and MongoDB's server should have a permanent public Internet IP address.  
-for local development, you can install all of sub-packages on one machine, the machine should have Internet access.  
+- MongoDB (5.0)  
+- Node.JS (16)  
+> Notice: For production, socket.io and web and MongoDB's server should have a permanent public Internet IP address.  
+> Notice: For local development, you can install all of sub-packages on one machine, the machine should have Internet access.  
 
 > Windows installer mirror for China users:  
 > https://trip.feishu.cn/docs/doccnHqaEoNo48vzqyWqgkxkm1s  
 
-> some helper bat scripts located at packages\web\other_tools\ for start/stop mongodb/rabbitmq services.  
+> some helper bat scripts located at `packages\vendor-scripts-n-configs\other_tools\` for start/stop mongodb/rabbitmq services.  
 Open them **in GBK / GB2312 / ANSI** encoding, or delete the non-english characters.  
 Please modify inner paths by yourself if you changed default install path or service name.  
 
 ## 要求与依赖  
 > 如果在windows上跑本项目，需要:  
 
-Erlang (版本23), 因为RabbitMQ windows 版本依赖此语言  
-RabbitMQ （版本3.9） windows 版本.  
+- Erlang (版本23), 因为RabbitMQ windows 版本依赖此语言  
+- RabbitMQ （版本3.9） windows 版本.  
 > 注意：安装路径不要有中文和奇怪符号，否则会安装失败  
 
 > 注意：如果你用其他操作系统, 自己安装好RabbitMQ.  
 
-MongoDB (5.0)  
-Node.JS (16)  
-生产环境，socket.io 和 web 和 MongoDB 所在服务器应该有固定公网IP。  
-开发环境，可以把所有子包都部署在同一服务器上，有访问公网的权限即可，不必有公网IP.  
+- MongoDB (5.0)  
+- Node.JS (16)  
+> 注意：生产环境，socket.io 和 web 和 MongoDB 所在服务器应该有固定公网IP。  
+> 注意：开发环境，可以把所有子包都部署在同一服务器上，有访问公网的权限即可，不必有公网IP.  
 
 > Windows 安装包镜像:  
 > https://trip.feishu.cn/docs/doccnHqaEoNo48vzqyWqgkxkm1s  
 
-> 在 packages\web\other_tools\ 可以找到几个bat脚本，可以启动/停止 mongodb/rabbitmq 的服务.  
-**用GBK / ANSI / GB2312打开**，否则会乱码。  
+> 在 `packages\vendor-scripts-n-configs\other_tools\` 可以找到几个bat脚本，可以启动/停止 mongodb/rabbitmq 的服务.  
+**用GBK / ANSI / GB2312编码**打开，否则会乱码。  
 如果安装时修改了默认的路径或服务名，可以打开对应的文件，修改里面的路径。  
 
 
@@ -80,6 +80,13 @@ socket.io server 3003
 npm install && npm run dev
 
 ```  
+
+## other running notes  
+[**\*\*packages\vendor-scripts-n-configs\README.md\*\***](packages\vendor-scripts-n-configs\README.md)  
+[packages\web\README.md](packages\web\README.md)  
+[packages\worker-scheduler\README.md](packages\worker-scheduler\README.md)  
+[packages\helper\README.md](packages\helper\README.md)  
+[packages\esm-loader\README.md](packages\esm-loader\README.md)
 
 ## License / 许可协议  
 see [LICENSE.md](./LICENSE.md)  
