@@ -3,6 +3,12 @@ import * as amqp from 'amqplib';
 async function testRabbitMQSend(){
   // https://rabbitmq.com/tutorials/tutorial-one-javascript.html
   // https://github.com/amqp-node/amqplib#promise-api-example
+  // https://amqp-node.github.io/amqplib/channel_api.html#channel_assertQueue
+  // https://github.com/amqp-node/amqplib/blob/gh-pages/channel_api.md
+
+  // https://www.rabbitmq.com/tutorials/tutorial-two-javascript.html
+
+  // https://github.com/amqp-node/amqplib/tree/main/examples/tutorials (outdated)
 
   let conn = await amqp.connect('amqp://localhost');
   let channel = await conn.createChannel();
