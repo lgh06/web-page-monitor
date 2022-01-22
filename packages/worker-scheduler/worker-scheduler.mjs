@@ -1,6 +1,7 @@
 import { io } from "socket.io-client";
 import { CONFIG } from "./CONFIG.mjs"
 import { CronTime } from "@webest/web-page-monitor-helper";
+import { testRabbitMQSend, testRabbitMQReceive} from "./testRabbitMQ.mjs";
 
 
 async function workerScheduler() {
@@ -8,15 +9,17 @@ async function workerScheduler() {
 }
 
 async function main() {
-  const socket = io(CONFIG.socketio, { autoConnect: false });
-  // TODO add token or other encrypt way
-  let userInfo = { email: 'hnnk@qq.com', type: "worker" };
-  socket.auth = { userInfo };
-  if (userInfo.email && !socket.connected) {
-    connectSocketIO({ socket });
-  }
-  let nextArr = CronTime.getNextTimes('6 * * * * *');
-  console.log(nextArr)
+  // const socket = io(CONFIG.socketio, { autoConnect: false });
+  // // TODO add token or other encrypt way
+  // let userInfo = { email: 'hnnk@qq.com', type: "worker" };
+  // socket.auth = { userInfo };
+  // if (userInfo.email && !socket.connected) {
+  //   connectSocketIO({ socket });
+  // }
+  // let nextArr = CronTime.getNextTimes('6 * * * * *');
+  // console.log(nextArr)
+  await testRabbitMQSend();
+  await testRabbitMQReceive();
 }
 
 async function connectSocketIO({ socket }) {

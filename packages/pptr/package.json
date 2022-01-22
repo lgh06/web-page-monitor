@@ -14,9 +14,11 @@
     "dev": "nodemon lib/pptr-local-full.mjs"
   },
   "dependencies": {
+    "@webest/web-page-monitor-esm-loader": "*",
+    "amqplib": "^0.8.0",
+    "mqtt": "^4.3.4",
     "puppeteer": "=13.0.1",
-    "socket.io-client": "^4.4.1",
-    "@webest/web-page-monitor-esm-loader": "*"
+    "socket.io-client": "^4.4.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

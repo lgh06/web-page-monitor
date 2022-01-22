@@ -13,9 +13,11 @@
     "dev": "nodemon worker-scheduler.mjs"
   },
   "dependencies": {
-    "socket.io-client": "^4.4.1",
+    "@webest/web-page-monitor-helper": "*",
+    "amqplib": "^0.8.0",
     "mongodb": "^4.3.0",
-    "@webest/web-page-monitor-helper": "*"
+    "mqtt": "^4.3.4",
+    "socket.io-client": "^4.4.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
