@@ -7,6 +7,7 @@ async function testRabbitMQSend(){
   // https://github.com/amqp-node/amqplib/blob/gh-pages/channel_api.md
 
   // https://www.rabbitmq.com/tutorials/tutorial-two-javascript.html  VI
+  // https://github.com/rabbitmq/rabbitmq-website/blob/66c4d8a9123e9e7a4f785b485e2b9834e572956d/site/tutorials/tutorial-two-javascript.md#message-acknowledgment  VI
 
   // https://github.com/amqp-node/amqplib/tree/main/examples/tutorials (outdated)
 
