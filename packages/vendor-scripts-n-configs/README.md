@@ -1,4 +1,5 @@
 ## useful scripts & configs for rabbitmq & mongodb  
+This folder not contain any JS codes.  
 As this project depend on RabbitMQ and MongoDB, this folder contains some bat scripts and configs examples and notes.  
 
 ## for RabbitMQ Configs  
