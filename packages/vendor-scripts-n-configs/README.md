@@ -11,7 +11,8 @@ in Linux `/etc/rabbitmq/`;
 in Mac OS `${install_prefix}/etc/rabbitmq/`, ( homebrew's `${install_prefix}` should be  `/usr/local`).  
 
 ### enable RabbitMQ Web MQTT plugin  
-https://www.rabbitmq.com/web-mqtt.html   
+https://www.rabbitmq.com/web-mqtt.html  
+[github web-mqtt plugin doc mirror](https://github.com/rabbitmq/rabbitmq-website/blob/66c4d8a9123e9e7a4f785b485e2b9834e572956d/site/web-mqtt.md)  
 
 ## for MongoDB  
 > TODO
