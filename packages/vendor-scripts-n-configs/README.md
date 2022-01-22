@@ -14,6 +14,8 @@ in Mac OS `${install_prefix}/etc/rabbitmq/`, ( homebrew's `${install_prefix}` sh
 https://www.rabbitmq.com/web-mqtt.html  
 [github web-mqtt plugin doc mirror](https://github.com/rabbitmq/rabbitmq-website/blob/66c4d8a9123e9e7a4f785b485e2b9834e572956d/site/web-mqtt.md)  
 [github web-mqtt-examples](https://github.com/rabbitmq/rabbitmq-server/tree/v3.9.x/deps/rabbitmq_web_mqtt_examples)  
+[paho mqtt js in rabbitmq official example](https://github.com/eclipse/paho.mqtt.javascript/blob/master/src/paho-mqtt.js)  
+[another mqtt.js supports websocket](https://github.com/mqttjs/MQTT.js)  
 
 ## for MongoDB  
 > TODO
