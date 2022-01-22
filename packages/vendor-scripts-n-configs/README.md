@@ -10,6 +10,9 @@ in Windows	`%APPDATA%\RabbitMQ\`;
 in Linux `/etc/rabbitmq/`;  
 in Mac OS `${install_prefix}/etc/rabbitmq/`, ( homebrew's `${install_prefix}` should be  `/usr/local`).  
 
+### enable RabbitMQ Web MQTT plugin  
+https://www.rabbitmq.com/web-mqtt.html   
+
 ## for MongoDB  
 > TODO
 > TO add user & password & auth
