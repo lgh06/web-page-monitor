@@ -24,7 +24,7 @@ async function testRabbitMQSend(){
     durable: true,
   });
 
-  channel.sendToQueue(queue, Buffer.from(msg));
+  channel.sendToQueue(queue, Buffer.from(msg), { persistent: true });
   console.log(" [x] Sent %s", msg);
 
   // DO NOT CLOSE the conn!!
@@ -39,6 +39,10 @@ async function testRabbitMQReceive(){
   var queue = 'hello';
 
   console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", queue);
+
+  await channel.assertQueue(queue, {
+    durable: true,
+  });
 
   await channel.consume(queue, function(message){
     // console.log(message)
