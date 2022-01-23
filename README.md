@@ -42,6 +42,7 @@ Github source code : [Link](https://github.com/lgh06/web-page-monitor)
 
 - MongoDB (5.0)  
 - Node.JS (16)  
+
 > Notice: For production, socket.io and web and MongoDB's server should have a permanent public Internet IP address.  
 > Notice: For local development, you can install all of sub-packages on one machine, the machine should have Internet access.  
 
@@ -63,6 +64,7 @@ Please modify inner paths by yourself if you changed default install path or ser
 
 - MongoDB (5.0)  
 - Node.JS (16)  
+
 > 注意：生产环境，socket.io 和 web 和 MongoDB 所在服务器应该有固定公网IP。  
 > 注意：开发环境，可以把所有子包都部署在同一服务器上，有访问公网的权限即可，不必有公网IP.  
 
