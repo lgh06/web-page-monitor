@@ -49,7 +49,7 @@ Github source code : [Link](https://github.com/lgh06/web-page-monitor)
 > Windows installers mirror for China users:  
 > https://trip.feishu.cn/docs/doccnHqaEoNo48vzqyWqgkxkm1s  
 
-> some helper bat scripts located at `packages\vendor-scripts-n-configs\other_tools\` for start/stop mongodb/rabbitmq services.  
+> some helper bat scripts located at [packages/vendor-scripts-n-configs/other_tools/](packages/vendor-scripts-n-configs/other_tools/) for start/stop mongodb/rabbitmq services.  
 Open them **in GBK / GB2312 / ANSI** encoding, or delete the non-english characters.  
 Please modify inner paths by yourself if you changed default install path or service name.  
 
@@ -71,7 +71,7 @@ Please modify inner paths by yourself if you changed default install path or ser
 > Windows 各种安装包镜像:  
 > https://trip.feishu.cn/docs/doccnHqaEoNo48vzqyWqgkxkm1s  
 
-> 在 `packages\vendor-scripts-n-configs\other_tools\` 可以找到几个bat脚本，可以启动/停止 mongodb/rabbitmq 的服务.  
+> 在 [packages/vendor-scripts-n-configs/other_tools/](packages/vendor-scripts-n-configs/other_tools/) 可以找到几个bat脚本，可以启动/停止 mongodb/rabbitmq 的服务.  
 **用GBK / ANSI / GB2312编码**打开，否则会乱码。  
 如果安装时修改了默认的路径或服务名，可以打开对应的文件，修改里面的路径。  
 
