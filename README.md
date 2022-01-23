@@ -29,8 +29,9 @@ Not released a minimal version yet.
 
 ## Requirements / Dependencies
 
-- Erlang / OTP (23.2+), required by RabbitMQ  
-- RabbitMQ (3.9+), and Web MQTT plugin enabled.    
+- Erlang / OTP (23.2+), required by RabbitMQ  [link](https://github.com/erlang/otp/releases)   
+- RabbitMQ (3.9+), and Web MQTT plugin enabled [link](https://github.com/rabbitmq/rabbitmq-server/releases) / [how to enable web-mqtt](packages/vendor-scripts-n-configs/README.md)  
+- [RabbitMQ Delayed Message Plugin](https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/releases) / [install help](https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/tree/3.9.0#installation)  / [blog](https://blog.rabbitmq.com/posts/2015/04/scheduling-messages-with-rabbitmq)   
 
 > Notice: if you are on windows, above two softwares' install path should only use ASCII compatible charactors.  
 
@@ -41,7 +42,7 @@ Not released a minimal version yet.
 > Notice: For production, socket.io and web and MongoDB's server should have a permanent public Internet IP address.  
 > Notice: For local development, you can install all of sub-packages on one machine, the machine should have Internet access.  
 
-> Windows installer mirror for China users:  
+> Windows installers mirror for China users:  
 > https://trip.feishu.cn/docs/doccnHqaEoNo48vzqyWqgkxkm1s  
 
 > some helper bat scripts located at `packages\vendor-scripts-n-configs\other_tools\` for start/stop mongodb/rabbitmq services.  
@@ -50,8 +51,9 @@ Please modify inner paths by yourself if you changed default install path or ser
 
 ## 要求与依赖  
 
-- Erlang / OTP (版本23.2+), 因为RabbitMQ依赖此语言  
-- RabbitMQ （版本3.9+）, 开启Web MQTT plugin .  
+- Erlang / OTP (版本23.2+), 因为RabbitMQ依赖此语言[link](https://github.com/erlang/otp/releases)  
+- RabbitMQ （版本3.9+）, 并开启自带Web MQTT plugin [link](https://github.com/rabbitmq/rabbitmq-server/releases) / [如何开启web-mqtt](packages/vendor-scripts-n-configs/README.md)   
+- [RabbitMQ 延时消息插件](https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/releases) / [如何安装与开启](https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/tree/3.9.0#installation)  / [博客教程](https://blog.rabbitmq.com/posts/2015/04/scheduling-messages-with-rabbitmq)  
 > 注意：Windows安装Erlang、RabbitMQ时，安装路径不要有中文和奇怪符号，否则会安装失败  
 
 > 注意：如果你用其他操作系统, 自己安装好RabbitMQ.  
@@ -61,7 +63,7 @@ Please modify inner paths by yourself if you changed default install path or ser
 > 注意：生产环境，socket.io 和 web 和 MongoDB 所在服务器应该有固定公网IP。  
 > 注意：开发环境，可以把所有子包都部署在同一服务器上，有访问公网的权限即可，不必有公网IP.  
 
-> Windows 安装包镜像:  
+> Windows 各种安装包镜像:  
 > https://trip.feishu.cn/docs/doccnHqaEoNo48vzqyWqgkxkm1s  
 
 > 在 `packages\vendor-scripts-n-configs\other_tools\` 可以找到几个bat脚本，可以启动/停止 mongodb/rabbitmq 的服务.  
