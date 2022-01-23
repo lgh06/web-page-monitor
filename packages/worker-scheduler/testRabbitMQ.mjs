@@ -18,8 +18,10 @@ async function testRabbitMQSend(){
   var queue = 'hello';
   var msg = 'Hello world';
 
+
+  // await channel.deleteQueue(queue)
   await channel.assertQueue(queue, {
-    durable: false
+    durable: true,
   });
 
   channel.sendToQueue(queue, Buffer.from(msg));
@@ -38,18 +40,14 @@ async function testRabbitMQReceive(){
 
   console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", queue);
 
-
-  await channel.assertQueue(queue, {
-    durable: false
-  });
-
   await channel.consume(queue, function(message){
     // console.log(message)
     if (message !== null) {
       console.log(" [x] Received %s", message.content.toString());
+      return channel.ack(message)
     }
   }, {
-    noAck: true
+    noAck: false
   })
 
   // DO NOT CLOSE the conn!!
@@ -57,4 +55,17 @@ async function testRabbitMQReceive(){
 
 }
 
-export { testRabbitMQSend, testRabbitMQReceive }
+async function testDelayedMQ(){
+  const exchange = 'jobDelayExchange';
+  const queue = 'hello';
+  const queueBinding = 'yourQueueBindingName';
+  // https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/tree/3.9.0#installation
+  // https://gist.github.com/mfressdorf/f46fdf266f35d8c525aea16719f837ac
+  // https://github.com/amqp-node/amqplib/blob/gh-pages/channel_api.md#channelpublish
+  // https://github.com/amqp-node/amqplib/blob/gh-pages/channel_api.md#channel_bindQueue
+  // https://www.rabbitmq.com/getstarted.html
+  let conn = await amqp.connect('amqp://localhost');
+  
+}
+
+export { testRabbitMQSend, testRabbitMQReceive, testDelayedMQ }
