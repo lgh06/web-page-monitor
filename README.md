@@ -31,7 +31,7 @@ Not released a minimal version yet.
 
 - Erlang / OTP (23.2+), required by RabbitMQ  [link](https://github.com/erlang/otp/releases)   
 - RabbitMQ (3.9+), and Web MQTT plugin enabled [link](https://github.com/rabbitmq/rabbitmq-server/releases) / [how to enable web-mqtt](packages/vendor-scripts-n-configs/README.md)  
-- [RabbitMQ Delayed Message Plugin](https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/releases) / [install help](https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/tree/3.9.0#installation)  / [blog](https://blog.rabbitmq.com/posts/2015/04/scheduling-messages-with-rabbitmq)   
+- [RabbitMQ Delayed Message Plugin](https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/releases) / [install help](packages/vendor-scripts-n-configs/README.md)  
 
 > Notice: if you are on windows, above two softwares' install path should only use ASCII compatible charactors.  
 
@@ -53,7 +53,7 @@ Please modify inner paths by yourself if you changed default install path or ser
 
 - Erlang / OTP (版本23.2+), 因为RabbitMQ依赖此语言[link](https://github.com/erlang/otp/releases)  
 - RabbitMQ （版本3.9+）, 并开启自带Web MQTT plugin [link](https://github.com/rabbitmq/rabbitmq-server/releases) / [如何开启web-mqtt](packages/vendor-scripts-n-configs/README.md)   
-- [RabbitMQ 延时消息插件](https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/releases) / [如何安装与开启](https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/tree/3.9.0#installation)  / [博客教程](https://blog.rabbitmq.com/posts/2015/04/scheduling-messages-with-rabbitmq)  
+- [RabbitMQ 延时消息插件](https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/releases) / [如何安装与开启](packages/vendor-scripts-n-configs/README.md)  
 > 注意：Windows安装Erlang、RabbitMQ时，安装路径不要有中文和奇怪符号，否则会安装失败  
 
 > 注意：如果你用其他操作系统, 自己安装好RabbitMQ.  
