@@ -27,6 +27,8 @@ export namespace  CronTime {
 export let sampleFunction = '';
 
 export module globalConfig {
+  mongodbURI: string;
+  mqConnString: string;
   exchange: string;
   queue: string;
   queueBinding: string;

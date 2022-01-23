@@ -1,8 +1,9 @@
 import * as amqp from 'amqplib';
-import { CronTime, globalConfig } from "@webest/web-page-monitor-helper";
+import { CronTime } from "@webest/web-page-monitor-helper";
+import { CONFIG } from './CONFIG.mjs';
 
 
-let connString = 'amqp://localhost'
+let connString = CONFIG.mqConnString
 
 async function testRabbitMQSend() {
   // https://rabbitmq.com/tutorials/tutorial-one-javascript.html

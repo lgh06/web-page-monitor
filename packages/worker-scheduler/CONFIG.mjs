@@ -1,6 +1,7 @@
 import { globalConfig } from "@webest/web-page-monitor-helper";
 
 let CONFIG = {
+  mongodbURI: '' || globalConfig.mongodbURI,
   mqConnString: '' || globalConfig.mqConnString,
   exchange: '' || globalConfig.exchange,
   queue: '' || globalConfig.queue,

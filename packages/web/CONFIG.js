@@ -1,9 +1,12 @@
+import { globalConfig } from "@webest/web-page-monitor-helper";
+
 // production, front static files port 3001, next Node.js port 3002.
 // development, all 3002.
 let frontPort = String(process.env.NEXT_PUBLIC_DEV) === 'true' ? '3002' : '3001';
 console.log('frontPort',frontPort, process.env.NEXT_PUBLIC_DEV);
 let backPort = '3002';
 let CONFIG = {
+  mongodbURI: '' || globalConfig.mongodbURI,
   frontHost: `http://localhost:${frontPort}`,
   backHost:`http://localhost:${backPort}`,
   giteeOauthClientId: '4606a3bd7aa3597e4de3e3c84687b8a2df672a6485cd112886cd1aee1cdc5d0e',

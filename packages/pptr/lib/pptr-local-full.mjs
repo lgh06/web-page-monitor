@@ -83,7 +83,7 @@ async function connectSocketIO({socket}){
     times++;
     console.log(times, arg)
     if(times % 5 === 0){
-      // pptr();
+      pptr();
     }
   })
 

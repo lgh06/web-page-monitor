@@ -8,8 +8,9 @@
 // https://docs.mongodb.com/v5.0/reference/operator/query/gte/#mongodb-query-op.-gte
 // Mongodb connection , used in Next.js backend API side.
 import { MongoClient, Db } from "mongodb";
+import { CONFIG } from '../CONFIG.mjs'
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/';
+const MONGODB_URI = process.env.MONGODB_URI || CONFIG.mongodbURI;
 
 /**
  * Global is used here to maintain a cached connection across hot reloads

@@ -2,6 +2,7 @@
 // if not defined here, use sub-package defined values
 // TODO
 let globalConfig = {
+  mongodbURI: 'mongodb://localhost:27017/',
   mqConnString: 'amqp://localhost',
   // below values both used in worker / scheduler
   // as rabbitmq's producer;
