@@ -11,21 +11,22 @@ Not released a minimal version yet.
 进行中。  
 由用户在浏览器中预先输入的JS，操作puppeteer的行为。  
 还未最小化可用。  
+> 在Coding.net上的代码镜像: [链接](https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git)
 
 ## Intro (English)  
-`web` is the website, for end users to use. created by Next.js. Connected to MongoDB. **NO CONNECT** socketio for now.  
-`pptr` is the puppeteer, connect socket.io.  
-`socketio` is the data communication center. Connected with pptr and worker-scheduler.  
-`worker-scheduler` connect to MongoDB and socket.io   
-`esm-loader` NodeJS import(esm).then(..) from user defined js ( http URL ) .  
+- `web` is the website, for end users to use. created by Next.js. Connected to MongoDB. **NO CONNECT** socketio for now.  
+- `pptr` is the puppeteer, connect socket.io.  
+- `socketio` is the data communication center. Connected with pptr and worker-scheduler.  
+- `worker-scheduler` connect to MongoDB and socket.io   
+- `esm-loader` NodeJS import(esm).then(..) from user defined js ( http URL ) .  
 
 
 ## 介绍  
-`web` 最终用户使用的网站界面, 连接MongoDB, **暂不**连接socket.io  
-`pptr` puppeteer执行程序, 连接socket.io  
-`socketio` 信息中转站, 被pptr和worker-scheduler连接  
-`worker-scheduler` 调度/分发控制器, 连接socket.io与MongoDB  
-`esm-loader` NodeJS import(esm).then(..) from remote js ( http URL ) .  
+- `web` 最终用户使用的网站界面, 连接MongoDB, **暂不**连接socket.io  
+- `pptr` puppeteer执行程序, 连接socket.io  
+- `socketio` 信息中转站, 被pptr和worker-scheduler连接  
+- `worker-scheduler` 调度/分发控制器, 连接socket.io与MongoDB  
+- `esm-loader` NodeJS import(esm).then(..) from remote js ( http URL ) .  
 
 ## Requirements / Dependencies
 
