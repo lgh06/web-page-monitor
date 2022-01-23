@@ -109,7 +109,7 @@ const CreateTaskGeekPage: NextPage = () => {
         onChange={handleInputChange}
       >
       </input>
-      <Link href="./faq#WhatIsACronSyntaxCronPattern"><a>Cron Syntax Help in FAQ</a></Link>
+      <Link href="/faq#WhatIsACronSyntaxCronPattern"><a>Cron Syntax Help in FAQ</a></Link>
 
     </div>
     <div>

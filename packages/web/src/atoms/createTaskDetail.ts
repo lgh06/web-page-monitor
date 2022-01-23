@@ -3,7 +3,7 @@ import { atom } from 'jotai'
 let createTaskDetail = {
   endLocalMinuteString: '',
   startLocalMinuteString: '',
-  cronSyntax: '0 0 * * * *',
+  cronSyntax: '0 0 10,22 * * *',
   cronMsg: 'Please Input a cron syntax:',
   cronPassed: true,
   mode: 'simp',

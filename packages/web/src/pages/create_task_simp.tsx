@@ -75,6 +75,9 @@ const CreateTaskGeekPage: NextPage = () => {
         })
       }
     }
+    if(index === '3'){
+      setTaskDetail(v => {v.cssSelector = inputElement.value})
+    }
   }
 
   async function handleBtnClick(ev: MouseEvent<HTMLButtonElement> ) {
@@ -82,7 +85,7 @@ const CreateTaskGeekPage: NextPage = () => {
     // let data = await fetchAPI('/task/create_task', {test: "string one"});
     // console.log(data)
     console.log(taskDetail.cronSyntax)
-    console.log(taskDetail.endLocalMinuteString)
+    console.log(taskDetail)
 
     return true;
   }
@@ -114,7 +117,7 @@ const CreateTaskGeekPage: NextPage = () => {
         onChange={handleInputChange}
       >
       </input>
-        <Link href="./faq#WhatIsACronSyntaxCronPattern"><a>Cron Syntax Help in FAQ</a></Link>
+        <Link href="/faq#WhatIsACronSyntaxCronPattern"><a>Cron Syntax Help in FAQ</a></Link>
     </div>
     <div>continue loops,  until<br />
       <input
@@ -141,10 +144,21 @@ const CreateTaskGeekPage: NextPage = () => {
       </input>
     </div>
     <div>
+      Please input a CSS selector, if you do not know what that is, kee it as default &quot;body&quot;<br/>
+      <input
+        placeholder="CSS selector"
+        data-input-index="3"
+        value={taskDetail.cssSelector}
+        onChange={handleInputChange}
+      >
+
+      </input>
+    </div>
+    <div>
       <button data-btn-index="0" onClick={handleBtnClick} disabled={!(taskDetail.cronPassed && taskDetail.pageURLPassed)}>Create Now</button>
     </div>
     <div>
-      <Link href="./login"><a>Go back to user center</a></Link>
+      <Link href="/login"><a>Go back to user center</a></Link>
     </div>
   </>);
 }
