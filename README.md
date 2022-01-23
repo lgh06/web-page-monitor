@@ -29,7 +29,7 @@ Not released a minimal version yet.
 
 ## Requirements / Dependencies
 
-- Erlang / OTP (23), required by RabbitMQ  
+- Erlang / OTP (23.2+), required by RabbitMQ  
 - RabbitMQ (3.9+), and Web MQTT plugin enabled.    
 
 > Notice: if you are on windows, above two softwares' install path should only use ASCII compatible charactors.  
@@ -50,8 +50,8 @@ Please modify inner paths by yourself if you changed default install path or ser
 
 ## 要求与依赖  
 
-- Erlang / OTP (版本23), 因为RabbitMQ依赖此语言  
-- RabbitMQ （版本3.9）, 开启Web MQTT plugin .  
+- Erlang / OTP (版本23.2+), 因为RabbitMQ依赖此语言  
+- RabbitMQ （版本3.9+）, 开启Web MQTT plugin .  
 > 注意：Windows安装Erlang、RabbitMQ时，安装路径不要有中文和奇怪符号，否则会安装失败  
 
 > 注意：如果你用其他操作系统, 自己安装好RabbitMQ.  
