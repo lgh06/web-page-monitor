@@ -5,13 +5,15 @@ A toy based on puppeteer, mainly.
 Work in Progress.  
 Puppeteer will be controlled by user defined JS, texted / inputted in browser.
 Not released a minimal version yet.  
+Github source code : [Link](https://github.com/lgh06/web-page-monitor)  
+
 > Chinese / 简体中文 
 
 一个主要基于Puppeteer的玩具。  
 进行中。  
 由用户在浏览器中预先输入的JS，操作puppeteer的行为。  
 还未最小化可用。  
-> 在Coding.net上的代码镜像: [链接](https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git)
+在Coding.net上的代码镜像: [链接](https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git)  
 
 ## Intro (English)  
 - `web` is the website, for end users to use. created by Next.js. Connected to MongoDB. **NO CONNECT** socketio for now.  
