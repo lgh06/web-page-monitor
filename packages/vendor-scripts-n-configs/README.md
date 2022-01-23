@@ -31,7 +31,7 @@ rabbitmqctl set_policy TTL ".*" "{""message-ttl"":86400000}" --apply-to queues
 https://www.rabbitmq.com/consumers.html#acknowledgement-timeout  
 in `rabbitmq.conf`, add  
 ```  
-consumer_timeout = 1800000  
+consumer_timeout = 80000000  
 ```  
 
 

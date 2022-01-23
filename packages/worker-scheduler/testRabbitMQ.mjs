@@ -1,6 +1,8 @@
 import * as amqp from 'amqplib';
 
-async function testRabbitMQSend(){
+let connString = 'amqp://localhost'
+
+async function testRabbitMQSend() {
   // https://rabbitmq.com/tutorials/tutorial-one-javascript.html
   // https://github.com/amqp-node/amqplib#promise-api-example
   // https://amqp-node.github.io/amqplib/channel_api.html#channel_assertQueue
@@ -12,7 +14,7 @@ async function testRabbitMQSend(){
 
   // https://github.com/amqp-node/amqplib/tree/main/examples/tutorials (outdated)
 
-  let conn = await amqp.connect('amqp://localhost');
+  let conn = await amqp.connect(connString);
   let channel = await conn.createChannel();
 
   var queue = 'hello';
@@ -31,9 +33,9 @@ async function testRabbitMQSend(){
   // await conn.close()
 
 }
-async function testRabbitMQReceive(){
+async function testRabbitMQReceive() {
 
-  let conn = await amqp.connect('amqp://localhost');
+  let conn = await amqp.connect(connString);
   let channel = await conn.createChannel();
 
   var queue = 'hello';
@@ -44,10 +46,13 @@ async function testRabbitMQReceive(){
     durable: true,
   });
 
-  await channel.consume(queue, function(message){
+  await channel.prefetch(4);
+  await channel.consume(queue, function (message) {
     // console.log(message)
     if (message !== null) {
       console.log(" [x] Received %s", message.content.toString());
+      // nack will cause loop.
+      // channel.nack(message)
       return channel.ack(message)
     }
   }, {
@@ -59,17 +64,46 @@ async function testRabbitMQReceive(){
 
 }
 
-async function testDelayedMQ(){
-  const exchange = 'jobDelayExchange';
-  const queue = 'hello';
-  const queueBinding = 'yourQueueBindingName';
+const exchange = 'testPptrTaskDelayExchange001';
+const queue = 'testPptrTaskQueue001';
+const queueBinding = 'testPptrBindingName';
+async function testDelayedMQSend() {
   // https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/tree/3.9.0#installation
   // https://gist.github.com/mfressdorf/f46fdf266f35d8c525aea16719f837ac
   // https://github.com/amqp-node/amqplib/blob/gh-pages/channel_api.md#channelpublish
   // https://github.com/amqp-node/amqplib/blob/gh-pages/channel_api.md#channel_bindQueue
   // https://www.rabbitmq.com/getstarted.html
-  let conn = await amqp.connect('amqp://localhost');
-  
+  let conn = await amqp.connect(connString);
+  let channel = await conn.createChannel();
+  await channel.assertExchange(exchange, 'x-delayed-message', { durable: true, arguments: { 'x-delayed-type': 'direct' } });
+
+  // Publish message
+  const headers = { 'x-delay': 10*1000 };
+  let now = new Date();
+  console.log('sent date:', now.toLocaleString())
+  channel.publish(exchange, queueBinding, Buffer.from('hello world' + now), { headers });
+
 }
 
-export { testRabbitMQSend, testRabbitMQReceive, testDelayedMQ }
+async function testDelayedMQRecieve(){
+
+  let conn = await amqp.connect(connString);
+  let channel = await conn.createChannel();
+  // assertExchange in consumer can be deleted in fact
+  await channel.assertExchange(exchange, 'x-delayed-message', { durable: true, arguments: { 'x-delayed-type': 'direct' } });
+  await channel.assertQueue(queue, { durable: true });
+  await channel.bindQueue(queue, exchange, queueBinding);
+
+  await channel.prefetch(4);
+  await channel.consume(queue, function (message) {
+    // console.log(message)
+    if (message !== null) {
+      console.log(" [x] Received %s", message.content.toString(), new Date());
+      channel.ack(message)
+    }
+  }, {
+    noAck: false
+  })
+}
+
+export { testRabbitMQSend, testRabbitMQReceive, testDelayedMQSend, testDelayedMQRecieve }
