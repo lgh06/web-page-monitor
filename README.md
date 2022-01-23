@@ -3,7 +3,7 @@
 
 A toy based on puppeteer, mainly.  
 Work in Progress.  
-Puppeteer will be controlled by user defined JS, texted / inputted in browser.
+Puppeteer will be controlled by user defined JS, texted / inputted in browser.  
 Not released a minimal version yet.  
 Github source code : [Link](https://github.com/lgh06/web-page-monitor)  
 
