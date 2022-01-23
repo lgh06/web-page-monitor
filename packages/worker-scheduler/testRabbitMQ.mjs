@@ -1,4 +1,6 @@
 import * as amqp from 'amqplib';
+import { CronTime, globalConfig } from "@webest/web-page-monitor-helper";
+
 
 let connString = 'amqp://localhost'
 

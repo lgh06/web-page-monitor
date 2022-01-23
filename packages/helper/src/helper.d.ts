@@ -26,3 +26,15 @@ export namespace  CronTime {
 
 export let sampleFunction = '';
 
+export module globalConfig {
+  exchange: string;
+  queue: string;
+  queueBinding: string;
+}
+
+// export let globalConfig : {
+//   exchange: string;
+//   queue: string;
+//   queueBinding: string;
+// }
+

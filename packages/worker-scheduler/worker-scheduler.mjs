@@ -1,6 +1,6 @@
 import { io } from "socket.io-client";
-import { CONFIG } from "./CONFIG.mjs"
-import { CronTime } from "@webest/web-page-monitor-helper";
+// import { CONFIG } from "./CONFIG.mjs"
+// import { CronTime, globalConfig } from "@webest/web-page-monitor-helper";
 import { testRabbitMQSend, testRabbitMQReceive, testDelayedMQSend, testDelayedMQRecieve} from "./testRabbitMQ.mjs";
 
 
