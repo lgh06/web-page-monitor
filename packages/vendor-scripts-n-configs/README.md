@@ -44,6 +44,7 @@ in Linux `/etc/rabbitmq/`;
 in Mac OS `${install_prefix}/etc/rabbitmq/`, ( homebrew's `${install_prefix}` should be  `/usr/local`).  
 
 ## for MongoDB & RabbitMQ security in production    
-> https://github.com/lgh06/web-page-monitor/issues/15  
+> https://github.com/lgh06/web-page-monitor/issues/15  (auth and safety)  
+> https://github.com/lgh06/web-page-monitor/issues/16  (production configs)  
 
 
