@@ -8,6 +8,7 @@ async function checker(){
 
 
   let db = await getDB();
+  if(!db) return;
   let minutesLater = function(now, minutes){
     return new Date(now).valueOf() + 60 *1000 * minutes;
   }
@@ -18,7 +19,7 @@ async function checker(){
   }).toArray().then(docs => {
     // console.log(docs)
     // console.log(new Date(docs[0].nextExecuteTime))
-  });
+  }).catch(e => console.log(e));
 
   // https://moment.github.io/luxon/#/tour?id=your-first-datetime
   // https://moment.github.io/luxon/api-docs/index.html#datetimeplus
@@ -26,22 +27,22 @@ async function checker(){
   // const minute = dt.minute;
   // let nowMinute = new Date(now).getMinutes();
 
-  let getNext10Minute = function(now, count=1){
-    let next10Minute = parseInt((new Date(now).getMinutes() + count*10)/10) * 10;
+  let getNext10Minute = function(now, step = 10,count=1){
+    let nextStepMinute = parseInt((new Date(now).getMinutes() + count * step ) / step) * step;
     let nextHour = 0;
-    if(next10Minute >= 60){
-      next10Minute = next10Minute % 60;
-      nextHour = 1
+    if(nextStepMinute >= 60){
+      nextStepMinute = nextStepMinute % 60;
+      nextHour = parseInt( nextStepMinute / 60 )
     }else{
       nextHour = 0;
     }
-    let next10MinuteTimestamp = new Date(now).setHours(
+    let nextStepMinuteTimestamp = new Date(now).setHours(
         dateNow.getHours()+nextHour,
-        next10Minute,
+        nextStepMinute,
         0,
         0
       ); 
-    return [nextHour, next10Minute, next10MinuteTimestamp];
+    return [nextHour, nextStepMinute, nextStepMinuteTimestamp];
   } 
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setHours
   console.log(new Date(getNext10Minute(now, 1)[2]), new Date(getNext10Minute(now, 2)[2]-1), dateNow)

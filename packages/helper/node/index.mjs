@@ -2,6 +2,7 @@ import { ReturnDocument } from 'mongodb';
 
 let mongo = {
   upsertDoc: async function (db, collectionName,filter, doc, res) {
+    if(!db) return res.status(500).send('db lost');
     const options = { upsert: true, returnDocument: ReturnDocument.AFTER };
     if(!filter){
       filter = doc;

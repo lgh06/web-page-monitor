@@ -24,14 +24,7 @@ export default async function handler(
     res.status(400).json({ value: 'please check input value' })
   }
   const newDoc = { cronSyntax, endTime, cssSelector,pageURL, userId, mode, nextExecuteTime };
-  // console.log(newDoc)
-  // const options = { upsert: true, returnDocument: ReturnDocument.AFTER };
-  // TODO
-  // db.collection('task').findOneAndReplace(filter, newDoc , options).then(doc => {
-  //   return res.status(200).json(doc)
-  // }).catch((e)=>{
-  //   return res.status(500).json({ value: e });
-  // });
+
   let filter = {
     cronSyntax,
     pageURL,

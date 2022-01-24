@@ -47,15 +47,20 @@ async function getDB(dbName, req){
   if (!dbName) {
     dbName = 'webmonitordb'
   }
-  let dbClient = await getClient();
-  let db = dbClient.db(dbName);
-  
-  // used inside a middleware
-  if (req){
-    req.dbClient = dbClient
-    req.db = db;
+  try {
+    let dbClient = await getClient();
+    let db = dbClient.db(dbName);
+    
+    // used inside a middleware
+    if (req){
+      req.dbClient = dbClient
+      req.db = db;
+    }
+    return db; // a Promised db
+  } catch (error) {
+    console.log(error)
+    return null;
   }
-  return db; // a Promised db
 }
 
 export {getDB as default, getDB, getClient};

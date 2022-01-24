@@ -39,19 +39,24 @@ async function getClient(): Promise<MongoClient>{
 
 
 // can be used in both api middleware and in api.
-async function getDB(dbName?: string | undefined, req?: { dbClient: MongoClient; db: Db; }): Promise<Db>{
+async function getDB(dbName?: string | undefined, req?: { dbClient: MongoClient; db: Db; }): Promise<Db | null>{
   if (!dbName) {
     dbName = 'webmonitordb'
   }
-  let dbClient = await getClient();
-  let db = dbClient.db(dbName);
-  
-  // used inside a middleware
-  if (req){
-    req.dbClient = dbClient
-    req.db = db;
+  try {
+    let dbClient = await getClient();
+    let db = dbClient.db(dbName);
+    
+    // used inside a middleware
+    if (req){
+      req.dbClient = dbClient
+      req.db = db;
+    }
+    return db; // a Promised db
+  } catch (error) {
+    console.log(error)
+    return null;
   }
-  return db; // a Promised db
 }
 
 export {getDB as default, getDB, getClient};
