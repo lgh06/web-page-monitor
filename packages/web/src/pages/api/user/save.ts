@@ -1,4 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { ReturnDocument } from 'mongodb';
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getDB } from '../../../lib';
 
@@ -14,7 +15,7 @@ export default async function handler(
   const filter = { email };
   const newDoc = {email, emailVerified, oauthProvider};
   console.log(newDoc)
-  const options = { upsert: true };
+  const options = { upsert: true, returnDocument: ReturnDocument.AFTER };
 
   // https://docs.mongodb.com/manual/reference/operator/update/#update-operators
 

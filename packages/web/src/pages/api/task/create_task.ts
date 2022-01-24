@@ -2,6 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getDB } from '../../../lib';
 import { CronTime } from '@webest/web-page-monitor-helper';
+import { ReturnDocument } from 'mongodb';
 
 
 export default async function handler(
@@ -23,7 +24,7 @@ export default async function handler(
   }
   const newDoc = { cronSyntax, endTime, cssSelector,pageURL, userId, mode, nextExecuteTime };
   console.log(newDoc)
-  const options = { upsert: true };
+  const options = { upsert: true, returnDocument: ReturnDocument.AFTER };
   // TODO
   db.collection('task').findOneAndReplace(filter, newDoc , options).then(doc => {
     return res.status(200).json(doc)
