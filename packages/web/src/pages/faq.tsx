@@ -63,10 +63,10 @@ const FaqPage: NextPage = () => {
         <span>* * 0,4,8,12,16,20 * * *</span>(execute on every day&apos;s 0,4,6,8,12,16 and 20 o&apos;clock.) ,  
         that syntax / pattern works also every 4 hours in fact, it is better for our global servers to arrange our tasks. 
         </p>
-      <h2> What Is Simple Mode ?</h2>
+      <h2 id="WhatIsSimpleMode"> What Is Simple Mode ?</h2>
       <p>This is a recommended mode for beginners.  <br/>
         Type a URL, keep other field as default, clicke create button, that&apos;s done.</p>
-      <h2> What is Geek Mode ?</h2>
+      <h2 id="WhatisGeekMode"> What is Geek Mode ?</h2>
       <p>Write a piece of Node.js snippet, <br/>
       Customize Puppeteer&apos;s behaviors,<br/> 
       then watch pages need logged in or hidden in deeper links without a URL . <br/>

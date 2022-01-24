@@ -23,8 +23,15 @@ a React component or a Next.js Page should us `ComponentName` or `PageName`
   createdTime: 1642470077306,
   // timestamp
   nextExecuteTime: 1642470077306,
+  // timestamp, converted from endLocalMinuteString 
+  endTime: 1642470077306,
   // Cron pattern / syntax
   cronSyntax: '00 00 00 * * *',
+  // simp or geek. 
+  // see packages\web\src\atoms\createTaskDetail.ts for details
+  mode: 'simp',
+  pageURL: 'https://news.qq.com/',
+  cssSelector: 'body',
   // worker_id(or hashed by task_id char code)
   workerId: null,
   // if null, any pptr can execute this task, randomly
