@@ -37,6 +37,12 @@ async function getClient(){
 
 
 // can be used in both api middleware and in api.
+/**
+ * 
+ * @param {string} dbName 
+ * @param {{ dbClient: MongoClient, db: Db; }} req 
+ * @returns {Promise<Db>}
+ */
 async function getDB(dbName, req){
   if (!dbName) {
     dbName = 'webmonitordb'

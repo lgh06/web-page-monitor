@@ -15,11 +15,13 @@
   "dependencies": {
     "@webest/web-page-monitor-helper": "*",
     "amqplib": "^0.8.0",
-    "mongodb": "^4.3.0",
+    "luxon": "^2.3.0",
+    "mongodb": "=4.3.1",
     "mqtt": "^4.3.4",
     "socket.io-client": "^4.4.1"
   },
   "devDependencies": {
+    "@types/luxon": "^2.0.9",
     "nodemon": "^2.0.15"
   }
 }
