@@ -15,7 +15,7 @@ export default async function handler(
 
   const { cronSyntax, endTime, cssSelector,pageURL, userId, mode } = req.body;
 
-  const filter = { cronSyntax, endTime, cssSelector,pageURL, userId, mode };
+  // const filter = { cronSyntax, endTime, cssSelector,pageURL, userId, mode };
   // TODO verify the cron's between time and syntax , like frontend side.
   let nextExecuteTimeArr = CronTime.getNextTimes(cronSyntax, 1);
   let nextExecuteTime;
@@ -25,8 +25,8 @@ export default async function handler(
     res.status(400).json({ value: 'please check input value' })
   }
   const newDoc = { cronSyntax, endTime, cssSelector,pageURL, userId, mode, nextExecuteTime };
-  console.log(newDoc)
-  const options = { upsert: true, returnDocument: ReturnDocument.AFTER };
+  // console.log(newDoc)
+  // const options = { upsert: true, returnDocument: ReturnDocument.AFTER };
   // TODO
   // db.collection('task').findOneAndReplace(filter, newDoc , options).then(doc => {
   //   return res.status(200).json(doc)
