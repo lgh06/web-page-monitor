@@ -43,6 +43,10 @@ export let mongo = {
   }
 }
 
+declare module '@webest/web-page-monitor-helper/mongo' {
+  async function upsertDoc(db: Db, collectionName: string, doc: Document): Promise<ModifyResult<Document>>{}
+}
+
 // export let globalConfig : {
 //   exchange: string;
 //   queue: string;

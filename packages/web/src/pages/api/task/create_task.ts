@@ -2,7 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getDB } from '../../../lib';
 import { CronTime } from '@webest/web-page-monitor-helper';
-import { mongo } from '@webest/web-page-monitor-helper/mongo.mjs';
+import { mongo } from '@webest/web-page-monitor-helper/mongo';
 import { ReturnDocument } from 'mongodb';
 
 
