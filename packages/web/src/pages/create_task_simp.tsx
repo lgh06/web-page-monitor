@@ -89,8 +89,15 @@ const CreateTaskGeekPage: NextPage = () => {
     // console.log(data)
     console.log(taskDetail)
     console.log(userInfo)
+    let userId = userInfo._id;
 
-    return true;
+    let resp = await fetchAPI('/task/create_task', {
+      userId,
+      ...taskDetail,
+      mode: 'simp', // this page is simp mode. TODO combine two pages
+    })
+    console.log(resp);
+    // return true;
   }
 
   useEffect(() => {
