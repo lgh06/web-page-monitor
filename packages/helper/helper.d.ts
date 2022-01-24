@@ -24,7 +24,7 @@ export namespace  CronTime {
    * and check if time between them >= 5 minutes.
    * @param  timestampArr
    */
-  function checkTimes(timestampArr:Array<number>):[true | false, errorMessage];
+  function checkTimes(timestampArr:Array<number>, firstJobMinutes = 10, betweenJobMinutes = 10):[true | false, errorMessage];
 
 }
 

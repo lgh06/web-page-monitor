@@ -32,5 +32,12 @@ export default async function handler(
   // }).catch((e)=>{
   //   return res.status(500).json({ value: e });
   // });
-  mongo.upsertDoc(db, 'task', newDoc, res)
+  let filter = {
+    cronSyntax,
+    pageURL,
+    cssSelector,
+    userId,
+    mode,
+  }
+  mongo.upsertDoc(db, 'task', filter, newDoc, res)
 }

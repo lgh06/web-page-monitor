@@ -106,9 +106,9 @@ const LoginPage: NextPage = () => {
       <div>
         <Link href='/create_task_simp'><a {...cn('link')}> create a task in Simple Mode (Recommended)</a></Link>
       </div>
-      <div>
+      {/* <div>
         <Link href='/create_task_geek'><a {...cn('link')}>create a task in Geek Mode (Code Mode)</a></Link>
-      </div>
+      </div> */}
       <div>
         <Link href='/faq#WhatIsSimpleMode'><a {...cn('link')}>see FAQ for Simple Mode / Geek Mode helps </a></Link>
       </div>

@@ -165,6 +165,10 @@ const CreateTaskGeekPage: NextPage = () => {
       </input>
     </div>
     <div>
+      Note: if the combination of cron syntax and cssSelector and pageURL are same,  
+      this will update existing task, not create a new one.
+    </div>
+    <div>
       <button data-btn-index="0" onClick={handleBtnClick} disabled={!(taskDetail.cronPassed && taskDetail.pageURLPassed)}>Create Now</button>
     </div>
     <div>

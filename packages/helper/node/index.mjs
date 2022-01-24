@@ -1,9 +1,13 @@
 import { ReturnDocument } from 'mongodb';
 
 let mongo = {
-  upsertDoc: async function (db, collectionName, doc, res) {
+  upsertDoc: async function (db, collectionName,filter, doc, res) {
     const options = { upsert: true, returnDocument: ReturnDocument.AFTER };
-    let p = db.collection(collectionName).findOneAndReplace(doc, doc, options).then(returnedDoc => {
+    if(!filter){
+      filter = doc;
+    }
+    // https://mongodb.github.io/node-mongodb-native/4.3/classes/Collection.html#findOneAndReplace
+    let p = db.collection(collectionName).findOneAndReplace(filter, doc, options).then(returnedDoc => {
       return returnedDoc
     })
     if (res) {
