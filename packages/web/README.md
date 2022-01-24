@@ -8,10 +8,29 @@ Do not upgrade, see https://github.com/lgh06/web-page-monitor/issues/9
 ```
 
 ## table / collection design  
-| userId | email| emailVerified  |countryCode | mobile | password(sha256) | oauthProvider |vipLevel | vipEnd | createdTime |
-|---|---|---|---|---|---|---|---|---|---|
-|   |   |   | global phone code   |  |  gitee or github  |  |     |    |
-|1|hnnk@qq.com| true  |+86| `155****555*` |asdfasdf|gitee| null | null  |  2022-01-20T11:20:19.210Z  |
+- user  
+
+```javascript
+{
+    // MongoDB and its driver generated default ObjectId
+    // we can get created_time from _id
+    _id: {
+        "$oid": "61e952c4e851350024c81233"
+    },
+    email: "hnnk@qq.com",
+    emailVerified: true,
+    // gitee or github
+    oauthProvider: "gitee",
+    countryCode: 86,
+    mobile: '155****555*',
+    // only store hashed string
+    password: 'asdasdwqawdas',
+    vipLevel: 0,
+    vipEnd:1642991066905,
+
+}
+
+```
 
 ## Getting Started
 
