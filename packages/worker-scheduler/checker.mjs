@@ -4,7 +4,6 @@ import { DateTime } from "luxon";
 async function checker(){
 
   let now = Date.now(); // timestamp
-  let dateNow = new Date(now);
 
 
   let db = await getDB();
@@ -27,17 +26,19 @@ async function checker(){
   // const minute = dt.minute;
   // let nowMinute = new Date(now).getMinutes();
 
-  let getNext10Minute = function(now, step = 10,count=1){
-    let nextStepMinute = parseInt((new Date(now).getMinutes() + count * step ) / step) * step;
+  let getNextStepMinute = function(timestamp, step = 10,count=1){
+    let nextStepMinute = parseInt((new Date(timestamp).getMinutes() + count * step ) / step) * step;
     let nextHour = 0;
     if(nextStepMinute >= 60){
-      nextStepMinute = nextStepMinute % 60;
       nextHour = parseInt( nextStepMinute / 60 )
+      nextStepMinute = nextStepMinute % 60;
+      console.log('inside above', nextHour, nextStepMinute, count)
     }else{
       nextHour = 0;
+      console.log('inside below', nextHour, nextStepMinute, count)
     }
-    let nextStepMinuteTimestamp = new Date(now).setHours(
-        dateNow.getHours()+nextHour,
+    let nextStepMinuteTimestamp = new Date(timestamp).setHours(
+        new Date(timestamp).getHours()+nextHour,
         nextStepMinute,
         0,
         0
@@ -45,7 +46,9 @@ async function checker(){
     return [nextHour, nextStepMinute, nextStepMinuteTimestamp];
   } 
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setHours
-  console.log(new Date(getNext10Minute(now, 1)[2]), new Date(getNext10Minute(now, 2)[2]-1), dateNow)
+  let step = 5;
+  console.log(getNextStepMinute(now, step))
+  console.log(new Date(getNextStepMinute(now, step)[2]), new Date(getNextStepMinute(now, step, 2)[2]-1), new Date(now))
 }
 
 
