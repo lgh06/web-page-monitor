@@ -1,5 +1,5 @@
 import * as amqp from 'amqplib';
-import { CronTime } from "@webest/web-page-monitor-helper/cronTime.mjs";
+import { CronTime } from "@webest/web-page-monitor-helper";
 import { CONFIG } from './CONFIG.mjs';
 
 

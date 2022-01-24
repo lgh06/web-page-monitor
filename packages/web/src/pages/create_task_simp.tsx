@@ -2,7 +2,7 @@ import { NextPage } from "next/types";
 import { ChangeEvent, useEffect, MouseEvent } from 'react';
 import { useImmerAtom } from 'jotai/immer';
 import { createTaskDetailAtom, monacoEditorAtom, userInfoAtom } from '../atoms';
-import { CronTime } from '@webest/web-page-monitor-helper/cronTime.mjs';
+import { CronTime } from '@webest/web-page-monitor-helper';
 import { fetchAPI } from "../helpers/index";
 import Link from "next/link";
 

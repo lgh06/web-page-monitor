@@ -1,7 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getDB } from '../../../lib';
-import { CronTime, mongo } from '@webest/web-page-monitor-helper';
+import { CronTime } from '@webest/web-page-monitor-helper';
+import { mongo } from '@webest/web-page-monitor-helper/mongo.mjs';
 import { ReturnDocument } from 'mongodb';
 
 
