@@ -19,6 +19,7 @@ const CreateTaskGeekPage: NextPage = () => {
       let nowDate = new Date();
       // TODO different type user, diff end time
       v.endLocalMinuteString = CronTime.toLocalISOString(nowDate, 7*60*24);
+      v.endTime = new Date(v.endLocalMinuteString).valueOf()
       v.startLocalMinuteString = CronTime.toLocalISOString(nowDate, 10);
     })
   }
@@ -55,6 +56,7 @@ const CreateTaskGeekPage: NextPage = () => {
       const dtISO = CronTime.toLocalISOString(new Date(inputElement.value));
       setTaskDetail(v => {
         v.endLocalMinuteString = dtISO;
+        v.endTime = new Date(dtISO).valueOf()
       })
     }
     if (index === '2') {
@@ -122,7 +124,7 @@ const CreateTaskGeekPage: NextPage = () => {
     </div>
     <div>continue loops,  until<br />
       <input
-        placeholder="choose a time"
+        placeholder="choose a end time. from ten minutes later to 7 days later."
         value={taskDetail.endLocalMinuteString}
         data-input-index="1"
         onChange={handleInputChange}

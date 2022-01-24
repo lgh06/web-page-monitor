@@ -1,9 +1,9 @@
 import { CronTime as CT } from "cron"
 
-function getNextTimes(cron) {
+function getNextTimes(cron, count = 500) {
   let ctArr;
   try {
-    ctArr = new CT(cron).sendAt(500);
+    ctArr = new CT(cron).sendAt(count);
   } catch (error) {
     ctArr = null;
     return ctArr
