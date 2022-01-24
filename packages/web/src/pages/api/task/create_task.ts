@@ -2,8 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getDB } from '../../../lib';
 import { CronTime } from '@webest/web-page-monitor-helper';
-import { mongo } from '@webest/web-page-monitor-helper/mongo';
-import { ReturnDocument } from 'mongodb';
+import { mongo } from '@webest/web-page-monitor-helper/node';
 
 
 export default async function handler(
@@ -33,9 +32,5 @@ export default async function handler(
   // }).catch((e)=>{
   //   return res.status(500).json({ value: e });
   // });
-  mongo.upsertDoc(db, 'task', newDoc).then(doc => {
-    return res.status(200).json(doc)
-  }).catch((e)=>{
-    return res.status(500).json({ value: e });
-  });
+  mongo.upsertDoc(db, 'task', newDoc, res)
 }
