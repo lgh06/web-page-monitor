@@ -1,7 +1,7 @@
 import { NextPage } from "next/types";
 import { ChangeEvent, useEffect, MouseEvent } from 'react';
 import { useImmerAtom } from 'jotai/immer';
-import { createTaskDetailAtom, monacoEditorAtom } from '../atoms';
+import { createTaskDetailAtom, monacoEditorAtom, userInfoAtom } from '../atoms';
 import { CronTime } from '@webest/web-page-monitor-helper';
 import { fetchAPI } from "../helpers/index";
 import Link from "next/link";
@@ -10,6 +10,7 @@ import Link from "next/link";
 const CreateTaskGeekPage: NextPage = () => {
 
   const [taskDetail, setTaskDetail] = useImmerAtom(createTaskDetailAtom);
+  const [userInfo, setUserInfo] = useImmerAtom(userInfoAtom);
 
   // update input date when first entry
   function updateDate() {
@@ -84,8 +85,8 @@ const CreateTaskGeekPage: NextPage = () => {
     ev.preventDefault()
     // let data = await fetchAPI('/task/create_task', {test: "string one"});
     // console.log(data)
-    console.log(taskDetail.cronSyntax)
     console.log(taskDetail)
+    console.log(userInfo)
 
     return true;
   }

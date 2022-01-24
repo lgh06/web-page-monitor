@@ -12,7 +12,7 @@ import styles from '../styles/modules/login.module.scss';
 
 const Back = () => {
   return (<div>
-        <Link href="./"><a {...cn('link')}>Go Back to home</a></Link>
+        <Link href="/"><a {...cn('link')}>Go Back to home</a></Link>
     </div>)
 }
 
@@ -66,6 +66,7 @@ const LoginPage: NextPage = () => {
               v.email = emailResp[0].email;
               v.emailState = emailResp[0].state;
               v.logged = true;
+              v.oauthProvider = String(provider);
               v._id = _id;
             });
           }
@@ -83,6 +84,9 @@ const LoginPage: NextPage = () => {
       v.email = undefined;
       v.emailState = '';
       v.logged = false;
+      v.oauthProvider = '';
+      v._id = '';
+      v.code = '';
     });
     router.push('/login');
   }
@@ -92,7 +96,7 @@ const LoginPage: NextPage = () => {
   }
 
   let res;
-  let backLink = <><div><Link href="./"><a {...cn('link')}>Go Back to home</a></Link></div></>;
+  let backLink = <><div><Link href="/"><a {...cn('link')}>Go Back to home</a></Link></div></>;
 
   if (userInfo.logged) {
     res = (<>
@@ -100,10 +104,10 @@ const LoginPage: NextPage = () => {
         <button onClick={logOut}>Log Out</button>
       </div>
       <div>
-        <Link href='./create_task_simp'><a {...cn('link')}> create a task in Simple Mode (Recommended)</a></Link>
+        <Link href='/create_task_simp'><a {...cn('link')}> create a task in Simple Mode (Recommended)</a></Link>
       </div>
       <div>
-        <Link href='./create_task_geek'><a {...cn('link')}>create a task in Geek Mode (Code Mode)</a></Link>
+        <Link href='/create_task_geek'><a {...cn('link')}>create a task in Geek Mode (Code Mode)</a></Link>
       </div>
       <Back/>
     </>
