@@ -1,5 +1,5 @@
 import { atom } from 'jotai'
-import { sampleFunction } from '@webest/web-page-monitor-helper';
+import { sampleFunction } from '@webest/web-page-monitor-helper/sampleFunction.mjs';
 
 
 let monacoEditor = {

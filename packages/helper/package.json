@@ -5,8 +5,8 @@
   "author": "Daniel Liu <hnnk@qq.com>",
   "homepage": "",
   "license": "SEE LICENSE IN LICENSE.md",
-  "main": "src/helper.mjs",
-  "types": "src/helper.d.ts",
+  "main": "helper.mjs",
+  "types": "helper.d.ts",
   "publishConfig": {
     "registry": "https://registry.npmmirror.com/"
   },
@@ -14,7 +14,8 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "cron": "1.8.2"
+    "cron": "1.8.2",
+    "mongodb": "~4.3.0"
   },
   "devDependencies": {
     "@types/cron": "1.7.3"

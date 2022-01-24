@@ -1,4 +1,4 @@
-import { globalConfig } from "@webest/web-page-monitor-helper";
+import { globalConfig } from "@webest/web-page-monitor-helper/globalConfig.mjs";
 
 // production, front static files port 3001, next Node.js port 3002.
 // development, all 3002.

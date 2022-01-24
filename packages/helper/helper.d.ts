@@ -1,4 +1,7 @@
 // https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-d-ts.html#types-in-modules
+import { MongoClient, Db, Document, ModifyResult } from "mongodb";
+
+
 export namespace  CronTime {
   /**
    * get next count timestamps (13 digit, miliseconds) from cron syntax
@@ -33,6 +36,11 @@ export module globalConfig {
   exchange: string;
   queue: string;
   queueBinding: string;
+}
+
+export let mongo = {
+  upsertDoc: async function(db: Db, collectionName: string, doc: Document): Promise<ModifyResult<Document>>{ 
+  }
 }
 
 // export let globalConfig : {

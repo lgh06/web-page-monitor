@@ -11,10 +11,10 @@ const nextConfig = {
     ],
   },
   // webpack: (config) => {
-  //   config.module.rules.push({
-  //     test: /\.d\.ts$/,
-  //     use: 'raw-loader',
-  //   });
+  //   config.externals = [
+  //     ...config.externals,
+  //     'mongodb',
+  //   ]
   //   return config;
   // },
 }

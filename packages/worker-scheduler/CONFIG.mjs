@@ -1,4 +1,4 @@
-import { globalConfig } from "@webest/web-page-monitor-helper";
+import { globalConfig } from "@webest/web-page-monitor-helper/globalConfig.mjs";
 
 let CONFIG = {
   mongodbURI: '' || globalConfig.mongodbURI,
