@@ -31,9 +31,9 @@ const CreateTaskGeekPage: NextPage = () => {
       setTaskDetail(v => {
         v.cronSyntax = inputElement.value;
       });
-      let passed = false, errorMsg = '';
+      let passed = false, errorMsg = [''];
       if(String(inputElement.value).includes('/')){
-        [passed, errorMsg] = [false, 'Please remove / in your syntax, see FAQ for details']
+        [passed, errorMsg] = [false, ['Please remove / in your syntax, see FAQ for details']]
       }else{
         let nextArr = CronTime.getNextTimes(inputElement.value);
         [passed, errorMsg] = CronTime.checkTimes(nextArr);
@@ -167,6 +167,10 @@ const CreateTaskGeekPage: NextPage = () => {
     <div>
       Note: if the combination of cron syntax and cssSelector and pageURL are same,  
       this will update existing task, not create a new one.
+    </div>
+    <div>
+      Note: We need 15 minutes to distribute our tasks to different servers. <br/>
+      the first repeated task within 15 minutes will be ignored.
     </div>
     <div>
       <button data-btn-index="0" onClick={handleBtnClick} disabled={!(taskDetail.cronPassed && taskDetail.pageURLPassed)}>Create Now</button>

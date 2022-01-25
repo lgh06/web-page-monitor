@@ -9,19 +9,31 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-
-  let db = await getDB();
-
   const { cronSyntax, endTime, cssSelector,pageURL, userId, mode } = req.body;
 
   // const filter = { cronSyntax, endTime, cssSelector,pageURL, userId, mode };
-  // TODO verify the cron's between time and syntax , like frontend side.
-  let nextExecuteTimeArr = CronTime.getNextTimes(cronSyntax, 1);
+  let passed = false, errorMsg = [''];
+  // get next 5 times
+  let nextExecuteTimeArr = CronTime.getNextTimes(cronSyntax, 50);
+  // check time between
+  [passed, errorMsg] = CronTime.checkTimes(nextExecuteTimeArr);
+  // ensure syntax not contain '/'
+  if(String(cronSyntax).includes('/')){
+    [passed, errorMsg] = [false, ['Please remove / in your syntax, see FAQ for details']]
+  }
   let nextExecuteTime;
-  if (nextExecuteTimeArr && nextExecuteTimeArr[0]){
-    nextExecuteTime = nextExecuteTimeArr[0]
+  let nowTimestamp = Date.now();
+  if (nextExecuteTimeArr && nextExecuteTimeArr.length && passed){
+    // find 15 minutes later cron time.
+    // because we need time to distribute tasks in first time.
+    // TODO enhance in future.
+    nextExecuteTime = nextExecuteTimeArr.find(v => (v >= nowTimestamp + 15 * 60 * 1000));
   }else{
-    res.status(400).json({ value: 'please check input value' })
+    return res.status(400).json({ err: 'please check input value.' + Array(errorMsg).join(' ') })
+  }
+  // have chance not got nextExecuteTime
+  if(!nextExecuteTime){
+    return res.status(400).json({ err: 'please check input value.' + Array(errorMsg).join(' ') })
   }
   const newDoc = { cronSyntax, endTime, cssSelector,pageURL, userId, mode, nextExecuteTime };
 
@@ -32,5 +44,6 @@ export default async function handler(
     userId,
     mode,
   }
+  let db = await getDB();
   return mongo.upsertDoc(db, 'task', filter, newDoc, res)
 }

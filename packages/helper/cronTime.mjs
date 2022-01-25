@@ -29,15 +29,16 @@ function checkTimes(timestampArr, firstJobMinutes = 10, betweenJobMinutes = 10) 
   if(!timestampArr || !timestampArr[0]){
     return [false, ['please check the cron syntax']]
   }
-  let now = Date.now();
+  // let now = Date.now();
   let errors = new Set();
   timestampArr.forEach((v, i, a) => {
     // TODO different type user, diff later / between time
-    if (i === 0) {
-      if ((v - now) < 60 * firstJobMinutes * 1000) {
-        errors.add(`first job need ${firstJobMinutes} minutes later, please check. `);
-      }
-    }
+    // below logic moved to API when API got a task.
+    // if (i === 0) {
+    //   if ((v - now) < 60 * firstJobMinutes * 1000) {
+    //     errors.add(`first job need ${firstJobMinutes} minutes later, please check. `);
+    //   }
+    // }
     if (i >= 1) {
       if ((v - a[i - 1]) < 60 * betweenJobMinutes * 1000) {
         errors.add(`between every jobs, need >= ${betweenJobMinutes} minutes, please check. `);

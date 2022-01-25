@@ -8,7 +8,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  let db = await getDB();
   // TODO enhancement
   const { email, emailVerified, oauthProvider } = req.body;
   console.log(req.body, req.body.email)
@@ -16,5 +15,6 @@ export default async function handler(
   const newDoc = {email, emailVerified, oauthProvider};
   console.log(newDoc)
 
+  let db = await getDB();
   return mongo.upsertDoc(db, 'user', filter, newDoc, res)
 }
