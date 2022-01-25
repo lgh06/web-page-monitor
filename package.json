@@ -4,11 +4,9 @@
   "license": "See monorepo's LICENSE.md",
   "scripts": {
     "init": "lerna bootstrap",
-    "postinstall": "npm run init",
+    "postinstall": "npm i lerna@3.22.1 -g && npm i pm2 -g && npm run init ",
     "dev-web": "lerna run --scope @webest/web-page-monitor-web dev",
-    "dev": "lerna bootstrap && lerna run dev --parallel --no-bail"
-  },
-  "devDependencies": {
-    "lerna": "3.22.1"
+    "dev": "lerna bootstrap && lerna run dev --parallel --no-bail",
+    "stop": "lerna run stop"
   }
 }

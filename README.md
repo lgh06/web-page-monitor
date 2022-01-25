@@ -43,6 +43,8 @@ Github source code : [Link](https://github.com/lgh06/web-page-monitor)
 - MongoDB (5.0)  
 - Node.JS (16)  
 
+> Notice: For production, you should ensure your `pm2` auto start after your OS boot. [link](https://github.com/pm2-hive/pm2-hive.github.io/blob/330f518065e2e6b9e8befc7beddd1b076d6c2adf/docs/features/startup.md#windows-startup-script)  
+> Notice: For production, you should ensure your `MongoB` and `RabbitMQ` auto start after your OS boot.  
 > Notice: For production, socket.io and web and MongoDB's server should have a permanent public Internet IP address.  
 > Notice: For local development, you can install all of sub-packages on one machine, the machine should have Internet access.  
 
@@ -65,6 +67,8 @@ Please modify inner paths by yourself if you changed default install path or ser
 - MongoDB (5.0)  
 - Node.JS (16)  
 
+> 注意：生产环境，你要确保pm2在你的系统中会自动启动。[文档链接](https://github.com/pm2-hive/pm2-hive.github.io/blob/330f518065e2e6b9e8befc7beddd1b076d6c2adf/docs/features/startup.md#windows-startup-script)  
+> 注意：生产环境，你要确保MongoDB和RabbitMQ在你的系统中会自动启动。  
 > 注意：生产环境，socket.io 和 web 和 MongoDB 所在服务器应该有固定公网IP。  
 > 注意：开发环境，可以把所有子包都部署在同一服务器上，有访问公网的权限即可，不必有公网IP.  
 
@@ -81,11 +85,15 @@ Next.js 3002 ( will be on 80 / 443 in production, someday)
 Static HTML 3001 on production. (maybe, or just use Next.js )  
 socket.io server 3003  
 
-## Run  
+## Run and Stop / 跑起来与停止  
 ```
 npm install && npm run dev
 
 ```  
+You need to quit manually because we used `pm2`:  
+```
+npm run stop
+```
 
 ## other running notes  
 [**\*\*packages/vendor-scripts-n-configs/README.md\*\***](packages/vendor-scripts-n-configs/README.md)  

@@ -10,7 +10,9 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "dev": "nodemon worker-scheduler.mjs"
+    "dev-bak": "nodemon worker-scheduler.mjs",
+    "dev": "pm2 start worker-scheduler.mjs --name worker --watch",
+    "stop": "pm2 stop worker --watch"
   },
   "dependencies": {
     "@webest/web-page-monitor-helper": "*",
