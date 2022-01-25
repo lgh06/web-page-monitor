@@ -1,4 +1,6 @@
 import { getDB } from './lib/index.mjs';
+import { CronTime } from '@webest/web-page-monitor-helper';
+
 
 let getNextStepMinuteTimestamp = function(timestamp, step = 5,count=1){
   let nextStepMinute = parseInt((new Date(timestamp).getMinutes() + count * step ) / step) * step;
@@ -48,11 +50,14 @@ async function normalChecker(now){
     }
   // TODO pagination and be careful for memory leak. future.
   }).toArray().then(docs => {
-    console.log(docs)
     if(docs && docs.length){
-      // TODO send jobs to RabbitMQ
-      // TODO then modify nextExecuteTime
-      console.log(new Date(docs[0].nextExecuteTime))
+      docs.forEach(doc => {
+        // TODO send jobs to MQ and execute quicker
+
+        db.collection(tableName).updateOne({_id: doc._id}, {'$set': {
+          nextExecuteTime: CronTime.getNextTimes(doc.cronSyntax, 2)[0]
+        }}).catch(e => console.log(e))
+      });
     }
   }).catch(e => console.log(e));
 }
@@ -64,7 +69,9 @@ async function errorChecker(now){
   let db = await getDB();
   if(!db) return;
 
-  return db.collection('task').find({
+  let tableName = 'task';
+
+  return db.collection(tableName).find({
     $and:[
       {
         nextExecuteTime:{
@@ -79,12 +86,15 @@ async function errorChecker(now){
     ]
   // TODO pagination and be careful for memory leak. future.
   }).toArray().then(docs => {
-    console.log(docs)
     if(docs && docs.length){
-      // TODO send jobs to MQ and execute quicker
-      // TODO then modify nextExecuteTime
+      
+      docs.forEach(doc => {
+        // TODO send jobs to MQ and execute quicker
 
-      console.log(new Date(docs[0].nextExecuteTime))
+        db.collection(tableName).updateOne({_id: doc._id}, {'$set': {
+          nextExecuteTime: CronTime.getNextTimes(doc.cronSyntax, 2)[0]
+        }}).catch(e => console.log(e))
+      });
     }
   }).catch(e => console.log(e));
 
