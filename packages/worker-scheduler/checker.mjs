@@ -32,10 +32,10 @@ async function checker(){
     if(nextStepMinute >= 60){
       nextHour = parseInt( nextStepMinute / 60 )
       nextStepMinute = nextStepMinute % 60;
-      console.log('inside above', nextHour, nextStepMinute, count)
+      // console.log('inside above', nextHour, nextStepMinute, count)
     }else{
       nextHour = 0;
-      console.log('inside below', nextHour, nextStepMinute, count)
+      // console.log('inside below', nextHour, nextStepMinute, count)
     }
     let nextStepMinuteTimestamp = new Date(timestamp).setHours(
         new Date(timestamp).getHours()+nextHour,

@@ -16,5 +16,5 @@ export default async function handler(
   const newDoc = {email, emailVerified, oauthProvider};
   console.log(newDoc)
 
-  mongo.upsertDoc(db, 'user', filter, newDoc, res)
+  return mongo.upsertDoc(db, 'user', filter, newDoc, res)
 }

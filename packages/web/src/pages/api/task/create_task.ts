@@ -32,5 +32,5 @@ export default async function handler(
     userId,
     mode,
   }
-  mongo.upsertDoc(db, 'task', filter, newDoc, res)
+  return mongo.upsertDoc(db, 'task', filter, newDoc, res)
 }
