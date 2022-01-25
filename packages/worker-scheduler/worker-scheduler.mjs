@@ -23,8 +23,8 @@ async function main() {
         prevNormalCheckerMinute = nowMinute;
         normalChecker(now);
       }
-      // errorChecker will be executed per hour
-      if ( nowMinute % 60 === 0 && prevErrorCheckerMinute !== nowMinute ){
+      // errorChecker will be executed every 10 minutes
+      if ( nowMinute % 10 === 0 && prevErrorCheckerMinute !== nowMinute ){
         prevErrorCheckerMinute = nowMinute;
         errorChecker(now);
       }
