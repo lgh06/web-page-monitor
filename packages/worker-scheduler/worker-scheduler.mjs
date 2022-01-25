@@ -20,7 +20,7 @@ async function main() {
       let nowMinute = nowDate.getMinutes();
 
       // errorChecker will be executed every 10 minutes
-      if ( nowMinute % 10 === 0 && prevErrorCheckerMinute !== nowMinute ){
+      if ( nowMinute % 5 === 0 && prevErrorCheckerMinute !== nowMinute ){
         prevErrorCheckerMinute = nowMinute;
         // setInterval may not await, but errors can be easily catched.
         try {
