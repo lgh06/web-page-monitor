@@ -92,7 +92,7 @@ async function normalChecker(now) {
   ])
   .toArray().then(docs => {
     if (docs && docs.length) {
-      docs.forEach(doc => {
+      docs.forEach(async (doc) => {
         // TODO send jobs to MQ and execute quicker
         console.log('inside normal checker')
         console.log(doc)
