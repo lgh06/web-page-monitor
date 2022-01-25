@@ -34,15 +34,13 @@ let getNextTimeSection = function(timestamp, step, count = 1){
   ]
 }
 
-async function checker(){
+async function normalChecker(now){
 
-  let now = Date.now(); // timestamp
+  now = now || Date.now(); // timestamp
 
   let db = await getDB();
   if(!db) return;
-  let minutesLater = function(now, minutes){
-    return new Date(now).valueOf() + 60 *1000 * minutes;
-  }
+
   return db.collection('task').find({
     nextExecuteTime:{
       $gte: getNextStepMinuteTimestamp(now, 5, 1),
@@ -51,17 +49,44 @@ async function checker(){
   }).toArray().then(docs => {
     console.log(docs)
     if(docs && docs.length){
+      // TODO send jobs to RabbitMQ
+      // TODO then modify nextExecuteTime
+      console.log(new Date(docs[0].nextExecuteTime))
+    }
+  }).catch(e => console.log(e));
+}
+
+async function errorChecker(now){
+
+  now = now || Date.now(); // timestamp
+
+  let db = await getDB();
+  if(!db) return;
+
+  return db.collection('task').find({
+    $and:[
+      {
+        nextExecuteTime:{
+          $lt: getNextStepMinuteTimestamp(now, 5, 1)
+        }
+      },
+      {
+        endTime:{
+          $gt: now
+        }
+      },
+    ]
+  }).toArray().then(docs => {
+    console.log(docs)
+    if(docs && docs.length){
+      // TODO send jobs to MQ and execute quicker
+      // TODO then modify nextExecuteTime
+
       console.log(new Date(docs[0].nextExecuteTime))
     }
   }).catch(e => console.log(e));
 
-  // https://moment.github.io/luxon/#/tour?id=your-first-datetime
-  // https://moment.github.io/luxon/api-docs/index.html#datetimeplus
-  // const dt = DateTime.fromMillis(now);
-  // const minute = dt.minute;
-  // let nowMinute = new Date(now).getMinutes();
-  // console.log(getNextTimeSection(now, 5, 1), new Date(now))
 }
 
 
-export { checker, getNextStepMinuteTimestamp, getNextTimeSection }
+export { normalChecker, errorChecker, getNextStepMinuteTimestamp, getNextTimeSection }

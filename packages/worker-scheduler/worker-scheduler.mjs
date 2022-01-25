@@ -1,8 +1,6 @@
-import { checker } from './checker.mjs';
+import { normalChecker, errorChecker } from './checker.mjs';
 
 async function main() {
-
-
 
   async function fakeTaskOne (){
     return new Promise((resolve, reject) => {
@@ -14,21 +12,25 @@ async function main() {
   }
 
   function intervalExecuter (){
-    let prevExecutedMinute;
+    let prevNormalCheckerMinute;
+    let prevErrorCheckerMinute;
     setInterval(function(){
       let nowDate = new Date();
+      let now = nowDate.valueOf()
       let nowMinute = nowDate.getMinutes();
-      if ( nowMinute % 5 === 0 && prevExecutedMinute !== nowMinute ){
-        prevExecutedMinute = nowMinute;
-        console.log(nowDate);
-        fakeTaskOne();
+      if ( nowMinute % 5 === 0 && prevNormalCheckerMinute !== nowMinute ){
+        prevNormalCheckerMinute = nowMinute;
+        normalChecker(now);
       }
-    }, 20*1000);
+      if ( nowMinute % 60 === 0 && prevErrorCheckerMinute !== nowMinute ){
+        prevErrorCheckerMinute = nowMinute;
+        errorChecker(now);
+      }
+    }, 25*1000);
 
   }
 
   intervalExecuter()
-  await checker();
 }
 
 
