@@ -14,20 +14,33 @@ async function main() {
   function intervalExecuter (){
     let prevNormalCheckerMinute;
     let prevErrorCheckerMinute;
-    setInterval(function(){
+    setInterval(async function(){
       let nowDate = new Date();
       let now = nowDate.valueOf()
       let nowMinute = nowDate.getMinutes();
-      // normalChecker will be executed every 5 minutes
-      if ( nowMinute % 5 === 0 && prevNormalCheckerMinute !== nowMinute ){
-        prevNormalCheckerMinute = nowMinute;
-        normalChecker(now);
-      }
+
       // errorChecker will be executed every 10 minutes
       if ( nowMinute % 10 === 0 && prevErrorCheckerMinute !== nowMinute ){
         prevErrorCheckerMinute = nowMinute;
-        errorChecker(now);
+        // setInterval may not await, but errors can be easily catched.
+        try {
+          await errorChecker(now);
+        } catch (error) {
+          console.log(error)
+        }
       }
+
+      // normalChecker will be executed every 5 minutes
+      if ( nowMinute % 5 === 0 && prevNormalCheckerMinute !== nowMinute ){
+        prevNormalCheckerMinute = nowMinute;
+        // setInterval may not await, but errors can be easily catched.
+        try {
+          await normalChecker(now);
+        } catch (error) {
+          console.log(error)
+        }
+      }
+
     }, 18*1000);
 
   }
