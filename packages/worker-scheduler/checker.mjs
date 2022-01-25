@@ -1,4 +1,4 @@
-import { getDB } from './lib/index.mjs';
+import { getDB, ObjectId } from './lib/index.mjs';
 import { CronTime } from '@webest/web-page-monitor-helper';
 
 
@@ -45,17 +45,56 @@ async function normalChecker(now) {
 
   let tableName = 'task';
 
-  return db.collection(tableName).find({
-    nextExecuteTime: {
-      $gte: getNextStepMinuteTimestamp(now, 5, 1),
-      $lt: getNextStepMinuteTimestamp(now, 5, 2)
-    }
-    // TODO pagination and be careful for memory leak. future.
-  }).toArray().then(docs => {
+  return db.collection(tableName).aggregate([
+    {
+      $match: {
+        nextExecuteTime: {
+          $gte: getNextStepMinuteTimestamp(now, 5, 1),
+          $lt: getNextStepMinuteTimestamp(now, 5, 2)
+        }
+      }
+      // TODO pagination and be careful for memory leak. future.
+    },
+    {
+      // userId in task collection is a normal string,
+      // not an ObjectId. so need convert
+      $addFields: {
+        userObjectId: { $toObjectId: "$userId" }
+      }
+    },
+    {
+      $lookup:
+      {
+        from: "user",
+        localField: "userObjectId",
+        foreignField: "_id",
+        as: "user"
+      }
+    },
+    // {
+    //   $project:
+    //   {
+    //     _id: 1,
+    //     user: 1,
+    //     cronSyntax: 1,
+    //     nextExecuteTime:1,
+    //   }
+    // }
+
+  ])
+  // .find({
+  //   nextExecuteTime: {
+  //     $gte: getNextStepMinuteTimestamp(now, 5, 1),
+  //     $lt: getNextStepMinuteTimestamp(now, 5, 2)
+  //   }
+  //   // TODO pagination and be careful for memory leak. future.
+  // })
+  .toArray().then(docs => {
     if (docs && docs.length) {
       docs.forEach(doc => {
         // TODO send jobs to MQ and execute quicker
-
+        console.log('inside normal checker')
+        console.log(doc)
         db.collection(tableName).updateOne({ _id: doc._id }, {
           '$set': {
             nextExecuteTime: CronTime.getNextTimes(doc.cronSyntax, 2)[0]
@@ -98,7 +137,6 @@ async function errorChecker(now) {
           },
         ]
         // TODO pagination and be careful for memory leak. future.
-
       },
     },
     {
@@ -116,14 +154,23 @@ async function errorChecker(now) {
         foreignField: "_id",
         as: "user"
       }
-    }
+    },
+    // {
+    //   $project:
+    //   {
+    //     _id: 1,
+    //     user: 1,
+    //     cronSyntax: 1,
+    //     nextExecuteTime:1,
+    //   }
+    // }
   ]).toArray().then(docs => {
     if (docs && docs.length) {
 
       docs.forEach(doc => {
         // TODO send jobs to MQ and execute quicker
         console.log('inside erro checker')
-        console.log(doc, doc.user)
+        console.log(doc)
         db.collection(tableName).updateOne({ _id: doc._id }, {
           '$set': {
             nextExecuteTime: CronTime.getNextTimes(doc.cronSyntax, 2)[0]
