@@ -81,7 +81,7 @@ async function connectSocketIO({socket}){
   let times = 0
   socket.on('room' + socket.auth.userInfo.email, (arg) => {
     times++;
-    console.log(times, arg)
+    // console.log(times, arg)
     if(times % 5 === 0){
       // pptr();
     }
