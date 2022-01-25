@@ -28,7 +28,7 @@ async function main() {
         prevErrorCheckerMinute = nowMinute;
         errorChecker(now);
       }
-    }, 25*1000);
+    }, 18*1000);
 
   }
 
