@@ -1,5 +1,38 @@
 import { getDB } from './lib/index.mjs';
-import { DateTime } from "luxon";
+
+let getNextStepMinuteTimestamp = function(timestamp, step = 10,count=1){
+  let nextStepMinute = parseInt((new Date(timestamp).getMinutes() + count * step ) / step) * step;
+  let nextHour = 0;
+  if(nextStepMinute >= 60){
+    nextHour = parseInt( nextStepMinute / 60 )
+    nextStepMinute = nextStepMinute % 60;
+    // console.log('inside above', nextHour, nextStepMinute, count)
+  }else{
+    nextHour = 0;
+    // console.log('inside below', nextHour, nextStepMinute, count)
+  }
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setHours
+  let nextStepMinuteTimestamp = new Date(timestamp).setHours(
+      new Date(timestamp).getHours()+nextHour,
+      nextStepMinute,
+      0,
+      0
+    ); 
+  // console.log(nextHour, nextStepMinute, nextStepMinuteTimestamp);
+  return nextStepMinuteTimestamp;
+}
+
+let getNextTimeSection = function(timestamp, step, count = 1){
+  return [
+    // new Date(
+      getNextStepMinuteTimestamp(timestamp, step, count)
+    // )
+    , 
+    // new Date(
+      getNextStepMinuteTimestamp(timestamp, step, count+1)-1
+    // )
+  ]
+}
 
 async function checker(){
 
@@ -25,31 +58,8 @@ async function checker(){
   // const dt = DateTime.fromMillis(now);
   // const minute = dt.minute;
   // let nowMinute = new Date(now).getMinutes();
-
-  let getNextStepMinute = function(timestamp, step = 10,count=1){
-    let nextStepMinute = parseInt((new Date(timestamp).getMinutes() + count * step ) / step) * step;
-    let nextHour = 0;
-    if(nextStepMinute >= 60){
-      nextHour = parseInt( nextStepMinute / 60 )
-      nextStepMinute = nextStepMinute % 60;
-      // console.log('inside above', nextHour, nextStepMinute, count)
-    }else{
-      nextHour = 0;
-      // console.log('inside below', nextHour, nextStepMinute, count)
-    }
-    let nextStepMinuteTimestamp = new Date(timestamp).setHours(
-        new Date(timestamp).getHours()+nextHour,
-        nextStepMinute,
-        0,
-        0
-      ); 
-    return [nextHour, nextStepMinute, nextStepMinuteTimestamp];
-  } 
-  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setHours
-  let step = 5;
-  console.log(getNextStepMinute(now, step))
-  console.log(new Date(getNextStepMinute(now, step)[2]), new Date(getNextStepMinute(now, step, 2)[2]-1), new Date(now))
+  console.log(getNextTimeSection(now, 5, 1), new Date(now))
 }
 
 
-export { checker }
+export { checker, getNextStepMinuteTimestamp, getNextTimeSection }
