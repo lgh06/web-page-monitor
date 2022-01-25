@@ -25,6 +25,7 @@ const CreateTaskGeekPage: NextPage = () => {
   }
 
   function handleInputChange(ev: ChangeEvent<HTMLInputElement>) {
+    console.log(ev.target)
     let inputElement = ev.target;
     let index = ev.target.dataset.inputIndex;
     if (index === '0') {
@@ -81,6 +82,16 @@ const CreateTaskGeekPage: NextPage = () => {
     if(index === '3'){
       setTaskDetail(v => {v.cssSelector = inputElement.value})
     }
+    if(index === '4' || index === '5'){
+      setTaskDetail(v =>{
+        v.detectMode = inputElement.value
+      })
+    }
+    if(index === '6'){
+      setTaskDetail(v =>{
+        v.detectWord = inputElement.value;
+      })
+    }
   }
 
   async function handleBtnClick(ev: MouseEvent<HTMLButtonElement> ) {
@@ -103,6 +114,14 @@ const CreateTaskGeekPage: NextPage = () => {
   useEffect(() => {
     updateDate();
   }, []);
+
+  function btnDisabled(){
+    return !(
+      taskDetail.cronPassed 
+      && taskDetail.pageURLPassed 
+      && (taskDetail.detectMode === 'wordShowUp' ? taskDetail.detectWord : true) 
+    );
+  }
   
   return (<>
     <style jsx>{`
@@ -165,6 +184,24 @@ const CreateTaskGeekPage: NextPage = () => {
       </input>
     </div>
     <div>
+      Notify you when : <br/>
+      <label htmlFor="detectMode1">
+        <input data-input-index="4" type="radio" id="detectMode1" checked={taskDetail.detectMode === 'pageChange'} name="detectMode" onChange={handleInputChange} value="pageChange" />
+        Page Changes
+      </label> <br/>
+      <label htmlFor="detectMode2">
+        <input data-input-index="5" type="radio" id="detectMode2" checked={taskDetail.detectMode === 'wordShowUp'} name="detectMode" onChange={handleInputChange} value="wordShowUp" />
+        Word(s) Show up
+      </label>
+      <input 
+      data-input-index="6" 
+      type="text" 
+      placeholder="input some words" 
+      value={taskDetail.detectWord}
+      onChange={handleInputChange}
+      />
+    </div>
+    <div>
       Note: if the combination of cron syntax and cssSelector and pageURL are same,  
       this will update existing task, not create a new one.
     </div>
@@ -173,7 +210,7 @@ const CreateTaskGeekPage: NextPage = () => {
       the first repeated task within 15 minutes will be ignored.
     </div>
     <div>
-      <button data-btn-index="0" onClick={handleBtnClick} disabled={!(taskDetail.cronPassed && taskDetail.pageURLPassed)}>Create Now</button>
+      <button data-btn-index="0" onClick={handleBtnClick} disabled={btnDisabled()}>Create Now</button>
     </div>
     <div>
       <Link href="/login"><a>Go back to user center</a></Link>

@@ -11,7 +11,9 @@ let createTaskDetail = {
   pageURL: 'https://news.qq.com/',
   pageURLMsg: 'please input a url start with https:// or http://',
   pageURLPassed: true,
-  cssSelector: 'body'
+  cssSelector: 'body',
+  detectMode: 'pageChange',
+  detectWord: '',
 }
 
 export const createTaskDetailAtom = atom(createTaskDetail);

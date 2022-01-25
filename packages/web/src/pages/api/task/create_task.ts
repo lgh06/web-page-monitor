@@ -9,7 +9,16 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { cronSyntax, endTime, cssSelector,pageURL, userId, mode } = req.body;
+  const { 
+    cronSyntax, 
+    endTime, 
+    cssSelector,
+    pageURL, 
+    userId, 
+    mode,
+    detectMode,
+    detectWord,
+  } = req.body;
 
   // const filter = { cronSyntax, endTime, cssSelector,pageURL, userId, mode };
   let passed = false, errorMsg = [''];
@@ -35,7 +44,9 @@ export default async function handler(
   if(!nextExecuteTime){
     return res.status(400).json({ err: 'please check input value.' + Array(errorMsg).join(' ') })
   }
-  const newDoc = { cronSyntax, endTime, cssSelector,pageURL, userId, mode, nextExecuteTime };
+  const newDoc = { cronSyntax, endTime, cssSelector,pageURL, userId, mode, nextExecuteTime, 
+    detectMode,detectWord,
+  };
 
   let filter = {
     cronSyntax,
@@ -43,6 +54,8 @@ export default async function handler(
     cssSelector,
     userId,
     mode,
+    detectMode,
+    detectWord,
   }
   let db = await getDB();
   return mongo.upsertDoc(db, 'task', filter, newDoc, res)
