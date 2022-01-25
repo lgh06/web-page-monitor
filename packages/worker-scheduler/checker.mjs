@@ -46,6 +46,7 @@ async function normalChecker(now){
       $gte: getNextStepMinuteTimestamp(now, 5, 1),
       $lt: getNextStepMinuteTimestamp(now, 5, 2)
     }
+  // TODO pagination and be careful for memory leak. future.
   }).toArray().then(docs => {
     console.log(docs)
     if(docs && docs.length){
@@ -76,6 +77,7 @@ async function errorChecker(now){
         }
       },
     ]
+  // TODO pagination and be careful for memory leak. future.
   }).toArray().then(docs => {
     console.log(docs)
     if(docs && docs.length){

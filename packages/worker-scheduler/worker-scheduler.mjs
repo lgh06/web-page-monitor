@@ -18,10 +18,12 @@ async function main() {
       let nowDate = new Date();
       let now = nowDate.valueOf()
       let nowMinute = nowDate.getMinutes();
+      // normalChecker will be executed every 5 minutes
       if ( nowMinute % 5 === 0 && prevNormalCheckerMinute !== nowMinute ){
         prevNormalCheckerMinute = nowMinute;
         normalChecker(now);
       }
+      // errorChecker will be executed per hour
       if ( nowMinute % 60 === 0 && prevErrorCheckerMinute !== nowMinute ){
         prevErrorCheckerMinute = nowMinute;
         errorChecker(now);
