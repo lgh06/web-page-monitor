@@ -18,7 +18,7 @@ export default async function handler(
     mode,
     detectMode,
     detectWord,
-  } = req.body;
+  } = req.body.taskDetail;
 
   // const filter = { cronSyntax, endTime, cssSelector,pageURL, userId, mode };
   let passed = false, errorMsg = [''];

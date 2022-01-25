@@ -103,9 +103,11 @@ const CreateTaskGeekPage: NextPage = () => {
     let userId = userInfo._id;
 
     let resp = await fetchAPI('/task/create_task', {
-      userId,
-      ...taskDetail,
-      mode: 'simp', // this page is simp mode.
+      taskDetail: {
+        userId,
+        ...taskDetail,
+        mode: 'simp', // this page is simp mode.
+      }
     })
     if(resp.ok){
       // TODO hint or navigate to another page
