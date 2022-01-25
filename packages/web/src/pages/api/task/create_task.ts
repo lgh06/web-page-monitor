@@ -30,6 +30,7 @@ export default async function handler(
   if(String(cronSyntax).includes('/')){
     [passed, errorMsg] = [false, ['Please remove / in your syntax, see FAQ for details']]
   }
+  // TODO verify endTime, and user if have enough points to create new task.
   let nextExecuteTime;
   let nowTimestamp = Date.now();
   if (nextExecuteTimeArr && nextExecuteTimeArr.length && passed){

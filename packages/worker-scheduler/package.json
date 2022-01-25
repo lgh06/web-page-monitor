@@ -1,7 +1,7 @@
 {
   "name": "@webest/web-page-monitor-worker-scheduler",
   "version": "0.0.0",
-  "description": "> TODO: description",
+  "description": "web page monitor's daemon worker",
   "author": "Daniel Liu <hnnk@qq.com>",
   "homepage": "",
   "license": "See monorepo's LICENSE.md",

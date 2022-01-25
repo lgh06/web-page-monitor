@@ -1,6 +1,5 @@
 # `worker-scheduler`
 
-> TODO: description  
 
 ## file-name or fileName?  
 all files routed to a page or an API, should be `file_name.[ts|tsx]`.  
@@ -55,7 +54,5 @@ a React component or a Next.js Page should us `ComponentName` or `PageName`
 ## Usage
 
 ```
-const workerScheduler = require('worker-scheduler');
 
-// TODO: DEMONSTRATE API
 ```

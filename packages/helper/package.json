@@ -1,7 +1,7 @@
 {
   "name": "@webest/web-page-monitor-helper",
   "version": "0.0.0",
-  "description": "> TODO: description",
+  "description": "cross projects' js helper",
   "author": "Daniel Liu <hnnk@qq.com>",
   "homepage": "",
   "license": "SEE LICENSE IN LICENSE.md",

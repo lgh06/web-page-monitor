@@ -17,7 +17,7 @@ const CreateTaskGeekPage: NextPage = () => {
     setTaskDetail(v => {
       v.mode = 'simp'; // this page for simp-le mode
       let nowDate = new Date();
-      // TODO different type user, diff end time
+      // TODO different type user, different end time
       v.endLocalMinuteString = CronTime.toLocalISOString(nowDate, 7*60*24);
       v.endTime = new Date(v.endLocalMinuteString).valueOf()
       v.startLocalMinuteString = CronTime.toLocalISOString(nowDate, 10);
@@ -105,8 +105,12 @@ const CreateTaskGeekPage: NextPage = () => {
     let resp = await fetchAPI('/task/create_task', {
       userId,
       ...taskDetail,
-      mode: 'simp', // this page is simp mode. TODO combine two pages
+      mode: 'simp', // this page is simp mode.
     })
+    if(resp.ok){
+      // TODO hint or navigate to another page
+      alert('submit OK. You can close this page.')
+    }
     console.log(resp);
     // return true;
   }

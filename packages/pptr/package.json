@@ -1,7 +1,7 @@
 {
   "name": "@webest/web-page-monitor-pptr",
   "version": "0.0.0",
-  "description": "> TODO: description",
+  "description": "puppeteer",
   "author": "Daniel Liu <hnnk@qq.com>",
   "homepage": "",
   "license": "See monorepo's LICENSE.md",

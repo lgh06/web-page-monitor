@@ -94,7 +94,6 @@ https://github.com/rollup/plugins/pull/150
 Lets Import a mjs file from a source and rewrite it to resolve to the right locations
 if relativ specifiers are used 
 ```js
-// TODO:
 ``` 
 
 - https://github.com/guybedford/es-module-lexer used with webworkers is powerfull.

@@ -7,5 +7,4 @@ A helper lib that can be used in both Node.js and Next.js and frontend projects.
 ```
 const webPageMonitorHelper = require('@webest/web-page-monitor-helper');
 
-// TODO: DEMONSTRATE API
 ```

@@ -89,13 +89,6 @@ async function normalChecker(now) {
     // }
 
   ])
-  // .find({
-  //   nextExecuteTime: {
-  //     $gte: getNextStepMinuteTimestamp(now, 5, 1),
-  //     $lt: getNextStepMinuteTimestamp(now, 5, 2)
-  //   }
-  //   // TODO pagination and be careful for memory leak. future.
-  // })
   .toArray().then(docs => {
     if (docs && docs.length) {
       docs.forEach(doc => {
@@ -177,7 +170,6 @@ async function errorChecker(now) {
     if (docs && docs.length) {
 
       docs.forEach(doc => {
-        // TODO send jobs to MQ and execute quicker
         console.log('inside erro checker')
         console.log(doc)
         db.collection(tableName).updateOne({ _id: doc._id }, {
