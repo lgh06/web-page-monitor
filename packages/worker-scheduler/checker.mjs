@@ -1,6 +1,6 @@
 import { getDB } from './lib/index.mjs';
 
-let getNextStepMinuteTimestamp = function(timestamp, step = 10,count=1){
+let getNextStepMinuteTimestamp = function(timestamp, step = 5,count=1){
   let nextStepMinute = parseInt((new Date(timestamp).getMinutes() + count * step ) / step) * step;
   let nextHour = 0;
   if(nextStepMinute >= 60){
@@ -38,19 +38,21 @@ async function checker(){
 
   let now = Date.now(); // timestamp
 
-
   let db = await getDB();
   if(!db) return;
   let minutesLater = function(now, minutes){
     return new Date(now).valueOf() + 60 *1000 * minutes;
   }
-  db.collection('task').find({
+  return db.collection('task').find({
     nextExecuteTime:{
-      $gte: minutesLater(now, 10)
+      $gte: getNextStepMinuteTimestamp(now, 5, 1),
+      $lt: getNextStepMinuteTimestamp(now, 5, 2)
     }
   }).toArray().then(docs => {
-    // console.log(docs)
-    // console.log(new Date(docs[0].nextExecuteTime))
+    console.log(docs)
+    if(docs && docs.length){
+      console.log(new Date(docs[0].nextExecuteTime))
+    }
   }).catch(e => console.log(e));
 
   // https://moment.github.io/luxon/#/tour?id=your-first-datetime
@@ -58,7 +60,7 @@ async function checker(){
   // const dt = DateTime.fromMillis(now);
   // const minute = dt.minute;
   // let nowMinute = new Date(now).getMinutes();
-  console.log(getNextTimeSection(now, 5, 1), new Date(now))
+  // console.log(getNextTimeSection(now, 5, 1), new Date(now))
 }
 
 
