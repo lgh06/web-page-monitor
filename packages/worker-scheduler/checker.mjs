@@ -35,6 +35,11 @@ let getNextTimeSection = function (timestamp, step, count = 1) {
     // )
   ]
 }
+// if now is 1 minute, then return the first one who matches >= 10:00 
+// if now is 6 minute, then return the first one who matches >= 15:00 
+let timestampArrayFinderGenerator = (nowTimestamp) => (v) => {
+  return (v >= getNextStepMinuteTimestamp(nowTimestamp, 5, 2))
+}
 
 async function normalChecker(now) {
 
@@ -44,6 +49,8 @@ async function normalChecker(now) {
   if (!db) return;
 
   let tableName = 'task';
+
+  let finder = timestampArrayFinderGenerator(now);
 
   return db.collection(tableName).aggregate([
     {
@@ -97,7 +104,7 @@ async function normalChecker(now) {
         console.log(doc)
         db.collection(tableName).updateOne({ _id: doc._id }, {
           '$set': {
-            nextExecuteTime: CronTime.getNextTimes(doc.cronSyntax, 2)[0]
+            nextExecuteTime: CronTime.getNextTimes(doc.cronSyntax, 5).find(finder)
           }
         }).catch(e => console.log(e))
       });
@@ -113,6 +120,8 @@ async function errorChecker(now) {
   if (!db) return;
 
   let tableName = 'task';
+
+  let finder = timestampArrayFinderGenerator(now);
 
   // https://docs.mongodb.com/v5.0/reference/operator/aggregation-pipeline/
   // https://docs.mongodb.com/v5.0/reference/operator/aggregation/match
@@ -173,7 +182,7 @@ async function errorChecker(now) {
         console.log(doc)
         db.collection(tableName).updateOne({ _id: doc._id }, {
           '$set': {
-            nextExecuteTime: CronTime.getNextTimes(doc.cronSyntax, 2)[0]
+            nextExecuteTime: CronTime.getNextTimes(doc.cronSyntax, 5).find(finder)
           }
         }).catch(e => console.log(e))
       });
