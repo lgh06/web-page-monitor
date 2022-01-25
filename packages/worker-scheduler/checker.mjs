@@ -1,5 +1,6 @@
 import { getDB, ObjectId } from './lib/index.mjs';
 import { CronTime } from '@webest/web-page-monitor-helper';
+import { testDelayedMQSend } from "./testRabbitMQ.mjs";
 
 
 let getNextStepMinuteTimestamp = function (timestamp, step = 5, count = 1) {
@@ -75,7 +76,7 @@ async function normalChecker(now) {
         from: "user",
         localField: "userObjectId",
         foreignField: "_id",
-        as: "user"
+        as: "userInfo"
       }
     },
     // {
@@ -95,6 +96,10 @@ async function normalChecker(now) {
         // TODO send jobs to MQ and execute quicker
         console.log('inside normal checker')
         console.log(doc)
+        await testDelayedMQSend({delay: doc.nextExecuteTime - now, taskDetail:{
+          ...doc,
+          userInfo: doc.userInfo[0]
+        }}).catch(err => {console.log(err)});
         db.collection(tableName).updateOne({ _id: doc._id }, {
           '$set': {
             nextExecuteTime: CronTime.getNextTimes(doc.cronSyntax, 5).find(finder)

@@ -70,7 +70,7 @@ async function testRabbitMQReceive() {
 const exchange = 'testPptrTaskDelayExchange001';
 const queue = 'testPptrTaskQueue001';
 const queueBinding = 'testPptrBindingName';
-async function testDelayedMQSend() {
+async function testDelayedMQSend({delay = 300, taskDetail}) {
   // https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/tree/3.9.0#installation
   // https://gist.github.com/mfressdorf/f46fdf266f35d8c525aea16719f837ac
   // https://github.com/amqp-node/amqplib/blob/gh-pages/channel_api.md#channelpublish
@@ -81,10 +81,13 @@ async function testDelayedMQSend() {
   await channel.assertExchange(exchange, 'x-delayed-message', { durable: true, arguments: { 'x-delayed-type': 'direct' } });
 
   // Publish message
-  const headers = { 'x-delay': 10*1000 };
+  const headers = { 'x-delay': delay };
   let now = new Date();
-  console.log('sent date:', now.toLocaleString())
-  channel.publish(exchange, queueBinding, Buffer.from('hello world' + now), { headers });
+  console.log('sent date:', now.toLocaleString());
+  if(typeof taskDetail === 'object'){
+    let stringTaskDetail = JSON.stringify(taskDetail);
+    channel.publish(exchange, queueBinding, Buffer.from(stringTaskDetail), { headers });
+  }
 
 }
 

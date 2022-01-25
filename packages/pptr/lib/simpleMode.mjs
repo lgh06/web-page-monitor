@@ -42,11 +42,11 @@ async function simpleMode(taskDetail) {
   return Promise.race([
     p1,
     new Promise((_, reject) => setTimeout(() => reject(('pptr script timeout')), usedLauchOption.limit * 1000))
-  ]).then((value) => {
+  ]).then(async (value) => {
     await browser.close();
     console.log('browser closed after script quit ok');
     return [value];
-  }, (reason) => {
+  }, async (reason) => {
     if (reason === 'pptr script timeout') {
       await browser.close();
       console.log('browser closed after exceed time limit')
