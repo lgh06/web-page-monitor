@@ -1,4 +1,5 @@
 import * as amqp from 'amqplib';
+import sha256 from 'crypto-js/sha256';
 import { getDB, ObjectId } from './lib/index.mjs';
 import { mongo } from "@webest/web-page-monitor-helper/node/index.mjs";
 
@@ -36,12 +37,17 @@ async function resultSaver(mqConn,mqChannel){
       console.log('task this time finished on', new Date( time ) )
       console.log('task end on', new Date( taskDetail.endTime ) )
 
+      let cuttedResult;
+      if(String(result).length > 500){
+        cuttedResult = String(result).substring(0, 500)
+      }
+      
       let oneTaskHistory = {
         beginTime: taskDetail.nextExecuteTime,
         finishTime: time,
         err: err,
-        textHash: result,
-        textContent: result,
+        textHash: sha256(result),
+        textContent: cuttedResult || result,
         taskId: new ObjectId(taskDetail._id),
       }
       try {
