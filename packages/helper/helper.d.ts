@@ -40,11 +40,6 @@ export module globalConfig {
   pptrToWorkerQueue: string;
 }
 
-export let mongo = {
-  upsertDoc: async function(db: Db, collectionName: string, filter: Filter<Document>, doc: WithoutId<Document>): Promise<ModifyResult<Document>>{ 
-  }
-}
-
 // declare module '@webest/web-page-monitor-helper/node' {
 //   async function upsertDoc(db: Db, collectionName: string, doc: Document): Promise<ModifyResult<Document>>{}
 // }
