@@ -1,6 +1,8 @@
 // https://github.com/puppeteer/puppeteer/blob/v13.0.1/docs/api.md
 // https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=outline
 import { CONFIG } from "./CONFIG.mjs";
+import puppeteer from 'puppeteer';
+
 
 async function simpleModeTask({browser, taskDetail}){
   let {pageURL, cssSelector, detectMode, detectWord} = taskDetail;
@@ -35,9 +37,15 @@ async function simpleMode(taskDetail) {
   }
   let usedLauchOption = CONFIG.debug ? debugLaunchOption : prodLauchOption
 
-  const browser = await puppeteer.launch(usedLauchOption);
+  let browser, p1;
+  try {
+    browser = await puppeteer.launch(usedLauchOption);
+    p1 = simpleModeTask({ browser, taskDetail });
+  } catch (error) {
+    console.error(error)
+    return [null, error];
+  }
 
-  let p1 = simpleModeTask({ browser, taskDetail });
 
   // close puppeteer browser after a timeout
   return Promise.race([

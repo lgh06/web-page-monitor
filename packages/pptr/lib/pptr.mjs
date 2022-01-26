@@ -21,7 +21,7 @@ async function main() {
   await channel.prefetch(4);
   await channel.consume(queue, async function (message) {
     let taskDetail;
-    console.log('consuming')
+    console.log('consuming time', new Date())
     // console.log(message)
     if (message !== null) {
       let stringTaskDetail = message.content.toString();
