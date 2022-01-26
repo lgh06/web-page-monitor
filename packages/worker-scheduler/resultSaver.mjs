@@ -1,5 +1,6 @@
 import * as amqp from 'amqplib';
-import sha256 from 'crypto-js/sha256';
+import sha256 from 'crypto-js/sha256.js';
+import utf8 from 'crypto-js/enc-utf8.js';
 import { getDB, ObjectId } from './lib/index.mjs';
 import { mongo } from "@webest/web-page-monitor-helper/node/index.mjs";
 
@@ -46,7 +47,7 @@ async function resultSaver(mqConn,mqChannel){
         beginTime: taskDetail.nextExecuteTime,
         finishTime: time,
         err: err,
-        textHash: sha256(result),
+        textHash: sha256(result).toString(utf8),
         textContent: cuttedResult || result,
         taskId: new ObjectId(taskDetail._id),
       }
