@@ -1,5 +1,5 @@
 // https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-d-ts.html#types-in-modules
-import { MongoClient, Db, Document, ModifyResult } from "mongodb";
+import type { MongoClient, Db, Document, ModifyResult, Filter, WithoutId } from "mongodb";
 
 
 export namespace  CronTime {
@@ -41,7 +41,7 @@ export module globalConfig {
 }
 
 export let mongo = {
-  upsertDoc: async function(db: Db, collectionName: string, doc: Document): Promise<ModifyResult<Document>>{ 
+  upsertDoc: async function(db: Db, collectionName: string, filter: Filter<Document>, doc: WithoutId<Document>): Promise<ModifyResult<Document>>{ 
   }
 }
 

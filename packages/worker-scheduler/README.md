@@ -43,7 +43,7 @@ a React component or a Next.js Page should us `ComponentName` or `PageName`
 }
 ```
 
-- task_status_history  
+- taskHistory  
 
 
 | task_id| pptr_id|  begin_time| end_time |status| text_hash | outer_html(VIP only) |  other(maybe) |
@@ -52,6 +52,19 @@ a React component or a Next.js Page should us `ComponentName` or `PageName`
 | 1 | 2 |  1642470077306 |1642470077306| 1642470077306 |7f83b1657ff1fc53b92dc18148a1d65dfc2d4b1fa3d677284addd200126d9069   | `<div>Hello</div>`  |   |  
 
 
+```javascript
+{
+  _id: '',
+  beginTime: 0, // nextExecuteTime in cron syntax
+  finishTime: 0,
+  err: 'errors returned from pptr',
+  // textContent hash
+  textHash: '',
+  textContent: '',
+  taskId: '', // id for task table
+}
+
+```
 
 
 ## Usage

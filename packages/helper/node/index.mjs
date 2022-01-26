@@ -1,8 +1,17 @@
-import { ReturnDocument } from 'mongodb';
+import { ReturnDocument, Db } from 'mongodb';
 
 let mongo = {
+  /**
+   * 
+   * @param {Db} db 
+   * @param {*} collectionName 
+   * @param {*} filter 
+   * @param {*} doc 
+   * @param {*} res 
+   * @returns 
+   */
   upsertDoc: async function (db, collectionName,filter, doc, res) {
-    if(!db) return res.status(500).send('db lost');
+    if( (!db) && res) return res.status(500).send('db lost');
     const options = { upsert: true, returnDocument: ReturnDocument.AFTER };
     if(!filter){
       filter = doc;
