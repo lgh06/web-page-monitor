@@ -76,6 +76,7 @@ async function testDelayedMQSend({delay = 300, taskDetail}, mqConn, mqChannel) {
   // https://github.com/amqp-node/amqplib/blob/gh-pages/channel_api.md#channelpublish
   // https://github.com/amqp-node/amqplib/blob/gh-pages/channel_api.md#channel_bindQueue
   // https://www.rabbitmq.com/getstarted.html
+  let conn, channel;
   conn = mqConn || await amqp.connect(connString);
   channel = mqChannel || await conn.createChannel();
   await channel.assertExchange(exchange, 'x-delayed-message', { durable: true, arguments: { 'x-delayed-type': 'direct' } });

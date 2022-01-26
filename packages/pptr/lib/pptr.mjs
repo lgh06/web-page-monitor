@@ -14,6 +14,7 @@ async function main() {
 
   let conn = await amqp.connect(connString);
   let channel = await conn.createChannel();
+  let sendResultToWorkerChannel = await conn.createChannel();
   // assertExchange in consumer can be deleted in fact
   await channel.assertExchange(exchange, 'x-delayed-message', { durable: true, arguments: { 'x-delayed-type': 'direct' } });
   await channel.assertQueue(queue, { durable: true });
@@ -43,7 +44,7 @@ async function main() {
             err,
             time: innerNow
           }
-          await sendResultToWorker(res, conn)
+          await sendResultToWorker(res, conn, sendResultToWorkerChannel)
         } catch (error) {
           console.error(error);
         } finally {
