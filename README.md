@@ -16,18 +16,18 @@ Github source code : [Link](https://github.com/lgh06/web-page-monitor)
 在Coding.net上的代码镜像: [链接](https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git)  
 
 ## Intro (English)  
-- `web` is the website, for end users to use. created by Next.js. Connected to MongoDB. **NO CONNECT** socketio for now.  
-- `pptr` is the puppeteer, connect socket.io.  
-- `socketio` is the data communication center. Connected with pptr and worker-scheduler.  
-- `worker-scheduler` connect to MongoDB and socket.io   
+- `web` is the website, for end users to use. created by Next.js. Connected to MongoDB. **NO CONNECT** ~~socket.io~~RabbitMQ for now.  
+- `pptr` is the puppeteer, connect ~~socket.io~~RabbitMQ.  
+- ~~`socketio` is the data communication center. Connected with pptr and worker-scheduler.~~ use RabbitMQ  
+- `worker-scheduler` connect to MongoDB and ~~socket.io~~RabbitMQ   
 - `esm-loader` NodeJS import(esm).then(..) from user defined js ( http URL ) .  
 
 
 ## 介绍  
-- `web` 最终用户使用的网站界面, 连接MongoDB, **暂不**连接socket.io  
-- `pptr` puppeteer执行程序, 连接socket.io  
-- `socketio` 信息中转站, 被pptr和worker-scheduler连接  
-- `worker-scheduler` 调度/分发控制器, 连接socket.io与MongoDB  
+- `web` 最终用户使用的网站界面, 连接MongoDB, **暂不**连接~~socket.io~~RabbitMQ  
+- `pptr` puppeteer执行程序, 连接~~socket.io~~RabbitMQ    
+- ~~`socketio` 信息中转站, 被pptr和worker-scheduler连接~~ 使用RabbitMQ  
+- `worker-scheduler` 调度/分发控制器, 连接~~socket.io~~RabbitMQ与MongoDB  
 - `esm-loader` NodeJS import(esm).then(..) from remote js ( http URL ) .  
 
 ## Requirements / Dependencies
@@ -45,7 +45,7 @@ Github source code : [Link](https://github.com/lgh06/web-page-monitor)
 
 > Notice: For production, you should ensure your `pm2` auto start after your OS boot. [link](https://github.com/pm2-hive/pm2-hive.github.io/blob/330f518065e2e6b9e8befc7beddd1b076d6c2adf/docs/features/startup.md#windows-startup-script)  
 > Notice: For production, you should ensure your `MongoB` and `RabbitMQ` auto start after your OS boot.  
-> Notice: For production, socket.io and web and MongoDB's server should have a permanent public Internet IP address.  
+> Notice: For production, ~~socket.io~~RabbitMQ and web and MongoDB's server should have a permanent public Internet IP address.  
 > Notice: For local development, you can install all of sub-packages on one machine, the machine should have Internet access.  
 
 > Windows installers mirror for China users:  
@@ -69,7 +69,7 @@ Please modify inner paths by yourself if you changed default install path or ser
 
 > 注意：生产环境，你要确保pm2在你的系统中会自动启动。[文档链接](https://github.com/pm2-hive/pm2-hive.github.io/blob/330f518065e2e6b9e8befc7beddd1b076d6c2adf/docs/features/startup.md#windows-startup-script)  
 > 注意：生产环境，你要确保MongoDB和RabbitMQ在你的系统中会自动启动。  
-> 注意：生产环境，socket.io 和 web 和 MongoDB 所在服务器应该有固定公网IP。  
+> 注意：生产环境，~~socket.io~~RabbitMQ 和 web 和 MongoDB 所在服务器应该有固定公网IP。  
 > 注意：开发环境，可以把所有子包都部署在同一服务器上，有访问公网的权限即可，不必有公网IP.  
 
 > Windows 各种安装包镜像:  
@@ -83,7 +83,7 @@ Please modify inner paths by yourself if you changed default install path or ser
 ## ports (for dev)
 Next.js 3002 ( will be on 80 / 443 in production, someday)  
 Static HTML 3001 on production. (maybe, or just use Next.js )  
-socket.io server 3003  
+~~socket.io server 3003~~ 
 
 ## Run and Stop / 跑起来与停止  
 ```
