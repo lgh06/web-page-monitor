@@ -1,4 +1,5 @@
 import { simpleMode } from "./simpleMode.mjs";
+import { sendResultToWorker } from "./sendResultToWorker.mjs";
 import * as amqp from 'amqplib';
 import { CONFIG } from "./CONFIG.mjs";
 
@@ -36,7 +37,13 @@ async function main() {
       if (taskDetail.mode === 'simp') {
         try {
           let [result, err] = await simpleMode(taskDetail);
-          console.log(result, err);
+          let innerNow = Date.now();
+          let res = {
+            result,
+            err,
+            time: innerNow
+          }
+          await sendResultToWorker(res, conn)
         } catch (error) {
           console.error(error);
         } finally {

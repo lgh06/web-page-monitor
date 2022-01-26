@@ -93,9 +93,8 @@ async function normalChecker(now) {
   .toArray().then(docs => {
     if (docs && docs.length) {
       docs.forEach(async (doc) => {
-        // TODO send jobs to MQ and execute quicker
-        console.log('inside normal checker')
-        console.log(doc)
+        // console.log('inside normal checker')
+        // console.log(doc)
         await testDelayedMQSend({delay: doc.nextExecuteTime - now, taskDetail:{
           ...doc,
           userInfo: doc.userInfo[0]
@@ -175,8 +174,8 @@ async function errorChecker(now) {
     if (docs && docs.length) {
 
       docs.forEach(doc => {
-        console.log('inside erro checker')
-        console.log(doc)
+        // console.log('inside erro checker')
+        // console.log(doc)
         db.collection(tableName).updateOne({ _id: doc._id }, {
           '$set': {
             nextExecuteTime: CronTime.getNextTimes(doc.cronSyntax, 5).find(finder)

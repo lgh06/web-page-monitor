@@ -83,7 +83,7 @@ async function testDelayedMQSend({delay = 300, taskDetail}) {
   // Publish message
   const headers = { 'x-delay': delay };
   let now = new Date();
-  console.log('sent date:', now.toLocaleString());
+  // console.log('sent date:', now.toLocaleString());
   if(typeof taskDetail === 'object'){
     let stringTaskDetail = JSON.stringify(taskDetail);
     channel.publish(exchange, queueBinding, Buffer.from(stringTaskDetail), { headers });
