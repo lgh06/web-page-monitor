@@ -208,6 +208,10 @@ const CreateTaskGeekPage: NextPage = () => {
       />
     </div>
     <div>
+      Note: Simple Mode is only suitable for monitor web pages, not for txt, xml or other files without HTML structure. <br/>
+      Our Geek Mode will be coming soon, for more advanced features.
+    </div>
+    <div>
       Note: if the combination of cron syntax and cssSelector and pageURL are same,  
       this will update existing task, not create a new one.
     </div>
