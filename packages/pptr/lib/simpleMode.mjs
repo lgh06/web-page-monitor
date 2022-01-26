@@ -66,10 +66,14 @@ async function simpleMode(taskDetail) {
       console.log('browser closed after exceed time limit')
     }
     return [null, reason];
-  }).catch(function (err) {
+  }).catch(async function (err) {
+    await browser.close();
     console.error('error in tasks', err)
     return [null, err];
-  })
+  }).finally(async function(){
+    await browser.close();
+    console.log(new Date())
+  });
 }
 
 export { simpleMode }
