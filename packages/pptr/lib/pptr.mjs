@@ -18,7 +18,8 @@ async function main() {
   await channel.assertQueue(queue, { durable: true });
   await channel.bindQueue(queue, exchange, queueBinding);
 
-  await channel.prefetch(4);
+  // TODO increase to 4 for production
+  await channel.prefetch(1);
   await channel.consume(queue, async function (message) {
     let taskDetail;
     console.log('consuming time', new Date())
