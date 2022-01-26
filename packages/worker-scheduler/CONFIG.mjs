@@ -6,6 +6,7 @@ let CONFIG = {
   exchange: '' || globalConfig.exchange,
   queue: '' || globalConfig.queue,
   queueBinding: '' || globalConfig.queueBinding,
+  pptrToWorkerQueue: '' || globalConfig.pptrToWorkerQueue,
 };
 
 

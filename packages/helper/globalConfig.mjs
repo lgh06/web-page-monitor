@@ -13,6 +13,7 @@ let globalConfig = {
   queueBinding: 'testPptrBindingName',
   // pptr
   pptrThreadNum: 2,
+  pptrToWorkerQueue: 'testPptrHistoryQueue001'
 }
 
 
