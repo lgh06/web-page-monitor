@@ -31,6 +31,9 @@ a React component or a Next.js Page should us `ComponentName` or `PageName`
   mode: 'simp',
   pageURL: 'https://news.qq.com/',
   cssSelector: 'body',
+  // pageChange 1 wordShowUp 2
+  detectMode: 2, // pageChange 1 wordShowUp 2
+  detectWord: "招聘" // must be set when detectMode is 2
   // worker_id(or hashed by task_id char code)
   workerId: null,
   // if null, any pptr can execute this task, randomly
