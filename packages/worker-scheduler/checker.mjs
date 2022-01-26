@@ -42,7 +42,7 @@ let timestampArrayFinderGenerator = (nowTimestamp) => (v) => {
   return (v >= getNextStepMinuteTimestamp(nowTimestamp, 5, 2))
 }
 
-async function normalChecker(now) {
+async function normalChecker(now, mqConn, mqChannel) {
 
   now = now || Date.now(); // timestamp
 
@@ -98,7 +98,7 @@ async function normalChecker(now) {
         await testDelayedMQSend({delay: doc.nextExecuteTime - now, taskDetail:{
           ...doc,
           userInfo: doc.userInfo[0]
-        }}).catch(err => {console.error(err)});
+        }}, mqConn, mqChannel).catch(err => {console.error(err)});
         db.collection(tableName).updateOne({ _id: doc._id }, {
           '$set': {
             nextExecuteTime: CronTime.getNextTimes(doc.cronSyntax, 5).find(finder)

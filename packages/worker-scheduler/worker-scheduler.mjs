@@ -1,4 +1,9 @@
 import { normalChecker, errorChecker } from './checker.mjs';
+import * as amqp from 'amqplib';
+
+import { CONFIG } from "./CONFIG.mjs";
+
+let connString = CONFIG.mqConnString
 
 async function main() {
 
@@ -11,9 +16,12 @@ async function main() {
     })
   }
 
-  function intervalExecuter (){
+  async function intervalExecuter (){
     let prevNormalCheckerMinute;
     let prevErrorCheckerMinute;
+    let conn = await amqp.connect(connString);
+    let channel = await conn.createChannel();
+
     setInterval(async function(){
       let nowDate = new Date();
       let now = nowDate.valueOf()
@@ -24,7 +32,7 @@ async function main() {
         prevNormalCheckerMinute = nowMinute;
         // setInterval may not await, but errors can be easily catched.
         try {
-          await normalChecker(now);
+          await normalChecker(now, conn, channel);
         } catch (error) {
           console.error(error)
         }
@@ -43,6 +51,10 @@ async function main() {
       }
 
     }, 18*1000);
+
+  }
+
+  function pptrResultSaver(){
 
   }
 

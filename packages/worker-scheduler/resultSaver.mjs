@@ -1,0 +1,5 @@
+function resultSaver(){
+
+}
+
+export { resultSaver }

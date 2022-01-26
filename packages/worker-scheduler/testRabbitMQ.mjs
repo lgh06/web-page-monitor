@@ -70,14 +70,14 @@ async function testRabbitMQReceive() {
 const exchange = CONFIG.exchange;
 const queue = CONFIG.queue;
 const queueBinding = CONFIG.queueBinding;
-async function testDelayedMQSend({delay = 300, taskDetail}) {
+async function testDelayedMQSend({delay = 300, taskDetail}, mqConn, mqChannel) {
   // https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/tree/3.9.0#installation
   // https://gist.github.com/mfressdorf/f46fdf266f35d8c525aea16719f837ac
   // https://github.com/amqp-node/amqplib/blob/gh-pages/channel_api.md#channelpublish
   // https://github.com/amqp-node/amqplib/blob/gh-pages/channel_api.md#channel_bindQueue
   // https://www.rabbitmq.com/getstarted.html
-  let conn = await amqp.connect(connString);
-  let channel = await conn.createChannel();
+  conn = mqConn || await amqp.connect(connString);
+  channel = mqChannel || await conn.createChannel();
   await channel.assertExchange(exchange, 'x-delayed-message', { durable: true, arguments: { 'x-delayed-type': 'direct' } });
 
   // Publish message

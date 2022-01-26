@@ -36,6 +36,8 @@ export module globalConfig {
   exchange: string;
   queue: string;
   queueBinding: string;
+  pptrThreadNum: number;
+  pptrToWorkerQueue: string;
 }
 
 export let mongo = {
