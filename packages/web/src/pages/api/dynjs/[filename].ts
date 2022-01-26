@@ -17,5 +17,5 @@ export default async function handler(
     }else{
       return res.status(200).send('')
     }
-  }).catch(e => {console.log(e)})
+  }).catch(e => {console.error(e)})
 }

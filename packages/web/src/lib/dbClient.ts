@@ -54,7 +54,7 @@ async function getDB(dbName?: string | undefined, req?: { dbClient: MongoClient;
     }
     return db; // a Promised db
   } catch (error) {
-    console.log(error)
+    console.error(error)
     return null;
   }
 }

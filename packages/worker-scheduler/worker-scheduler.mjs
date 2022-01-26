@@ -26,7 +26,7 @@ async function main() {
         try {
           await normalChecker(now);
         } catch (error) {
-          console.log(error)
+          console.error(error)
         }
       }
 
@@ -37,7 +37,7 @@ async function main() {
         try {
           await errorChecker(now);
         } catch (error) {
-          console.log(error)
+          console.error(error)
         }
       }
 

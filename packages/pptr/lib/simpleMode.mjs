@@ -1,5 +1,6 @@
 // https://github.com/puppeteer/puppeteer/blob/v13.0.1/docs/api.md
 // https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=outline
+import { CONFIG } from "./CONFIG.mjs";
 
 async function simpleModeTask({browser, taskDetail}){
   let {pageURL, cssSelector, detectMode, detectWord} = taskDetail;
@@ -53,7 +54,7 @@ async function simpleMode(taskDetail) {
     }
     return [null, reason];
   }).catch(function (err) {
-    console.log('error in tasks', err)
+    console.error('error in tasks', err)
     return [null, err];
   })
 }

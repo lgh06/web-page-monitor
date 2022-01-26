@@ -58,7 +58,7 @@ async function getDB(dbName, req){
     }
     return db; // a Promised db
   } catch (error) {
-    console.log(error)
+    console.error(error)
     return null;
   }
 }

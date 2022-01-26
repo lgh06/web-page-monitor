@@ -20,13 +20,16 @@ async function main() {
 
   await channel.prefetch(4);
   await channel.consume(queue, async function (message) {
+    let taskDetail;
+    console.log('consuming')
     // console.log(message)
     if (message !== null) {
       let stringTaskDetail = message.content.toString();
+      console.log(stringTaskDetail)
       try {
-        let taskDetail = JSON.parse(stringTaskDetail);
+        taskDetail = JSON.parse(stringTaskDetail);
       } catch (error) {
-        console.log(error);
+        console.error(error);
         return channel.ack(message)
       }
       if (taskDetail.mode === 'simp') {
@@ -34,7 +37,7 @@ async function main() {
           let [result, err] = await simpleMode(taskDetail);
           console.log(result, err);
         } catch (error) {
-          console.log(error);
+          console.error(error);
         } finally {
           channel.ack(message)
         }

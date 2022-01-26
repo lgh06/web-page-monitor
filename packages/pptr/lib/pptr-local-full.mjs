@@ -50,7 +50,7 @@ async function pptr() {
     let lastedSeconds = parseInt((endTime - beginTime ) / 1000)
     console.log('pptr executed seconds: ' + lastedSeconds)
   }).catch(function(err) {
-      console.log('error in tasks', err)
+      console.error('error in tasks', err)
   })
 }
 

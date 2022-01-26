@@ -99,15 +99,15 @@ async function normalChecker(now) {
         await testDelayedMQSend({delay: doc.nextExecuteTime - now, taskDetail:{
           ...doc,
           userInfo: doc.userInfo[0]
-        }}).catch(err => {console.log(err)});
+        }}).catch(err => {console.error(err)});
         db.collection(tableName).updateOne({ _id: doc._id }, {
           '$set': {
             nextExecuteTime: CronTime.getNextTimes(doc.cronSyntax, 5).find(finder)
           }
-        }).catch(e => console.log(e))
+        }).catch(e => console.error(e))
       });
     }
-  }).catch(e => console.log(e));
+  }).catch(e => console.error(e));
 }
 
 async function errorChecker(now) {
@@ -181,10 +181,10 @@ async function errorChecker(now) {
           '$set': {
             nextExecuteTime: CronTime.getNextTimes(doc.cronSyntax, 5).find(finder)
           }
-        }).catch(e => console.log(e))
+        }).catch(e => console.error(e))
       });
     }
-  }).catch(e => console.log(e));
+  }).catch(e => console.error(e));
 
 }
 
