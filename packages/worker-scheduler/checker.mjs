@@ -56,10 +56,18 @@ async function normalChecker(now, mqConn, mqChannel) {
   return db.collection(tableName).aggregate([
     {
       $match: {
-        nextExecuteTime: {
-          $gte: getNextStepMinuteTimestamp(now, 5, 1),
-          $lt: getNextStepMinuteTimestamp(now, 5, 2)
-        }
+        $and: [
+          {
+            nextExecuteTime: {
+              $gte: getNextStepMinuteTimestamp(now, 5, 1),
+              $lt: getNextStepMinuteTimestamp(now, 5, 2)
+            }
+          },{
+            endTime: {
+              $gt: now
+            }
+          }
+        ]
       }
       // TODO pagination and be careful for memory leak. future.
     },
