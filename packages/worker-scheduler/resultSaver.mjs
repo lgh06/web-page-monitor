@@ -1,6 +1,6 @@
 import * as amqp from 'amqplib';
 import { getDB, ObjectId } from './lib/index.mjs';
-import { mongo } from "@webest/web-page-monitor-helper/node";
+import { mongo } from "@webest/web-page-monitor-helper/node/index.mjs";
 
 import { CONFIG } from "./CONFIG.mjs";
 
