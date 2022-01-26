@@ -19,7 +19,7 @@ async function simpleModeTask({browser, taskDetail}){
     let matchedElement = await page.$(cssSelector);
     let textContent = '';
     textContent = await matchedElement.evaluate((node) => node.textContent);
-    textContent = String(textContent).trim().replace(/\n|\r/g, ' ')
+    textContent = String(textContent).trim().replace(/\n|\r/g, ' ').replace(/\s+/g, ' ');
     return textContent;
   } catch (error) {
     console.error(error);

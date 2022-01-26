@@ -12,7 +12,7 @@ let globalConfig = {
   queue: 'testPptrTaskQueue001',
   queueBinding: 'testPptrBindingName',
   // pptr
-  pptrThreadNum: 4,
+  pptrThreadNum: 2,
 }
 
 
