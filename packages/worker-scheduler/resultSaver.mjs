@@ -43,11 +43,13 @@ async function resultSaver(mqConn,mqChannel){
         cuttedResult = String(result).substring(0, 500)
       }
       
+      // let hash = String(sha256(result).toString(utf8))
+      // console.log(hash)
       let oneTaskHistory = {
         beginTime: taskDetail.nextExecuteTime,
         finishTime: time,
         err: err,
-        textHash: sha256(result).toString(utf8),
+        textHash: 'hash',
         textContent: cuttedResult || result,
         taskId: new ObjectId(taskDetail._id),
       }
