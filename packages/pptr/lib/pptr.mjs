@@ -2,9 +2,9 @@ import { simpleMode } from "./simpleMode.mjs";
 import * as amqp from 'amqplib';
 import { CONFIG } from "./CONFIG.mjs";
 
-const exchange = 'testPptrTaskDelayExchange001';
-const queue = 'testPptrTaskQueue001';
-const queueBinding = 'testPptrBindingName';
+const exchange = CONFIG.exchange;
+const queue = CONFIG.queue;
+const queueBinding = CONFIG.queueBinding;
 let connString = CONFIG.mqConnString
 
 async function main() {
@@ -19,7 +19,7 @@ async function main() {
   await channel.bindQueue(queue, exchange, queueBinding);
 
   // TODO increase to 4 for production
-  await channel.prefetch(1);
+  await channel.prefetch(CONFIG.debug ? 1 : CONFIG.pptrThreadNum);
   await channel.consume(queue, async function (message) {
     let taskDetail;
     console.log('consuming time', new Date())

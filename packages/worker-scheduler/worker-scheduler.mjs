@@ -30,7 +30,8 @@ async function main() {
         }
       }
 
-      // errorChecker will be executed every 10 minutes
+      // errorChecker will be executed every 5 minutes
+      // errorChecker not send MQ, only change nextExecuteTime
       if ( nowMinute % 5 === 0 && prevErrorCheckerMinute !== nowMinute ){
         prevErrorCheckerMinute = nowMinute;
         // setInterval may not await, but errors can be easily catched.

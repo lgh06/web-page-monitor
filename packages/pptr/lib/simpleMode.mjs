@@ -5,21 +5,26 @@ import puppeteer from 'puppeteer';
 
 
 async function simpleModeTask({browser, taskDetail}){
-  let {pageURL, cssSelector, detectMode, detectWord} = taskDetail;
-  const page = await browser.newPage();
-  await page.setViewport({
-    width: 1902,
-    height: 1080,
-    deviceScaleFactor: 1,
-  });
-  await page.goto(pageURL);
-
-  await page.waitForSelector(cssSelector);
-  let matchedElement = await page.$(cssSelector);
-  let textContent = '';
-  textContent = await matchedElement.evaluate((node) => node.textContent);
-  textContent = String(textContent).trim().replace(/\n|\r/g, ' ')
-  return textContent;
+  try {
+    let {pageURL, cssSelector, detectMode, detectWord} = taskDetail;
+    const page = await browser.newPage();
+    await page.setViewport({
+      width: 1902,
+      height: 1080,
+      deviceScaleFactor: 1,
+    });
+    await page.goto(pageURL);
+  
+    await page.waitForSelector(cssSelector);
+    let matchedElement = await page.$(cssSelector);
+    let textContent = '';
+    textContent = await matchedElement.evaluate((node) => node.textContent);
+    textContent = String(textContent).trim().replace(/\n|\r/g, ' ')
+    return textContent;
+  } catch (error) {
+    console.error(error);
+    return 'server error';
+  }
 };
 
 async function simpleMode(taskDetail) {
@@ -28,7 +33,7 @@ async function simpleMode(taskDetail) {
     slowMo: 250,
     headless: false,
     // one script cannot exceed this limit, in seconds. 
-    limit: 15,
+    limit: 10,
   }
 
   let prodLauchOption = {

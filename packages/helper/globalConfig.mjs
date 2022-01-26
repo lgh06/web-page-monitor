@@ -11,6 +11,8 @@ let globalConfig = {
   exchange: 'testPptrTaskDelayExchange001',
   queue: 'testPptrTaskQueue001',
   queueBinding: 'testPptrBindingName',
+  // pptr
+  pptrThreadNum: 4,
 }
 
 
