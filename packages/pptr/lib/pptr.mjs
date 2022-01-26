@@ -42,7 +42,8 @@ async function main() {
           let res = {
             result,
             err,
-            time: innerNow
+            time: innerNow,
+            taskDetail,
           }
           await sendResultToWorker(res, conn, sendResultToWorkerChannel)
         } catch (error) {
@@ -58,5 +59,9 @@ async function main() {
 
 }
 
-main();
+try {
+  main();
+} catch (error) {
+  console.error(error)
+}
 

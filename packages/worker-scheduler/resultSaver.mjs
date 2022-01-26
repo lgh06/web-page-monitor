@@ -14,7 +14,7 @@ async function resultSaver(mqConn,mqChannel){
     durable: true,
   });
 
-  await channel.prefetch(1);
+  await channel.prefetch(5);
   await channel.consume(queue, function (message) {
     // console.log(message)
     if (message !== null) {

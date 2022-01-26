@@ -65,11 +65,11 @@ async function main() {
     try {
       conn = await amqp.connect(connString);
       channel = await conn.createChannel();
+      await resultSaver(conn, channel);
     } catch (error) {
       console.error(error)
     }
 
-    await resultSaver(conn, channel);
   }
 
   try {
