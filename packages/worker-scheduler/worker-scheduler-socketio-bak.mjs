@@ -2,7 +2,7 @@ import { io } from "socket.io-client";
 // import { CONFIG } from "./CONFIG.mjs"
 // import { CronTime, globalConfig } from "@webest/web-page-monitor-helper";
 import { testRabbitMQSend, testRabbitMQReceive, testDelayedMQSend, testDelayedMQRecieve} from "./testRabbitMQ.mjs";
-import { checker } from './checker.mjs';
+import { checker } from './cronTaskChecker.mjs';
 
 async function workerScheduler() {
 

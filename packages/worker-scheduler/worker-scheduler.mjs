@@ -1,4 +1,4 @@
-import { normalChecker, errorChecker } from './checker.mjs';
+import { normalChecker, errorChecker } from './cronTaskChecker.mjs';
 import { resultSaver } from './resultSaver.mjs';
 import * as amqp from 'amqplib';
 
