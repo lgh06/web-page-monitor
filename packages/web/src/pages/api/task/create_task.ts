@@ -61,9 +61,9 @@ export default async function handler(
   let db = await getDB();
   // create index for task collection
   // we often need to find task by nextExecuteTime and endTime in worker.
+  // https://docs.mongodb.com/v5.0/core/index-compound/
   if(db){
-    db.collection("task").createIndex({nextExecuteTime: 1}, { unique: false });
-    db.collection("task").createIndex({endTime: 1}, { unique: false });
+    db.collection("task").createIndex({nextExecuteTime: 1, endTime: 1}, { unique: false });
   }
   return mongo.upsertDoc(db, 'task', filter, newDoc, res)
 }
