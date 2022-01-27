@@ -1,5 +1,5 @@
 import * as amqp from 'amqplib';
-import hashFunc from 'crypto-js/md5';
+import hashFunc from 'crypto-js/md5.js';
 import { getDB, ObjectId } from './lib/index.mjs';
 import { mongo } from "@webest/web-page-monitor-helper/node/index.mjs";
 
