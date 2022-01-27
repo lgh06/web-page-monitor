@@ -1,5 +1,5 @@
 import * as amqp from 'amqplib';
-import sha256 from 'crypto-js/sha256.js';
+import hashFunc from 'crypto-js/md5';
 import { getDB, ObjectId } from './lib/index.mjs';
 import { mongo } from "@webest/web-page-monitor-helper/node/index.mjs";
 
@@ -47,7 +47,7 @@ async function resultSaver(mqConn,mqChannel){
       if(result === null){
         hash = null;
       }else{
-        hash = sha256(result).toString();
+        hash = hashFunc(result).toString();
       }
       console.log(hash)
       let oneTaskHistory = {
