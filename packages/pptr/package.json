@@ -11,7 +11,8 @@
   },
   "scripts": {
     "dev:bak": "nodemon lib/pptr.mjs",
-    "dev": "nodemon lib/pptr.mjs"
+    "dev": "pm2 start lib/pptr.mjs --name pptr --watch --cron-restart=\"45 59 * * * *\" --exp-backoff-restart-delay=100 && pm2 save",
+    "stop": "pm2 stop pptr --watch && pm2 delete pptr && pm2 save --force"
   },
   "dependencies": {
     "@webest/web-page-monitor-esm-loader": "*",
