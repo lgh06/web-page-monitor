@@ -8,6 +8,7 @@
     "postinstall": "npm i lerna@3.22.1 -g && npm run setpm2 && npm run init ",
     "dev-web": "lerna run --scope @webest/web-page-monitor-web dev",
     "dev": "lerna bootstrap && lerna run dev --parallel --no-bail",
+    "start": "lerna bootstrap && lerna run start --parallel --no-bail",
     "stop": "lerna run stop"
   }
 }

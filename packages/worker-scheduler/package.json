@@ -10,8 +10,8 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "dev-bak": "nodemon worker-scheduler.mjs",
-    "dev": "pm2 start worker-scheduler.mjs --name workerScheduler --watch --cron-restart=\"45 59 * * * *\" --exp-backoff-restart-delay=100 && pm2 save",
+    "dev": "nodemon worker-scheduler.mjs",
+    "start": "pm2 start worker-scheduler.mjs --name workerScheduler --watch --cron-restart=\"45 59 * * * *\" --exp-backoff-restart-delay=100 && pm2 save",
     "stop": "pm2 stop workerScheduler --watch && pm2 delete workerScheduler && pm2 save --force"
   },
   "dependencies": {
