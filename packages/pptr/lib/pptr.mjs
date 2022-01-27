@@ -24,10 +24,11 @@ async function main() {
   await channel.prefetch(CONFIG.debug ? 1 : CONFIG.pptrThreadNum);
   await channel.consume(queue, async function (message) {
     let taskDetail;
-    console.log('consuming time', new Date())
+    let consumeTime = Date.now();
     // console.log(message)
     if (message !== null) {
       let stringTaskDetail = message.content.toString();
+      console.log('consume time', new Date(consumeTime))
       console.log(stringTaskDetail)
       try {
         taskDetail = JSON.parse(stringTaskDetail);
@@ -38,11 +39,11 @@ async function main() {
       if (taskDetail.mode === 'simp') {
         try {
           let [result, err] = await simpleMode(taskDetail);
-          let innerNow = Date.now();
           let res = {
             result,
             err,
-            time: innerNow,
+            consumeTime,
+            finishTime: Date.now(),
             taskDetail,
           }
           await sendResultToWorker(res, conn, sendResultToWorkerChannel)
