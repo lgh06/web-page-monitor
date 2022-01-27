@@ -9,12 +9,12 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { 
-    cronSyntax, 
-    endTime, 
+  const {
+    cronSyntax,
+    endTime,
     cssSelector,
-    pageURL, 
-    userId, 
+    pageURL,
+    userId,
     mode,
     detectMode,
     detectWord,
@@ -27,26 +27,27 @@ export default async function handler(
   // check time between
   [passed, errorMsg] = CronTime.checkTimes(nextExecuteTimeArr);
   // ensure syntax not contain '/'
-  if(String(cronSyntax).includes('/')){
+  if (String(cronSyntax).includes('/')) {
     [passed, errorMsg] = [false, ['Please remove / in your syntax, see FAQ for details']]
   }
   // TODO verify endTime, and user if have enough points to create new task.
   let nextExecuteTime;
   let nowTimestamp = Date.now();
-  if (nextExecuteTimeArr && nextExecuteTimeArr.length && passed){
+  if (nextExecuteTimeArr && nextExecuteTimeArr.length && passed) {
     // find 15 minutes later cron time.
     // because we need time to distribute tasks in first time.
     // TODO enhance in future.
     nextExecuteTime = nextExecuteTimeArr.find(v => (v >= nowTimestamp + 15 * 60 * 1000));
-  }else{
+  } else {
     return res.status(400).json({ err: 'please check input value.' + Array(errorMsg).join(' ') })
   }
   // have chance not got nextExecuteTime
-  if(!nextExecuteTime){
+  if (!nextExecuteTime) {
     return res.status(400).json({ err: 'please check input value.' + Array(errorMsg).join(' ') })
   }
-  const newDoc = { cronSyntax, endTime, cssSelector,pageURL, userId, mode, nextExecuteTime, 
-    detectMode,detectWord,
+  const newDoc = {
+    cronSyntax, endTime, cssSelector, pageURL, userId, mode, nextExecuteTime,
+    detectMode, detectWord,
   };
 
   let filter = {
@@ -62,8 +63,10 @@ export default async function handler(
   // create index for task collection
   // we often need to find task by nextExecuteTime and endTime in worker.
   // https://docs.mongodb.com/v5.0/core/index-compound/
-  if(db){
-    db.collection("task").createIndex({nextExecuteTime: 1, endTime: 1}, { unique: false });
+  if (db) {
+    // TODO MongDB authentication and authorization
+    // create different users and passwords and roles
+    db.collection("task").createIndex({ nextExecuteTime: 1, endTime: 1 }, { unique: false });
   }
   return mongo.upsertDoc(db, 'task', filter, newDoc, res)
 }
