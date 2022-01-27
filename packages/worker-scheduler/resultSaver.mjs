@@ -64,12 +64,12 @@ async function resultSaver(mqConn, mqChannel) {
         // TODO MongDB authentication and authorization
         // create different users and passwords and roles
         // https://docs.mongodb.com/manual/core/timeseries-collections/
-        await db.createCollection("taskHistory", {
-          timeseries: {
-            timeField: "finishTime",
-            expireAfterSeconds: 3600 * 24 * 120, // 120 days
-          }
-        });
+        // await db.createCollection("taskHistory", {
+        //   timeseries: {
+        //     timeField: "finishTime",
+        //     expireAfterSeconds: 3600 * 24 * 120, // 120 days
+        //   }
+        // });
         await mongo.upsertDoc(db, 'taskHistory', null, oneTaskHistory);
       } catch (error) {
         console.error(error);
