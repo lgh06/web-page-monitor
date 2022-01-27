@@ -11,8 +11,8 @@
   },
   "scripts": {
     "dev-bak": "nodemon worker-scheduler.mjs",
-    "dev": "pm2 start worker-scheduler.mjs --name worker --watch --exp-backoff-restart-delay=100",
-    "stop": "pm2 stop worker --watch"
+    "dev": "pm2 start worker-scheduler.mjs --name workerScheduler --watch --cron-restart=\"45 59 * * * *\" --exp-backoff-restart-delay=100",
+    "stop": "pm2 stop workerScheduler --watch"
   },
   "dependencies": {
     "@webest/web-page-monitor-helper": "*",

@@ -7,6 +7,7 @@ import { CONFIG } from "./CONFIG.mjs";
 let connString = CONFIG.mqConnString
 
 async function main() {
+  console.log('workerScheduler start on:', new Date());
 
   async function fakeTaskOne (){
     return new Promise((resolve, reject) => {
