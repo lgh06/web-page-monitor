@@ -73,7 +73,7 @@ async function resultSaver(mqConn, mqChannel) {
         await mongo.upsertDoc(db, 'taskHistory', null, oneTaskHistory);
       } catch (error) {
         // https://mongodb.github.io/node-mongodb-native/4.3/classes/MongoError.html
-        if(error.code === 48 && error.codeName === 'NamespaceExists' && error.name === 'MongoError'){
+        if(error.code === 48 && error.codeName === 'NamespaceExists' && error.name === 'MongoServerError'){
           // do nothing because this is a known MongoDB error
           // when the taskHistory time-series collection already exists
         }else{
