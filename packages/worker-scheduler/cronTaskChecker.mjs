@@ -65,16 +65,16 @@ async function normalChecker(now, mqConn, mqChannel) {
           //   }
           // },
           {
-            endTime: {
-              $gt: new Date(now) //  endTime in DB is a Date type
-            }
-          },
-          {
             nextExecuteTime: {
               $gte: getNextStepMinuteTimestamp(now, 5, 1),
               $lt: getNextStepMinuteTimestamp(now, 5, 2)
             }
-          }
+          },
+          {
+            endTime: {
+              $gt: new Date(now) //  endTime in DB is a Date type
+            }
+          },
         ]
       }
       // TODO pagination and be careful for memory leak. future.
@@ -153,13 +153,13 @@ async function errorChecker(now) {
           //   }
           // },
           {
-            endTime: {
-              $gt: new Date(now) // //  endTime in DB is a Date type
+            nextExecuteTime: {
+              $lt: getNextStepMinuteTimestamp(now, 5, 1)
             }
           },
           {
-            nextExecuteTime: {
-              $lt: getNextStepMinuteTimestamp(now, 5, 1)
+            endTime: {
+              $gt: new Date(now) // //  endTime in DB is a Date type
             }
           },
         ]
