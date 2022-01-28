@@ -29,6 +29,7 @@ async function singleTaskHistoryChecker (taskDetail, db){
   }).sort({finishTime: -1}).limit(10).toArray().then(async docs => {
     if(docs && docs.length){
       docs.reverse().forEach(async (doc, index, arr) => {
+        if(index === 0) return;
         let filter = {_id: doc._id};
         console.log(doc)
         if(!doc.checked){
