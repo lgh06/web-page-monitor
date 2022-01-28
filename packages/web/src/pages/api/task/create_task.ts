@@ -74,6 +74,7 @@ export default async function handler(
   if (db) {
     // TODO MongDB authentication and authorization
     // create different users and passwords and roles
+    // TODO below index should be deleted once we have first user.
     db.collection("task").createIndex({ endTime: 1 }, { expireAfterSeconds: 3600 * 24 * 130 });
     db.collection("task").createIndex({ nextExecuteTime: 1, endTime: 1, });
     db.collection("task").createIndex({ userId: 1, endTime: -1, });
