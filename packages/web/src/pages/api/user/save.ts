@@ -16,5 +16,6 @@ export default async function handler(
   console.log(newDoc)
 
   let db = await getDB();
+  db?.collection('user').createIndex({ email: 1 }, {unique: true});
   return mongo.upsertDoc(db, 'user', filter, newDoc, res)
 }
