@@ -6,7 +6,8 @@
     "dev": "concurrently --kill-others-on-fail \"next dev -p 3002\" \"wait-on http://localhost:3002/ && start http://localhost:3002/create_task_simp\"",
     "build": "next build",
     "static": "next build && next export",
-    "start": "npm run static && concurrently \"next start -p 3002\" \"npx serve out -p 3001\"",
+    "start": "npm run dev",
+    "start-bak": "npm run static && concurrently \"next start -p 3002\" \"npx serve out -p 3001\"",
     "lint": "next lint"
   },
   "dependencies": {
