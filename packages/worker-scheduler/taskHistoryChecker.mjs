@@ -15,8 +15,8 @@ let collectionName = 'taskHistory';
 async function taskHistoryChecker (db){
   db = db || await getDB();
   // db.collection('taskHistory').watch().on('change', async function (change) {})
-  await errorChecker(db)
-  await changesChecker(db)
+  // await errorChecker(db)
+  // await changesChecker(db)
 }
 /**
  * @param {object} taskDetail 
@@ -70,6 +70,6 @@ async function otherTaskHistoryChecker(db){
   })
 }
 
-taskHistoryChecker();
+// taskHistoryChecker();
 
 export { taskHistoryChecker, singleTaskHistoryChecker }
