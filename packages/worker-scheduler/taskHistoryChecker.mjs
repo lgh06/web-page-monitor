@@ -31,8 +31,8 @@ async function singleTaskHistoryChecker (taskDetail, db){
       docs.reverse().forEach(async (doc, index, arr) => {
         if(index === 0) return;
         let filter = {_id: doc._id};
-        console.log(doc)
         if(!doc.checked){
+          console.log(doc)
           // do something
           if(doc.err === null && doc.textHash !== null){
             if(doc.textHash !== arr[index-1].textHash){
