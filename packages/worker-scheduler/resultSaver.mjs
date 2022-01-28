@@ -42,8 +42,8 @@ async function resultSaver(mqConn, mqChannel) {
       // console.log('task end life on', new Date( taskDetail.endTime ) )
 
       let cuttedResult;
-      if (String(result).length > 500) {
-        cuttedResult = String(result).substring(0, 500)
+      if (String(result).length > 2000) {
+        cuttedResult = String(result).substring(0, 2000)
       }
 
       let hash;
