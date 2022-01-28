@@ -11,7 +11,7 @@
   },
   "scripts": {
     "dev": "nodemon lib/pptr.mjs",
-    "start": "pm2 start lib/pptr.mjs --name pptr --watch --cron-restart=\"45 59 * * * *\" --exp-backoff-restart-delay=100 && pm2 save",
+    "start": "pm2 start lib/pptr.mjs --name pptr --cron-restart=\"45 59 23 * * *\" --exp-backoff-restart-delay=100 && pm2 save",
     "stop": "pm2 stop pptr --watch && pm2 delete pptr && pm2 save --force"
   },
   "dependencies": {
