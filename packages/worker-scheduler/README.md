@@ -22,8 +22,8 @@ a React component or a Next.js Page should us `ComponentName` or `PageName`
   createdTime: 1642470077306,
   // timestamp
   nextExecuteTime: 1642470077306,
-  // timestamp, converted from endLocalMinuteString 
-  endTime: 1642470077306,
+  // Date, converted from endLocalMinuteString 
+  endTime: 1642470077306, // ** frontend as int, save as Date in DB
   // Cron pattern / syntax
   cronSyntax: '00 00 00 * * *',
   // simp or geek. 
@@ -56,7 +56,7 @@ a React component or a Next.js Page should us `ComponentName` or `PageName`
 {
   _id: '',
   beginTime: 0, // nextExecuteTime in cron syntax
-  finishTime: 0,
+  finishTime: new Date(), // ** generated as Date, store as Date in DB.
   err: 'errors returned from pptr',
   // textContent hash
   textHash: '',

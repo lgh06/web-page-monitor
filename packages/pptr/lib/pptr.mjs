@@ -43,7 +43,7 @@ async function main() {
             result,
             err,
             consumeTime,
-            finishTime: Date.now(),
+            finishTime: new Date(),
             taskDetail,
           }
           await sendResultToWorker(res, conn, sendResultToWorkerChannel)

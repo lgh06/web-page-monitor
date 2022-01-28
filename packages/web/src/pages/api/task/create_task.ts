@@ -9,7 +9,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const {
+  let {
     cronSyntax,
     endTime,
     cssSelector,
@@ -20,7 +20,12 @@ export default async function handler(
     detectWord,
   } = req.body.taskDetail;
 
-  // const filter = { cronSyntax, endTime, cssSelector,pageURL, userId, mode };
+  // endTime in DB is a Date type
+  // need convert timestamp int to Date type
+  if(typeof endTime !== 'object') {
+    endTime = new Date(endTime);
+  }
+
   let passed = false, errorMsg = [''];
   // get next 5 times
   let nextExecuteTimeArr = CronTime.getNextTimes(cronSyntax, 50);
@@ -66,8 +71,8 @@ export default async function handler(
   if (db) {
     // TODO MongDB authentication and authorization
     // create different users and passwords and roles
-    db.collection("task").createIndex({ nextExecuteTime: 1, endTime: 1 }, { unique: false });
-    db.collection("taskHistory").createIndex({ finishTime: 1 }, { expireAfterSeconds: 3600 * 24 * 120 });
+    db.collection("task").createIndex({ endTime: 1 }, { expireAfterSeconds: 3600 * 24 * 130 });
+    db.collection("taskHistory").createIndex({ finishTime: 1 }, { expireAfterSeconds: 3600 * 24 * 130 });
   }
   return mongo.upsertDoc(db, 'task', filter, newDoc, res)
 }

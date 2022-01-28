@@ -42,6 +42,9 @@ let timestampArrayFinderGenerator = (nowTimestamp) => (v) => {
   return (v >= getNextStepMinuteTimestamp(nowTimestamp, 5, 2))
 }
 
+let objectIdDaysBefore = (days) => ObjectId.createFromTime( 
+  parseInt( ( Date.now() - days * 24 * 60 * 60 * 1000 ) / 1000)
+);
 async function normalChecker(now, mqConn, mqChannel) {
 
   now = now || Date.now(); // timestamp
@@ -52,19 +55,22 @@ async function normalChecker(now, mqConn, mqChannel) {
   let tableName = 'task';
 
   let finder = timestampArrayFinderGenerator(now);
-
   return db.collection(tableName).aggregate([
     {
       $match: {
         $and: [
           {
-            nextExecuteTime: {
-              $gte: getNextStepMinuteTimestamp(now, 5, 1),
-              $lt: getNextStepMinuteTimestamp(now, 5, 2)
+            _id:{
+              $gte: objectIdDaysBefore(120)
             }
           },{
             endTime: {
-              $gt: now
+              $gt: new Date(now) //  endTime in DB is a Date type
+            }
+          },{
+            nextExecuteTime: {
+              $gte: getNextStepMinuteTimestamp(now, 5, 1),
+              $lt: getNextStepMinuteTimestamp(now, 5, 2)
             }
           }
         ]
@@ -140,13 +146,16 @@ async function errorChecker(now) {
       $match: {
         $and: [
           {
+            _id:{
+              $gte: objectIdDaysBefore(130)
+            }
+          },{
+            endTime: {
+              $gt: new Date(now) // //  endTime in DB is a Date type
+            }
+          },{
             nextExecuteTime: {
               $lt: getNextStepMinuteTimestamp(now, 5, 1)
-            }
-          },
-          {
-            endTime: {
-              $gt: now
             }
           },
         ]

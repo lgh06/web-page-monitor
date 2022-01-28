@@ -31,11 +31,14 @@ async function resultSaver(mqConn, mqChannel) {
       let response = JSON.parse(stringResponse);
 
       let { result, err, consumeTime, finishTime, taskDetail } = response;
+      if(typeof finishTime !== 'object') { // may be jsonfied string
+        finishTime = new Date(finishTime)
+      }
       console.log(err, taskDetail)
       // console.log('task first created on', new Date( new ObjectId( taskDetail._id).getTimestamp() ) )
       console.log('task scheduled on', new Date(taskDetail.nextExecuteTime))
       console.log('task pptr consume start on', new Date(consumeTime))
-      console.log('task this time finished on', new Date(finishTime))
+      console.log('task this time finished on', finishTime)
       // console.log('task end life on', new Date( taskDetail.endTime ) )
 
       let cuttedResult;
@@ -54,7 +57,7 @@ async function resultSaver(mqConn, mqChannel) {
         // scheduledTime changes on task table, so we need store it on taskHistory
         scheduledTime: taskDetail.nextExecuteTime,
         consumeTime,
-        finishTime: new Date(finishTime),
+        finishTime,
         err: err,
         textHash: hash,
         textContent: cuttedResult || result,
