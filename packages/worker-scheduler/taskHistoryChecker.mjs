@@ -25,18 +25,18 @@ async function errorChecker (db){
   db = db || await getDB();
   db.collection(collectionName).find({
     taskId: ObjectId('61f3a300410c05a636f632d9'),
-  }).sort({checked: 1, finishTime: -1}).limit(3).toArray().then(async docs => {
-    console.log(docs)
+  }).sort({finishTime: -1}).limit(10).toArray().then(async docs => {
     if(docs && docs.length){
-      docs.forEach(async doc => {
+      docs.reverse().forEach(async (doc, index, arr) => {
         let filter = {_id: doc._id};
+        console.log(doc)
         if(!doc.checked){
           // do something
-          await db.collection(collectionName).findOneAndUpdate(filter, {
-            $set: {
-              checked: 1,
-            }
-          })
+          // await db.collection(collectionName).findOneAndUpdate(filter, {
+          //   $set: {
+          //     checked: 1,
+          //   }
+          // })
         }
       })
     }
