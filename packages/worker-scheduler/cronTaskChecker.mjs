@@ -79,18 +79,18 @@ async function normalChecker(now, mqConn, mqChannel) {
       }
       // TODO pagination and be careful for memory leak. future.
     },
-    {
-      // userId in task collection is a normal string,
-      // not an ObjectId. so need convert
-      $addFields: {
-        userObjectId: { $toObjectId: "$userId" }
-      }
-    },
+    // {
+    //   // userId in task collection is a normal string,
+    //   // not an ObjectId. so need convert
+    //   $addFields: {
+    //     userObjectId: { $toObjectId: "$userId" }
+    //   }
+    // },
     {
       $lookup:
       {
         from: "user",
-        localField: "userObjectId",
+        localField: "userId",
         foreignField: "_id",
         as: "userInfo"
       }
@@ -166,18 +166,18 @@ async function errorChecker(now) {
         // TODO pagination and be careful for memory leak. future.
       },
     },
-    {
-      // userId in task collection is a normal string,
-      // not an ObjectId. so need convert
-      $addFields: {
-        userObjectId: { $toObjectId: "$userId" }
-      }
-    },
+    // {
+    //   // userId in task collection is a normal string,
+    //   // not an ObjectId. so need convert
+    //   $addFields: {
+    //     userObjectId: { $toObjectId: "$userId" }
+    //   }
+    // },
     {
       $lookup:
       {
         from: "user",
-        localField: "userObjectId",
+        localField: "userId",
         foreignField: "_id",
         as: "user"
       }

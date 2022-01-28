@@ -7,7 +7,7 @@
 // https://docs.mongodb.com/v5.0/tutorial/query-arrays/
 // https://docs.mongodb.com/v5.0/reference/operator/query/gte/#mongodb-query-op.-gte
 // Mongodb connection , used in Next.js backend API side.
-import { MongoClient, Db } from "mongodb";
+import { MongoClient, Db, ObjectId } from "mongodb";
 import { CONFIG } from '../../CONFIG.js'
 
 const MONGODB_URI = process.env.MONGODB_URI || CONFIG.mongodbURI;
@@ -59,4 +59,4 @@ async function getDB(dbName?: string | undefined, req?: { dbClient: MongoClient;
   }
 }
 
-export {getDB as default, getDB, getClient};
+export {getDB as default, getDB, getClient, ObjectId};

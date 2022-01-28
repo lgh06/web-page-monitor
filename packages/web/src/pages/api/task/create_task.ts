@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getDB } from '../../../lib';
+import { getDB, ObjectId } from '../../../lib';
 import { CronTime } from '@webest/web-page-monitor-helper';
 import { mongo } from '@webest/web-page-monitor-helper/node';
 
@@ -49,6 +49,9 @@ export default async function handler(
   // have chance not got nextExecuteTime
   if (!nextExecuteTime) {
     return res.status(400).json({ err: 'please check input value.' + Array(errorMsg).join(' ') })
+  }
+  if(typeof userId === 'string'){
+    userId = new ObjectId(userId);
   }
   const newDoc = {
     cronSyntax, endTime, cssSelector, pageURL, userId, mode, nextExecuteTime,
