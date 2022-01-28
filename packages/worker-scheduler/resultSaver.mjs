@@ -60,26 +60,7 @@ async function resultSaver(mqConn, mqChannel) {
         textContent: cuttedResult || result,
         taskId: new ObjectId(taskDetail._id),
       }
-      try {
-        // TODO MongDB authentication and authorization
-        // create different users and passwords and roles
-        // https://docs.mongodb.com/manual/core/timeseries-collections/
-        await db.createCollection("taskHistory", {
-          timeseries: {
-            timeField: "finishTime",
-          },
-          expireAfterSeconds: 3600 * 24 * 120, // 120 days
-        });
-        await mongo.upsertDoc(db, 'taskHistory', null, oneTaskHistory);
-      } catch (error) {
-        // https://mongodb.github.io/node-mongodb-native/4.3/classes/MongoError.html
-        if(error.code === 48 && error.codeName === 'NamespaceExists' && error.name === 'MongoServerError'){
-          // do nothing because this is a known MongoDB error
-          // when the taskHistory time-series collection already exists
-        }else{
-          console.error(error);
-        }
-      }
+      await mongo.insertDoc(db, 'taskHistory', oneTaskHistory);
       return channel.ack(message)
     }
   }, {

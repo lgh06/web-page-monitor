@@ -28,6 +28,29 @@ let mongo = {
       })
     }
     return p;
+  },
+  /**
+   * 
+   * @param {Db} db 
+   * @param {*} collectionName 
+   * @param {*} doc 
+   * @param {*} res 
+   * @returns 
+   */
+  insertDoc: async function (db, collectionName, doc, res) {
+    if( (!db) && res) return res.status(500).send('db lost');
+    // https://mongodb.github.io/node-mongodb-native/4.3/classes/Collection.html#findOneAndReplace
+    let p = db.collection(collectionName).insertOne( doc ).then(returnedDoc => {
+      return returnedDoc
+    })
+    if (res) {
+      p = p.then(doc => {
+        return res.status(200).json(doc)
+      }).catch((e) => {
+        return res.status(500).json({ err: e });
+      })
+    }
+    return p;
   }
 }
 

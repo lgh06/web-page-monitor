@@ -67,6 +67,7 @@ export default async function handler(
     // TODO MongDB authentication and authorization
     // create different users and passwords and roles
     db.collection("task").createIndex({ nextExecuteTime: 1, endTime: 1 }, { unique: false });
+    db.collection("taskHistory").createIndex({ finishTime: 1 }, { expireAfterSeconds: 3600 * 24 * 120 });
   }
   return mongo.upsertDoc(db, 'task', filter, newDoc, res)
 }
