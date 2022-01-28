@@ -2,6 +2,7 @@ import * as amqp from 'amqplib';
 import hashFunc from 'crypto-js/md5.js';
 import { getDB, ObjectId } from './lib/index.mjs';
 import { mongo } from "@webest/web-page-monitor-helper/node/index.mjs";
+import { singleTaskHistoryChecker } from './taskHistoryChecker.mjs';
 
 import { CONFIG } from "./CONFIG.mjs";
 
@@ -63,8 +64,13 @@ async function resultSaver(mqConn, mqChannel) {
         textContent: cuttedResult || result,
         taskId: new ObjectId(taskDetail._id),
       }
-      await mongo.insertDoc(db, 'taskHistory', oneTaskHistory);
-      return channel.ack(message)
+      try {
+        await mongo.insertDoc(db, 'taskHistory', oneTaskHistory);
+        await singleTaskHistoryChecker(taskDetail, db);
+      } catch (error) {
+        console.log(error);
+      }
+      channel.ack(message)
     }
   }, {
     noAck: false
