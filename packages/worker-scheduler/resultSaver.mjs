@@ -43,7 +43,7 @@ async function resultSaver(mqConn, mqChannel) {
 
       let cuttedResult;
       if (String(result).length > 2000) {
-        cuttedResult = String(result).substring(0, 2000)
+        cuttedResult = String(result).substring(0, 2000) + `......${String(result).length - 2000} more`;
       }
 
       let hash;
