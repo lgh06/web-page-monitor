@@ -59,15 +59,17 @@ async function normalChecker(now, mqConn, mqChannel) {
     {
       $match: {
         $and: [
+          // {
+          //   _id:{
+          //     $gte: objectIdDaysBefore(120)
+          //   }
+          // },
           {
-            _id:{
-              $gte: objectIdDaysBefore(120)
-            }
-          },{
             endTime: {
               $gt: new Date(now) //  endTime in DB is a Date type
             }
-          },{
+          },
+          {
             nextExecuteTime: {
               $gte: getNextStepMinuteTimestamp(now, 5, 1),
               $lt: getNextStepMinuteTimestamp(now, 5, 2)
@@ -145,15 +147,17 @@ async function errorChecker(now) {
     {
       $match: {
         $and: [
+          // {
+          //   _id:{
+          //     $gte: objectIdDaysBefore(130)
+          //   }
+          // },
           {
-            _id:{
-              $gte: objectIdDaysBefore(130)
-            }
-          },{
             endTime: {
               $gt: new Date(now) // //  endTime in DB is a Date type
             }
-          },{
+          },
+          {
             nextExecuteTime: {
               $lt: getNextStepMinuteTimestamp(now, 5, 1)
             }
