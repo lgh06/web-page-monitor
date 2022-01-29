@@ -1,4 +1,4 @@
-import { WithId, Document, Db } from "mongodb";
+import { Db } from "mongodb";
 /**
  * 
  * @param {WithId<Document>} prevDoc 
