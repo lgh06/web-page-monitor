@@ -1,6 +1,6 @@
 import { getDB, ObjectId } from './lib/index.mjs';
 import { CronTime } from '@webest/web-page-monitor-helper';
-import { delayedMQSend } from "./testRabbitMQ.mjs";
+import { delayedMQSend } from "./rabbitMQ.mjs";
 
 
 let getNextStepMinuteTimestamp = function (timestamp, step = 5, count = 1) {

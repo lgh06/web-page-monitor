@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
 // import { CONFIG } from "./CONFIG.mjs"
 // import { CronTime, globalConfig } from "@webest/web-page-monitor-helper";
-import { testRabbitMQSend, testRabbitMQReceive, delayedMQSend, testDelayedMQRecieve} from "./testRabbitMQ.mjs";
+import { testRabbitMQSend, testRabbitMQReceive, delayedMQSend, testDelayedMQRecieve} from "./rabbitMQ.mjs";
 import { checker } from './cronTaskChecker.mjs';
 
 async function workerScheduler() {
@@ -16,12 +16,6 @@ async function main() {
   // if (userInfo.email && !socket.connected) {
   //   connectSocketIO({ socket });
   // }
-  // let nextArr = CronTime.getNextTimes('6 * * * * *');
-  // console.log(nextArr)
-  // await testRabbitMQSend();
-  // await testRabbitMQReceive();
-  // await delayedMQSend();
-  // await testDelayedMQRecieve();
   await checker();
 }
 
