@@ -26,13 +26,12 @@ async function singleTaskHistoryChecker (taskDetail, db){
   db = db || await getDB();
   db.collection(collectionName).find({
     taskId: ObjectId(taskDetail._id),
-  }).sort({finishTime: -1}).limit( 6 * 24 ).toArray().then(async docs => {
+  }).sort({finishTime: -1}).limit( 6 * 24 /** 24 hours taskHistory */ ).toArray().then(async docs => {
     if(docs && docs.length){
       docs.reverse().forEach(async (doc, index, arr) => {
         if(index === 0) return;
         let filter = {_id: doc._id};
         if(!doc.checked){
-          console.log(doc)
           // do something
           if(doc.err === null && doc.textHash !== null){
             if(doc.textHash !== arr[index-1].textHash){

@@ -12,7 +12,7 @@ let createTaskDetail = {
   pageURLMsg: 'please input a url start with https:// or http://',
   pageURLPassed: true,
   cssSelector: 'body',
-  detectMode: 'pageChange',
+  detectMode: '1',
   detectWord: '',
 }
 

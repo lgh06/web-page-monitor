@@ -31,8 +31,8 @@ a React component or a Next.js Page should us `ComponentName` or `PageName`
   mode: 'simp',
   pageURL: 'https://news.qq.com/',
   cssSelector: 'body',
-  // pageChange 1 wordShowUp 2
-  detectMode: 2, // pageChange 1 wordShowUp 2
+  // pageChange "1" wordShowUp "2"
+  detectMode: "1",
   detectWord: "招聘" // must be set when detectMode is 2
   // worker_id(or hashed by task_id char code)
   workerId: null,

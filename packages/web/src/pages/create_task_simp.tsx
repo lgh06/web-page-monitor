@@ -84,12 +84,12 @@ const CreateTaskGeekPage: NextPage = () => {
     }
     if(index === '4' || index === '5'){
       setTaskDetail(v =>{
-        v.detectMode = inputElement.value
+        v.detectMode = String(inputElement.value)
       })
     }
     if(index === '6'){
       setTaskDetail(v =>{
-        v.detectWord = inputElement.value;
+        v.detectWord = String(inputElement.value);
       })
     }
   }
@@ -125,7 +125,7 @@ const CreateTaskGeekPage: NextPage = () => {
     return !(
       taskDetail.cronPassed 
       && taskDetail.pageURLPassed 
-      && (taskDetail.detectMode === 'wordShowUp' ? taskDetail.detectWord : true) 
+      && (taskDetail.detectMode === '2' ? taskDetail.detectWord : true) 
     );
   }
   
@@ -192,11 +192,11 @@ const CreateTaskGeekPage: NextPage = () => {
     <div>
       Notify you when : <br/>
       <label htmlFor="detectMode1">
-        <input data-input-index="4" type="radio" id="detectMode1" checked={taskDetail.detectMode === 'pageChange'} name="detectMode" onChange={handleInputChange} value="pageChange" />
+        <input data-input-index="4" type="radio" id="detectMode1" checked={taskDetail.detectMode === '1'} name="detectMode" onChange={handleInputChange} value="1" />
         Page Changes
       </label> <br/>
       <label htmlFor="detectMode2">
-        <input data-input-index="5" type="radio" id="detectMode2" checked={taskDetail.detectMode === 'wordShowUp'} name="detectMode" onChange={handleInputChange} value="wordShowUp" />
+        <input data-input-index="5" type="radio" id="detectMode2" checked={taskDetail.detectMode === '2'} name="detectMode" onChange={handleInputChange} value="2" />
         Word(s) Show up
       </label>
       <input 
