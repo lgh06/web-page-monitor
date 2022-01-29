@@ -28,7 +28,10 @@ global.mongodb = global.mongodb || {};
 
 async function getClient(): Promise<MongoClient>{
   if (!global.mongodb.client) {
-    global.mongodb.client = new MongoClient(MONGODB_URI);
+    global.mongodb.client = new MongoClient(MONGODB_URI,{
+      serverSelectionTimeoutMS: 300000, // 300s
+      connectTimeoutMS: 12000, // 12s
+    });
   }
   // It is okay to call connect() even if it is connected
   // using node-mongodb-native v4 (it will be no-op)

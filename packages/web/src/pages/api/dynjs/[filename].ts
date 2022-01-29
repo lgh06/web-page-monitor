@@ -9,7 +9,7 @@ export default async function handler(
 ) {
   const { filename } = req.query
   let db = await getDB();
-  if(!db) return res.status(500).send('');
+  if (!db) return res.status(500).send('');
 
   db.collection('dynjs').findOne({filename}).then(doc => {
     if(doc){
