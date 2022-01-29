@@ -56,11 +56,6 @@ async function normalChecker(now, mqConn, mqChannel) {
     {
       $match: {
         $and: [
-          // {
-          //   _id:{
-          //     $gte: objectIdDaysBefore(120)
-          //   }
-          // },
           {
             nextExecuteTime: {
               $gte: getNextStepMinuteTimestamp(now, 5, 1),
@@ -76,13 +71,6 @@ async function normalChecker(now, mqConn, mqChannel) {
       }
       // TODO pagination and be careful for memory leak. future.
     },
-    // {
-    //   // userId in task collection is a normal string,
-    //   // not an ObjectId. so need convert
-    //   $addFields: {
-    //     userObjectId: { $toObjectId: "$userId" }
-    //   }
-    // },
     {
       $lookup:
       {
@@ -92,15 +80,6 @@ async function normalChecker(now, mqConn, mqChannel) {
         as: "userInfo"
       }
     },
-    // {
-    //   $project:
-    //   {
-    //     _id: 1,
-    //     user: 1,
-    //     cronSyntax: 1,
-    //     nextExecuteTime:1,
-    //   }
-    // }
 
   ])
   .toArray().then(docs => {
@@ -145,11 +124,6 @@ async function errorChecker(now) {
     {
       $match: {
         $and: [
-          // {
-          //   _id:{
-          //     $gte: objectIdDaysBefore(130)
-          //   }
-          // },
           {
             nextExecuteTime: {
               $lt: getNextStepMinuteTimestamp(now, 5, 1)
@@ -164,37 +138,10 @@ async function errorChecker(now) {
         // TODO pagination and be careful for memory leak. future.
       },
     },
-    // {
-    //   // userId in task collection is a normal string,
-    //   // not an ObjectId. so need convert
-    //   $addFields: {
-    //     userObjectId: { $toObjectId: "$userId" }
-    //   }
-    // },
-    {
-      $lookup:
-      {
-        from: "user",
-        localField: "userId",
-        foreignField: "_id",
-        as: "user"
-      }
-    },
-    // {
-    //   $project:
-    //   {
-    //     _id: 1,
-    //     user: 1,
-    //     cronSyntax: 1,
-    //     nextExecuteTime:1,
-    //   }
-    // }
   ]).toArray().then(docs => {
     if (docs && docs.length) {
 
       docs.forEach(doc => {
-        // console.log('inside erro checker')
-        // console.log(doc)
         db.collection(tableName).updateOne({ _id: doc._id }, {
           '$set': {
             nextExecuteTime: CronTime.getNextTimes(doc.cronSyntax, 5).find(finder)
