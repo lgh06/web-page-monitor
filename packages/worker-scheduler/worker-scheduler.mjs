@@ -9,15 +9,8 @@ let connString = CONFIG.mqConnString
 async function main() {
   console.log('workerScheduler start on:', new Date());
 
-  async function fakeTaskOne (){
-    return new Promise((resolve, reject) => {
-      setTimeout(function(){
-        console.log('fake task executed on', new Date())
-        resolve('ok');
-      }, 3000)
-    })
-  }
-
+  // the worker for cron jobs
+  // read tasks from DB `task` table
   async function intervalExecuter (){
     let prevNormalCheckerMinute;
     let prevErrorCheckerMinute;
@@ -61,6 +54,9 @@ async function main() {
 
   }
 
+  // save pptr results which are got from MQ, 
+  // to DB `taskHistory` table,
+  // and detect diffs and send emails / phone calls
   async function outerResultSaver(){
     let conn, channel;
     try {
