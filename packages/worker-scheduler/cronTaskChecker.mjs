@@ -1,6 +1,6 @@
 import { getDB, ObjectId } from './lib/index.mjs';
 import { CronTime } from '@webest/web-page-monitor-helper';
-import { testDelayedMQSend } from "./testRabbitMQ.mjs";
+import { delayedMQSend } from "./testRabbitMQ.mjs";
 
 
 let getNextStepMinuteTimestamp = function (timestamp, step = 5, count = 1) {
@@ -113,7 +113,7 @@ async function normalChecker(now, mqConn, mqChannel) {
         // console.log(doc)
         // generate a random time to balance pptr's tasks
         let random60s = Math.floor(Math.random() * 59) * 1000;
-        await testDelayedMQSend({delay: doc.nextExecuteTime - now + random60s, taskDetail:{
+        await delayedMQSend({delay: doc.nextExecuteTime - now + random60s, taskDetail:{
           ...doc,
           userInfo: doc.userInfo[0]
         }}, mqConn, mqChannel).catch(err => {console.error(err)});
