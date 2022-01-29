@@ -112,8 +112,9 @@ async function normalChecker(now, mqConn, mqChannel) {
         // console.log('inside normal checker')
         // console.log(doc)
         // generate a random time to balance pptr's tasks
-        let random60s = Math.floor(Math.random() * 59) * 1000;
-        await delayedMQSend({delay: doc.nextExecuteTime - now + random60s, taskDetail:{
+        // we may reboot the server, on 59 minute 40second
+        // let random30s = Math.floor(Math.random() * 30) * 1000;
+        await delayedMQSend({delay: doc.nextExecuteTime - now, taskDetail:{
           ...doc,
           userInfo: doc.userInfo[0]
         }}, mqConn, mqChannel).catch(err => {console.error(err)});
