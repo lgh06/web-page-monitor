@@ -9,10 +9,8 @@ let getNextStepMinuteTimestamp = function (timestamp, step = 5, count = 1) {
   if (nextStepMinute >= 60) {
     nextHour = parseInt(nextStepMinute / 60)
     nextStepMinute = nextStepMinute % 60;
-    // console.log('inside above', nextHour, nextStepMinute, count)
   } else {
     nextHour = 0;
-    // console.log('inside below', nextHour, nextStepMinute, count)
   }
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setHours
   let nextStepMinuteTimestamp = new Date(timestamp).setHours(
@@ -21,7 +19,6 @@ let getNextStepMinuteTimestamp = function (timestamp, step = 5, count = 1) {
     0,
     0
   );
-  // console.log(nextHour, nextStepMinute, nextStepMinuteTimestamp);
   return nextStepMinuteTimestamp;
 }
 
@@ -109,8 +106,6 @@ async function normalChecker(now, mqConn, mqChannel) {
   .toArray().then(docs => {
     if (docs && docs.length) {
       docs.forEach(async (doc) => {
-        // console.log('inside normal checker')
-        // console.log(doc)
         // generate a random time to balance pptr's tasks
         // we may reboot the server, on 59 minute 40second
         // let random30s = Math.floor(Math.random() * 30) * 1000;

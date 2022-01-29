@@ -35,11 +35,11 @@ async function resultSaver(mqConn, mqChannel) {
       if(typeof finishTime !== 'object') { // may be jsonfied string
         finishTime = new Date(finishTime)
       }
-      console.log(err, taskDetail)
+      // console.log(err, taskDetail)
       // console.log('task first created on', new Date( new ObjectId( taskDetail._id).getTimestamp() ) )
-      console.log('task scheduled on', new Date(taskDetail.nextExecuteTime))
-      console.log('task pptr consume start on', new Date(consumeTime))
-      console.log('task this time finished on', finishTime)
+      // console.log('task scheduled on', new Date(taskDetail.nextExecuteTime))
+      // console.log('task pptr consume start on', new Date(consumeTime))
+      // console.log('task this time finished on', finishTime)
       // console.log('task end life on', new Date( taskDetail.endTime ) )
 
       let cuttedResult;
@@ -53,7 +53,7 @@ async function resultSaver(mqConn, mqChannel) {
       } else {
         hash = hashFunc(result).toString();
       }
-      console.log(hash)
+      // console.log(hash)
       let oneTaskHistory = {
         // scheduledTime changes on task table, so we need store it on taskHistory
         scheduledTime: taskDetail.nextExecuteTime,
@@ -69,8 +69,9 @@ async function resultSaver(mqConn, mqChannel) {
         await singleTaskHistoryChecker(taskDetail, db);
       } catch (error) {
         console.log(error);
+      }finally{
+        channel.ack(message)
       }
-      channel.ack(message)
     }
   }, {
     noAck: false

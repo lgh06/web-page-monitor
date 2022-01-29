@@ -1,4 +1,5 @@
 import { getDB, ObjectId } from "./lib/index.mjs"
+import { diffNotifier } from "./diffNotifier.mjs";
 import { Db } from "mongodb";
 
 let collectionName = 'taskHistory';
@@ -28,28 +29,20 @@ async function singleTaskHistoryChecker (taskDetail, db){
     taskId: ObjectId(taskDetail._id),
   }).sort({finishTime: -1}).limit( 6 * 24 /** 24 hours taskHistory */ ).toArray().then(async docs => {
     if(docs && docs.length){
-      docs.reverse().forEach(async (doc, index, arr) => {
-        if(index === 0) return;
+      docs.filter(doc => (doc.err === null && doc.textHash !== null))
+          .reverse().forEach(async (doc, index, arr) => {
+        if(index === 0 || doc.checked) return;
         let filter = {_id: doc._id};
-        if(!doc.checked){
-          // do something
-          if(doc.err === null && doc.textHash !== null){
-            if(doc.textHash !== arr[index-1].textHash){
-              // TODO send alert
-              console.log('different hash found on taskHistory id', doc._id);
-            }
-            // other ifs
-            if(taskDetail.detectMode){
-              console.log(taskDetail.detectMode);
-            }
-
-          }
-          await db.collection(collectionName).findOneAndUpdate(filter, {
-            $set: {
-              checked: 1,
-            }
-          })
+        // do something
+        if(doc.textHash !== arr[index-1].textHash){
+          // TODO send alert
+          await diffNotifier(arr[index-1], doc, taskDetail, db);
         }
+        await db.collection(collectionName).findOneAndUpdate(filter, {
+          $set: {
+            checked: 1,
+          }
+        })
       })
     }
   })
@@ -60,13 +53,14 @@ async function singleTaskHistoryChecker (taskDetail, db){
  * @param {Db} db 
  */
 async function otherTaskHistoryChecker(db){
+  return;
   db = db || await getDB();
   const collection = db.collection('taskHistory')
   const changeStream = collection.watch();
   // https://docs.mongodb.com/v5.0/changeStreams
   // https://docs.mongodb.com/v5.0/reference/change-events
   changeStream.on('change', next => {
-    console.log(next)
+    // console.log(next)
   })
 }
 
