@@ -57,6 +57,10 @@ async function exec({prevDoc, doc, taskDetail}){
   return alertResult;
 }
 
+// TODO find a place to save one task's last notify time
+// give ability to save previos notify time
+
+
 // main().catch(console.error);
 
 
