@@ -1,5 +1,6 @@
 import { Db } from "mongodb";
 import { getDB } from "./lib/index.mjs";
+import * as alertProviders from "./alertProviders/index.mjs";
 /**
  * 
  * @param {WithId<Document>} prevDoc 
@@ -10,9 +11,13 @@ import { getDB } from "./lib/index.mjs";
 async function diffNotifier(prevDoc, doc, taskDetail, db) {
   db = db || await getDB();
   console.log('inside diffNotifier');
-  console.log(prevDoc);
-  console.log(doc);
-  console.log(taskDetail);
+  if(taskDetail.alertProvider){
+
+  }else{
+    taskDetail.alertProvider = 'nodemailer';
+    console.log(alertProviders)
+    return await alertProviders[taskDetail.alertProvider].exec({prevDoc, doc, taskDetail});
+  }
 }
 
 export { diffNotifier };
