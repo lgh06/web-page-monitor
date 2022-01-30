@@ -15,9 +15,11 @@ async function diffNotifier(prevDoc, doc, taskDetail, db) {
 
   }else{
     taskDetail.alertProvider = 'nodemailer';
-    console.log(alertProviders)
-    return await alertProviders[taskDetail.alertProvider].exec({prevDoc, doc, taskDetail});
   }
+  // below value returned by alertProvider
+  // will be saved to `task` table's tmpCache field.
+  // tmpCache default value is {}
+  return await alertProviders[taskDetail.alertProvider].exec({prevDoc, doc, taskDetail});
 }
 
 export { diffNotifier };

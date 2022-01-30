@@ -83,6 +83,9 @@ async function normalChecker(now, mqConn, mqChannel) {
 
   ])
   .toArray().then(docs => {
+    // TODO
+    // if we have same pageURL, then we should merge the 5 minutes' tasks to one pptr task.
+    // also need create another data structure to let taskHistory save multiple records for one pptr task.
     if (docs && docs.length) {
       docs.forEach(async (doc) => {
         // generate a random time to balance pptr's tasks

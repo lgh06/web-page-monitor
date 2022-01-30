@@ -38,9 +38,17 @@ async function singleTaskHistoryChecker (taskDetail, db){
         if(index === 0 || doc.checked) return;
         let filter = {_id: doc._id};
         // do something
+        let tmpCache = null;
         if(doc.textHash !== arr[index-1].textHash){
           // TODO send alert
-          await diffNotifier(arr[index-1], doc, taskDetail, db);
+          tmpCache = await diffNotifier(arr[index-1], doc, taskDetail, db);
+          if(tmpCache){
+            await db.collection('task').updateOne({_id: taskDetail._id}, {
+              $set: {
+                tmpCache,
+              }
+            });
+          }
         }
         await db.collection(collectionName).findOneAndUpdate(filter, {
           $set: {

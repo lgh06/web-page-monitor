@@ -45,6 +45,7 @@ async function alertSender({content, htmlContent, taskDetail}) {
   return {
     err: null,
     success: true,
+    prevAlertTime: Date.now(),
   }
 
 }
@@ -53,7 +54,13 @@ async function exec({prevDoc, doc, taskDetail}){
   console.log('inside provider nodemailer exec');
   let db = await getDB();
   let { content, htmlContent} = await alertFormatter({prevDoc, doc, taskDetail});
-  let alertResult = await alertSender({content, htmlContent, taskDetail});
+  let alertResult;
+  // debounce the alert
+  if(taskDetail.tmpCache && taskDetail.tmpCache.prevAlertTime && (Date.now() - taskDetail.tmpCache.prevAlertTime < 1000 * 60 * 30)){
+
+  }else{
+    alertResult = await alertSender({content, htmlContent, taskDetail});
+  }
   return alertResult;
 }
 
