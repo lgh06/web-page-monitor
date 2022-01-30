@@ -1,4 +1,5 @@
 import { Db } from "mongodb";
+import { getDB } from "./lib/index.mjs";
 /**
  * 
  * @param {WithId<Document>} prevDoc 

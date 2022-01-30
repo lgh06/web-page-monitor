@@ -20,6 +20,7 @@
     "crypto-js": "^4.1.1",
     "mongodb": "=4.3.1",
     "mqtt": "^4.3.4",
+    "nodemailer": "^6.7.2",
     "socket.io-client": "^4.4.1"
   },
   "devDependencies": {
