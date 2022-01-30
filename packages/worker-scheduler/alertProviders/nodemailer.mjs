@@ -34,9 +34,9 @@ async function alertSender({content, htmlContent, taskDetail}) {
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: '"Alert 通知" <alert@webmonitoralertoversea.codeshu.com>', // sender address
+    from: '"Changes Alert 变动通知" <alert@webmonitoralertoversea.codeshu.com>', // sender address
     to: taskDetail.userInfo.email || "hnnk@qq.com", // list of receivers
-    subject: `网页变动通知 - Web Site Changes Alert ${taskDetail.pageURL}`, // Subject line
+    subject: `网页变动通知-Web Site Changes Alert-${taskDetail.pageURL}`, // Subject line
     text: content || "Hello world?", // plain text body
     html: htmlContent || content || "<b>Hello world?</b>", // html body
   });
