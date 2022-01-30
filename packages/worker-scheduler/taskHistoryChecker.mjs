@@ -42,6 +42,7 @@ async function singleTaskHistoryChecker (taskDetail, db){
         if(doc.textHash !== arr[index-1].textHash){
           // TODO send alert
           tmpCache = await diffNotifier(arr[index-1], doc, taskDetail, db);
+          console.log('taskHistoryChecker tmpCache', tmpCache);
           if(tmpCache){
             await db.collection('task').updateOne({_id: taskDetail._id}, {
               $set: {
