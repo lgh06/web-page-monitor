@@ -13,7 +13,6 @@ async function alertFormatter({prevDoc, doc, taskDetail}) {
   let result = {
     content: JSON.stringify(prevDoc) + JSON.stringify(doc) + JSON.stringify(taskDetail),
     htmlContent : `<pre>${JSON.stringify(prevDoc)}</pre><pre>${JSON.stringify(doc)}</pre><pre>${JSON.stringify(taskDetail)}</pre>`,
-    taskDetail,
   };
   return result;
 }
@@ -54,7 +53,7 @@ async function exec({prevDoc, doc, taskDetail}){
   console.log('inside provider nodemailer exec');
   let db = await getDB();
   let { content, htmlContent} = await alertFormatter({prevDoc, doc, taskDetail});
-  let alertResult = await alertSender({content, htmlContent});
+  let alertResult = await alertSender({content, htmlContent, taskDetail});
   return alertResult;
 }
 
