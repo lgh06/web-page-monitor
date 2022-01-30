@@ -85,14 +85,20 @@ Next.js 3002 ( will be on 80 / 443 in production, someday)
 Static HTML 3001 on production. (maybe, or just use Next.js )  
 ~~socket.io server 3003~~ 
 
-## Run and Stop / 跑起来与停止  
-```
-npm install && npm run dev
+## Run and Stop in Local / 本地，跑起来与停止  
+```bash  
+# inside project root folder
+# without pm2
+npm install && npm run dev  
+# or with pm2
+npm install && npm start
+
 
 ```  
-You need to quit manually because we used `pm2`:  
+You need to quit manually because we used `pm2`  
+需要手动退出，因为用了`pm2`:  
 ```
-npm run stop
+npm stop
 ```
 
 ## other running notes  

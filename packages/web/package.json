@@ -3,7 +3,7 @@
   "private": true,
   "license": "See monorepo's LICENSE.md",
   "scripts": {
-    "dev": "concurrently --kill-others-on-fail \"next dev -p 3002\" \"wait-on http://localhost:3002/ && start http://localhost:3002/create_task_simp\"",
+    "dev": "concurrently --kill-others-on-fail \"next dev -p 3002\" \"wait-on http://localhost:3002/ && start http://localhost:3002/\"",
     "build": "next build",
     "static": "next build && next export",
     "start": "npm run dev",
