@@ -80,7 +80,7 @@ Then `pptr` execute one task then return task histories to another queue of Rabb
 For every task returned by `pptr`, we will use `taskHistoryChecker.mjs` to check if one task's history(pptr result) changes.  
 If we found one result's hash changed, then distribute this info ( which contains prevDoc, doc, taskDetail ) to `diffNotifier.mjs`.    
 
-- Third, `modeChecker`.  (TODO)
+- Third, `modeChecker`.  (TODO, or see if need to combine with step 4)  
 
 - 4th, check taskDetail's `alertProvider` property to send alerts by different alertProviders. (like mail, HTTP POST, phone call)  
 
