@@ -44,9 +44,9 @@ async function singleTaskHistoryChecker (taskDetail, db){
           tmpCache = await diffNotifier(arr[index-1], doc, taskDetail, db);
           console.log('taskHistoryChecker tmpCache', tmpCache);
           if(tmpCache){
-            await db.collection('task').updateOne({_id: taskDetail._id}, {
+            await db.collection('task').updateOne({_id: new ObjectId(taskDetail._id)}, {
               $set: {
-                tmpCache,
+                tmpCache: tmpCache,
               }
             });
           }
