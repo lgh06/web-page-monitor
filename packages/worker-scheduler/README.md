@@ -62,13 +62,27 @@ a React component or a Next.js Page should us `ComponentName` or `PageName`
   textHash: '',
   textContent: '',
   taskId: ObjectId(1), // id for task table
+  checked: 1, // if already checked by diff checker
 }
 
 ```
 
 
-## Usage
+## Concepts and Flow  
+`worker-scheduler.mjs` is the entry.  
 
-```
+- First,  it will create a interval to check `task` table's cron pattern every 5 minutes then update `task` table's 
+`nextExecuteTime` field.  
+Inside that `cronTaskChecker.mjs`,  tasks will be distributed to one queue of **RabbitMQ** with a MQ plugin called `rabbitmq-delayed-message-exchange` plugin.  
+Then `pptr` execute one task then return task histories to another queue of RabbitMQ.  
 
-```
+- Second, `resultSaver` will save histories got from RabbitMQ.  
+For every task returned by `pptr`, we will use `taskHistoryChecker.mjs` to check if one task's history(pptr result) changes.  
+If we found one result's hash changed, then distribute this info ( which contains prevDoc, doc, taskDetail ) to `diffNotifier.mjs`.    
+
+- Third, `modeChecker`.  (TODO)
+
+- 4th, check taskDetail's `alertProvider` property to send alerts by different alertProviders. (like mail, HTTP POST, phone call)  
+
+
+

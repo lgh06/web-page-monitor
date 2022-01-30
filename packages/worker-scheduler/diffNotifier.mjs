@@ -2,7 +2,7 @@ import { Db } from "mongodb";
 import { getDB } from "./lib/index.mjs";
 import * as alertProviders from "./alertProviders/index.mjs";
 /**
- * 
+ * send prevDoc and doc and taskDetail to different alertProviders
  * @param {WithId<Document>} prevDoc 
  * @param {WithId<Document>} doc 
  * @param {*} taskDetail 
