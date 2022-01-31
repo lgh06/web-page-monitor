@@ -2,4 +2,3 @@ node_modules/
 lerna-debug.log
 email-tpl.html
 packages/helper/globalConfig.prod.mjs
-packages/jsdiff
