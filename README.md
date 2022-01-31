@@ -99,7 +99,13 @@ You need to quit manually because we used `pm2`
 需要手动退出，因为用了`pm2`:  
 ```
 npm stop
-```
+```  
+
+## postinstall  
+we executed bellow commands in postinstall:  
+> installed pm2 and pm2-logrotate  
+
+> `git update-index --skip-worktree packages/helper/globalConfig.prod.mjs`  
 
 ## other running notes  
 [**\*\*packages/vendor-scripts-n-configs/README.md\*\***](packages/vendor-scripts-n-configs/README.md)  
@@ -115,3 +121,4 @@ see [LICENSE.md](./LICENSE.md)
 > https://daniel-gehuan-liu.notion.site/Web-Page-Monitor-b5910402c741496ea46cecd1a055eb25  
 > https://www.wolai.com/ahuan/xvh7PRocdkApx5p9rTmrDc  
 > https://github.com/lgh06/web-page-monitor/projects/1  
+
