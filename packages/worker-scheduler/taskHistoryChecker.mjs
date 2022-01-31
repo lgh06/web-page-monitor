@@ -27,7 +27,7 @@ async function singleTaskHistoryChecker (taskDetail, db){
   db = db || await getDB();
   let nowDate = new Date();
   db.collection(collectionName).find({
-    taskId: ObjectId(taskDetail._id),
+    taskId: new ObjectId(taskDetail._id),
     finishTime: {
       $gte: new Date(nowDate.setHours(-24)), /** 24 hours taskHistory */
     }
