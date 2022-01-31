@@ -40,6 +40,7 @@
     "./": "./"
   },
   "scripts": {
+    "build": "npm run clean && npx rollup -c",
     "clean": "rm -rf lib/ dist/",
     "build:node": "yarn babel --out-dir lib  --source-maps=inline src",
     "test": "grunt"
