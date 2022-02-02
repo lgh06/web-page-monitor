@@ -10,6 +10,7 @@
 [winscp link 2](https://sourceforge.net/projects/winscp/files/WinSCP/5.19.5/)  
 
 ## Ubuntu (or other linux)  
+服务器环境为Ubuntu Server 20.04 LTS  
 ### NodeJS的安装
 建议首先安装[nvm](https://github.com/nvm-sh/nvm)。由于github的访问并不稳定，可以通过jsdelivr.net的镜像来下载:  
 ```bash
@@ -37,5 +38,47 @@ https://github.com/fail2ban/fail2ban/issues/1903
 https://winscp.net/eng/docs/faq_su#sudo  
 https://daniel-gehuan-liu.notion.site/How-do-I-change-user-after-login-e-g-su-root-WinSCP-01b9aba7a28d4c8b9ca2751ac4ee402b  
 
+### 安装docker  
+> https://docs.docker.com/engine/install/ubuntu/  
+http://mirrors.ustc.edu.cn/help/docker-ce.html  
+
+> 也可使用 mirrors.ustc.edu.cn/docker-ce  
+mirrors.163.com/docker-ce  
+mirrors.cloud.tencent.com/docker-ce  
+mirrors.aliyun.com/docker-ce  
+
+> 以下是使用了腾讯云mirror的 安装docker的方法：
+
+```bash
+sudo apt-get update  
+
+sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release  
+
+curl -fsSL https://mirrors.cloud.tencent.com/docker-ce/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg  
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://mirrors.cloud.tencent.com/docker-ce/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null  
+
+sudo apt-get remove docker docker-engine docker.io containerd runc  
+sudo apt-get update  
+sudo apt-get install docker-ce docker-ce-cli containerd.io  
+```  
+
+### 安装docker-compose  
+> https://docs.docker.com/compose/install/#install-compose-on-linux-systems  
+https://github.com/docker/compose  
+https://docs.docker.com/compose/cli-command#install-on-linux  
+```
+
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+```
+> github.com = dn-dao-github-mirror.daocloud.io / get.daocloud.io
 
 
