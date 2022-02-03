@@ -79,6 +79,20 @@ sudo chmod +x /usr/libexec/docker/cli-plugins/docker-compose
 ```
 > github.com = dn-dao-github-mirror.daocloud.io / get.daocloud.io / github.com.cnpmjs.org
 
+### 配置国内docker hub源  
+```
+vi /etc/docker/daemon.json
+
+{
+"registry-mirrors": [
+  "https://mirror.ccs.tencentyun.com"
+]
+}
+
+
+sudo systemctl restart docker
+
+```
 
 ### docker教程
 https://www.katacoda.com/courses/container-runtimes  
