@@ -101,6 +101,7 @@ https://github.com/yeasy/docker_practice
 Dockerfile / Docker Compose / BuildKit  
 https://vuepress.mirror.docker-practice.com/buildx/buildkit/  
 https://docs.docker.com/language/nodejs/build-images/  
+https://docs.docker.com/develop/develop-images/build_enhancements/  
 手册  
 https://docs.docker.com/engine/reference/builder/  
 https://docs.docker.com/compose/compose-file/compose-file-v3/  
