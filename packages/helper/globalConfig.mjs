@@ -16,18 +16,26 @@ let globalConfigLocal = {
   pptrThreadNum: 2,
   pptrToWorkerQueue: 'testPptrHistoryQueue001',
   nodemailer: {
-    host: '',
-    port: 465,
-    secure: true, // true for 465, false for other ports
+    host: 'localhost',
+    port: 10260,
+    secure: false, // true for 465, false for other ports
     auth: {
-      user: '',
-      pass: '',
+      user: 'project.1',
+      pass: 'secret.1',
     },
-    from: '',
+    from: '"Changes Alert 变动通知" <alert@webmonitoralertali.passby.me>',
   }
 }
 
-let globalConfig = Object.assign({}, globalConfigLocal, globalConfigProd);
+let globalConfig;
+if(globalConfigProd.mailDebug){
+  // use local mail debug config
+  globalConfig = Object.assign({}, globalConfigLocal);
+}else{
+  // use aliyun mail send service
+  globalConfig = Object.assign({}, globalConfigLocal, globalConfigProd);
+}
+
 
 
 export { globalConfig }
