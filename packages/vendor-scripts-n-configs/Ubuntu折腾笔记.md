@@ -95,6 +95,9 @@ sudo systemctl restart docker
 
 ```
 
+### 配置docker日志清理
+https://docs.docker.com/config/containers/logging/configure/  
+
 ### docker教程
 https://www.katacoda.com/courses/container-runtimes  
 https://github.com/yeasy/docker_practice  
