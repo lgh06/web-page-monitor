@@ -98,3 +98,11 @@ sudo systemctl restart docker
 ### docker教程
 https://www.katacoda.com/courses/container-runtimes  
 https://github.com/yeasy/docker_practice  
+Dockerfile / Docker Compose / BuildKit  
+https://vuepress.mirror.docker-practice.com/buildx/buildkit/  
+https://docs.docker.com/language/nodejs/build-images/  
+手册  
+https://docs.docker.com/engine/reference/builder/  
+https://docs.docker.com/compose/compose-file/compose-file-v3/  
+docker compose启动顺序  
+https://docs.docker.com/compose/startup-order/  
