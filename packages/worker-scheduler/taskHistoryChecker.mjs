@@ -31,7 +31,7 @@ async function singleTaskHistoryChecker (taskDetail, db){
     finishTime: {
       $gte: new Date(nowDate.setHours(-24)), /** 24 hours taskHistory */
     }
-  }).sort({finishTime: -1}).limit( 6 * 24 ).toArray().then(async docs => {
+  }).sort({finishTime: -1}).limit( 6 * 6 ).toArray().then(async docs => {
     if(docs && docs.length){
       docs.filter(doc => (doc.err === null && doc.textHash !== null))
           .reverse().forEach(async (doc, index, arr) => {

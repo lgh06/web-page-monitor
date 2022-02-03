@@ -66,7 +66,7 @@ async function exec({prevDoc, doc, taskDetail}){
   let { content, htmlContent} = await alertFormatter({prevDoc, doc, taskDetail});
   let alertResult;
   // debounce the alert
-  if(taskDetail.tmpCache && taskDetail.tmpCache.prevAlertTime && (Date.now() - taskDetail.tmpCache.prevAlertTime < 1000 * 60 * 30)){
+  if(taskDetail.tmpCache && taskDetail.tmpCache.prevAlertTime && (Date.now() - taskDetail.tmpCache.prevAlertTime < 1000 * 60 * 60 * 3)){
 
   }else{
     alertResult = await alertSender({content, htmlContent, taskDetail});
