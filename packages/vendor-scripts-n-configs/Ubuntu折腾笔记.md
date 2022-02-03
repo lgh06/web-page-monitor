@@ -111,7 +111,7 @@ Next.js Docker
 https://nextjs.org/docs/deployment#docker-image  
 
 
-### RabbitMQ  
+### RabbitMQ docker 3.9 management  
 https://hub.docker.com/_/rabbitmq  
 https://github.com/docker-library/rabbitmq/  
 
@@ -124,4 +124,11 @@ sudo docker run -d --hostname my-rabbit --name some-rabbit  -p 15672:15672 -p 56
 sudo docker stop some-rabbit  
 sudo docker container rm some-rabbit  
 
-```
+```  
+
+plugins dir for official RabbitMQ docker image:
+`/opt/rabbitmq/plugins`  or  `/plugins`  
+> why? see [here](https://github.com/docker-library/rabbitmq/blob/8ab90ef58bb4e768dfac69e87fa079f9053c4816/3.9/ubuntu/Dockerfile#L268)  
+
+Exposed ports:
+> EXPOSE 4369 5671 5672 15691 15692 25672 15671 15672

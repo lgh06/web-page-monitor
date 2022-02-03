@@ -1,0 +1,1 @@
+docker build -f Dockerfile.RabbitMQ -t lgh06/rabbitmq-delayed .
