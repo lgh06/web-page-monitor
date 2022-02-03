@@ -29,10 +29,7 @@ async function alertSender({content, htmlContent, taskDetail}) {
     host: CONFIG.nodemailer.host,
     port: CONFIG.nodemailer.port,
     secure: CONFIG.nodemailer.secure, // true for 465, false for other ports
-    auth: {
-      user: CONFIG.nodemailer.user, // generated ethereal user
-      pass: CONFIG.nodemailer.pass, // generated ethereal password
-    },
+    auth: CONFIG.nodemailer.auth,
   });
 
   // send mail with defined transport object
@@ -48,6 +45,11 @@ async function alertSender({content, htmlContent, taskDetail}) {
     console.log("Message sent: %s", info.messageId);
   } catch (error) {
     console.error(error)
+    return {
+      err: 'mail send failed',
+      success: false,
+      prevAlertTime: 0,
+    };
   }finally{
 
   }
