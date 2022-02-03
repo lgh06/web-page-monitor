@@ -70,15 +70,15 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io
 ```  
 
 ### 安装docker-compose  
-> https://docs.docker.com/compose/install/#install-compose-on-linux-systems  
-https://github.com/docker/compose  
+> https://github.com/docker/compose  
 https://docs.docker.com/compose/cli-command#install-on-linux  
 ```
+sudo curl -SL https://get.daocloud.io/docker/compose/releases/download/v2.2.3/docker-compose-`uname -s`-`uname -m` -o /usr/libexec/docker/cli-plugins/docker-compose  
 
-sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+sudo chmod +x /usr/libexec/docker/cli-plugins/docker-compose
 ```
-> github.com = dn-dao-github-mirror.daocloud.io / get.daocloud.io
+> github.com = dn-dao-github-mirror.daocloud.io / get.daocloud.io / github.com.cnpmjs.org
 
 
+### docker教程
+https://www.katacoda.com/courses/container-runtimes  
