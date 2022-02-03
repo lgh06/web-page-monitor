@@ -109,3 +109,19 @@ docker compose启动顺序
 https://docs.docker.com/compose/startup-order/  
 Next.js Docker  
 https://nextjs.org/docs/deployment#docker-image  
+
+
+### RabbitMQ  
+https://hub.docker.com/_/rabbitmq  
+https://github.com/docker-library/rabbitmq/  
+
+
+```bash
+# start  REPLACE default guest user!!!!
+sudo docker run -d --hostname my-rabbit --name some-rabbit  -p 15672:15672 -p 5671:5671 -p 5672:5672 -e RABBITMQ_DEFAULT_USER=guest -e RABBITMQ_DEFAULT_PASS=guest rabbitmq:3-management  
+
+#stop & delete
+sudo docker stop some-rabbit  
+sudo docker container rm some-rabbit  
+
+```
