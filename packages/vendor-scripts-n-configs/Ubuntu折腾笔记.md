@@ -84,10 +84,10 @@ sudo chmod +x /usr/libexec/docker/cli-plugins/docker-compose
 vi /etc/docker/daemon.json
 
 {
-"registry-mirrors": [
-  "https://mirror.ccs.tencentyun.com",
-  "https://docker.mirrors.ustc.edu.cn/"
-]
+  "registry-mirrors": [
+    "https://mirror.ccs.tencentyun.com",
+    "https://docker.mirrors.ustc.edu.cn/"
+  ]
 }
 
 
