@@ -106,3 +106,5 @@ https://docs.docker.com/engine/reference/builder/
 https://docs.docker.com/compose/compose-file/compose-file-v3/  
 docker compose启动顺序  
 https://docs.docker.com/compose/startup-order/  
+Next.js Docker  
+https://nextjs.org/docs/deployment#docker-image  
