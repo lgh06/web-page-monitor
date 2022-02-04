@@ -112,6 +112,8 @@ docker compose启动顺序
 https://docs.docker.com/compose/startup-order/  
 Next.js Docker  
 https://nextjs.org/docs/deployment#docker-image  
+docker 非root用户  
+https://docs.docker.com/engine/install/linux-postinstall/  
 
 
 ### RabbitMQ docker 3.9 management  
