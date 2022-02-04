@@ -1,2 +1,2 @@
 docker volume create rabbitvolume  
-docker run -d --hostname my-host --name some-rabbit  -p 15672:15672 -p 5671:5671 -p 5672:5672 -e RABBITMQ_DEFAULT_USER=guest -e RABBITMQ_DEFAULT_PASS=guest --log-driver local -v rabbitvolume:/var/lib/rabbitmq --restart=always ccr.ccs.tencentyun.com/lgh06/rabbitmq-delayed:0.0.1
+docker run -d --hostname my-host --name some-rabbit  -p 15672:15672 -p 5672:5672 -e RABBITMQ_DEFAULT_USER=guest -e RABBITMQ_DEFAULT_PASS=guest --log-driver local -v rabbitvolume:/var/lib/rabbitmq --restart=always ccr.ccs.tencentyun.com/lgh06/rabbitmq-delayed:0.0.1
