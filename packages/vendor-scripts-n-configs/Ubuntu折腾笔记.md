@@ -27,7 +27,7 @@ nvm alias default 16
 npm i nrm -g --registry=https://registry.npmmirror.com
 nrm use taobao
 ```
-> https://npmmirror.com/mirrors/node/  https://npm.taobao.org/mirrors/node  https://cdn.npmmirror.com/binaries/node/  均可  
+> https://npmmirror.com/mirrors/node  https://npm.taobao.org/mirrors/node  https://cdn.npmmirror.com/binaries/node  均可  
 
 ### fail2ban的安装 （Ubuntu Server 可能会自带）  
 https://help.ubuntu.com/community/Fail2ban  
