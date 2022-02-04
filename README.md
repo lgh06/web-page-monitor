@@ -13,7 +13,8 @@ Github source code : [Link](https://github.com/lgh06/web-page-monitor)
 进行中。  
 ~~由用户在浏览器中预先输入的JS，操作puppeteer的行为。~~  以后再实现  
 还未最小化可用。  
-在Coding.net上的代码镜像: [链接](https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git)  
+在Coding.net上的代码镜像: [浏览链接](https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git) / 
+[git clone链接](https://e.coding.net/lgh06/web-page-monitor/web-page-monitor.git)  
 
 ## Intro (English)  
 - `web` is the website, for end users to use. created by Next.js. Connected to MongoDB. **NO CONNECT** ~~socket.io~~RabbitMQ for now.  
