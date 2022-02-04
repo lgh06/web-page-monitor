@@ -1,1 +1,1 @@
-docker build -f Dockerfile.RabbitMQ -t lgh06/rabbitmq-delayed .
+docker build -f Dockerfile.RabbitMQ -t ccr.ccs.tencentyun.com/lgh06/rabbitmq-delayed:0.0.1 .
