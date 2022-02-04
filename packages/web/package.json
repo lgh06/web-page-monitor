@@ -6,7 +6,9 @@
     "dev": "concurrently --kill-others-on-fail \"next dev -p 3002\" \"wait-on http://localhost:3002/ && start http://localhost:3002/\"",
     "build": "next build",
     "static": "next build && next export",
-    "start": "npm run dev",
+    "start": "npm run build && pm2 start npm --name \"web\" -- run \"nextstart\" --exp-backoff-restart-delay=100 && pm2 save",
+    "nextstart": "next start -p 3002",
+    "stop": "pm2 stop web --watch && pm2 delete web && pm2 save --force",
     "start-bak": "npm run static && concurrently \"next start -p 3002\" \"npx serve out -p 3001\"",
     "lint": "next lint"
   },
