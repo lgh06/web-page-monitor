@@ -136,4 +136,16 @@ plugins dir for official RabbitMQ docker image:
 > why? see [here](https://github.com/docker-library/rabbitmq/blob/8ab90ef58bb4e768dfac69e87fa079f9053c4816/3.9/ubuntu/Dockerfile#L268)  
 
 Exposed ports:
-> EXPOSE 4369 5671 5672 15691 15692 25672 15671 15672
+> EXPOSE 4369 5671 5672 15691 15692 25672 15671 15672  
+
+
+### root权限  
+
+腾讯云 Ubuntu Server 20.04 LTS， ubuntu用户：  
+```bash
+sudo -s  
+# or
+sudo su -root  
+# or 
+sudo su  
+```
