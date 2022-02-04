@@ -28,7 +28,7 @@ let globalConfigLocal = {
 }
 
 let globalConfig;
-if(globalConfigProd.mailDebug){
+if(globalConfigProd.globalDebug){
   // use local mail debug config
   globalConfig = Object.assign({}, globalConfigLocal);
 }else{
