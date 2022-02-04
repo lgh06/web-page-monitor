@@ -123,7 +123,7 @@ https://github.com/docker-library/rabbitmq/
 
 ```bash
 # start  REPLACE default guest user!!!!
-sudo docker run -d --hostname my-rabbit --name some-rabbit  -p 15672:15672 -p 5671:5671 -p 5672:5672 -e RABBITMQ_DEFAULT_USER=guest -e RABBITMQ_DEFAULT_PASS=guest rabbitmq:3-management  
+see sub folder
 
 #stop & delete
 sudo docker stop some-rabbit  
