@@ -21,7 +21,7 @@ async function alertFormatter({prevDoc, doc, taskDetail}) {
 }
 
 async function alertSender({content, htmlContent, taskDetail}) {
-  console.log(content);
+  // console.log(content);
   // create reusable transporter object using the default SMTP transport
   // https://nodemailer.com/about/
   // https://nodemailer.com/app/

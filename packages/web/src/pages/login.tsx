@@ -39,8 +39,6 @@ const LoginPage: NextPage = () => {
       setGiteeRedirectUri(fullUri)
       setUrl(genUrl(fullUri));
     }
-
-    console.log(router.query, router)
     if (code && provider) {
       getUserInfo(router.query);
     }
@@ -64,7 +62,6 @@ const LoginPage: NextPage = () => {
           });
           const emailResp = await resp2.json();
           // emailResp, array, may have multiple emailResp
-          console.log(emailResp)
           if (emailResp && emailResp.length && emailResp[0] && emailResp[0].email) {
             router.replace("/login")
             // TODO error catch and hint
