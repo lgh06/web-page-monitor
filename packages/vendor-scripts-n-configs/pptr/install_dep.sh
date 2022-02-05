@@ -1,0 +1,1 @@
+xargs -a dep.txt sudo apt-get install -y
