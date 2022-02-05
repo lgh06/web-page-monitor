@@ -2,6 +2,7 @@ import * as nm from "nodemailer";
 import { CONFIG } from "../CONFIG.mjs";
 import { getDB } from "../lib/index.mjs";
 import fs from "fs";
+import path from "path";
 import Handlebars from "handlebars";
 
 
@@ -10,6 +11,8 @@ import Handlebars from "handlebars";
 // const minAlertDebounce = 1000 * 60 * 60 * 1 // 1 hour
 const defaultAlertDebounce = 1000 * 60 * 3; // dev 3 minutes
 const minAlertDebounce = 1000 * 60 * 2 // dev 2 minutes
+const __dirname = (() => {let x = path.dirname(decodeURI(new URL(import.meta.url).pathname)); return path.resolve( (process.platform == "win32") ? x.substr(1) : x ); })();
+
 
 /**
  * 
@@ -19,7 +22,7 @@ const minAlertDebounce = 1000 * 60 * 2 // dev 2 minutes
  */
 async function alertFormatter({prevDoc, doc, taskDetail}) {
   console.log('inside alertFormatter');
-  let hbsTpl = fs.readFileSync('nodemailer-tpl-alert.hbs', 'utf8');
+  let hbsTpl = fs.readFileSync( path.resolve(__dirname, 'nodemailer-tpl-alert.hbs'), 'utf8');
   const template = Handlebars.compile(hbsTpl);
   let html = template({ prevDoc, doc, taskDetail });
   let result = {
