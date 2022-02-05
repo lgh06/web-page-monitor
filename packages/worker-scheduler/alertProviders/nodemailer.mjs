@@ -5,6 +5,10 @@ import fs from "fs";
 import path from "path";
 import Handlebars from "handlebars";
 
+Handlebars.registerHelper('json', function(context) {
+  return JSON.stringify(context);
+});
+
 
 // alertDebounce in milliseconds
 // const defaultAlertDebounce = 1000 * 60 * 60 * 3; // 3 hours
