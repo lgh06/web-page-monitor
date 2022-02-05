@@ -51,7 +51,7 @@ async function getClient(){
  */
 async function getDB(dbName, req){
   if (!dbName) {
-    dbName = 'webmonitordb'
+    dbName = CONFIG.dbName;
   }
   try {
     let dbClient = await getClient();

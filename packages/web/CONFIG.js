@@ -5,8 +5,9 @@ import { globalConfig } from "@webest/web-page-monitor-helper";
 let frontPort = String(process.env.NEXT_PUBLIC_DEV) === 'true' ? '3002' : '3001';
 console.log('frontPort',frontPort, process.env.NEXT_PUBLIC_DEV);
 let backPort = '3002';
-let host = (!globalConfig.globalDebug && globalConfig.nextHost) ? globalConfig.nextHost : 'localhost';
+let host = (globalConfig.useProdConfig && globalConfig.nextHost) ? globalConfig.nextHost : 'localhost';
 let CONFIG = {
+  dbName: '' || globalConfig.dbName,
   mongodbURI: '' || globalConfig.mongodbURI,
   frontHost: `http://${host}:${frontPort}`,
   backHost:`http://${host}:${backPort}`,

@@ -44,7 +44,7 @@ async function getClient(): Promise<MongoClient>{
 // can be used in both api middleware and in api.
 async function getDB(dbName?: string | undefined, req?: { dbClient: MongoClient; db: Db; }): Promise<Db | null>{
   if (!dbName) {
-    dbName = 'webmonitordb'
+    dbName = CONFIG.dbName;
   }
   try {
     let dbClient = await getClient();

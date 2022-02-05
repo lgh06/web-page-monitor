@@ -3,6 +3,7 @@ import { globalConfigProd } from "./globalConfig.prod.mjs";
 // if not defined here, use sub-package defined values
 // TODO
 let globalConfigLocal = {
+  dbName: 'webmonitordb',
   mongodbURI: 'mongodb://localhost:27017/',
   mqConnString: 'amqp://localhost',
   // below values both used in worker / scheduler
@@ -28,12 +29,12 @@ let globalConfigLocal = {
 }
 
 let globalConfig;
-if(globalConfigProd.globalDebug){
-  // use local mail debug config
-  globalConfig = Object.assign({}, globalConfigLocal);
-}else{
+if(globalConfigProd.useProdConfig){
   // use aliyun mail send service
   globalConfig = Object.assign({}, globalConfigLocal, globalConfigProd);
+}else{
+  // use local mail debug config
+  globalConfig = Object.assign({}, globalConfigLocal);
 }
 
 
