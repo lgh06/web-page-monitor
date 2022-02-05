@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import React, { useEffect, } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring';
 import CONFIG from '../../CONFIG';
@@ -18,18 +18,29 @@ const Back = () => {
 
 let [cn, cs] = genClassNameAndString(styles);
 const LoginPage: NextPage = () => {
-  let url = `https://gitee.com/oauth/authorize?client_id=${CONFIG.giteeOauthClientId}&redirect_uri=${encodeURIComponent(CONFIG.giteeRedirectUri)}&response_type=code`;
+  let genUrl = (giteeRedirectUri: string) => {
+    return `https://gitee.com/oauth/authorize?client_id=${CONFIG.giteeOauthClientId}&redirect_uri=${encodeURIComponent(giteeRedirectUri)}&response_type=code`;
+  }
+  const [giteeRedirectUri, setGiteeRedirectUri] = useState(CONFIG.giteeRedirectUri);
+  const [url, setUrl] = useState(genUrl(giteeRedirectUri));
 
   const router = useRouter();
   const [userInfo, setUserInfo] = useImmerAtom(userInfoAtom);
+
 
   /**
    * get user info from gitee
    */
   useEffect(() => {
     let { code, provider } = router.query;
+    if(typeof window !== 'undefined'){
+      let { origin } = window.location;
+      let fullUri = `${origin}/api/login?provider=gitee`;
+      setGiteeRedirectUri(fullUri)
+      setUrl(genUrl(fullUri));
+    }
 
-    console.log(router.query)
+    console.log(router.query, router)
     if (code && provider) {
       getUserInfo(router.query);
     }
@@ -38,7 +49,7 @@ const LoginPage: NextPage = () => {
       if (provider === 'gitee' && code) {
         // if we have code, then ask for access_token
         // https://gitee.com/api/v5/oauth_doc#/list-item-2
-        let resp = await fetch(`https://gitee.com/oauth/token?grant_type=authorization_code&code=${code}&client_id=${CONFIG.giteeOauthClientId}&redirect_uri=${CONFIG.giteeRedirectUri}`, {
+        let resp = await fetch(`https://gitee.com/oauth/token?grant_type=authorization_code&code=${code}&client_id=${CONFIG.giteeOauthClientId}&redirect_uri=${giteeRedirectUri}`, {
           method: 'POST',
           body: new URLSearchParams(`client_secret=${CONFIG.giteeOauthClientSecret}`)
         });
