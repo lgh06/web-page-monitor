@@ -18,6 +18,7 @@
     "@webest/web-page-monitor-helper": "*",
     "amqplib": "^0.8.0",
     "crypto-js": "^4.1.1",
+    "handlebars": "^4.7.7",
     "mongodb": "=4.3.1",
     "mqtt": "^4.3.4",
     "nodemailer": "^6.7.2",

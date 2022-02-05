@@ -1,10 +1,13 @@
 import * as nm from "nodemailer";
 import { CONFIG } from "../CONFIG.mjs";
 import { getDB } from "../lib/index.mjs";
+import fs from "fs";
+import Handlebars from "handlebars";
 
 
 // alertDebounce in milliseconds
 const defaultAlertDebounce = 1000 * 60 * 60 * 3; // 3 hours
+const minAlertDebounce = 1000 * 60 * 60 * 1 // 1 hour
 
 /**
  * 
@@ -14,11 +17,12 @@ const defaultAlertDebounce = 1000 * 60 * 60 * 3; // 3 hours
  */
 async function alertFormatter({prevDoc, doc, taskDetail}) {
   console.log('inside alertFormatter');
+  let hbsTpl = fs.readFileSync('nodemailer-tpl-alert.hbs', 'utf8');
+  const template = Handlebars.compile(hbsTpl);
+  let html = template({ prevDoc, doc, taskDetail });
   let result = {
-    content: JSON.stringify(prevDoc) + JSON.stringify(doc) + JSON.stringify(taskDetail),
-    htmlContent : `变动前：<pre>${JSON.stringify(prevDoc)}</pre><br/>
-    变动后：<pre>${JSON.stringify(doc)}</pre><br/>
-    任务详情：<pre>${JSON.stringify(taskDetail)}</pre>`,
+    content: 'Task id: ' + taskDetail._id + ' has Changed. 任务有变动，请去网页监控系统查看。',
+    htmlContent : `${html}`,
   };
   return result;
 }
@@ -72,7 +76,7 @@ async function exec({prevDoc, doc, taskDetail}) {
   }
   // defaultAlertDebounce is 3 hours.
   // min alertDebounce is 1 hour.
-  if( Number.isNaN(alertDebounce) || alertDebounce < 3600 * 1000){
+  if( Number.isNaN(alertDebounce) || alertDebounce < minAlertDebounce){
     alertDebounce = defaultAlertDebounce;
   }
   console.log('inside provider nodemailer exec');
