@@ -11,16 +11,17 @@ import * as alertProviders from "./alertProviders/index.mjs";
 async function diffNotifier(prevDoc, doc, taskDetail, db) {
   db = db || await getDB();
   console.log('inside diffNotifier');
-  if(taskDetail && taskDetail.extra && taskDetail.extra.alertProvider){
+  if(taskDetail.extra && taskDetail.extra.alertProvider){
     // TODO
   }else{
+    taskDetail.extra = taskDetail.extra || {};
     taskDetail.extra.alertProvider = 'nodemailer';
   }
   // below value returned by alertProvider
   // will be saved to `task` table's tmpCache field.
   // tmpCache default value is null.
   let tmpCache = null;
-  tmpCache = await alertProviders[taskDetail.alertProvider].exec({prevDoc, doc, taskDetail})
+  tmpCache = await alertProviders[taskDetail.extra.alertProvider].exec({prevDoc, doc, taskDetail})
   console.log('tmpCache, aka provider result', tmpCache);
   return tmpCache;
 }
