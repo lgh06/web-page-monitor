@@ -12,8 +12,12 @@ let createTaskDetail = {
   pageURLMsg: 'please input a url start with https:// or http://',
   pageURLPassed: true,
   cssSelector: 'body',
-  detectMode: '1',
-  detectWord: '',
+  extra: {
+    detectMode: '1',
+    detectWord: '',
+    alertProvider: '',
+    alertDebounce: '',
+  },
 }
 
 export const createTaskDetailAtom = atom(createTaskDetail);

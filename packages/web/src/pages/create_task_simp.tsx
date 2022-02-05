@@ -84,12 +84,12 @@ const CreateTaskGeekPage: NextPage = () => {
     }
     if(index === '4' || index === '5'){
       setTaskDetail(v =>{
-        v.detectMode = String(inputElement.value)
+        v.extra.detectMode = String(inputElement.value)
       })
     }
     if(index === '6'){
       setTaskDetail(v =>{
-        v.detectWord = String(inputElement.value);
+        v.extra.detectWord = String(inputElement.value);
       })
     }
   }
@@ -125,7 +125,7 @@ const CreateTaskGeekPage: NextPage = () => {
     return !(
       taskDetail.cronPassed 
       && taskDetail.pageURLPassed 
-      && (taskDetail.detectMode === '2' ? taskDetail.detectWord : true) 
+      && (taskDetail.extra.detectMode === '2' ? taskDetail.extra.detectWord : true) 
     );
   }
   
@@ -179,7 +179,7 @@ const CreateTaskGeekPage: NextPage = () => {
       </input>
     </div>
     <div>
-      Please input a CSS selector, if you do not know what that is, kee it as default &quot;body&quot;<br/>
+      Please input a CSS selector, if you do not know what that is, keep it as default &quot;body&quot;<br/>
       <input
         placeholder="CSS selector"
         data-input-index="3"
@@ -192,18 +192,18 @@ const CreateTaskGeekPage: NextPage = () => {
     <div>
       Notify you when : <br/>
       <label htmlFor="detectMode1">
-        <input data-input-index="4" type="radio" id="detectMode1" checked={taskDetail.detectMode === '1'} name="detectMode" onChange={handleInputChange} value="1" />
+        <input data-input-index="4" type="radio" id="detectMode1" checked={taskDetail.extra.detectMode === '1'} name="detectMode" onChange={handleInputChange} value="1" />
         Page Changes
       </label> <br/>
       <label htmlFor="detectMode2">
-        <input data-input-index="5" type="radio" id="detectMode2" checked={taskDetail.detectMode === '2'} name="detectMode" onChange={handleInputChange} value="2" />
+        <input data-input-index="5" type="radio" id="detectMode2" checked={taskDetail.extra.detectMode === '2'} name="detectMode" onChange={handleInputChange} value="2" />
         Word(s) Show up
       </label>
       <input 
       data-input-index="6" 
       type="text" 
       placeholder="input some words" 
-      value={taskDetail.detectWord}
+      value={taskDetail.extra.detectWord}
       onChange={handleInputChange}
       />
     </div>

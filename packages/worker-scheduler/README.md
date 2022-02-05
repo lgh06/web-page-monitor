@@ -31,9 +31,13 @@ a React component or a Next.js Page should us `ComponentName` or `PageName`
   mode: 'simp',
   pageURL: 'https://news.qq.com/',
   cssSelector: 'body',
-  // pageChange "1" wordShowUp "2"
-  detectMode: "1",
-  detectWord: "招聘" // must be set when detectMode is 2
+  extra:{
+    // pageChange "1" wordShowUp "2"
+    detectMode: "1",
+    detectWord: "招聘", // must be set when detectMode is 2
+    alertProvider: '',
+    alertDebounce: '',
+  },
   // worker_id(or hashed by task_id char code)
   workerId: null,
   // if null, any pptr can execute this task, randomly
@@ -81,7 +85,7 @@ For every task returned by `pptr`, we will use `taskHistoryChecker.mjs` to check
 If we found one result's hash changed, then distribute this info ( which contains prevDoc, doc, taskDetail ) to `diffNotifier.mjs`.    
 
 - Third, `modeChecker`.  (TODO, or see if need to combine with step 4)  
-> TODO hide detectMode & detectWord & alertProvider to taskDetail's extraParams property when create a task in web.  
+> TODO hide detectMode & detectWord & alertProvider & alertDebounce to taskDetail's `extra` property when create a task in web.  
 > then check those fields inside worker's alertProviders.  
 > let alertProviders determine how to detect changes and when to send an alert.  
 > e.g.  

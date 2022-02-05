@@ -11,10 +11,10 @@ import * as alertProviders from "./alertProviders/index.mjs";
 async function diffNotifier(prevDoc, doc, taskDetail, db) {
   db = db || await getDB();
   console.log('inside diffNotifier');
-  if(taskDetail.alertProvider){
-
+  if(taskDetail && taskDetail.extra && taskDetail.extra.alertProvider){
+    // TODO
   }else{
-    taskDetail.alertProvider = 'nodemailer';
+    taskDetail.extra.alertProvider = 'nodemailer';
   }
   // below value returned by alertProvider
   // will be saved to `task` table's tmpCache field.

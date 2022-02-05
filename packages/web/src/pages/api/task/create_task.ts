@@ -16,8 +16,7 @@ export default async function handler(
     pageURL,
     userId,
     mode,
-    detectMode,
-    detectWord,
+    extra,
   } = req.body.taskDetail;
 
   // endTime in DB is a Date type
@@ -55,7 +54,7 @@ export default async function handler(
   }
   const newDoc = {
     cronSyntax, endTime, cssSelector, pageURL, userId, mode, nextExecuteTime,
-    detectMode, detectWord,
+    extra,
   };
 
   let filter = {
@@ -64,8 +63,6 @@ export default async function handler(
     cssSelector,
     userId,
     mode,
-    detectMode,
-    detectWord,
   }
   let db = await getDB();
   // create index for task collection

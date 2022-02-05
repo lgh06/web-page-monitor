@@ -64,8 +64,14 @@ async function alertSender({content, htmlContent, taskDetail}) {
 
 }
 
-async function exec({prevDoc, doc, taskDetail, alertDebounce = defaultAlertDebounce}) {
-  if(parseInt(alertDebounce, 10) <= defaultAlertDebounce){
+async function exec({prevDoc, doc, taskDetail}) {
+  let alertDebounce = defaultAlertDebounce;
+  if(taskDetail && taskDetail.extra &&  taskDetail.extra.alertDebounce){
+    alertDebounce = parseInt(taskDetail.extra.alertDebounce, 10);
+  }
+  // defaultAlertDebounce is 3 hours.
+  // min alertDebounce is 1 hour.
+  if( Number.isNaN(alertDebounce) || alertDebounce <= 3600 * 1000){
     alertDebounce = defaultAlertDebounce;
   }
   console.log('inside provider nodemailer exec');
