@@ -77,7 +77,7 @@ async function exec({prevDoc, doc, taskDetail}) {
   }
   console.log('inside provider nodemailer exec');
   if(!CONFIG.nodemailer.host) return null;
-  let db = await getDB();
+  // let db = await getDB();
   let { content, htmlContent} = await alertFormatter({prevDoc, doc, taskDetail});
   let alertResult;
   // debounce the alert
