@@ -3,6 +3,9 @@ import { CONFIG } from "../CONFIG.mjs";
 import { getDB } from "../lib/index.mjs";
 
 
+// alertDebounce in milliseconds
+const defaultAlertDebounce = 1000 * 60 * 60 * 3; // 3 hours
+
 /**
  * 
  * @param {WithId<Document>} prevDoc 
@@ -61,14 +64,17 @@ async function alertSender({content, htmlContent, taskDetail}) {
 
 }
 
-async function exec({prevDoc, doc, taskDetail}){
+async function exec({prevDoc, doc, taskDetail, alertDebounce = defaultAlertDebounce}) {
+  if(parseInt(alertDebounce, 10) <= defaultAlertDebounce){
+    alertDebounce = defaultAlertDebounce;
+  }
   console.log('inside provider nodemailer exec');
   if(!CONFIG.nodemailer.host) return null;
   let db = await getDB();
   let { content, htmlContent} = await alertFormatter({prevDoc, doc, taskDetail});
   let alertResult;
   // debounce the alert
-  if(taskDetail.tmpCache && taskDetail.tmpCache.prevAlertTime && (Date.now() - taskDetail.tmpCache.prevAlertTime < 1000 * 60 * 60 * 3)){
+  if(taskDetail.tmpCache && taskDetail.tmpCache.prevAlertTime && (Date.now() - taskDetail.tmpCache.prevAlertTime < alertDebounce)){
 
   }else{
     alertResult = await alertSender({content, htmlContent, taskDetail});
