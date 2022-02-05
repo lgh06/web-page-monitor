@@ -20,6 +20,7 @@ async function resultSaver(mqConn, mqChannel) {
 
   await channel.assertQueue(queue, {
     durable: true,
+    messageTtl: 86400000,
   });
 
   await channel.prefetch(5);

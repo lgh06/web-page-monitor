@@ -19,6 +19,7 @@ just execute one command in cmd, that's done.  see bat located in `other_tools`
 
 ### modify RabbitMQ's TTL & expires for messages  
 https://www.rabbitmq.com/ttl.html#message-ttl-using-policy  
+This value already set in JS codes.
 ```
 // messages auto expires after 24 hours
 // for windows
@@ -29,6 +30,7 @@ rabbitmqctl set_policy TTL ".*" "{""message-ttl"":86400000}" --apply-to queues
 
 ### modify RabbitMQ's Delivery Acknowledgement Timeout  
 https://www.rabbitmq.com/consumers.html#acknowledgement-timeout  
+This value already set in docker.
 in `rabbitmq.conf`, add  
 ```  
 consumer_timeout = 80000000  
