@@ -6,8 +6,10 @@ import Handlebars from "handlebars";
 
 
 // alertDebounce in milliseconds
-const defaultAlertDebounce = 1000 * 60 * 60 * 3; // 3 hours
-const minAlertDebounce = 1000 * 60 * 60 * 1 // 1 hour
+// const defaultAlertDebounce = 1000 * 60 * 60 * 3; // 3 hours
+// const minAlertDebounce = 1000 * 60 * 60 * 1 // 1 hour
+const defaultAlertDebounce = 1000 * 60 * 3; // dev 3 minutes
+const minAlertDebounce = 1000 * 60 * 2 // dev 2 minutes
 
 /**
  * 
