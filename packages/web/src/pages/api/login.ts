@@ -20,5 +20,6 @@ export default async function handler(
 ) {
   const { provider, code} = req.query;
 
-  res.redirect(307, `${CONFIG.frontHost}/login?code=${code}&provider=${provider}`)
+  let host =  'http://' + req.headers.host;
+  res.redirect(307, `${host}/login?code=${code}&provider=${provider}`)
 }
