@@ -37,10 +37,11 @@ async function alertSender({content, htmlContent, taskDetail}) {
 
   // send mail with defined transport object
   try {
+    let domain = taskDetail.pageURL.replace(/^https?:\/\//,'').replace(/^www\./, '').split('/')[0];
     let info = await transporter.sendMail({
       from: CONFIG.nodemailer.from, // sender address
       to: taskDetail.userInfo.email || "hnnk@qq.com", // list of receivers
-      subject: `网页变动通知-Web Site Changes Alert-${taskDetail.pageURL}`, // Subject line
+      subject: `网页变动通知-Web Site Changes Alert-${domain}`, // Subject line
       text: content || "Hello world?", // plain text body
       html: htmlContent || content || "<b>Hello world?</b>", // html body
     });
