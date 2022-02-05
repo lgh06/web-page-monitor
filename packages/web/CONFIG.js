@@ -9,7 +9,7 @@ let host = (globalConfig.useProdConfig && globalConfig.nextHost) ? globalConfig.
 let CONFIG = {
   dbName: '' || globalConfig.dbName,
   mongodbURI: '' || globalConfig.mongodbURI,
-  frontHost: `http://${host}:${frontPort}`,
+  // frontHost: `http://${host}:${frontPort}`,
   backHost:`http://${host}:${backPort}`,
   giteeOauthClientId: '4606a3bd7aa3597e4de3e3c84687b8a2df672a6485cd112886cd1aee1cdc5d0e',
   giteeOauthClientSecret: '580f096526be60dcc2ef88bb933182918c2e2a6ab1f6880fbd54ac33db5a69a2',
