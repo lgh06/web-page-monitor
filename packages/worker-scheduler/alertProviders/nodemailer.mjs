@@ -72,7 +72,7 @@ async function exec({prevDoc, doc, taskDetail}) {
   }
   // defaultAlertDebounce is 3 hours.
   // min alertDebounce is 1 hour.
-  if( Number.isNaN(alertDebounce) || alertDebounce <= 3600 * 1000){
+  if( Number.isNaN(alertDebounce) || alertDebounce < 3600 * 1000){
     alertDebounce = defaultAlertDebounce;
   }
   console.log('inside provider nodemailer exec');
