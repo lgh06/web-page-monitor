@@ -42,10 +42,11 @@ https://daniel-gehuan-liu.notion.site/How-do-I-change-user-after-login-e-g-su-ro
 > https://docs.docker.com/engine/install/ubuntu/  
 http://mirrors.ustc.edu.cn/help/docker-ce.html  
 
-> 也可使用 mirrors.ustc.edu.cn/docker-ce  
+> download.docker.com 替换为 mirrors.ustc.edu.cn/docker-ce  
 mirrors.163.com/docker-ce  
 mirrors.cloud.tencent.com/docker-ce  
 mirrors.aliyun.com/docker-ce  
+mirrors.tencentyun.com/docker-ce  （腾讯云内网）
 
 > 以下是使用了腾讯云mirror的 安装docker的方法：
 
