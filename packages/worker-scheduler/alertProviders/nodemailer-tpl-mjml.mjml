@@ -3,11 +3,11 @@
     <mj-section>
       <mj-column>
         <!-- First column content -->
-        测试
+        <mj-text>测试</mj-text>
       </mj-column>
       <mj-column>
         <!-- Second column content -->
-        测试
+        <mj-text>测试</mj-text>
       </mj-column>
     </mj-section>
   </mj-body>

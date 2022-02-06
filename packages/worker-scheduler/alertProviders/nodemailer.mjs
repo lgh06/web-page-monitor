@@ -32,11 +32,12 @@ async function alertFormatter({prevDoc, doc, taskDetail}) {
   console.log('inside alertFormatter');
   let hbsOutput = template({ prevDoc, doc, taskDetail });
   let mjmlOutput = mjml2html(mjmlTpl)
+  console.log(mjmlOutput.errors);
 
 
   let result = {
     content: 'Task id: ' + taskDetail._id + ' has Changed. 任务有变动，请去网页监控系统查看。',
-    htmlContent : `${mjmlOutput}`,
+    htmlContent : `${mjmlOutput.html}`,
   };
   return result;
 }
