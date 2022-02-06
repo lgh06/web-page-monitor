@@ -4,13 +4,8 @@ import { getDB } from "../lib/index.mjs";
 import fs from "fs";
 import path from "path";
 import Handlebars from "handlebars";
-import mjml2html from 'mjml'
-
-
-Handlebars.registerHelper('json', function(context) {
-  return JSON.stringify(context);
-});
-
+import mjml2html from 'mjml';
+import * as Diff from 'diff';
 
 // alertDebounce in milliseconds
 // const defaultAlertDebounce = 1000 * 60 * 60 * 3; // 3 hours
@@ -18,9 +13,7 @@ Handlebars.registerHelper('json', function(context) {
 const defaultAlertDebounce = 1000 * 60 * 3; // dev 3 minutes
 const minAlertDebounce = 1000 * 60 * 2 // dev 2 minutes
 const __dirname = (() => {let x = path.dirname(decodeURI(new URL(import.meta.url).pathname)); return path.resolve( (process.platform == "win32") ? x.substr(1) : x ); })();
-let hbsTpl = fs.readFileSync( path.resolve(__dirname, 'nodemailer-tpl-alert.hbs'), 'utf8');
-const template = Handlebars.compile(hbsTpl);
-let mjmlTpl = fs.readFileSync( path.resolve(__dirname, 'nodemailer-tpl-mjml.mjml'), 'utf8');
+
 
 /**
  * 
@@ -30,14 +23,50 @@ let mjmlTpl = fs.readFileSync( path.resolve(__dirname, 'nodemailer-tpl-mjml.mjml
  */
 async function alertFormatter({prevDoc, doc, taskDetail}) {
   console.log('inside alertFormatter');
-  let hbsOutput = template({ prevDoc, doc, taskDetail });
+
+  // load mjml basic html structure template
+  let mjmlTpl = fs.readFileSync( path.resolve(__dirname, 'nodemailer-tpl-mjml.mjml'), 'utf8');
+  // let hbsOutput = template({ prevDoc, doc, taskDetail });
+  // mjml output
   let mjmlOutput = mjml2html(mjmlTpl)
   console.log(mjmlOutput.errors);
+  // mjml html output will be used as handlebars template
+  let template = Handlebars.compile(mjmlOutput.html);
+
+
+  let diff = Diff.diffWords(prevDoc.textContent, doc.textContent);
+  let diffHTML = "<div>";
+
+  for (let i = 0; i < diff.length; i++) {
+    if (diff[i].added && diff[i + 1] && diff[i + 1].removed) {
+      let swap = diff[i];
+      diff[i] = diff[i + 1];
+      diff[i + 1] = swap;
+    }
+
+    let inner;
+    if (diff[i].removed) {
+      inner = `<del>${diff[i].value}</del>`
+    } else if (diff[i].added) {
+      inner = `<ins>${diff[i].value}</ins>`
+    } else {
+      inner = `<span>${diff[i].value}</span>`
+    }
+    diffHTML += inner;
+  }
+  diffHTML += "</div>";
+  console.log(diffHTML)
+
+  let htmlDiffContent = template({diffHTML})
+
+  // TODO
+  // mjml import css and responsive
+  // handlebars replace inner {{diffHTML}} and other values
 
 
   let result = {
     content: 'Task id: ' + taskDetail._id + ' has Changed. 任务有变动，请去网页监控系统查看。',
-    htmlContent : `${mjmlOutput.html}`,
+    htmlContent : `${htmlDiffContent}`,
   };
   return result;
 }
