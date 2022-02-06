@@ -29,13 +29,13 @@ async function alertFormatter({prevDoc, doc, taskDetail}) {
   // let hbsOutput = template({ prevDoc, doc, taskDetail });
   // mjml output
   let mjmlOutput = mjml2html(mjmlTpl)
-  console.log(mjmlOutput.errors);
+  // console.log(mjmlOutput.errors);
   // mjml html output will be used as handlebars template
   let template = Handlebars.compile(mjmlOutput.html);
 
 
   let diff = Diff.diffWords(prevDoc.textContent, doc.textContent);
-  let diffHTML = "<div>";
+  let diffHTML = "";
 
   for (let i = 0; i < diff.length; i++) {
     if (diff[i].added && diff[i + 1] && diff[i + 1].removed) {
@@ -46,18 +46,20 @@ async function alertFormatter({prevDoc, doc, taskDetail}) {
 
     let inner;
     if (diff[i].removed) {
-      inner = `<del>${diff[i].value}</del>`
+      inner = `<mj-text class="del">${diff[i].value}</mj-text>`
     } else if (diff[i].added) {
-      inner = `<ins>${diff[i].value}</ins>`
+      inner = `<mj-text class="ins">${diff[i].value}</mj-text>`
     } else {
-      inner = `<span>${diff[i].value}</span>`
+      inner = `<mj-text>${diff[i].value}</mj-text>`
     }
     diffHTML += inner;
   }
-  diffHTML += "</div>";
+  // diffHTML += "";
   console.log(diffHTML)
 
-  let htmlDiffContent = template({diffHTML})
+  let middleTpl = template({diffHTML});
+
+  let htmlDiffContent = mjml2html(middleTpl).html;
 
   // TODO
   // mjml import css and responsive
