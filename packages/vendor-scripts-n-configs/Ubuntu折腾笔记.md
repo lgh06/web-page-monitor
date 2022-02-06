@@ -87,7 +87,8 @@ vi /etc/docker/daemon.json
 {
   "registry-mirrors": [
     "https://mirror.ccs.tencentyun.com",
-    "https://docker.mirrors.ustc.edu.cn/"
+    "https://docker.mirrors.ustc.edu.cn/",
+    "https://mirror.baidubce.com"
   ]
 }
 
