@@ -31,7 +31,7 @@ async function alertFormatter({prevDoc, doc, taskDetail}) {
 
 
   let diff = Diff.diffWords(prevDoc.textContent, doc.textContent);
-  let diffMJML = "";
+  let diffHTML = "";
 
   for (let i = 0; i < diff.length; i++) {
     if (diff[i].added && diff[i + 1] && diff[i + 1].removed) {
@@ -42,18 +42,18 @@ async function alertFormatter({prevDoc, doc, taskDetail}) {
 
     let inner;
     if (diff[i].removed) {
-      inner = `<mj-text class="del">${diff[i].value}</mj-text>`
+      inner = `<del>${diff[i].value}</del>`
     } else if (diff[i].added) {
-      inner = `<mj-text class="ins">${diff[i].value}</mj-text>`
+      inner = `<ins>${diff[i].value}</ins>`
     } else {
-      inner = `<mj-text>${diff[i].value}</mj-text>`
+      inner = `<span>${diff[i].value}</span>`
     }
-    diffMJML += inner;
+    diffHTML += inner;
   }
-  // diffMJML += "";
-  console.log(diffMJML)
+  // diffHTML += "";
+  console.log(diffHTML)
 
-  let middleTpl = template({diffMJML});
+  let middleTpl = template({diffHTML});
 
   let htmlDiffContent = mjml2html(middleTpl).html;
 

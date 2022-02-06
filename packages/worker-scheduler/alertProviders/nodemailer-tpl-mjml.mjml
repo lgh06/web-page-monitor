@@ -1,4 +1,32 @@
 <mjml>
+  <mj-head>
+    <mj-style>
+      .diffresult{
+        white-space: pre-wrap;
+      }
+      del {
+        text-decoration: line-through;
+        background: #ffb3b3;
+      }
+      ins {
+        background: #ccffcb;
+        text-decoration: underline;
+      }
+    </mj-style>
+    <mj-style inline="inline">
+      .diffresult{
+        white-space: pre-wrap;
+      }
+      del {
+        text-decoration: line-through;
+        background: #ffb3b3;
+      }
+      ins {
+        background: #ccffcb;
+        text-decoration: underline;
+      }
+    </mj-style>
+  </mj-head>
   <mj-body>
     <mj-section>
       <mj-column>
@@ -7,7 +35,9 @@
       </mj-column>
       <mj-column>
         <!-- Second column content -->
-        {{{diffMJML}}}
+        <mj-text css-class="diffresult">
+          {{{diffHTML}}}
+        </mj-text>
       </mj-column>
     </mj-section>
   </mj-body>
