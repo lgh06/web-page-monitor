@@ -7,7 +7,7 @@
       </mj-column>
       <mj-column>
         <!-- Second column content -->
-        {{{diffHTML}}}
+        {{{diffMJML}}}
       </mj-column>
     </mj-section>
   </mj-body>

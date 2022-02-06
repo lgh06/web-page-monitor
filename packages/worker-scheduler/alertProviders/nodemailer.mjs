@@ -26,16 +26,12 @@ async function alertFormatter({prevDoc, doc, taskDetail}) {
 
   // load mjml basic html structure template
   let mjmlTpl = fs.readFileSync( path.resolve(__dirname, 'nodemailer-tpl-mjml.mjml'), 'utf8');
-  // let hbsOutput = template({ prevDoc, doc, taskDetail });
-  // mjml output
-  let mjmlOutput = mjml2html(mjmlTpl)
-  // console.log(mjmlOutput.errors);
-  // mjml html output will be used as handlebars template
-  let template = Handlebars.compile(mjmlOutput.html);
+
+  let template = Handlebars.compile(mjmlTpl);
 
 
   let diff = Diff.diffWords(prevDoc.textContent, doc.textContent);
-  let diffHTML = "";
+  let diffMJML = "";
 
   for (let i = 0; i < diff.length; i++) {
     if (diff[i].added && diff[i + 1] && diff[i + 1].removed) {
@@ -52,18 +48,17 @@ async function alertFormatter({prevDoc, doc, taskDetail}) {
     } else {
       inner = `<mj-text>${diff[i].value}</mj-text>`
     }
-    diffHTML += inner;
+    diffMJML += inner;
   }
-  // diffHTML += "";
-  console.log(diffHTML)
+  // diffMJML += "";
+  console.log(diffMJML)
 
-  let middleTpl = template({diffHTML});
+  let middleTpl = template({diffMJML});
 
   let htmlDiffContent = mjml2html(middleTpl).html;
 
   // TODO
   // mjml import css and responsive
-  // handlebars replace inner {{diffHTML}} and other values
 
 
   let result = {
