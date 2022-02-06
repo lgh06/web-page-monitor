@@ -4,6 +4,8 @@ import { getDB } from "../lib/index.mjs";
 import fs from "fs";
 import path from "path";
 import Handlebars from "handlebars";
+import mjml2html from 'mjml'
+
 
 Handlebars.registerHelper('json', function(context) {
   return JSON.stringify(context);
@@ -16,7 +18,9 @@ Handlebars.registerHelper('json', function(context) {
 const defaultAlertDebounce = 1000 * 60 * 3; // dev 3 minutes
 const minAlertDebounce = 1000 * 60 * 2 // dev 2 minutes
 const __dirname = (() => {let x = path.dirname(decodeURI(new URL(import.meta.url).pathname)); return path.resolve( (process.platform == "win32") ? x.substr(1) : x ); })();
-
+let hbsTpl = fs.readFileSync( path.resolve(__dirname, 'nodemailer-tpl-alert.hbs'), 'utf8');
+const template = Handlebars.compile(hbsTpl);
+let mjmlTpl = fs.readFileSync( path.resolve(__dirname, 'nodemailer-tpl-mjml.mjml'), 'utf8');
 
 /**
  * 
@@ -26,12 +30,13 @@ const __dirname = (() => {let x = path.dirname(decodeURI(new URL(import.meta.url
  */
 async function alertFormatter({prevDoc, doc, taskDetail}) {
   console.log('inside alertFormatter');
-  let hbsTpl = fs.readFileSync( path.resolve(__dirname, 'nodemailer-tpl-alert.hbs'), 'utf8');
-  const template = Handlebars.compile(hbsTpl);
-  let html = template({ prevDoc, doc, taskDetail });
+  let hbsOutput = template({ prevDoc, doc, taskDetail });
+  let mjmlOutput = mjml2html(mjmlTpl)
+
+
   let result = {
     content: 'Task id: ' + taskDetail._id + ' has Changed. 任务有变动，请去网页监控系统查看。',
-    htmlContent : `${html}`,
+    htmlContent : `${mjmlOutput}`,
   };
   return result;
 }

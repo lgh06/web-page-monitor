@@ -1,0 +1,14 @@
+<mjml>
+  <mj-body>
+    <mj-section>
+      <mj-column>
+        <!-- First column content -->
+        测试
+      </mj-column>
+      <mj-column>
+        <!-- Second column content -->
+        测试
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
