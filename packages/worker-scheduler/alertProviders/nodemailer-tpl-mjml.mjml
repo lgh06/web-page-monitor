@@ -45,14 +45,14 @@
         </mj-text>
       </mj-column>
     </mj-section>
-    <mj-section>
+    <mj-section padding="0px 0px">
       <mj-column>
-        <mj-text css-class="diffresult">
+        <mj-text css-class="diffresult" align="justify">
           {{{diffHTML}}}
         </mj-text>
       </mj-column>
     </mj-section>
-    <mj-section>
+    <mj-section padding="0px 0px">
       <mj-column>
         <mj-text>
           You can go to the page which you created the task for more details. <br/>
