@@ -162,3 +162,4 @@ https://stackoverflow.com/a/54064268/5332156
 https://docs.mongodb.com/v5.0/reference/connection-string/#components  
 https://docs.mongodb.com/v5.0/reference/connection-string/#authentication-options  
 https://docs.mongodb.com/v5.0/reference/system-users-collection/#system.users-collection  
+https://docs.mongodb.com/manual/core/security-users/#authentication-database  
