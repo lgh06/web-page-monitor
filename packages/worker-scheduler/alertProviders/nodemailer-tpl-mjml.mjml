@@ -38,8 +38,10 @@
     <mj-section>
       <mj-column>
         <mj-text align="center">
-        Task: {{taskDetail.extra.alias}} has changed <br/>
-        任务: {{taskDetail.extra.alias}} 发生了变动
+        Task: {{taskDetail.extra.alias}} has changed. <br/>
+        任务: {{taskDetail.extra.alias}} 发生了变动。 <br/>
+        Changes are listed below: <br/>
+        请看下方的变动对比： <br/>
         </mj-text>
       </mj-column>
     </mj-section>
@@ -47,6 +49,14 @@
       <mj-column>
         <mj-text css-class="diffresult">
           {{{diffHTML}}}
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section>
+      <mj-column>
+        <mj-text>
+          You can go to page XXX for more details. <br/>
+          你可以去 XXX 页面查看更多详情。 <br/>
         </mj-text>
       </mj-column>
     </mj-section>
