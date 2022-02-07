@@ -13,7 +13,7 @@ async function simpleModeTask({browser, taskDetail}){
       height: 1080,
       deviceScaleFactor: 1,
     });
-    await page.goto(pageURL);
+    await page.goto(pageURL,{waitUntil: 'networkidle2'});
   
     await page.waitForSelector(cssSelector);
     let matchedElement = await page.$(cssSelector);
@@ -38,7 +38,7 @@ async function simpleMode(taskDetail) {
 
   let prodLauchOption = {
     // TODO read limit from MQ from worker from DB.
-    limit: 5,
+    limit: 7,
   }
   let usedLauchOption = CONFIG.debug ? debugLaunchOption : prodLauchOption
 
