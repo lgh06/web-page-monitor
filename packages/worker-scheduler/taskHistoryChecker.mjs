@@ -5,11 +5,6 @@ import { Db } from "mongodb";
 let collectionName = 'taskHistory';
 
 /**
- * subscribe mongodb record changes
- * and send alerts to alertProviders
- */
-
-/**
  * 
  * @param {Db} db 
  */
