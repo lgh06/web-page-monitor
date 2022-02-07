@@ -9,6 +9,7 @@ let CONFIG = {
   queueBinding: '' || globalConfig.queueBinding,
   pptrToWorkerQueue: '' || globalConfig.pptrToWorkerQueue,
   nodemailer: globalConfig.nodemailer,
+  useProdConfig: globalConfig.useProdConfig,
 };
 
 

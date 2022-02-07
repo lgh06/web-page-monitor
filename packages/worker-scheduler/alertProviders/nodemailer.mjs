@@ -8,12 +8,16 @@ import mjml2html from 'mjml';
 import * as Diff from 'diff';
 
 // alertDebounce in milliseconds
-// const defaultAlertDebounce = 1000 * 60 * 60 * 3; // 3 hours
-// const minAlertDebounce = 1000 * 60 * 60 * 1 // 1 hour
-const defaultAlertDebounce = 1000 * 60 * 3; // dev 3 minutes
-const minAlertDebounce = 1000 * 60 * 2 // dev 2 minutes
+let defaultAlertDebounce = 1000 * 60 * 3; // dev 3 minutes
+let minAlertDebounce = 1000 * 60 * 2 // dev 2 minutes
+if(CONFIG.useProdConfig){
+  defaultAlertDebounce = 1000 * 60 * 60 * 3; // 3 hours
+  minAlertDebounce = 1000 * 60 * 60 * 1 // 1 hour
+}
 const __dirname = (() => {let x = path.dirname(decodeURI(new URL(import.meta.url).pathname)); return path.resolve( (process.platform == "win32") ? x.substr(1) : x ); })();
-
+// load mjml basic html structure template
+let mjmlTpl = fs.readFileSync( path.resolve(__dirname, 'nodemailer-tpl-mjml.mjml'), 'utf8');
+let template = Handlebars.compile(mjmlTpl);
 
 /**
  * 
@@ -23,12 +27,6 @@ const __dirname = (() => {let x = path.dirname(decodeURI(new URL(import.meta.url
  */
 async function alertFormatter({prevDoc, doc, taskDetail}) {
   console.log('inside alertFormatter');
-
-  // load mjml basic html structure template
-  let mjmlTpl = fs.readFileSync( path.resolve(__dirname, 'nodemailer-tpl-mjml.mjml'), 'utf8');
-
-  let template = Handlebars.compile(mjmlTpl);
-
 
   let diff = Diff.diffWords(prevDoc.textContent, doc.textContent);
   let diffHTML = "";
