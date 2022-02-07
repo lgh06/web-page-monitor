@@ -151,3 +151,14 @@ sudo su -root
 # or 
 sudo su  
 ```
+
+### MongoDB 用户名 密码 设置  
+https://stackoverflow.com/questions/37423659/how-to-create-user-in-mongodb-with-docker-compose  
+https://stackoverflow.com/a/70244418/5332156  
+https://stackoverflow.com/questions/42912755/how-to-create-a-db-for-mongodb-container-on-start-up  
+https://stackoverflow.com/a/54064268/5332156  
+
+### MongoDB conn string & authSource
+https://docs.mongodb.com/v5.0/reference/connection-string/#components  
+https://docs.mongodb.com/v5.0/reference/connection-string/#authentication-options  
+https://docs.mongodb.com/v5.0/reference/system-users-collection/#system.users-collection  
