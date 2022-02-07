@@ -51,8 +51,8 @@ async function alertFormatter({prevDoc, doc, taskDetail}) {
       diffHTML += inner;
     }
   }else{
-    diffHTML = `The text content on the page is too long to conpare. Please check the page manually.<br>
-    页面上的文本太长了，无法对比。请手动检查。`;
+    diffHTML = `Sorry, the text content on the page is too long to compare. Please check the page manually.<br/>
+    抱歉，页面上的文本太长了，无法对比。请手动查看。`;
   }
 
   let middleTpl = template({diffHTML, taskDetail});
