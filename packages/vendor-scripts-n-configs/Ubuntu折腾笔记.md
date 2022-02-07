@@ -152,6 +152,11 @@ sudo su -root
 sudo su  
 ```
 
+### pm2  
+```bash
+pm2 startup
+```
+
 ### MongoDB 用户名 密码 设置  
 https://stackoverflow.com/questions/37423659/how-to-create-user-in-mongodb-with-docker-compose  
 https://stackoverflow.com/a/70244418/5332156  
