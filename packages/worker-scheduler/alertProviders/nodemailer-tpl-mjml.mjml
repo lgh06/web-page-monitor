@@ -27,15 +27,13 @@
       }
     </mj-style>
   </mj-head>
-  <mj-body width="1080px">
+  <mj-body>
     <mj-section>
       <mj-column>
-        <!-- First column content -->
-        <mj-text>Task: {{{taskDetail.extra.alias}}} has changed</mj-text>
-        <mj-text>任务: {{{taskDetail.extra.alias}}} 发生了变动</mj-text>
-      </mj-column>
-      <mj-column>
-        <!-- Second column content -->
+        <mj-text align="center">
+        Task: {{{taskDetail.extra.alias}}} has changed <br/>
+        任务: {{{taskDetail.extra.alias}}} 发生了变动
+        </mj-text>
         <mj-text css-class="diffresult">
           {{{diffHTML}}}
         </mj-text>
