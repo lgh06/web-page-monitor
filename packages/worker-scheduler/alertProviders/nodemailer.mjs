@@ -32,27 +32,30 @@ async function alertFormatter({prevDoc, doc, taskDetail}) {
 
   let diff = Diff.diffWords(prevDoc.textContent, doc.textContent);
   let diffHTML = "";
-
-  for (let i = 0; i < diff.length; i++) {
-    if (diff[i].added && diff[i + 1] && diff[i + 1].removed) {
-      let swap = diff[i];
-      diff[i] = diff[i + 1];
-      diff[i + 1] = swap;
+  if(diff.length){
+    for (let i = 0; i < diff.length; i++) {
+      if (diff[i].added && diff[i + 1] && diff[i + 1].removed) {
+        let swap = diff[i];
+        diff[i] = diff[i + 1];
+        diff[i + 1] = swap;
+      }
+  
+      let inner;
+      if (diff[i].removed) {
+        inner = `<del>${diff[i].value}</del>`
+      } else if (diff[i].added) {
+        inner = `<ins>${diff[i].value}</ins>`
+      } else {
+        inner = `<span>${diff[i].value}</span>`
+      }
+      diffHTML += inner;
     }
-
-    let inner;
-    if (diff[i].removed) {
-      inner = `<del>${diff[i].value}</del>`
-    } else if (diff[i].added) {
-      inner = `<ins>${diff[i].value}</ins>`
-    } else {
-      inner = `<span>${diff[i].value}</span>`
-    }
-    diffHTML += inner;
+  }else{
+    diffHTML = `The text content on the page is too long to conpare. Please check the page manually.<br>
+    页面上的文本太长了，无法对比。请手动检查。`;
   }
-  // diffHTML += "";
-  console.log(diffHTML)
 
+  // diffHTML += "";
   let middleTpl = template({diffHTML});
 
   let htmlDiffContent = mjml2html(middleTpl).html;
