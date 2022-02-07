@@ -85,7 +85,7 @@ async function alertSender({content, htmlContent, taskDetail}) {
     let info = await transporter.sendMail({
       from: CONFIG.nodemailer.from, // sender address
       to: taskDetail.userInfo.email || "hnnk@qq.com", // list of receivers
-      subject: `网页变动通知 Web Site Changes Alert ${taskDetail.extra.alias}`, // Subject line
+      subject: `网页变动通知 Web Page Changes Alert`, // Subject line
       text: content || "Hello world?", // plain text body
       html: htmlContent || content || "<b>Hello world?</b>", // html body
     });
