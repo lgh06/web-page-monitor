@@ -55,8 +55,8 @@
     <mj-section>
       <mj-column>
         <mj-text>
-          You can go to page XXX for more details. <br/>
-          你可以去 XXX 页面查看更多详情。 <br/>
+          You can go to the page which you created the task for more details. <br/>
+          你可以去创建此任务的页面查看更多详情。 <br/>
         </mj-text>
       </mj-column>
     </mj-section>
