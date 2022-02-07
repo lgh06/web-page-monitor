@@ -50,7 +50,7 @@ const FaqPage: NextPage = () => {
       <p>Watch / Monitor a web page&apos;s changes, send you a email alert, or phone call alert (Work in Progress).</p>
       <h2> Why should I choose your service, not choose A,B,C...?</h2>
       <p>Open Source, affordable, and we use modern techniques like Headless Chromium, 
-        so you can watch any URL you want, on the cloud, or on your local computer</p>
+        so you can monitor any URL you want, on the cloud, or on your local computer</p>
       <h2 id="WhatIsACronSyntaxCronPattern"> What Is A Cron Syntax / Cron Pattern ?</h2>
       <p>We used <span>node-cron</span> inside to parse cron patterns / syntax, go to  &nbsp;
         <a target="_blank" rel="noreferrer" href="https://github.com/kelektiv/node-cron/blob/master/README.md#available-cron-patterns">https://github.com/kelektiv/node-cron/blob/master/README.md#available-cron-patterns</a>
