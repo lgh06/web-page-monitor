@@ -27,7 +27,7 @@
       }
     </mj-style>
   </mj-head>
-  <mj-body width="1280px">
+  <mj-body width="1080px">
     <mj-section>
       <mj-column>
         <!-- First column content -->
