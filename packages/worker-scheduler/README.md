@@ -85,15 +85,11 @@ For every task returned by `pptr`, we will use `taskHistoryChecker.mjs` to check
 If we found one result's hash changed, then distribute this info ( which contains prevDoc, doc, taskDetail ) to `diffNotifier.mjs`.    
 
 - Third, `modeChecker`.  (TODO, or see if need to combine with step 4)  
-> TODO hide detectMode & detectWord & alertProvider & alertDebounce to taskDetail's `extra` property when create a task in web.  
-> then check those fields inside worker's alertProviders.  
-> let alertProviders determine how to detect changes and when to send an alert.  
-> e.g.  
-> 1. a task without a alertProvider prop, will use defaultPovider and any changes will cause an alert.  
-> 1. a task with a wordShowThenMailProvider prop, will use that provider check if have changes and whether to send alert or not.  
 
 
 - 4th, check taskDetail's `alertProvider` property to send alerts by different alertProviders. (like mail, HTTP POST, phone call)  
 
+> TODO 
+> 1. a task with a wordShowThenMailProvider prop, will use that provider check if have changes and whether to send alert or not.  
 
 
