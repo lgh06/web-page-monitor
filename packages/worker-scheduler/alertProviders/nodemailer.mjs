@@ -55,12 +55,13 @@ async function alertFormatter({prevDoc, doc, taskDetail}) {
     页面上的文本太长了，无法对比。请手动检查。`;
   }
 
-  let middleTpl = template({diffHTML});
+  let middleTpl = template({diffHTML, taskDetail});
 
   let htmlDiffContent = mjml2html(middleTpl).html;
 
   let result = {
-    content: 'Task id: ' + taskDetail._id + ' has Changed. 任务有变动，请去网页监控系统查看。',
+    content: `The task ${taskDetail.extra.alias} has Changed, please go to web site monitor to view details. 
+    任务${taskDetail.extra.alias}有变动，请去网页监控系统查看详细信息。`,
     htmlContent : `${htmlDiffContent}`,
   };
   return result;
@@ -84,7 +85,7 @@ async function alertSender({content, htmlContent, taskDetail}) {
     let info = await transporter.sendMail({
       from: CONFIG.nodemailer.from, // sender address
       to: taskDetail.userInfo.email || "hnnk@qq.com", // list of receivers
-      subject: `网页变动通知-Web Site Changes Alert-${domain}`, // Subject line
+      subject: `网页变动通知 Web Site Changes Alert ${taskDetail.extra.alias}`, // Subject line
       text: content || "Hello world?", // plain text body
       html: htmlContent || content || "<b>Hello world?</b>", // html body
     });
