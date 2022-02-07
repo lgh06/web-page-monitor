@@ -39,7 +39,7 @@
       <mj-column>
         <mj-text align="center">
         Task: {{taskDetail.extra.alias}} has changed. <br/>
-        任务: {{taskDetail.extra.alias}} 发生了变动。 <br/>
+        任务: {{taskDetail.extra.alias}} 发生了变动。 <br/> <br/>
         Changes are listed below: <br/>
         请看下方的变动对比： <br/>
         </mj-text>
