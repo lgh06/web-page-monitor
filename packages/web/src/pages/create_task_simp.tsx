@@ -21,6 +21,7 @@ const CreateTaskGeekPage: NextPage = () => {
       v.endLocalMinuteString = CronTime.toLocalISOString(nowDate, 7*60*24);
       v.endTime = new Date(v.endLocalMinuteString).valueOf()
       v.startLocalMinuteString = CronTime.toLocalISOString(nowDate, 10);
+      v.extra.alias = (Math.floor((nowDate.valueOf()/1000))).toString(16).toUpperCase();
     })
   }
 
@@ -92,6 +93,11 @@ const CreateTaskGeekPage: NextPage = () => {
         v.extra.detectWord = String(inputElement.value);
       })
     }
+    if(index === '7'){
+      setTaskDetail(v =>{
+        v.extra.alias = String(inputElement.value);
+      });
+    }
   }
 
   async function handleBtnClick(ev: MouseEvent<HTMLButtonElement> ) {
@@ -126,6 +132,8 @@ const CreateTaskGeekPage: NextPage = () => {
       taskDetail.cronPassed 
       && taskDetail.pageURLPassed 
       && (taskDetail.extra.detectMode === '2' ? taskDetail.extra.detectWord : true) 
+      && taskDetail.cssSelector
+      && taskDetail.extra.alias
     );
   }
   
@@ -187,6 +195,16 @@ const CreateTaskGeekPage: NextPage = () => {
         onChange={handleInputChange}
       >
 
+      </input>
+    </div>
+    <div>
+      Please input an alias name of this task, or keep it as default.<br/>
+      <input
+        placeholder="task alias name"
+        data-input-index="7"
+        value={taskDetail.extra.alias}
+        onChange={handleInputChange}
+      >
       </input>
     </div>
     <div>

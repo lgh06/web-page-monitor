@@ -13,6 +13,7 @@ let createTaskDetail = {
   pageURLPassed: true,
   cssSelector: 'body',
   extra: {
+    alias: (Math.floor((Date.now()/1000))).toString(16).toUpperCase(),
     detectMode: '1',
     detectWord: '',
     alertProvider: '',

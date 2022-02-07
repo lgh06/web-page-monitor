@@ -55,14 +55,9 @@ async function alertFormatter({prevDoc, doc, taskDetail}) {
     页面上的文本太长了，无法对比。请手动检查。`;
   }
 
-  // diffHTML += "";
   let middleTpl = template({diffHTML});
 
   let htmlDiffContent = mjml2html(middleTpl).html;
-
-  // TODO
-  // mjml import css and responsive
-
 
   let result = {
     content: 'Task id: ' + taskDetail._id + ' has Changed. 任务有变动，请去网页监控系统查看。',
