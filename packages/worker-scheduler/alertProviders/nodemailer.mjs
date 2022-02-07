@@ -60,8 +60,8 @@ async function alertFormatter({prevDoc, doc, taskDetail}) {
   let htmlDiffContent = mjml2html(middleTpl).html;
 
   let result = {
-    content: `The task ${taskDetail.extra.alias} has Changed, please go to web site monitor to view details. 
-    任务${taskDetail.extra.alias}有变动，请去网页监控系统查看详细信息。`,
+    content: `The task ${taskDetail.extra.alias} has Changed, please go to web site monitor to view details.  
+任务${taskDetail.extra.alias}有变动，请去网页监控系统查看详细信息。`,
     htmlContent : `${htmlDiffContent}`,
   };
   return result;

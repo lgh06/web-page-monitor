@@ -28,12 +28,23 @@
     </mj-style>
   </mj-head>
   <mj-body>
+    <mj-section background-color="#f0f0f0">
+      <mj-column>
+        <mj-text font-style="italic" font-size="20px" color="#626262">
+        Web Page Changes Alert 网页变更提醒
+        </mj-text>
+      </mj-column>
+    </mj-section>
     <mj-section>
       <mj-column>
         <mj-text align="center">
-        Task: {{{taskDetail.extra.alias}}} has changed <br/>
-        任务: {{{taskDetail.extra.alias}}} 发生了变动
+        Task: {{taskDetail.extra.alias}} has changed <br/>
+        任务: {{taskDetail.extra.alias}} 发生了变动
         </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section>
+      <mj-column>
         <mj-text css-class="diffresult">
           {{{diffHTML}}}
         </mj-text>
