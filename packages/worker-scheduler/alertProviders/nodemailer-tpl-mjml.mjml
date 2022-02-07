@@ -5,11 +5,11 @@
         white-space: pre-wrap;
       }
       del {
+        background-color: #ffb3b3;
         text-decoration: line-through;
-        background: #ffb3b3;
       }
       ins {
-        background: #ccffcb;
+        background-color: #ccffcb;
         text-decoration: underline;
       }
     </mj-style>
@@ -18,16 +18,16 @@
         white-space: pre-wrap;
       }
       del {
+        background-color: #ffb3b3;
         text-decoration: line-through;
-        background: #ffb3b3;
       }
       ins {
-        background: #ccffcb;
+        background-color: #ccffcb;
         text-decoration: underline;
       }
     </mj-style>
   </mj-head>
-  <mj-body>
+  <mj-body width="1280px">
     <mj-section>
       <mj-column>
         <!-- First column content -->
