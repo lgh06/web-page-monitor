@@ -49,6 +49,11 @@ export default async function handler(
   if (!nextExecuteTime) {
     return res.status(400).json({ err: 'please check input value.' + Array(errorMsg).join(' ') })
   }
+  // for easy to compare
+  // if one task's first execute time is very far from now.
+  if(nextExecuteTime - nowTimestamp >= 1000 * 60 * 30){
+    nextExecuteTime = nowTimestamp + 1000 * 60 * 16;
+  }
   if(typeof userId === 'string'){
     userId = new ObjectId(userId);
   }
