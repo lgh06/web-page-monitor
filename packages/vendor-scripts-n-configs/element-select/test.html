@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/css-selector-generator@3.5.4/build/index.js"></script>
 </head>
 
 <body>
@@ -25,10 +26,69 @@
   </div>
 
   <div id="result"></div>
+  <div>h1
+
+    <span>444</span>
+    <span>555</span>
+  </div>
+  <div>h1
+
+    <span>444</span>
+    <span>555</span>
+  </div>
+  <div>h1
+
+    <span>444</span>
+    <span>555</span>
+  </div>
+  <div>h1
+
+    <span>444</span>
+    <span>555</span>
+  </div>
+  <div>h1
+
+    <span>444</span>
+    <span>555</span>
+  </div>
+  <div>h1
+
+    <span>444</span>
+    <span>555</span>
+  </div>
+  <div>h1
+
+    <span>444</span>
+    <span>555</span>
+  </div>
+  <div>h1
+
+    <span>444</span>
+    <span>555</span>
+  </div>
+  <div>h1
+
+    <span>444</span>
+    <span>555</span>
+  </div>
+
   <script>
     (function () {
-      // https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent
-      document.addEventListener('mousemove', e => {
+
+      let prevEleArr = [];
+
+      function setBorder(element, color = 'red') {
+        if (!element) return;
+        element.style.border = `1px solid ${color}`;
+      }
+
+      function removeBorder(element) {
+        if (!element) return;
+        element.style.border = '';
+      }
+
+      function mousemoveHandler(e) {
+        let currEleArr = [];
 
         // 相对于整个页面
         // https://stackoverflow.com/questions/8039214/need-to-find-the-boundary-of-the-element-on-which-the-user-clicks
@@ -37,11 +97,34 @@
         // 相对于浏览器可视范围
         // https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
         // https://developer.mozilla.org/en-US/docs/Web/API/Document/elementFromPoint
-
+        // https://developer.mozilla.org/en-US/docs/Web/API/Document/elementsFromPoint
 
         console.log(e)
-        document.querySelector('#result').innerHTML = `${JSON.stringify(e)}`
-      });
+        let { clientX, clientY, pageX, pageY, } = e;
+        document.querySelector('#result').innerHTML = `${JSON.stringify({ clientX, clientY, pageX, pageY, })}`
+
+        currEleArr[0] = document.elementFromPoint(clientX, clientY);
+
+        if (currEleArr[0] !== prevEleArr[0]) {
+          removeBorder(prevEleArr[0]);
+          setBorder(currEleArr[0]);
+          prevEleArr[0] = currEleArr[0];
+
+        } else {
+
+        }
+
+      }
+
+
+      // https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent
+      document.addEventListener('mousemove', mousemoveHandler);
+
+      document.addEventListener('click', (e) => {
+        document.removeEventListener('mousemove', mousemoveHandler);
+        removeBorder(prevEleArr[0]);
+        document.querySelector('#result').innerHTML += `choosed: ${CssSelectorGenerator.getCssSelector(prevEleArr[0])}`
+      })
 
     })();
   </script>
