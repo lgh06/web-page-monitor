@@ -74,7 +74,7 @@
   <div id="floating"></div>
   <style>
     #floating{
-      position: fixed;
+      position: absolute;
       background-color: red;
       opacity: 0.5;
       z-index: -10000;
@@ -101,10 +101,12 @@
         prevEleArr[0] = element;
         let rects = element.getClientRects();
         // console.log(rects.length, rects)
+        let y = document.documentElement.scrollTop;
+        let x = document.documentElement.scrollLeft;
         Array.from(rects).forEach((rect, i) => {
           if (i>0) return;
-          floatingEle.style.top = `${rect.top}px`;
-          floatingEle.style.left = `${rect.left}px`;
+          floatingEle.style.top = `${rect.top + y}px`;
+          floatingEle.style.left = `${rect.left + x}px`;
           floatingEle.style.width = `${rect.width}px`;
           floatingEle.style.height = `${rect.height}px`;
         });
