@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div>test</div>
+  <div>h1</div>
+
+  <div>test
+
+    <p>222</p>
+    <p>333</p>
+  </div>
+  <div>h1
+
+    <span>444</span>
+    <span>555</span>
+  </div>
+
+  <div id="result"></div>
+  <script>
+    (function () {
+      // https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent
+      document.addEventListener('mousemove', e => {
+
+        // 相对于整个页面
+        // https://stackoverflow.com/questions/8039214/need-to-find-the-boundary-of-the-element-on-which-the-user-clicks
+        // Element.getClientRects()
+
+        // 相对于浏览器可视范围
+        // https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
+        // https://developer.mozilla.org/en-US/docs/Web/API/Document/elementFromPoint
+
+
+        console.log(e)
+        document.querySelector('#result').innerHTML = `${JSON.stringify(e)}`
+      });
+
+    })();
+  </script>
+</body>
+
+</html>
