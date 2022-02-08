@@ -71,7 +71,15 @@
     <span>444</span>
     <span>555</span>
   </div>
-
+  <div id="floating"></div>
+  <style>
+    #floating{
+      position: fixed;
+      background-color: red;
+      opacity: 0.5;
+      z-index: -10000;
+    }
+  </style>
   <script>
     (function () {
 
@@ -87,6 +95,21 @@
         element.style.border = '';
       }
 
+      let floatingEle = document.getElementById('floating');
+      function setFlowtingTo(element) {
+        if(!element) return;
+        prevEleArr[0] = element;
+        let rects = element.getClientRects();
+        // console.log(rects.length, rects)
+        Array.from(rects).forEach((rect, i) => {
+          if (i>0) return;
+          floatingEle.style.top = `${rect.top}px`;
+          floatingEle.style.left = `${rect.left}px`;
+          floatingEle.style.width = `${rect.width}px`;
+          floatingEle.style.height = `${rect.height}px`;
+        });
+      }
+
       function mousemoveHandler(e) {
         let currEleArr = [];
 
@@ -99,32 +122,26 @@
         // https://developer.mozilla.org/en-US/docs/Web/API/Document/elementFromPoint
         // https://developer.mozilla.org/en-US/docs/Web/API/Document/elementsFromPoint
 
-        console.log(e)
+        // console.log(e)
         let { clientX, clientY, pageX, pageY, } = e;
         document.querySelector('#result').innerHTML = `${JSON.stringify({ clientX, clientY, pageX, pageY, })}`
 
         currEleArr[0] = document.elementFromPoint(clientX, clientY);
-
-        if (currEleArr[0] !== prevEleArr[0]) {
-          removeBorder(prevEleArr[0]);
-          setBorder(currEleArr[0]);
-          prevEleArr[0] = currEleArr[0];
-
-        } else {
-
-        }
-
+        setFlowtingTo(currEleArr[0]);
       }
 
 
       // https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent
       document.addEventListener('mousemove', mousemoveHandler);
 
-      document.addEventListener('click', (e) => {
+      let clickHandler = function (e) {
         document.removeEventListener('mousemove', mousemoveHandler);
-        removeBorder(prevEleArr[0]);
-        document.querySelector('#result').innerHTML += `choosed: ${CssSelectorGenerator.getCssSelector(prevEleArr[0])}`
-      })
+        document.querySelector('#result').innerHTML += `choosed: ${CssSelectorGenerator.getCssSelector(prevEleArr[0])}`;
+        // floatingEle.style = '';
+        document.removeEventListener('click', clickHandler);
+      }
+
+      document.addEventListener('click', clickHandler);
 
     })();
   </script>
