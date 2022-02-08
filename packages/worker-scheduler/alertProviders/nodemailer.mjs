@@ -30,7 +30,7 @@ async function alertFormatter({prevDoc, doc, taskDetail}) {
 
   let diff = Diff.diffWords(prevDoc.textContent, doc.textContent);
   let diffHTML = "";
-  if(diff.length){
+  if(diff.length && diff.find(v => (v.added || v.removed))){
     for (let i = 0; i < diff.length; i++) {
       if (diff[i].added && diff[i + 1] && diff[i + 1].removed) {
         let swap = diff[i];
