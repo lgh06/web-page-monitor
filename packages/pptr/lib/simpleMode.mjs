@@ -19,11 +19,24 @@ async function simpleModeTask({browser, taskDetail}){
     let matchedElement = await page.$(cssSelector);
     // TODO dynamic domEraser
     let oneDomEraser = domEraser.qq;
-    if( oneDomEraser.urlRegExpArr.find(reg => pageURL.match( new RegExp(reg) ) ) ){
-      await page.evaluate((oneDomEraser) =>{
-        console.log(oneDomEraser);
-        oneDomEraser.func(oneDomEraser.selectorArr)
+    let {urlRegExpArr} = oneDomEraser;
+    if( urlRegExpArr.find(reg => pageURL.match( new RegExp(reg) ) ) ){
+      let evaluateResult = await page.evaluate((oneDomEraser) =>{
+        let {selectorArr, mode} = oneDomEraser;
+        if(Array.isArray(selectorArr) && selectorArr.length){
+          selectorArr.forEach(v => {
+            if(mode === 'html'){
+              document.querySelector(v).innerHTML = ''
+            }else if(mode === 'text'){
+              document.querySelector(v).innerText = ''
+            }else{ // undefined or 'both'
+              document.querySelector(v).innerHTML = ''
+              document.querySelector(v).innerText = ''
+            }
+          });
+        }
       }, oneDomEraser);
+      console.log('evaluateResult', evaluateResult);
     }
     let textContent = '';
     textContent = await matchedElement.evaluate((node) => node.innerText);
