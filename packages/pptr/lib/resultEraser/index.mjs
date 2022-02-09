@@ -1,1 +1,1 @@
-export * from './weiboEraser.mjs';
+export * from './weibo.mjs';

@@ -17,9 +17,11 @@ async function simpleModeTask({browser, taskDetail}){
   
     await page.waitForSelector(cssSelector);
     let matchedElement = await page.$(cssSelector);
+    // TODO dynamic domEraser
     let oneDomEraser = domEraser.qq;
     if( oneDomEraser.urlRegExpArr.find(reg => pageURL.match( new RegExp(reg) ) ) ){
       await page.evaluate((oneDomEraser) =>{
+        console.log(oneDomEraser);
         oneDomEraser.func(oneDomEraser.selectorArr)
       }, oneDomEraser);
     }

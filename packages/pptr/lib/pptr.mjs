@@ -40,10 +40,11 @@ async function main() {
       if (taskDetail.mode === 'simp') {
         try {
           let [result, err] = await simpleMode(taskDetail);
-          if(!err){
+          let oneResultEraser = resultEraser.weibo;
+          if((!err) && ( oneResultEraser.urlRegExpArr.find(reg => taskDetail.pageURL.match( new RegExp(reg) ) ) )){
             // TODO dynamic resultEraser
             try {
-              result = await resultEraser.weiboEraser({result, taskDetail});
+              result = await oneResultEraser.func(result);
             } catch (error) {
               console.error('resultEraser error inside pptr.mjs', error)
             }
