@@ -73,6 +73,7 @@ export default async function handler(
   // create index for task collection
   // we often need to find task by nextExecuteTime and endTime in worker.
   // https://docs.mongodb.com/v5.0/core/index-compound/
+  // https://docs.mongodb.com/v5.0/core/index-sparse
   if (db) {
     // TODO MongDB authentication and authorization
     // create different users and passwords and roles
