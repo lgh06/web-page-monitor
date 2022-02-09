@@ -18,10 +18,12 @@ async function simpleModeTask({browser, taskDetail}){
     await page.waitForSelector(cssSelector);
     let matchedElement = await page.$(cssSelector);
     // TODO dynamic domEraser
+    // TODO domEraser may delete the matchedElement
+    // mention this in FAQ some day.
     let oneDomEraser = domEraser.qq;
     let {urlRegExpArr} = oneDomEraser;
     if( urlRegExpArr.find(reg => pageURL.match( new RegExp(reg) ) ) ){
-      let evaluateResult = await page.evaluate((oneDomEraser) =>{
+      await page.evaluate((oneDomEraser) =>{
         let {selectorArr, mode} = oneDomEraser;
         if(Array.isArray(selectorArr) && selectorArr.length){
           selectorArr.forEach(v => {
@@ -36,7 +38,9 @@ async function simpleModeTask({browser, taskDetail}){
           });
         }
       }, oneDomEraser);
-      console.log('evaluateResult', evaluateResult);
+      // pass a function to puppeteer page.evaluate is hard.
+      // DO NOT do this.
+      // https://stackoverflow.com/questions/47304665/how-to-pass-a-function-in-puppeteers-evaluate-method
     }
     let textContent = '';
     textContent = await matchedElement.evaluate((node) => node.innerText);
