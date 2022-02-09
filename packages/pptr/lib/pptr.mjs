@@ -42,7 +42,11 @@ async function main() {
           let [result, err] = await simpleMode(taskDetail);
           if(!err){
             // TODO dynamic eraser
-            result = await eraser.weiboEraser({result, taskDetail});
+            try {
+              result = await eraser.weiboEraser({result, taskDetail});
+            } catch (error) {
+              console.error('eraser error inside pptr.mjs', error)
+            }
           }
           let res = {
             result,
