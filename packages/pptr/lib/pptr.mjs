@@ -2,6 +2,8 @@ import { simpleMode } from "./simpleMode.mjs";
 import { sendResultToWorker } from "./sendResultToWorker.mjs";
 import * as amqp from 'amqplib';
 import { CONFIG } from "./CONFIG.mjs";
+import * as eraser from "./eraser/index.mjs";
+
 
 const exchange = CONFIG.exchange;
 const queue = CONFIG.queue;
@@ -29,7 +31,6 @@ async function main() {
     if (message !== null) {
       let stringTaskDetail = message.content.toString();
       console.log('consume time', new Date(consumeTime))
-      console.log(stringTaskDetail)
       try {
         taskDetail = JSON.parse(stringTaskDetail);
       } catch (error) {
@@ -39,6 +40,10 @@ async function main() {
       if (taskDetail.mode === 'simp') {
         try {
           let [result, err] = await simpleMode(taskDetail);
+          if(!err){
+            // TODO dynamic eraser
+            result = await eraser.weiboEraser({result, taskDetail});
+          }
           let res = {
             result,
             err,
