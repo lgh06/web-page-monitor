@@ -1,6 +1,7 @@
 // TODO
 // let user define erasers like this
 
+// this is a result eraser written by regexp
 async function weiboEraser({ result, taskDetail }) {
   if (taskDetail && taskDetail.pageURL && taskDetail.pageURL.includes('m.weibo.cn')) {
     // erase 227万次播放

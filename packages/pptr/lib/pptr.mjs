@@ -2,7 +2,7 @@ import { simpleMode } from "./simpleMode.mjs";
 import { sendResultToWorker } from "./sendResultToWorker.mjs";
 import * as amqp from 'amqplib';
 import { CONFIG } from "./CONFIG.mjs";
-import * as eraser from "./eraser/index.mjs";
+import * as resultEraser from "./resultEraser/index.mjs";
 
 
 const exchange = CONFIG.exchange;
@@ -41,11 +41,11 @@ async function main() {
         try {
           let [result, err] = await simpleMode(taskDetail);
           if(!err){
-            // TODO dynamic eraser
+            // TODO dynamic resultEraser
             try {
-              result = await eraser.weiboEraser({result, taskDetail});
+              result = await resultEraser.weiboEraser({result, taskDetail});
             } catch (error) {
-              console.error('eraser error inside pptr.mjs', error)
+              console.error('resultEraser error inside pptr.mjs', error)
             }
           }
           let res = {
