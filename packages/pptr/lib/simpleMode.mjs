@@ -2,14 +2,14 @@
 // https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=outline
 import { CONFIG } from "./CONFIG.mjs";
 import puppeteer from 'puppeteer';
-
+import * as domEraser from './domEraser/index.mjs';
 
 async function simpleModeTask({browser, taskDetail}){
   try {
     let {pageURL, cssSelector, detectMode, detectWord} = taskDetail;
     const page = await browser.newPage();
     await page.setViewport({
-      width: 1902,
+      width: 1920,
       height: 1080,
       deviceScaleFactor: 1,
     });
@@ -17,6 +17,12 @@ async function simpleModeTask({browser, taskDetail}){
   
     await page.waitForSelector(cssSelector);
     let matchedElement = await page.$(cssSelector);
+    let oneDomEraser = domEraser.qq;
+    if( oneDomEraser.urlRegExpArr.find(reg => pageURL.match( new RegExp(reg) ) ) ){
+      await page.evaluate((oneDomEraser) =>{
+        oneDomEraser.func(oneDomEraser.selectorArr)
+      }, oneDomEraser);
+    }
     let textContent = '';
     textContent = await matchedElement.evaluate((node) => node.innerText);
     textContent = String(textContent).trim().replace(/\n|\r|\s+/g, ' ');
