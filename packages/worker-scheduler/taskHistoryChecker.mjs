@@ -45,6 +45,9 @@ async function singleTaskHistoryChecker (taskDetail, db){
               }
             });
           }
+          if(tmpCache && tmpCache.err){
+            // TODO retry send mail or sth else
+          }
         }
         await db.collection(collectionName).findOneAndUpdate(filter, {
           $set: {

@@ -22,7 +22,6 @@ async function diffNotifier(prevDoc, doc, taskDetail, db) {
   // tmpCache default value is null.
   let tmpCache = null;
   tmpCache = await alertProviders[taskDetail.extra.alertProvider].exec({prevDoc, doc, taskDetail})
-  console.log('tmpCache, aka provider result', tmpCache);
   return tmpCache;
 }
 

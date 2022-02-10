@@ -79,7 +79,6 @@ async function alertSender({content, htmlContent, taskDetail}) {
 
   // send mail with defined transport object
   try {
-    let domain = taskDetail.pageURL.replace(/^https?:\/\//,'').replace(/^www\./, '').split('/')[0];
     let info = await transporter.sendMail({
       from: CONFIG.nodemailer.from, // sender address
       to: taskDetail.userInfo.email || "hnnk@qq.com", // list of receivers
@@ -128,14 +127,15 @@ async function exec({prevDoc, doc, taskDetail}) {
   if(!CONFIG.nodemailer.host) return null;
   // let db = await getDB();
   let { content, htmlContent} = await alertFormatter({prevDoc, doc, taskDetail});
-  let alertResult;
+  let tmpCache = null;
   // debounce the alert
   if(taskDetail.tmpCache && taskDetail.tmpCache.prevAlertTime && (Date.now() - taskDetail.tmpCache.prevAlertTime < alertDebounce)){
-
+    // if the time is less than the alertDebounce, do not send alert
+    // return nothing as tmpCache, do not save to task table's tmpCache
   }else{
-    alertResult = await alertSender({content, htmlContent, taskDetail});
+    tmpCache = await alertSender({content, htmlContent, taskDetail});
   }
-  return alertResult;
+  return tmpCache;
 }
 
 // TODO find a place to save one task's last notify time
