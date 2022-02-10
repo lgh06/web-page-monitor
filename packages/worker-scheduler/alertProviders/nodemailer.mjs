@@ -158,6 +158,7 @@ async function exec({prevDoc, doc, taskDetail}) {
     }
   }else if(prevFailNum >= 11){
     // use some other notify ways
+    console.error('mail send failed more than 10 times , task:', taskDetail)
   }
 
   return tmpCache;
