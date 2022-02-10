@@ -97,12 +97,15 @@ async function alertSender({content, htmlContent, taskDetail}) {
       ' email: ', 
       taskDetail.userInfo.email, 
       error);
-    let {tmpCache: {failSince: prevFailSince}} = taskDetail;
+    let {tmpCache: {failSince: prevFailSince, failNum: prevFailNum, alertedOn: prevAlertedOn}} = taskDetail;
     return {
       err: 'mail send failed',
       success: false,
-      alertedOn: null,
+      // mail send failed, use prev alertedOn  and prevFailSince to prevent alerting too frequently
+      alertedOn: prevAlertedOn ? Number(prevAlertedOn) : 0,
       failSince: prevFailSince || Date.now(),
+      triedOn: Date.now(),
+      failNum: prevFailNum ? ( Number(prevFailNum) + 1) : 1,
     };
   }finally{
 
@@ -110,13 +113,17 @@ async function alertSender({content, htmlContent, taskDetail}) {
   return {
     err: null,
     success: true,
+    // mail send success, reset failSince and failNum
     alertedOn: Date.now(),
     failSince: null,
+    triedOn: Date.now(),
+    failNum: 0,
   }
 
 }
 
 async function exec({prevDoc, doc, taskDetail}) {
+  let now = Date.now();
   let alertDebounce = defaultAlertDebounce;
   if(taskDetail && taskDetail.extra &&  taskDetail.extra.alertDebounce){
     alertDebounce = parseInt(taskDetail.extra.alertDebounce, 10);
@@ -130,14 +137,29 @@ async function exec({prevDoc, doc, taskDetail}) {
   if(!CONFIG.nodemailer.host) return null;
   // let db = await getDB();
   let { content, htmlContent} = await alertFormatter({prevDoc, doc, taskDetail});
-  let tmpCache = null;
-  // debounce the alert
-  if(taskDetail.tmpCache && taskDetail.tmpCache.alertedOn && (Date.now() - taskDetail.tmpCache.alertedOn < alertDebounce)){
-    // if the time is less than the alertDebounce, do not send alert
-    // return nothing as tmpCache, do not save to task table's tmpCache
-  }else{
+  let {tmpCache: {triedOn: prevTriedOn, failNum: prevFailNum}} = taskDetail;
+  let tmpCache = {};
+
+  if(prevFailNum <= 0){
+    // debounce the alert
+    if(taskDetail.tmpCache && taskDetail.tmpCache.alertedOn && (now - taskDetail.tmpCache.alertedOn < alertDebounce)){
+      // if the time is less than the alertDebounce, do not send alert
+      // return nothing as tmpCache, do not save to task table's tmpCache
+    }else{
+      tmpCache = await alertSender({content, htmlContent, taskDetail});
+    }
+  }else if(prevFailNum >= 1 && prevFailNum <= 3){
+    // immediately
     tmpCache = await alertSender({content, htmlContent, taskDetail});
+  }else if(prevFailNum >= 4 && prevFailNum <= 10){
+    // use the minAlertDebounce
+    if(now - prevTriedOn >= minAlertDebounce){
+      tmpCache = await alertSender({content, htmlContent, taskDetail});
+    }
+  }else if(prevFailNum >= 11){
+    // use some other notify ways
   }
+
   return tmpCache;
 }
 

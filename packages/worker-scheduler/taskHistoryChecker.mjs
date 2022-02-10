@@ -21,7 +21,6 @@ async function taskHistoryChecker (db){
 async function singleTaskHistoryChecker (taskDetail, db){
   db = db || await getDB();
   let nowDate = new Date();
-  let { tmpCache: prevTmpCache } = taskDetail;
   db.collection(collectionName).find({
     taskId: new ObjectId(taskDetail._id),
     finishTime: {
@@ -34,20 +33,17 @@ async function singleTaskHistoryChecker (taskDetail, db){
         if(index === 0 || doc.checked) return;
         let filter = {_id: doc._id};
         // do something
-        let nowTmpCache = null;
+        let nowTmpCache = {};
         if(doc.textHash !== arr[index-1].textHash){
           // TODO send alert
           nowTmpCache = await diffNotifier(arr[index-1], doc, taskDetail, db);
           console.log('taskHistoryChecker tmpCache', nowTmpCache);
-          if(nowTmpCache){
+          if(nowTmpCache && Object.keys(nowTmpCache).length){
             await db.collection('task').updateOne({_id: new ObjectId(taskDetail._id)}, {
               $set: {
                 tmpCache: nowTmpCache,
               }
             });
-          }
-          if(nowTmpCache && nowTmpCache.err){
-            // TODO retry send mail or sth else
           }
         }
         await db.collection(collectionName).findOneAndUpdate(filter, {
