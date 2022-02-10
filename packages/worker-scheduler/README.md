@@ -35,8 +35,12 @@ a React component or a Next.js Page should us `ComponentName` or `PageName`
     // pageChange "1" wordShowUp "2"
     detectMode: "1",
     detectWord: "招聘", // must be set when detectMode is 2
-    alertProvider: '',
+    alertProvider: 'nodemailer',
     alertDebounce: '',
+    alias: '', // task alias name to prevent email spam
+    minLength: 0, // pptr's result minLength, if less, treat this result as an error.
+    // TODO
+    // domEraser id and resultEraser id
   },
   // worker_id(or hashed by task_id char code)
   workerId: null,
