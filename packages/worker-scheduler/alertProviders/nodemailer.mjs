@@ -137,9 +137,11 @@ async function exec({prevDoc, doc, taskDetail}) {
   if(!CONFIG.nodemailer.host) return null;
   // let db = await getDB();
   let { content, htmlContent} = await alertFormatter({prevDoc, doc, taskDetail});
-  let {tmpCache: {triedOn: prevTriedOn, failNum: prevFailNum}} = taskDetail;
+  let {tmpCache: {triedOn: prevTriedOn = 0, failNum: prevFailNum = 0}} = taskDetail;
   let tmpCache = {};
 
+  console.log(prevDoc, doc, taskDetail, content, htmlContent);
+  console.log('above prevFailNum condition', prevFailNum)
   if(prevFailNum <= 0){
     // debounce the alert
     if(taskDetail.tmpCache && taskDetail.tmpCache.alertedOn && (now - taskDetail.tmpCache.alertedOn < alertDebounce)){
