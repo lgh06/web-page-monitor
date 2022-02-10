@@ -96,11 +96,13 @@ async function alertSender({content, htmlContent, taskDetail}) {
       taskDetail.pageURL, 
       ' email: ', 
       taskDetail.userInfo.email, 
-      error)
+      error);
+    let {tmpCache: {failSince: prevFailSince}} = taskDetail;
     return {
       err: 'mail send failed',
       success: false,
-      prevAlertTime: 0,
+      alertedOn: null,
+      failSince: prevFailSince || Date.now(),
     };
   }finally{
 
@@ -108,7 +110,8 @@ async function alertSender({content, htmlContent, taskDetail}) {
   return {
     err: null,
     success: true,
-    prevAlertTime: Date.now(),
+    alertedOn: Date.now(),
+    failSince: null,
   }
 
 }
@@ -129,7 +132,7 @@ async function exec({prevDoc, doc, taskDetail}) {
   let { content, htmlContent} = await alertFormatter({prevDoc, doc, taskDetail});
   let tmpCache = null;
   // debounce the alert
-  if(taskDetail.tmpCache && taskDetail.tmpCache.prevAlertTime && (Date.now() - taskDetail.tmpCache.prevAlertTime < alertDebounce)){
+  if(taskDetail.tmpCache && taskDetail.tmpCache.alertedOn && (Date.now() - taskDetail.tmpCache.alertedOn < alertDebounce)){
     // if the time is less than the alertDebounce, do not send alert
     // return nothing as tmpCache, do not save to task table's tmpCache
   }else{
