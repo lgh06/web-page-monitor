@@ -90,7 +90,14 @@ async function alertSender({content, htmlContent, taskDetail}) {
     
     console.log("Message sent: %s", info.messageId);
   } catch (error) {
-    console.error(error)
+    console.error(
+      'mail send failed, task id:', 
+      taskDetail._id, 
+      ' pageURL: ', 
+      taskDetail.pageURL, 
+      ' email: ', 
+      taskDetail.userInfo.email, 
+      error)
     return {
       err: 'mail send failed',
       success: false,
