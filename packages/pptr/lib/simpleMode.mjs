@@ -25,16 +25,24 @@ async function simpleModeTask({browser, taskDetail}){
     if( urlRegExpArr.find(reg => pageURL.match( new RegExp(reg) ) ) ){
       await page.evaluate((oneDomEraser) =>{
         let {selectorArr, mode} = oneDomEraser;
+        let delElements = function(selector, mode){
+          let matchedEleArr = document.querySelectorAll(selector);
+          if(matchedEleArr && matchedEleArr.length){
+            matchedEleArr.forEach(ele =>{
+              if(mode === 'html'){
+                ele.innerHTML = ''
+              }else if(mode === 'text'){
+                ele.innerText = ''
+              }else{ // undefined or 'both'
+                ele.innerHTML = ''
+                ele.innerText = ''
+              }
+            });
+          }
+        }
         if(Array.isArray(selectorArr) && selectorArr.length){
-          selectorArr.forEach(v => {
-            if(mode === 'html'){
-              document.querySelector(v).innerHTML = ''
-            }else if(mode === 'text'){
-              document.querySelector(v).innerText = ''
-            }else{ // undefined or 'both'
-              document.querySelector(v).innerHTML = ''
-              document.querySelector(v).innerText = ''
-            }
+          selectorArr.forEach(selector => {
+            delElements(selector, mode)
           });
         }
       }, oneDomEraser);
