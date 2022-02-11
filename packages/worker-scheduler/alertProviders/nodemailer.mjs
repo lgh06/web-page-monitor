@@ -77,16 +77,16 @@ async function alertSender({content, htmlContent, taskDetail, configIndex = 0}) 
   }
   if( (!oneMailConfig) || (!oneMailConfig.host)) return {err: 'miss mail config'};
   let transporter = nm.createTransport({
-    host: CONFIG.nodemailer.host,
-    port: CONFIG.nodemailer.port,
-    secure: CONFIG.nodemailer.secure, // true for 465, false for other ports
-    auth: CONFIG.nodemailer.auth,
+    host: oneMailConfig.host,
+    port: oneMailConfig.port,
+    secure: oneMailConfig.secure, // true for 465, false for other ports
+    auth: oneMailConfig.auth,
   });
 
   // send mail with defined transport object
   try {
     let info = await transporter.sendMail({
-      from: CONFIG.nodemailer.from, // sender address
+      from: oneMailConfig.from, // sender address
       to: taskDetail.userInfo.email || "hnnk@qq.com", // list of receivers
       subject: `网页变动通知 Web Page Changes Alert`, // Subject line
       text: content || "Hello world?", // plain text body
