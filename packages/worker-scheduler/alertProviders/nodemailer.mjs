@@ -165,7 +165,9 @@ async function exec({prevDoc, doc, taskDetail}) {
       tmpCache = await alertSender({content, htmlContent, taskDetail});
     }
   }else if(prevFailNum >= 11){
-    tmpCache = {}; // reset tmpCache
+    tmpCache = {
+      failNum: 0,
+    }; // reset tmpCache
     // use some other notify ways
     console.error('mail send failed more than 10 times , task:', taskDetail)
   }

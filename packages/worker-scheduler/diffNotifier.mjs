@@ -19,7 +19,7 @@ async function diffNotifier(prevDoc, doc, taskDetail, db) {
   }
   // below value returned by alertProvider
   // will be saved to `task` table's tmpCache field.
-  // tmpCache default value is null.
+  // tmpCache default value is {}.
   let tmpCache = {};
   tmpCache = await alertProviders[taskDetail.extra.alertProvider].exec({prevDoc, doc, taskDetail})
   return tmpCache;
