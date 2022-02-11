@@ -65,11 +65,18 @@ async function alertFormatter({prevDoc, doc, taskDetail}) {
   return result;
 }
 
-async function alertSender({content, htmlContent, taskDetail}) {
+async function alertSender({content, htmlContent, taskDetail, configIndex = 0}) {
   // console.log(content);
   // create reusable transporter object using the default SMTP transport
   // https://nodemailer.com/about/
   // https://nodemailer.com/app/
+  let oneMailConfig;
+  if(Array.isArray(CONFIG.nodemailer)){
+    oneMailConfig = CONFIG.nodemailer[configIndex];
+  }else{
+    oneMailConfig = CONFIG.nodemailer;
+  }
+  if( (!oneMailConfig) || (!oneMailConfig.host)) return {err: 'miss mail config'};
   let transporter = nm.createTransport({
     host: CONFIG.nodemailer.host,
     port: CONFIG.nodemailer.port,
@@ -134,13 +141,12 @@ async function exec({prevDoc, doc, taskDetail}) {
     alertDebounce = defaultAlertDebounce;
   }
   console.log('inside provider nodemailer exec');
-  if(!CONFIG.nodemailer.host) return null;
   // let db = await getDB();
   let { content, htmlContent} = await alertFormatter({prevDoc, doc, taskDetail});
   let {tmpCache: {triedOn: prevTriedOn = 0, failNum: prevFailNum = 0}} = taskDetail;
   let tmpCache = {};
 
-  console.log('above prevFailNum condition', prevFailNum)
+  console.log('above prevFailNum condition', prevFailNum);
   if(prevFailNum <= 0){
     // debounce the alert
     if(taskDetail.tmpCache && taskDetail.tmpCache.alertedOn && (now - taskDetail.tmpCache.alertedOn < alertDebounce)){
@@ -151,13 +157,14 @@ async function exec({prevDoc, doc, taskDetail}) {
     }
   }else if(prevFailNum >= 1 && prevFailNum <= 3){
     // immediately
-    tmpCache = await alertSender({content, htmlContent, taskDetail});
+    tmpCache = await alertSender({content, htmlContent, taskDetail, configIndex: 1});
   }else if(prevFailNum >= 4 && prevFailNum <= 10){
     // use the minAlertDebounce
     if(now - prevTriedOn >= minAlertDebounce){
       tmpCache = await alertSender({content, htmlContent, taskDetail});
     }
   }else if(prevFailNum >= 11){
+    tmpCache = {}; // reset tmpCache
     // use some other notify ways
     console.error('mail send failed more than 10 times , task:', taskDetail)
   }

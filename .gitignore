@@ -1,5 +1,6 @@
 node_modules/
 lerna-debug.log
+logs/
 email-tpl.html
 packages/helper/globalConfig.prod.mjs
 packages/vendor-scripts-n-configs/docker_mongo/mongo-init.js
