@@ -93,7 +93,7 @@ async function alertSender({content, htmlContent, taskDetail, configIndex = 0}) 
       html: htmlContent || content || "<b>Hello world?</b>", // html body
     });
     
-    console.log("Message sent: %s", info.messageId);
+    console.log("Message sent: %s", info.messageId, 'configIndex:', configIndex);
   } catch (error) {
     console.error(
       'mail send failed, task id:', 
@@ -102,6 +102,8 @@ async function alertSender({content, htmlContent, taskDetail, configIndex = 0}) 
       taskDetail.pageURL, 
       ' email: ', 
       taskDetail.userInfo.email, 
+      ' configIndex: ',
+      configIndex,
       error);
     let {tmpCache: {failSince: prevFailSince, failNum: prevFailNum, alertedOn: prevAlertedOn}} = taskDetail;
     return {
