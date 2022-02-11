@@ -1,6 +1,5 @@
 import * as nm from "nodemailer";
 import { CONFIG } from "../CONFIG.mjs";
-import { getDB } from "../lib/index.mjs";
 import fs from "fs";
 import path from "path";
 import Handlebars from "handlebars";
@@ -53,7 +52,7 @@ async function alertFormatter({prevDoc, doc, taskDetail}) {
     抱歉，页面上的文本太长了，无法对比。请手动查看。`;
   }
 
-  let middleTpl = template({diffHTML, taskDetail});
+  let middleTpl = template({diffHTML, taskDetail, doc});
 
   let htmlDiffContent = mjml2html(middleTpl).html;
 

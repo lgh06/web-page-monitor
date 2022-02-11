@@ -38,8 +38,8 @@
     <mj-section>
       <mj-column>
         <mj-text align="center" font-size="16px">
-        Task: {{taskDetail.extra.alias}} has changed. <br/>
-        任务: {{taskDetail.extra.alias}} 发生了变动。 <br/> <br/>
+        Task: {{taskDetail.extra.alias}} has changed, on: {{doc.finishTime}} UTC time .<br/>
+        任务: {{taskDetail.extra.alias}} 发生了变动, 在UTC时间 {{doc.finishTime}} 。<br/> <br/>
         Changes are listed below: <br/>
         请看下方的变动对比： <br/>
         </mj-text>
@@ -52,6 +52,16 @@
         </mj-text>
       </mj-column>
     </mj-section>
+    {{#if taskDetail.tmpCache.failNum}}
+    <mj-section padding="0px 0px">
+      <mj-column>
+        <mj-text font-size="14px">
+          There are also other changes, we tried to notify you {{taskDetail.tmpCache.failNum}} times however the mail sent failed. <br/>
+          另外，还有其他变动。我们尝试发送邮件 {{taskDetail.tmpCache.failNum}} 次，但是发送失败了。 <br/>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    {{/if}}
     <mj-section padding="0px 0px">
       <mj-column>
         <mj-text font-size="12px">
