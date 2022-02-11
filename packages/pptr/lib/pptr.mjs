@@ -51,7 +51,7 @@ async function main() {
           }
           // if pptr result's length is less than `extra.minLength`, 
           // then treat it as an error.
-          if(taskDetail && taskDetail.extra && taskDetail.extra.minLength && Number(taskDetail.extra.minLength) !== 0){
+          if((!err) && taskDetail && taskDetail.extra && taskDetail.extra.minLength && Number(taskDetail.extra.minLength) !== 0){
             if(result.length < taskDetail.extra.minLength){
               result = null;
               err = 'result length less than minLength';
