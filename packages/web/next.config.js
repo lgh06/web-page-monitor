@@ -4,7 +4,7 @@ const nextConfig = {
   poweredByHeader: false,
   i18n: {
     locales: ['en', 'zh'],
-    defaultLocale: 'zh',
+    defaultLocale: 'en',
   },
   // experimental: {
 
