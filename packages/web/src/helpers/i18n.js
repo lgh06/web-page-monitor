@@ -1,26 +1,25 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
-let en = [
-  "Welcome to Here",
-  "please input a url start with https:// or http://",
-  "URL check passed. ",
-]
+let trans = {
+  "Welcome to Here": "欢迎使用网页监控系统",
+  "please input a url start with https:// or http://": "请输入以https://或http://开头的网址",
+  "URL check passed. ": "URL检查通过",
+}
+
+let enTrans = {};
+let zhTrans = {};
+Object.keys(trans).forEach(v => {
+  enTrans[v] = v;
+  zhTrans[v] = trans[v];
+})
 
 const resources = {
   en: {
-    translation: {
-      [en[0]]: en[0],
-      [en[1]]: en[1],
-      [en[2]]: en[2],
-    }
+    translation: enTrans
   },
   zh: {
-    translation: {
-      [en[0]]: "欢迎使用网页监控系统",
-      [en[1]]:"请输入以https://或http://开头的网址",
-      [en[2]]:"URL检查通过",
-    }
+    translation: zhTrans
   }
 };
 
