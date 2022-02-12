@@ -38,7 +38,7 @@ async function singleTaskHistoryChecker (taskDetail, db){
           // TODO send alert
           nowCacheOnTask = await diffNotifier(arr[index-1], doc, taskDetail, db);
           console.log('taskHistoryChecker cacheOnTask', nowCacheOnTask);
-          if(nowCacheOnTask && Object.keys(nowCacheOnTask).length){
+          if(nowCacheOnTask){
             await db.collection('task').updateOne({_id: new ObjectId(taskDetail._id)}, {
               $set: {
                 cache: nowCacheOnTask,
