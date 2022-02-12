@@ -144,6 +144,9 @@ async function exec({prevDoc, doc, taskDetail}) {
   console.log('inside provider nodemailer exec');
   // let db = await getDB();
   let { content, htmlContent} = await alertFormatter({prevDoc, doc, taskDetail});
+  if(!taskDetail.cache){
+    taskDetail.cache = {};
+  }
   let {cache: {triedOn: prevTriedOn = 0, failNum: prevFailNum = 0, alertedOn: prevAlertedOn = 0}} = taskDetail;
   let cacheOnTask = {};
 
@@ -152,7 +155,7 @@ async function exec({prevDoc, doc, taskDetail}) {
     // debounce the alert
     if(taskDetail.cache && prevAlertedOn && (now - prevAlertedOn < alertDebounce)){
       // if the time is less than the alertDebounce, do not send alert
-      // return nothing as cacheOnTask, do not save to task table's cacheOnTask
+      // return nothing (`{}`) as cacheOnTask, do not save to task table's cacheOnTask
     }else{
       cacheOnTask = await alertSender({content, htmlContent, taskDetail});
     }
