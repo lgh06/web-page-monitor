@@ -18,11 +18,11 @@ async function diffNotifier(prevDoc, doc, taskDetail, db) {
     taskDetail.extra.alertProvider = 'nodemailer';
   }
   // below value returned by alertProvider
-  // will be saved to `task` table's tmpCache field.
-  // tmpCache default value is {}.
-  let tmpCache = {};
-  tmpCache = await alertProviders[taskDetail.extra.alertProvider].exec({prevDoc, doc, taskDetail})
-  return tmpCache;
+  // will be saved to `task` table's cacheOnTask field.
+  // cacheOnTask default value is {}.
+  let cacheOnTask = {};
+  cacheOnTask = await alertProviders[taskDetail.extra.alertProvider].exec({prevDoc, doc, taskDetail})
+  return cacheOnTask;
 }
 
 export { diffNotifier };

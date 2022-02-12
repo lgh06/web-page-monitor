@@ -105,7 +105,7 @@ async function alertSender({content, htmlContent, taskDetail, configIndex = 0}) 
       ' configIndex: ',
       configIndex,
       error);
-    let {tmpCache: {failSince: prevFailSince, failNum: prevFailNum, alertedOn: prevAlertedOn}} = taskDetail;
+    let {cache: {failSince: prevFailSince, failNum: prevFailNum, alertedOn: prevAlertedOn}} = taskDetail;
     return {
       err: 'mail send failed',
       success: false,
@@ -144,35 +144,35 @@ async function exec({prevDoc, doc, taskDetail}) {
   console.log('inside provider nodemailer exec');
   // let db = await getDB();
   let { content, htmlContent} = await alertFormatter({prevDoc, doc, taskDetail});
-  let {tmpCache: {triedOn: prevTriedOn = 0, failNum: prevFailNum = 0, alertedOn: prevAlertedOn = 0}} = taskDetail;
-  let tmpCache = {};
+  let {cache: {triedOn: prevTriedOn = 0, failNum: prevFailNum = 0, alertedOn: prevAlertedOn = 0}} = taskDetail;
+  let cacheOnTask = {};
 
   console.log('above prevFailNum condition', prevFailNum);
   if(prevFailNum <= 0){
     // debounce the alert
-    if(taskDetail.tmpCache && prevAlertedOn && (now - prevAlertedOn < alertDebounce)){
+    if(taskDetail.cache && prevAlertedOn && (now - prevAlertedOn < alertDebounce)){
       // if the time is less than the alertDebounce, do not send alert
-      // return nothing as tmpCache, do not save to task table's tmpCache
+      // return nothing as cacheOnTask, do not save to task table's cacheOnTask
     }else{
-      tmpCache = await alertSender({content, htmlContent, taskDetail});
+      cacheOnTask = await alertSender({content, htmlContent, taskDetail});
     }
   }else if(prevFailNum >= 1 && prevFailNum <= 3){
     // immediately
-    tmpCache = await alertSender({content, htmlContent, taskDetail, configIndex: 1});
+    cacheOnTask = await alertSender({content, htmlContent, taskDetail, configIndex: 1});
   }else if(prevFailNum >= 4 && prevFailNum <= 10){
     // use the minAlertDebounce
     if(now - prevTriedOn >= minAlertDebounce){
-      tmpCache = await alertSender({content, htmlContent, taskDetail});
+      cacheOnTask = await alertSender({content, htmlContent, taskDetail});
     }
   }else if(prevFailNum >= 11){
-    tmpCache = {
+    cacheOnTask = {
       failNum: 0,
-    }; // reset tmpCache
+    }; // reset cacheOnTask
     // use some other notify ways
     console.error('mail send failed more than 10 times , task:', taskDetail)
   }
 
-  return tmpCache;
+  return cacheOnTask;
 }
 
 // TODO find a place to save one task's last notify time

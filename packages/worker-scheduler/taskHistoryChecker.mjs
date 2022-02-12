@@ -33,15 +33,15 @@ async function singleTaskHistoryChecker (taskDetail, db){
         if(index === 0 || doc.checked) return;
         let filter = {_id: doc._id};
         // do something
-        let nowTmpCache = {};
+        let nowCacheOnTask = {};
         if(doc.textHash !== arr[index-1].textHash){
           // TODO send alert
-          nowTmpCache = await diffNotifier(arr[index-1], doc, taskDetail, db);
-          console.log('taskHistoryChecker tmpCache', nowTmpCache);
-          if(nowTmpCache && Object.keys(nowTmpCache).length){
+          nowCacheOnTask = await diffNotifier(arr[index-1], doc, taskDetail, db);
+          console.log('taskHistoryChecker cacheOnTask', nowCacheOnTask);
+          if(nowCacheOnTask && Object.keys(nowCacheOnTask).length){
             await db.collection('task').updateOne({_id: new ObjectId(taskDetail._id)}, {
               $set: {
-                tmpCache: nowTmpCache,
+                cache: nowCacheOnTask,
               }
             });
           }
