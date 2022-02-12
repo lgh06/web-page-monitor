@@ -19,9 +19,16 @@ function getNextTimes(cron, count = 500) {
 }
 
 
-function toLocalISOString(oneDate, plusMinutes = 0) {
+/**
+ * better use this function in web frontend to get one user's local time
+ */
+function toLocalISOString(oneDate, plusMinutes = 0, offset = 0) {
   let aNewDate = new Date(oneDate);
-  let offset = aNewDate.getTimezoneOffset();
+  // TODO
+  // one user one timezone offset, and store to DB
+  if(!offset){
+    offset = aNewDate.getTimezoneOffset();
+  }
   return new Date(aNewDate.setMinutes(aNewDate.getMinutes() - offset + plusMinutes)).toISOString().substring(0, 16)
 }
 
