@@ -1,5 +1,6 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import { CONFIG } from "../../CONFIG";
 
 let trans = {
   "Welcome to Here": "欢迎使用网页监控系统",
@@ -28,7 +29,7 @@ i18n
   .init({
     resources,
     fallbackLng: 'en',
-    debug: true,
+    debug: !CONFIG.useProdConfig,
     nsSeparator: false,
     keySeparator: false,
     interpolation: {
