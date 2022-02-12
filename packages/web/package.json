@@ -19,6 +19,7 @@
     "i18next": "^21.6.11",
     "immer": "~9.0.12",
     "jotai": "~1.5.2",
+    "js-cookie": "^3.0.1",
     "mongodb": "=4.3.1",
     "next": "~12.0.8",
     "optics-ts": "~2.3.0",
@@ -31,6 +32,7 @@
     "socket.io-client": "~4.4.1"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.1",
     "@types/node": "~16.13.2",
     "@types/react": "~17.0.38",
     "concurrently": "~7.0.0",

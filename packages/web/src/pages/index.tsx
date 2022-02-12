@@ -4,9 +4,13 @@ import Head from 'next/head'
 import styles from '../styles/modules/Home.module.scss'
 import Link from 'next/link'
 import { useI18n } from '../helpers'
+import Cookies from 'js-cookie'
 
 const Home: NextPage = () => {
-  let { t } = useI18n()
+  let { t } = useI18n();
+  let switchLanguage = (lang: string) => {
+    Cookies.set('NEXT_LOCALE', lang, { expires: 365 });
+  }
   return (
     <div className={styles.container}>
       <Head>
@@ -74,6 +78,12 @@ const Home: NextPage = () => {
             {/* <img src="/vercel.svg" alt="Vercel Logo" width={72} height={16} ></img> */}
           </span>
         </a>
+        <Link href="/" locale={false}>
+          <a onClick={() => switchLanguage('zh')}>简体中文</a>
+        </Link>
+        <Link href="/en" locale={false}>
+          <a onClick={() => switchLanguage('en')}>English</a>
+        </Link>
       </footer>
     </div>
   )
