@@ -1,17 +1,25 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
+let en = [
+  "Welcome to Here",
+  "please input a url start with https:// or http://",
+  "URL check passed. ",
+]
+
 const resources = {
   en: {
     translation: {
-      "Welcome to Here": "Welcome to Web-Page-Monitor",
-      "please input a url start with https:// or http://":"please input a url start with https:// or http://",
+      [en[0]]: en[0],
+      [en[1]]: en[1],
+      [en[2]]: en[2],
     }
   },
   zh: {
     translation: {
-      "Welcome to Here": "欢迎使用网页监控系统",
-      "please input a url start with https:// or http://":"请输入以https://或http://开头的网址",
+      [en[0]]: "欢迎使用网页监控系统",
+      [en[1]]:"请输入以https://或http://开头的网址",
+      [en[2]]:"URL检查通过",
     }
   }
 };
