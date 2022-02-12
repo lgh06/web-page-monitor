@@ -3,14 +3,10 @@ import Head from 'next/head'
 // import Image from 'next/image'
 import styles from '../styles/modules/Home.module.scss'
 import Link from 'next/link'
-import { useTranslation } from 'react-i18next';
-import { useRouter } from 'next/router';
+import { useI18n } from '../helpers'
 
 const Home: NextPage = () => {
-  const { t, i18n } = useTranslation();
-  const { locale } = useRouter();
-  i18n.changeLanguage(locale);
-
+  let { t } = useI18n()
   return (
     <div className={styles.container}>
       <Head>
