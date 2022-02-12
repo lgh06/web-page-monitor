@@ -3,9 +3,14 @@ import Head from 'next/head'
 // import Image from 'next/image'
 import styles from '../styles/modules/Home.module.scss'
 import Link from 'next/link'
-
+import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/router';
 
 const Home: NextPage = () => {
+  const { t, i18n } = useTranslation();
+  const { locale } = useRouter();
+  i18n.changeLanguage(locale);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -16,7 +21,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to Web-Page-Monitor!! <br/>Please : 
+          {t('Welcome to Here')}!! <br/>Please : 
           <Link href="/login"><a>Login</a></Link>
         </h1>
 
