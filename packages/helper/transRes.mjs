@@ -1,6 +1,7 @@
 let trans = {
   // Below is on home page
   "Welcome to Web Page Monitor": "欢迎使用网页变动通知系统",
+  "Web Page Monitor": "网页变动通知系统",
   "Please": "请",
   "Login": "登录",
   "Daniel Gehuan Liu": "阿欢课堂",
