@@ -13,14 +13,14 @@ let trans = {
   "Welcome": "欢迎",
   "Login with Gitee.com OAuth": "使用Gitee.com OAuth登录",
   // Below is on create task page
-  "Please input a url start with https:// or http://": "请输入以https://或http://开头的网址",
+  "Please input a URL start with https:// or http://": "请输入以https://或http://开头的网址",
   "URL check passed. ": "URL检查通过",
   "Recommended": "推荐",
   "Choose an end time, from 10 minutes later to 7 days later": "选择一个结束时间，从10分钟后到7天（最晚）",
   "Please Input a cron syntax" : "请输入Cron定时任务表达式",
   "Cron Syntax Help in FAQ": "什么是Cron定时任务表达式",
-  "Please input a CSS selector, if you do not know what that is, keep it as default \"body\"": `请输入CSS选择器，如果不知道这是什么，请使用默认值"body"`,
-  "Please input an alias name of this task, or keep it as default": "请为该任务起个名字，或者保持默认值",
+  "Please input a CSS selector, if you do not know what that is, keep it as default \"body\"": `请输入CSS选择器，如果不知道填什么，请使用默认值body`,
+  "Please input an alias name of this task, or keep it as default": "为该任务起个名字，或者保持默认值",
   "Notify you when": "通知您，当",
   "Page Changes": "页面变动时",
   "Word(s) Show up": "词语（文字）出现时",
@@ -31,7 +31,7 @@ let trans = {
   "注意：简单模式仅适用于监控网页，\
       不适用于txt,xml或其他没有HTML结构的文件。<br/>\
       我们的极客(高级)模式将很快开放，将有更多的高级功能等待您发掘。",
-  "Note: if the combination of cron syntax and cssSelector and pageURL are same,\
+  "Note: If the combination of cron syntax and cssSelector and pageURL are same,\
       this will update existing task, not create a new one.":
   "注意：如果cron表达式和css选择器和网址相同，\
       则会更新已有任务，而不会创建新任务。",

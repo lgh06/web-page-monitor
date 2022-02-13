@@ -16,7 +16,6 @@ const CreateTaskSimpPage: NextPage = () => {
   // update input date when first entry
   function updateDate() {
     setTaskDetail(v => {
-      // v.pageURLMsg = t('please input a url start with https:// or http://');
       v.mode = 'simp'; // this page for simp-le mode
       let nowDate = new Date();
       // TODO different type user, different end time
@@ -230,7 +229,7 @@ const CreateTaskSimpPage: NextPage = () => {
       not for txt, xml or other files without HTML structure.<br/>\
       Our Geek Mode will be coming soon, for more advanced features.'))}>
     </div>
-    <div {...innerHTML(t('Note: if the combination of cron syntax and cssSelector and pageURL are same,\
+    <div {...innerHTML(t('Note: If the combination of cron syntax and cssSelector and pageURL are same,\
       this will update existing task, not create a new one.'))}>
     </div>
     <div {...innerHTML(t('Note: We need 15 minutes to distribute our tasks to different servers. <br/>\

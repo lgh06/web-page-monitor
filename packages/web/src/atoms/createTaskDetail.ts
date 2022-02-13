@@ -10,7 +10,7 @@ let createTaskDetail = {
   cronPassed: true,
   mode: 'simp',
   pageURL: 'https://news.qq.com/',
-  pageURLMsg: 'please input a url start with https:// or http://',
+  pageURLMsg: 'Please input a URL start with https:// or http://',
   pageURLPassed: true,
   cssSelector: 'body',
   extra: {
