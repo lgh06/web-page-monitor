@@ -3,18 +3,20 @@ import { ChangeEvent, useEffect, MouseEvent } from 'react';
 import { useImmerAtom } from 'jotai/immer';
 import { createTaskDetailAtom, monacoEditorAtom, userInfoAtom } from '../atoms';
 import { CronTime } from '@webest/web-page-monitor-helper';
-import { fetchAPI } from "../helpers/index";
+import { fetchAPI, useI18n } from "../helpers/index";
 import Link from "next/link";
 
 
-const CreateTaskGeekPage: NextPage = () => {
+const CreateTaskSimpPage: NextPage = () => {
 
   const [taskDetail, setTaskDetail] = useImmerAtom(createTaskDetailAtom);
   const [userInfo, setUserInfo] = useImmerAtom(userInfoAtom);
+  const { t } = useI18n();
 
   // update input date when first entry
   function updateDate() {
     setTaskDetail(v => {
+      // v.pageURLMsg = t('please input a url start with https:// or http://');
       v.mode = 'simp'; // this page for simp-le mode
       let nowDate = new Date();
       // TODO different type user, different end time
@@ -176,7 +178,7 @@ const CreateTaskGeekPage: NextPage = () => {
     </div>
     <div>
       {/* input page URL <br /> */}
-      {taskDetail.pageURLMsg}<br/>
+      {t(taskDetail.pageURLMsg)}<br/>
       <input
         placeholder="page URL"
         data-input-index="2"
@@ -246,4 +248,4 @@ const CreateTaskGeekPage: NextPage = () => {
   </>);
 }
 
-export default CreateTaskGeekPage
+export default CreateTaskSimpPage

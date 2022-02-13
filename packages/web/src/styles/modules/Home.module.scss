@@ -1,5 +1,8 @@
 .container {
   padding: 0 2rem;
+  @media screen and (max-width: 700px) {
+    padding: 0 0rem;
+  }
   height: 100vh;
 }
 
@@ -18,6 +21,9 @@
   flex: 1;
   padding: 2rem 0;
   border-top: 1px solid #eaeaea;
+  @media screen and (max-width: 700px) {
+    border-top: 0 none;
+  }
   justify-content: center;
   align-items: center;
 }
@@ -46,7 +52,10 @@
 .title {
   margin: 0;
   line-height: 1.15;
-  font-size: 4rem;
+  font-size: 3rem;
+  @media screen and (max-width: 700px) {
+    font-size: 1.8rem;
+  }
 }
 
 .title,

@@ -1,4 +1,5 @@
 import { atom } from 'jotai'
+import i18n, { t } from 'i18next';
 
 let createTaskDetail = {
   endLocalMinuteString: '',

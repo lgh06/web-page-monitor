@@ -3,9 +3,15 @@ import Head from 'next/head'
 // import Image from 'next/image'
 import styles from '../styles/modules/Home.module.scss'
 import Link from 'next/link'
-
+import { useI18n } from '../helpers'
+import Cookies from 'js-cookie'
+import nextConfig from "../../next.config"
 
 const Home: NextPage = () => {
+  let { t } = useI18n();
+  let switchLanguage = (lang: string) => {
+    Cookies.set('NEXT_LOCALE', lang, { expires: 365 });
+  }
   return (
     <div className={styles.container}>
       <Head>
@@ -16,8 +22,8 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to Web-Page-Monitor!! <br/>Please : 
-          <Link href="/login"><a>Login</a></Link>
+          {t('Welcome to Web Page Monitor')}!!<br/>
+          {t('Please')} <Link href="/login"><a>{t('Login')}</a></Link>
         </h1>
 
         {/* <p className={styles.description}>
@@ -67,12 +73,18 @@ const Home: NextPage = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Created by{' '}
+          {t('Created by')}{' '}
           <span className={styles.logo}>
-            Daniel Gehun Liu
+            {t('Daniel Gehuan Liu')}
             {/* <img src="/vercel.svg" alt="Vercel Logo" width={72} height={16} ></img> */}
           </span>
         </a>
+        <Link href={nextConfig.i18n!.defaultLocale === 'zh' ? '/' : '/zh' } locale={false}>
+          <a onClick={() => switchLanguage('zh')}>简体中文</a>
+        </Link>
+        <Link href={nextConfig.i18n!.defaultLocale === 'en' ? '/' : '/en' } locale={false}>
+          <a onClick={() => switchLanguage('en')}>English</a>
+        </Link>
       </footer>
     </div>
   )

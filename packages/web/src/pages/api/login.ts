@@ -18,8 +18,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const { provider, code} = req.query;
+  const { provider, code, locale} = req.query;
 
   let host =  'http://' + req.headers.host;
-  res.redirect(307, `${host}/login?code=${code}&provider=${provider}`)
+  res.redirect(307, `${host}/${locale === 'en' ? '' : 'zh'}/login?code=${code}&provider=${provider}`)
 }

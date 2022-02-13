@@ -5,23 +5,25 @@ import { ParsedUrlQuery } from 'querystring';
 import CONFIG from '../../CONFIG';
 import { useImmerAtom } from 'jotai/immer';
 import { userInfoAtom } from '../atoms';
-import { useAPI, fetchAPI, genClassNameAndString } from '../helpers';
+import { useAPI, useI18n, fetchAPI, genClassNameAndString } from '../helpers';
 import Link from 'next/link';
 import styles from '../styles/modules/login.module.scss';
 
 
 const Back = () => {
+  let { t } = useI18n();
   return (<div>
-        <Link href="/"><a {...cn('link')}>Go Back to home</a></Link>
+        <Link href="/"><a {...cn('link')}>{t(`Go Back to home`)}</a></Link>
     </div>)
 }
 
 let [cn, cs] = genClassNameAndString(styles);
 const LoginPage: NextPage = () => {
+  let { t } = useI18n();
   let genUrl = (giteeRedirectUri: string) => {
     return `https://gitee.com/oauth/authorize?client_id=${CONFIG.giteeOauthClientId}&redirect_uri=${encodeURIComponent(giteeRedirectUri)}&response_type=code`;
   }
-  const [giteeRedirectUri, setGiteeRedirectUri] = useState(CONFIG.giteeRedirectUri);
+  const [giteeRedirectUri, setGiteeRedirectUri] = useState(encodeURIComponent(CONFIG.giteeRedirectUri));
   const [url, setUrl] = useState(genUrl(giteeRedirectUri));
 
   const router = useRouter();
@@ -33,10 +35,11 @@ const LoginPage: NextPage = () => {
    */
   useEffect(() => {
     let { code, provider } = router.query;
+    let { locale } = router;
     if(typeof window !== 'undefined'){
       let { origin } = window.location;
-      let fullUri = `${origin}/api/login?provider=gitee`;
-      setGiteeRedirectUri(fullUri)
+      let fullUri = `${origin}/api/login?provider=gitee&locale=${locale}`;
+      setGiteeRedirectUri(encodeURIComponent(fullUri))
       setUrl(genUrl(fullUri));
     }
     if (code && provider) {
@@ -104,15 +107,15 @@ const LoginPage: NextPage = () => {
   }
 
   let res;
-  let backLink = <><div><Link href="/"><a {...cn('link')}>Go Back to home</a></Link></div></>;
+  let backLink = <><div><Link href="/"><a {...cn('link')}>{t(`Go Back to home`)}</a></Link></div></>;
 
   if (userInfo.logged) {
     res = (<>
-      <div>Welcome, {userInfo.email} <br />
-        <button onClick={logOut}>Log Out</button>
+      <div>{t(`Welcome`)}, {userInfo.email} <br />
+        <button onClick={logOut}>{t(`Log Out`)}</button>
       </div>
       <div>
-        <Link href='/create_task_simp'><a {...cn('link')}> create a task in Simple Mode (Recommended)</a></Link>
+        <Link href='/create_task_simp'><a {...cn('link')}> {t(`Create a task in Simple Mode`)} ({t(`Recommended`)})</a></Link>
       </div>
       {/* <div>
         <Link href='/create_task_geek'><a {...cn('link')}>create a task in Geek Mode (Code Mode)</a></Link>
@@ -125,7 +128,7 @@ const LoginPage: NextPage = () => {
     )
   } else {
     res = (<>
-        <a {...cn('link')} href={url}>Login with Gitee.com OAuth</a>
+        <a {...cn('link')} href={url}>{t(`Login with Gitee.com OAuth`)}</a>
         {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
         <div>// TODO other OAuth login providers</div>
         <Back/>
