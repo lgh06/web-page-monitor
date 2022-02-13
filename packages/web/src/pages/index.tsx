@@ -22,8 +22,8 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          {t('Welcome to Here')}!! <br/>Please : 
-          <Link href="/login"><a>Login</a></Link>
+          {t('Welcome to Web Page Monitor')}!!<br/>
+          {t('Please')} <Link href="/login"><a>{t('Login')}</a></Link>
         </h1>
 
         {/* <p className={styles.description}>
@@ -73,9 +73,9 @@ const Home: NextPage = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Created by{' '}
+          {t('Created by')}{' '}
           <span className={styles.logo}>
-            Daniel Gehun Liu
+            {t('Daniel Gehuan Liu')}
             {/* <img src="/vercel.svg" alt="Vercel Logo" width={72} height={16} ></img> */}
           </span>
         </a>
