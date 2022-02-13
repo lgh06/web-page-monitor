@@ -23,7 +23,7 @@ const LoginPage: NextPage = () => {
   let genUrl = (giteeRedirectUri: string) => {
     return `https://gitee.com/oauth/authorize?client_id=${CONFIG.giteeOauthClientId}&redirect_uri=${encodeURIComponent(giteeRedirectUri)}&response_type=code`;
   }
-  const [giteeRedirectUri, setGiteeRedirectUri] = useState(CONFIG.giteeRedirectUri);
+  const [giteeRedirectUri, setGiteeRedirectUri] = useState(encodeURIComponent(CONFIG.giteeRedirectUri));
   const [url, setUrl] = useState(genUrl(giteeRedirectUri));
 
   const router = useRouter();
@@ -35,10 +35,11 @@ const LoginPage: NextPage = () => {
    */
   useEffect(() => {
     let { code, provider } = router.query;
+    let { locale } = router;
     if(typeof window !== 'undefined'){
       let { origin } = window.location;
-      let fullUri = `${origin}/api/login?provider=gitee`;
-      setGiteeRedirectUri(fullUri)
+      let fullUri = `${origin}/api/login?provider=gitee&locale=${locale}`;
+      setGiteeRedirectUri(encodeURIComponent(fullUri))
       setUrl(genUrl(fullUri));
     }
     if (code && provider) {
