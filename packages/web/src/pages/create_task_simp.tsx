@@ -3,7 +3,7 @@ import { ChangeEvent, useEffect, MouseEvent } from 'react';
 import { useImmerAtom } from 'jotai/immer';
 import { createTaskDetailAtom, monacoEditorAtom, userInfoAtom } from '../atoms';
 import { CronTime } from '@webest/web-page-monitor-helper';
-import { fetchAPI, useI18n } from "../helpers/index";
+import { fetchAPI, useI18n, innerHTML } from "../helpers/index";
 import Link from "next/link";
 
 
@@ -154,7 +154,7 @@ const CreateTaskSimpPage: NextPage = () => {
     `}</style>
     <div>
       {/* input cron syntax <br /> */}
-      {taskDetail.cronMsg}<br/>
+      {t(taskDetail.cronMsg)}:<br/>
       <input
         placeholder="cron syntax"
         data-input-index="0"
@@ -162,11 +162,10 @@ const CreateTaskSimpPage: NextPage = () => {
         onChange={handleInputChange}
       >
       </input>
-        <Link href="/faq#WhatIsACronSyntaxCronPattern"><a>Cron Syntax Help in FAQ</a></Link>
+        <Link href="/faq#WhatIsACronSyntaxCronPattern"><a>{t(`Cron Syntax Help in FAQ`)}</a></Link>
     </div>
-    <div>continue loops,  until<br />
+    <div>{t(`Choose an end time, from 10 minutes later to 7 days later`)}:<br />
       <input
-        placeholder="choose a end time. from ten minutes later to 7 days later."
         value={taskDetail.endLocalMinuteString}
         data-input-index="1"
         onChange={handleInputChange}
@@ -189,7 +188,7 @@ const CreateTaskSimpPage: NextPage = () => {
       </input>
     </div>
     <div>
-      Please input a CSS selector, if you do not know what that is, keep it as default &quot;body&quot;<br/>
+      {t(`Please input a CSS selector, if you do not know what that is, keep it as default "body"`)}:<br/>
       <input
         placeholder="CSS selector"
         data-input-index="3"
@@ -200,7 +199,7 @@ const CreateTaskSimpPage: NextPage = () => {
       </input>
     </div>
     <div>
-      Please input an alias name of this task, or keep it as default.<br/>
+    {t(`Please input an alias name of this task, or keep it as default`)}:<br/>
       <input
         placeholder="task alias name"
         data-input-index="7"
@@ -210,40 +209,38 @@ const CreateTaskSimpPage: NextPage = () => {
       </input>
     </div>
     <div>
-      Notify you when : <br/>
+    {t(`Notify you when`)}: <br/>
       <label htmlFor="detectMode1">
         <input data-input-index="4" type="radio" id="detectMode1" checked={taskDetail.extra.detectMode === '1'} name="detectMode" onChange={handleInputChange} value="1" />
-        Page Changes
+        {t(`Page Changes`)}
       </label> <br/>
       <label htmlFor="detectMode2">
         <input data-input-index="5" type="radio" id="detectMode2" checked={taskDetail.extra.detectMode === '2'} name="detectMode" onChange={handleInputChange} value="2" />
-        Word(s) Show up
+        {t(`Word(s) Show up`)}
       </label>
       <input 
       data-input-index="6" 
       type="text" 
-      placeholder="input some words" 
+      placeholder={t(`Please input some words, multiple words can be separated by commas`) + ':'}
       value={taskDetail.extra.detectWord}
       onChange={handleInputChange}
       />
     </div>
-    <div>
-      Note: Simple Mode is only suitable for monitor web pages, not for txt, xml or other files without HTML structure. <br/>
-      Our Geek Mode will be coming soon, for more advanced features.
+    <div {...innerHTML(t('Note: Simple Mode is only suitable for monitor web pages,\
+      not for txt, xml or other files without HTML structure.<br/>\
+      Our Geek Mode will be coming soon, for more advanced features.'))}>
+    </div>
+    <div {...innerHTML(t('Note: if the combination of cron syntax and cssSelector and pageURL are same,\
+      this will update existing task, not create a new one.'))}>
+    </div>
+    <div {...innerHTML(t('Note: We need 15 minutes to distribute our tasks to different servers. <br/>\
+      the first repeated task within 15 minutes will be ignored.'))}>
     </div>
     <div>
-      Note: if the combination of cron syntax and cssSelector and pageURL are same,  
-      this will update existing task, not create a new one.
+      <button data-btn-index="0" onClick={handleBtnClick} disabled={btnDisabled()}>{t('Create Now')}</button>
     </div>
     <div>
-      Note: We need 15 minutes to distribute our tasks to different servers. <br/>
-      the first repeated task within 15 minutes will be ignored.
-    </div>
-    <div>
-      <button data-btn-index="0" onClick={handleBtnClick} disabled={btnDisabled()}>Create Now</button>
-    </div>
-    <div>
-      <Link href="/login"><a>Go back to user center</a></Link>
+      <Link href="/login"><a>{t('Go back to user center')}</a></Link>
     </div>
   </>);
 }
