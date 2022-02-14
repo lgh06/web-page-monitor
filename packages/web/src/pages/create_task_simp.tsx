@@ -241,6 +241,8 @@ const CreateTaskSimpPage: NextPage = () => {
     </div>
     <div>
       <Link href="/login"><a>{t('Go back to user center')}</a></Link>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <Link href="/market"><a>{t('Go to eraser market')}</a></Link>
     </div>
   </>);
 }
