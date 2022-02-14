@@ -20,6 +20,7 @@ const CreateTaskSimpPage: NextPage = () => {
       let nowDate = new Date();
       // TODO different type user, different end time
       v.endLocalMinuteString = CronTime.toLocalISOString(nowDate, 7*60*24);
+      v.endMaxLocalMinuteString = CronTime.toLocalISOString(nowDate, 7*60*24);
       v.endTime = new Date(v.endLocalMinuteString).valueOf()
       v.startLocalMinuteString = CronTime.toLocalISOString(nowDate, 10);
       v.extra.alias = (Math.floor((nowDate.valueOf()/1000))).toString(16).toUpperCase();
@@ -170,7 +171,7 @@ const CreateTaskSimpPage: NextPage = () => {
         onChange={handleInputChange}
         type="datetime-local"
         min={taskDetail.startLocalMinuteString}
-        max={taskDetail.endLocalMinuteString}
+        max={taskDetail.endMaxLocalMinuteString}
       >
       </input>
     </div>

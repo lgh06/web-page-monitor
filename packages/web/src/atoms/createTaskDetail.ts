@@ -3,6 +3,7 @@ import i18n, { t } from 'i18next';
 
 let createTaskDetail = {
   endLocalMinuteString: '',
+  endMaxLocalMinuteString: '',
   endTime: 0,
   startLocalMinuteString: '',
   cronSyntax: '0 20,50 * * * *', // 0 0 10,22 * * *
