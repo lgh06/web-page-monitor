@@ -1,13 +1,12 @@
 .container {
-  padding: 0 2rem;
-  @media screen and (max-width: 700px) {
-    padding: 0 0rem;
-  }
   height: 100vh;
 }
 
 .main {
-  height: calc( 100% - 86px );
+  height: calc( 100% - 100px );
+  @media screen and (max-width: 768px) {
+    height: auto;
+  }
   padding: 4rem 0;
   flex: 1;
   display: flex;
@@ -19,11 +18,6 @@
 .footer {
   display: flex;
   flex: 1;
-  padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
-  @media screen and (max-width: 700px) {
-    border-top: 0 none;
-  }
   justify-content: center;
   align-items: center;
 }
@@ -67,15 +61,6 @@
   margin: 4rem 0;
   line-height: 1.5;
   font-size: 1.5rem;
-}
-
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
 }
 
 .grid {
