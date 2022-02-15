@@ -3,7 +3,8 @@ import { useRouter } from 'next/router';
 
 export function useI18n(){
   const { t: originT, i18n } = useTranslation();
-  const { locale, isReady } = useRouter();
+  const router = useRouter();
+  const { locale, isReady } = router;
   if(i18n.language !== locale){
     i18n.changeLanguage(locale);
   }
@@ -16,5 +17,5 @@ export function useI18n(){
     return originT(firstString, ...args.slice(1));
   }
   
-  return { t, i18n, locale, isReady }
+  return { t, i18n, router, locale, isReady }
 }

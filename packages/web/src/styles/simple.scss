@@ -157,6 +157,10 @@ h3 {
 a,
 a:visited {
   color: var(--accent);
+  &[role=button]{
+    color: var(--bg);
+    display: inline-block;
+  }
 }
 
 a:hover {
