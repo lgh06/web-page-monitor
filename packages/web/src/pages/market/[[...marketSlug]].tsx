@@ -17,6 +17,10 @@ const MonacoEditor = dynamic(
   { ssr: false }
 )
 
+let CreateSection = () =>{
+
+}
+
 const Market: NextPage = () => {
   // https://nextjs.org/docs/migrating/from-react-router#nested-routes
   const { t, locale, router } = useI18n();
@@ -32,30 +36,36 @@ const Market: NextPage = () => {
     return true;
   }
 
+  let createSection = (
+    <section className='create'>
+      <div>
+        {t(`Please input a eraser name, or keep it empty to use the default name`)}
+        <input type="text" placeholder='eraser name' />
+      </div>
+      <div>
+        <MonacoEditor defaultValue={editorValue.createEraserDefaultValue}></MonacoEditor>
+      </div>
+      <div>
+        <button onClick={handleBtnClick}>{t(`Create Eraser Now`)}</button>
+      </div>
+    </section>
+  )
+
 
   return (
     <main>
       <div>
-        <Link href={'/market/create'}>
-          <a {...cn('@btn btn')}>Create a eraser</a>
+        <Link href={slugArr.length ? '/market': '/market/create'}>
+          <a>{slugArr.length ? t(`Go back to Market home`) : t(`Create a eraser`)}</a>
         </Link>
       </div>
-      <div>
-        <input type="text" placeholder='Please Input a domain or URL to search' />
-        <button>Search a eraser</button>
-      </div>
-      <section className='create'>
+      {slugArr.length ? null : (
         <div>
-          {t(`Please input a eraser name, or keep it empty to use the default name`)}
-          <input type="text" placeholder='eraser name' />
+          <input type="text" placeholder='Please Input a domain or URL to search' />
+          <button>Search a eraser</button>
         </div>
-        <div>
-          <MonacoEditor defaultValue={editorValue.createEraserDefaultValue}></MonacoEditor>
-        </div>
-        <div>
-          <button onClick={handleBtnClick}>{t(`Create Eraser Now`)}</button>
-        </div>
-      </section>
+      )}
+      {slugArr[0] === 'create' ? createSection : null}
       <section className='list'>
 
       </section>

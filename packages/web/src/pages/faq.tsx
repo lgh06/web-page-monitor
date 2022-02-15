@@ -21,10 +21,6 @@ const FaqPage: NextPage = () => {
       a{
         margin-left: 3rem;
         cursor: pointer;
-        color: blue;
-      }
-      a:hover{
-        text-decoration: underline;
       }
       h1, h2{
         margin-left: 3rem;
