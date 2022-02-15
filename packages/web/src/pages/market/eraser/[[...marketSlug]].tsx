@@ -1,19 +1,19 @@
 import type { NextPage } from 'next'
 import { ChangeEvent, useEffect, MouseEvent } from 'react';
 
-import { monacoEditorAtom } from '../../atoms';
+import { monacoEditorAtom } from '../../../atoms';
 import { useImmerAtom } from 'jotai/immer';
 
 import Head from 'next/head'
-import styles from '../../styles/modules/market.module.scss'
+import styles from '../../../styles/modules/market.module.scss'
 import Link from 'next/link'
-import { useI18n,genClassNameAndString } from '../../helpers'
+import { useI18n,genClassNameAndString } from '../../../helpers'
 import Cookies from 'js-cookie'
-import nextConfig from "../../../next.config"
+import nextConfig from "../../../../next.config"
 
 import dynamic from 'next/dynamic'
 const MonacoEditor = dynamic(
-  () => import('../../components/monacoEditor'),
+  () => import('../../../components/monacoEditor'),
   { ssr: false }
 )
 
@@ -55,7 +55,7 @@ const Market: NextPage = () => {
   return (
     <main>
       <div>
-        <Link href={slugArr.length ? '/market': '/market/create'}>
+        <Link href={slugArr.length ? '/market/eraser': '/market/eraser/create'}>
           <a>{slugArr.length ? t(`Go back to Market home`) : t(`Create a eraser`)}</a>
         </Link>
       </div>
