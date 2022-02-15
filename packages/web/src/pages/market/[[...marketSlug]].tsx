@@ -16,13 +16,21 @@ const Market: NextPage = () => {
     <main>
       <div>
         <Link href={'/market/create'}>
-          <a {...cn('btn')} role="button">Create a eraser</a>
+          <a {...cn('@btn btn')}>Create a eraser</a>
         </Link>
       </div>
       <div>
         <input type="text" placeholder='Please Input a domain or URL to search' />
         <button>Search a eraser</button>
       </div>
+      <section className='create'>
+        <div>
+          t(`Please input`)
+        </div>
+      </section>
+      <section className='list'>
+
+      </section>
     </main>
   );
 }

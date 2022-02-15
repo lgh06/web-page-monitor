@@ -157,7 +157,7 @@ h3 {
 a,
 a:visited {
   color: var(--accent);
-  &[role=button]{
+  &.btn{
     color: var(--bg);
     display: inline-block;
   }
@@ -169,6 +169,7 @@ a:hover {
 
 button,
 [role="button"],
+a.btn,
 input[type="submit"],
 input[type="reset"],
 input[type="button"] {
