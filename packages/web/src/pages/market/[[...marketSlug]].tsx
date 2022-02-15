@@ -46,14 +46,14 @@ const Market: NextPage = () => {
       </div>
       <section className='create'>
         <div>
-          t(`Please input`)
-          <input type="text" />
+          {t(`Please input a eraser name, or keep it empty to use the default name`)}
+          <input type="text" placeholder='eraser name' />
         </div>
         <div>
           <MonacoEditor defaultValue={editorValue.createEraserDefaultValue}></MonacoEditor>
         </div>
         <div>
-          <button onClick={handleBtnClick}></button>
+          <button onClick={handleBtnClick}>{t(`Create Eraser Now`)}</button>
         </div>
       </section>
       <section className='list'>
