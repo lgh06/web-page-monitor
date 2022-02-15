@@ -8,7 +8,7 @@ import Cookies from 'js-cookie'
 import nextConfig from "../../next.config"
 
 const Home: NextPage = () => {
-  let { t } = useI18n();
+  let { t, locale } = useI18n();
   let switchLanguage = (lang: string) => {
     Cookies.set('NEXT_LOCALE', lang, { expires: 365 });
   }
@@ -69,7 +69,9 @@ const Home: NextPage = () => {
 
       <footer className={styles.footer}>
         <a
-          href="https://github.com/lgh06"
+          href={locale === 'en' ? 
+            "https://github.com/lgh06/web-page-monitor" : 
+            "https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git"}
           target="_blank"
           rel="noopener noreferrer"
         >
