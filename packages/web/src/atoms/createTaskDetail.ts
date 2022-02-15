@@ -1,5 +1,4 @@
 import { atom } from 'jotai'
-import i18n, { t } from 'i18next';
 
 let createTaskDetail = {
   endLocalMinuteString: '',
@@ -15,7 +14,7 @@ let createTaskDetail = {
   pageURLPassed: true,
   cssSelector: 'body',
   extra: {
-    alias: (Math.floor((Date.now()/1000))).toString(16).toUpperCase(),
+    alias: (Math.floor(Date.now())).toString(36).toUpperCase(),
     detectMode: '1',
     detectWord: '',
     alertProvider: '',

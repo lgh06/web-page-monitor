@@ -23,7 +23,7 @@ const CreateTaskSimpPage: NextPage = () => {
       v.endMaxLocalMinuteString = CronTime.toLocalISOString(nowDate, 7*60*24);
       v.endTime = new Date(v.endLocalMinuteString).valueOf()
       v.startLocalMinuteString = CronTime.toLocalISOString(nowDate, 10);
-      v.extra.alias = (Math.floor((nowDate.valueOf()/1000))).toString(16).toUpperCase();
+      v.extra.alias = (Math.floor(nowDate.valueOf())).toString(36).toUpperCase();
     })
   }
 
@@ -205,6 +205,7 @@ const CreateTaskSimpPage: NextPage = () => {
         data-input-index="7"
         value={taskDetail.extra.alias}
         onChange={handleInputChange}
+        className="consolas"
       >
       </input>
     </div>

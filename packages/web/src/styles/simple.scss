@@ -3,9 +3,8 @@
 /* Global variables. */
 :root {
   /* Set sans-serif & mono fonts */
-  --sans-font: -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir,
-    "Nimbus Sans L", Roboto, Noto, "Segoe UI", Arial, Helvetica,
-    "Helvetica Neue", sans-serif;
+  --sans-font: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   --mono-font: Consolas, Menlo, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
 
   /* Default (light) theme */
@@ -325,6 +324,10 @@ select,
 input {
   font-size: inherit;
   font-family: inherit;
+  &.consolas {
+    font-family: Consolas, monospace;
+    font-size: 1.1em;
+  }
   padding: 0.5rem;
   margin-bottom: 0.5rem;
   color: var(--text);
