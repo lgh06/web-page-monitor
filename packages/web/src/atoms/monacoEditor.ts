@@ -1,9 +1,10 @@
 import { atom } from 'jotai'
-import { sampleFunction } from '@webest/web-page-monitor-helper';
+import { sampleFunctionCreateTask, sampleFunctionCreateEraser } from '@webest/web-page-monitor-helper';
 
 
 let monacoEditor = {
-  createTaskDefaultValue: sampleFunction,
+  createTaskDefaultValue: sampleFunctionCreateTask,
+  createEraserDefaultValue: sampleFunctionCreateEraser,
   value: '',
 }
 

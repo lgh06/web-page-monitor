@@ -28,7 +28,8 @@ export namespace  CronTime {
 
 }
 
-export let sampleFunction = '';
+export let sampleFunctionCreateTask = '';
+export let sampleFunctionCreateEraser = '';
 
 export module globalConfig {
   mongodbURI: string;
