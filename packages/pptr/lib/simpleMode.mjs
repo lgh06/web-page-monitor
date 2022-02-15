@@ -21,8 +21,14 @@ async function simpleModeTask({browser, taskDetail}){
     // TODO domEraser may delete the matchedElement
     // mention this in FAQ some day.
     let oneDomEraser = domEraser.qq;
-    let {urlRegExpArr} = oneDomEraser;
-    if( urlRegExpArr.find(reg => pageURL.match( new RegExp(reg) ) ) ){
+    if( 
+        oneDomEraser
+        && oneDomEraser.urlRegExpArr
+        && oneDomEraser.urlRegExpArr.length
+        && oneDomEraser.selectorArr
+        && oneDomEraser.selectorArr.length
+        && oneDomEraser.urlRegExpArr.find(reg => pageURL.match( new RegExp(reg) ) ) 
+      ){
       await page.evaluate((oneDomEraser) =>{
         let {selectorArr, mode} = oneDomEraser;
         let delElements = function(selector, mode){

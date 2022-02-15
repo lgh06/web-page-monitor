@@ -41,7 +41,14 @@ async function main() {
         try {
           let [result, err] = await simpleMode(taskDetail);
           let oneResultEraser = resultEraser.weibo;
-          if((!err) && ( oneResultEraser.urlRegExpArr.find(reg => taskDetail.pageURL.match( new RegExp(reg) ) ) )){
+          if(
+              (!err) 
+              && oneResultEraser 
+              && oneResultEraser.urlRegExpArr 
+              && oneResultEraser.urlRegExpArr.length
+              && oneResultEraser.exec
+              && ( oneResultEraser.urlRegExpArr.find(reg => taskDetail.pageURL.match( new RegExp(reg) ) ) )
+            ){
             // TODO dynamic resultEraser
             try {
               result = oneResultEraser.exec(result);
