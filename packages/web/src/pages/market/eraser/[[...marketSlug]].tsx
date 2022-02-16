@@ -7,7 +7,7 @@ import { useImmerAtom } from 'jotai/immer';
 import Head from 'next/head'
 import styles from '../../../styles/modules/market.module.scss'
 import Link from 'next/link'
-import { useI18n,genClassNameAndString } from '../../../helpers'
+import { useI18n,genClassNameAndString, fetchAPI } from '../../../helpers'
 import Cookies from 'js-cookie'
 import nextConfig from "../../../../next.config"
 
@@ -44,6 +44,19 @@ const Market: NextPage = () => {
   async function handleBtnClick(ev: MouseEvent<HTMLButtonElement> ) {
     ev.preventDefault()
     console.log(editorValue);
+    console.log(eraserDetail.alias)
+    if(!editorValue.value){
+      alert(t('Please modify the example code!'));
+      return
+    }
+    // fetchAPI(endPoint)
+    let resp = await fetchAPI('/market/eraser', {
+      eraserDetail: {
+        alias: eraserDetail.alias,
+        value: editorValue.value,
+      }
+    }, 'put')
+    console.log(resp)
     return true;
   }
   function handleInputChange(ev: ChangeEvent<HTMLInputElement>) {

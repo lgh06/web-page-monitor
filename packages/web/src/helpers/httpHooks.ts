@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { CONFIG } from '../../CONFIG';
 
-export function useAPI(endPoint: string, postedObject: undefined | object = undefined) {
+export function useAPI(endPoint: string, postedObject: undefined | object = undefined, method?: string) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     async function http() {
       let resp = await fetch(`${CONFIG.backHost}/api${endPoint}`, {
-        method: postedObject ? 'POST' : 'GET',
+        method: (method ? String(method).toUpperCase() : null) || (postedObject ? 'POST' : 'GET'),
         headers: typeof postedObject === 'object' ? {
           'Content-Type': 'application/json'
           // 'Content-Type': 'application/x-www-form-urlencoded',
@@ -24,9 +24,9 @@ export function useAPI(endPoint: string, postedObject: undefined | object = unde
   return { data, loading };
 }
 
-export async function fetchAPI(endPoint: string, postedObject: undefined | object = undefined) {
+export async function fetchAPI(endPoint: string, postedObject: undefined | object = undefined, method?: string) {
   let resp = await fetch(`${CONFIG.backHost}/api${endPoint}`, {
-    method: postedObject ? 'POST' : 'GET',
+    method: (method ? String(method).toUpperCase() : null) || (postedObject ? 'POST' : 'GET'),
     headers: typeof postedObject === 'object' ? {
       'Content-Type': 'application/json'
       // 'Content-Type': 'application/x-www-form-urlencoded',
