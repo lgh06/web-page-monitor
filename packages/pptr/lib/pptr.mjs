@@ -54,6 +54,7 @@ async function main() {
               result = oneResultEraser.exec(result);
             } catch (error) {
               console.error('resultEraser error inside pptr.mjs', error)
+              err = err + 'resultEraser error';
             }
           }
           // if pptr result's length is less than `extra.minLength`, 

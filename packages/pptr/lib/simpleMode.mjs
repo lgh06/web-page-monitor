@@ -62,7 +62,8 @@ async function simpleModeTask({browser, taskDetail}){
     return textContent;
   } catch (error) {
     console.error(error);
-    return 'server error';
+    // TODO here is not so right
+    return 'pptr error';
   }
 };
 
