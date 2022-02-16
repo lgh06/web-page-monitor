@@ -7,6 +7,7 @@
 // https://datatracker.ietf.org/doc/html/rfc3986#section-2.2
 // https://developer.mozilla.org/en-US/docs/Glossary/percent-encoding
 export const moduleString = str => `data:text/javascript,${encodeURIComponent(str)}`;
+// https://github.com/webpack/webpack/issues/12731
 export const ESMLoader = str => import(/* webpackIgnore: true */moduleString(str));
 
 export const escapeHtml = s => (s + '').replace(/[&<>"']/g, m => ({

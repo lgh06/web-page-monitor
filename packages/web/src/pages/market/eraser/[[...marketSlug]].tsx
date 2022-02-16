@@ -1,5 +1,7 @@
 import type { NextPage } from 'next'
 import { ChangeEvent, useEffect, MouseEvent } from 'react';
+// @ts-ignore
+import { ESMLoader } from "@webest/web-page-monitor-esm-loader"
 
 import { monacoEditorAtom, createEraserDetailAtom, userInfoAtom } from '../../../atoms';
 import { useImmerAtom } from 'jotai/immer';
@@ -16,11 +18,6 @@ const MonacoEditor = dynamic(
   () => import('../../../components/monacoEditor'),
   { ssr: false }
 )
-
-export const moduleString = (str: string) => `data:text/javascript,${encodeURIComponent(str)}`;
-// https://github.com/webpack/webpack/issues/12731
-export const ESMLoader = (str: string, window: any) => import(/* webpackIgnore: true */moduleString(str));
-;
 
 const Market: NextPage = () => {
   // https://nextjs.org/docs/migrating/from-react-router#nested-routes
