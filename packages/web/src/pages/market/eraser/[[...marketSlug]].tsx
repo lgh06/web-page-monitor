@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import { ChangeEvent, useEffect, MouseEvent } from 'react';
 
-import { monacoEditorAtom, createEraserDetailAtom } from '../../../atoms';
+import { monacoEditorAtom, createEraserDetailAtom, userInfoAtom } from '../../../atoms';
 import { useImmerAtom } from 'jotai/immer';
 
 import Head from 'next/head'
@@ -17,15 +17,17 @@ const MonacoEditor = dynamic(
   { ssr: false }
 )
 
-let CreateSection = () =>{
-
-}
+export const moduleString = (str: string) => `data:text/javascript,${encodeURIComponent(str)}`;
+// https://github.com/webpack/webpack/issues/12731
+export const ESMLoader = (str: string, window: any) => import(/* webpackIgnore: true */moduleString(str));
+;
 
 const Market: NextPage = () => {
   // https://nextjs.org/docs/migrating/from-react-router#nested-routes
   const { t, locale, router } = useI18n();
   let [cn, cs] = genClassNameAndString(styles);
   const [editorValue] = useImmerAtom(monacoEditorAtom);
+  const [userInfo] = useImmerAtom(userInfoAtom);
   const [eraserDetail, setEraserDetail] = useImmerAtom(createEraserDetailAtom);
 
   let slugArr = router.query.marketSlug ? router.query.marketSlug : [];
@@ -45,16 +47,19 @@ const Market: NextPage = () => {
     ev.preventDefault()
     console.log(editorValue);
     console.log(eraserDetail.alias)
+    console.log(userInfo)
     if(!editorValue.value){
       alert(t('Please modify the example code!'));
       return
     }
-    // fetchAPI(endPoint)
+
+    let customEraserModule = await ESMLoader(editorValue.value, window);
+    console.log(customEraserModule, customEraserModule.eraser.urlRegExpArr)
     let resp = await fetchAPI('/market/eraser', {
-      eraserDetail: {
-        alias: eraserDetail.alias,
-        value: editorValue.value,
-      }
+      alias: eraserDetail.alias,
+      value: editorValue.value,
+      userId: userInfo._id,
+      urlRegExpArr: customEraserModule.eraser.urlRegExpArr,
     }, 'put')
     console.log(resp)
     return true;
