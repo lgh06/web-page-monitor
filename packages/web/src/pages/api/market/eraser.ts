@@ -54,16 +54,9 @@ async function eraserGetHandler(
   let collectionName = 'eraser';
   let userId = String(req.query.userId);
   if(userId){
-    if(db){
-      let table = db.collection(collectionName);
-      // TODO pagination
-      table.find({ userId: new ObjectId(userId) }).project({value: 0}).toArray().then(docs => {
-        res.status(200).json(docs);
-      })
-    }
-
+    return mongo.queryDoc(db, collectionName, { userId: new ObjectId(userId) }, {value: 0}, res)
   }else{
-    res.status(200).json({ err: 'no param'})
+    res.status(404).json({ err: 'no param'})
   }
 }
 

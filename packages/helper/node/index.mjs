@@ -51,6 +51,29 @@ let mongo = {
       })
     }
     return p;
+  },
+  /**
+   * 
+   * @param {Db} db 
+   * @param {*} collectionName 
+   * @param {*} condition 
+   * @param {*} project 
+   * @param {*} res 
+   * @returns 
+   */
+  queryDoc: async function (db, collectionName, condition = {}, project = {}, res) {
+    if( (!db) && res) return res.status(500).send('db lost');
+    let p = db.collection(collectionName).find( condition ).project(project).toArray().then(returnedDoc => {
+      return returnedDoc
+    })
+    if (res) {
+      p = p.then(doc => {
+        return res.status(200).json(doc)
+      }).catch((e) => {
+        return res.status(500).json({ err: e });
+      })
+    }
+    return p;
   }
 }
 
