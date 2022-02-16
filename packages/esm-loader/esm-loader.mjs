@@ -7,17 +7,14 @@
 // https://datatracker.ietf.org/doc/html/rfc3986#section-2.2
 // https://developer.mozilla.org/en-US/docs/Glossary/percent-encoding
 export const moduleString = str => `data:text/javascript,${encodeURIComponent(str)}`;
-export const ESMLoader = str => import(moduleString(str));
-export const strToESM = str => {
-    console.log('deprecated: strToESM() use ESMLoader()')
-    return ESMLoader(str)
-};
+export const ESMLoader = str => import(/* webpackIgnore: true */moduleString(str));
+
 export const escapeHtml = s => (s + '').replace(/[&<>"']/g, m => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;',
     '"': '&quot;', "'": '&#39;'
 })[m]);
 export const nodeFetch = url =>
-    import('http')
+    import(/* webpackIgnore: true */'http')
         .then(({ default: http }) =>
             new Promise((resolve, rej) => {
                 http.get(url, res => {
@@ -38,15 +35,11 @@ export const nodeFetch = url =>
 
 export const fetch = typeof window !== 'undefined' ? window.fetch : nodeFetch;
 export const fetchImport = url => fetch(url).then(ESMLoader);
-export const dynamicImport = url => {
-    console.log('deprecated: please use importScript() or ESMImport() and not dynamicImport')
-    typeof window === 'undefined' ? fetchImport(url) : import(url);
-}
 // You should not use it as it has sideeffects that are complex use ESMLoader for consistent behavior.
 // With nodeJS Relativ resolution would not work with the browser it would
 // ./ === url split / last item if that gets added it would behave consistent as long as all dependencys 
 // are using ESMImport thats why its not documented or added to external api till import.meta is solved.
-export const ESMImport = url => typeof window === 'undefined' ? fetchImport(url) : import(url);
+export const ESMImport = url => typeof window === 'undefined' ? fetchImport(url) : import(/* webpackIgnore: true */url);
 export { ESMImport as importScript }
 
 // Exports a Module that exports a str object
