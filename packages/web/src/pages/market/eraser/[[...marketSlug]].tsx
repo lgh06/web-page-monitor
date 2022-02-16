@@ -53,11 +53,14 @@ const Market: NextPage = () => {
     let customEraserModule = await ESMLoader(editorValue.value, window);
     console.log(customEraserModule, customEraserModule.eraser.urlRegExpArr)
     let resp = await fetchAPI('/market/eraser', {
-      alias: eraserDetail.alias,
-      value: editorValue.value,
-      userId: userInfo._id,
-      urlRegExpArr: customEraserModule.eraser.urlRegExpArr,
-    }, 'put')
+      eraserDetail:{
+        alias: eraserDetail.alias,
+        value: editorValue.value,
+        userId: userInfo._id,
+        urlRegExpArr: customEraserModule.eraser.urlRegExpArr,
+      }
+    })
+    // TODO
     console.log(resp)
     return true;
   }

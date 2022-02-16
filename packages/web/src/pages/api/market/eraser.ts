@@ -4,11 +4,45 @@ import { getDB, ObjectId } from '../../../lib';
 import { CronTime } from '@webest/web-page-monitor-helper';
 import { mongo } from '@webest/web-page-monitor-helper/node';
 
-function eraserPUTHandler(
+async function eraserPostHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ){
 
+  let {
+    alias,
+    value,
+    userId,
+    urlRegExpArr,
+  } = req.body.eraserDetail;
+  const newDoc = {
+    alias,
+    value,
+    userId: new ObjectId(userId),
+    urlRegExpArr,
+  };
+  let filter = {
+    alias,
+    urlRegExpArr,
+    userId,
+  }
+  // res.status(200).json({ name: 'John Doe', body: req.body })
+  let db = await getDB();
+  let collectionName = 'eraser';
+  if(db){
+    let table = db.collection(collectionName);
+    table.createIndex({ urlRegExpArr: 1 });
+    table.createIndex({ userId: 1 });
+    table.createIndex({ alias: 1 });
+  }
+
+  return mongo.upsertDoc(db, collectionName, filter, newDoc, res)
+}
+
+async function eraserPutHandler(
+  req: NextApiRequest,
+  res: NextApiResponse
+){
   res.status(200).json({ name: 'John Doe', body: req.body })
 }
 
@@ -16,8 +50,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if(req.method === 'PUT'){
-    eraserPUTHandler(req, res)
+  if(req.method === 'POST'){
+    await eraserPostHandler(req, res);
+  }else if(req.method === 'PUT'){
+    await eraserPutHandler(req, res);
   }else{
     res.status(200).json({ err: 'no method match' })
   }
