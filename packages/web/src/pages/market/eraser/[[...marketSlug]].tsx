@@ -9,7 +9,7 @@ import { useImmerAtom } from 'jotai/immer';
 import Head from 'next/head'
 import styles from '../../../styles/modules/market.module.scss'
 import Link from 'next/link'
-import { useI18n,genClassNameAndString, fetchAPI } from '../../../helpers'
+import { useI18n,genClassNameAndString, fetchAPI, useAPI } from '../../../helpers'
 import Cookies from 'js-cookie'
 import nextConfig from "../../../../next.config"
 
@@ -31,13 +31,21 @@ const Market: NextPage = () => {
   console.log(JSON.stringify(slugArr));
 
   // update input date when first entry
-  function updateDate() {
-    setEraserDetail(v => {
-      v.alias = (Math.floor(Date.now())).toString(36).toUpperCase()
+  async function firstInit() {
+    let eraserList: any = [];
+    if(slugArr.length === 0) {
+      // TODO pagination
+      eraserList = await fetchAPI(`/market/eraser?userId=${userInfo._id}`) 
+    }
+    setEraserDetail((v) => {
+      v.alias = (Math.floor(Date.now())).toString(36).toUpperCase();
+      if(eraserList.length){
+        v.eraserList = eraserList;
+      }
     })
   }
   useEffect(() => {
-    updateDate();
+    firstInit();
   },[router.query]);
 
   async function handleBtnClick(ev: MouseEvent<HTMLButtonElement> ) {
@@ -106,7 +114,13 @@ const Market: NextPage = () => {
       )}
       {slugArr[0] === 'create' ? createSection : null}
       <section className='list'>
-
+        {eraserDetail.eraserList.map((v: any, i) => {
+          return (
+            <div key={v._id}>
+              {JSON.stringify(v)}
+            </div>
+          )
+        })}
       </section>
     </main>
   );

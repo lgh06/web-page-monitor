@@ -46,6 +46,27 @@ async function eraserPutHandler(
   res.status(200).json({ name: 'John Doe', body: req.body })
 }
 
+async function eraserGetHandler(
+  req: NextApiRequest,
+  res: NextApiResponse
+){
+  let db = await getDB();
+  let collectionName = 'eraser';
+  let userId = String(req.query.userId);
+  if(userId){
+    if(db){
+      let table = db.collection(collectionName);
+      // TODO pagination
+      table.find({ userId: new ObjectId(userId) }).project({value: 0}).toArray().then(docs => {
+        res.status(200).json(docs);
+      })
+    }
+
+  }else{
+    res.status(200).json({ err: 'no param'})
+  }
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -54,6 +75,8 @@ export default async function handler(
     await eraserPostHandler(req, res);
   }else if(req.method === 'PUT'){
     await eraserPutHandler(req, res);
+  }else if(req.method === 'GET'){
+    await eraserGetHandler(req, res);
   }else{
     res.status(200).json({ err: 'no method match' })
   }
