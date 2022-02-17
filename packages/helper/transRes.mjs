@@ -70,6 +70,9 @@ let trans = {
   "Please Input": "请输入",
   "Search a public script": "搜索公开脚本",
   "View": "查看",
+  "Notice: All scripts you created will be <strong>public</strong>, you can only modify your own scripts.": "注意：所有您创建的脚本将会<strong>公开</strong>，您只能修改自己的脚本。",
+  "Please input a script name, or keep it empty to use the default name": "请输入一个脚本名称，或保持默认值",
+  "Create Script Now": "立即创建脚本",
 }
 
 let enTrans = {};

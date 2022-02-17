@@ -134,6 +134,7 @@ const Market: NextPage = () => {
         <Link href="/create_task_simp">
           <a>{t('Back to create task simple mode')}</a>
         </Link>
+        &nbsp;&nbsp;
         {
           scriptDetail.scriptList.length < 3 ? (
             <>
