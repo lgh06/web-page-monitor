@@ -46,12 +46,12 @@ async function main() {
               && oneResultEraser 
               && oneResultEraser.urlRegExpArr 
               && oneResultEraser.urlRegExpArr.length
-              && oneResultEraser.exec
+              && oneResultEraser.replace
               && ( oneResultEraser.urlRegExpArr.find(reg => taskDetail.pageURL.match( new RegExp(reg) ) ) )
             ){
             // TODO dynamic resultEraser
             try {
-              result = oneResultEraser.exec(result);
+              result = oneResultEraser.replace(result);
             } catch (error) {
               console.error('resultEraser error inside pptr.mjs', error)
               err = err + 'resultEraser error';

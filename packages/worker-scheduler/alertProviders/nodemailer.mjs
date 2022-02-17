@@ -130,7 +130,7 @@ async function alertSender({content, htmlContent, taskDetail, configIndex = 0}) 
 
 }
 
-async function exec({prevDoc, doc, taskDetail}) {
+async function alert({prevDoc, doc, taskDetail}) {
   let now = Date.now();
   let alertDebounce = defaultAlertDebounce;
   if(taskDetail && taskDetail.extra &&  taskDetail.extra.alertDebounce){
@@ -141,7 +141,7 @@ async function exec({prevDoc, doc, taskDetail}) {
   if( Number.isNaN(alertDebounce) || alertDebounce < minAlertDebounce){
     alertDebounce = defaultAlertDebounce;
   }
-  console.log('inside provider nodemailer exec');
+  console.log('inside provider nodemailer alert');
   // let db = await getDB();
   let { content, htmlContent} = await alertFormatter({prevDoc, doc, taskDetail});
   if(!taskDetail.cache){
@@ -189,7 +189,7 @@ let nodemailer = {
   name: 'nodemailer',
   alertFormatter,
   alertSender,
-  exec,
+  alert,
 }
 
 export { nodemailer, nodemailer as default };

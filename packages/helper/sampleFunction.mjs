@@ -25,7 +25,7 @@ const mode = 'html'; // html / text / both. if empty,  is both
 const urlRegExpArr = ['news.qq.com'];
 
 // func used after puppeteer process closed, to erase / replace some result contents
-function exec(result) {
+function replace(result) {
   // erase 227万次播放
   result = result.replace(/\ \d+万?次播放\ /g, ' ');
   // console.log('step 1', result);
@@ -49,6 +49,6 @@ export const eraser = {
   selectorArr,
   mode,
   urlRegExpArr,
-  exec,
+  replace,
 }
 `;

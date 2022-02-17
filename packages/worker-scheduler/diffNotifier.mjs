@@ -21,7 +21,7 @@ async function diffNotifier(prevDoc, doc, taskDetail, db) {
   // will be saved to `task` table's cacheOnTask field.
   // cacheOnTask default value is {}.
   let cacheOnTask = {};
-  cacheOnTask = await alertProviders[taskDetail.extra.alertProvider].exec({prevDoc, doc, taskDetail})
+  cacheOnTask = await alertProviders[taskDetail.extra.alertProvider].alert({prevDoc, doc, taskDetail})
   return cacheOnTask;
 }
 
