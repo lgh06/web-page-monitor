@@ -49,7 +49,9 @@ const Market: NextPage = () => {
     let element = ev.target;
     let rowId = (element as any).dataset.rowId;
     let confirmed = confirm(t('Are you sure to delete this script') + '?');
-    console.log(rowId, confirmed)
+    if(!confirmed){
+      return;
+    }
     let resp = await fetchAPI(`/market/script?id=${rowId}`, null , 'DELETE')
     window.location.reload();
     return false;
