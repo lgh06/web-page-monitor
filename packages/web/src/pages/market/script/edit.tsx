@@ -176,9 +176,9 @@ const Market: NextPage = () => {
                 onChange={handleSelectChange}
               >
                 <option value="">--{t(`Please choose an example`)}--</option>
-                <option value="1">{t(`example 1`)}</option>
-                <option value="2">{t(`example 2`)}</option>
-                <option value="3">{t(`example 3`)}</option>
+                <option value="1">{t(`DOM eraser`)}</option>
+                <option value="2">{t(`RegExp result replace eraser`)}</option>
+                <option value="3">{t(`one file, two type eraser`)}</option>
               </select>
             )
           }

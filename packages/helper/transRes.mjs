@@ -76,6 +76,11 @@ let trans = {
   "Create Script Now": "立即创建脚本",
   "Please modify the example code!": "请修改示例代码！",
   "Script length too long! need <= 5000 characters": "脚本长度太长，需要 <= 5000 个字符",
+  "Please choose an example": "请选择一个示例",
+  "DOM eraser": "DOM,橡皮脚本",
+  "RegExp result replace eraser": "正则表达式替换,橡皮脚本",
+  "one file, two type eraser": "一个文件包含两种类型的橡皮脚本",
+  "Are you sure to delete this script": "您确定要删除这个脚本吗",
 }
 
 let enTrans = {};

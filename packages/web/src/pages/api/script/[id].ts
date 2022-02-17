@@ -15,7 +15,7 @@ export default async function handler(
     if(doc){
       return res.setHeader('Content-Type', 'text/javascript;charset=UTF-8').status(200).send(doc.value)
     }else{
-      return res.status(200).send('')
+      return res.status(404).send('')
     }
   }).catch(e => {console.error(e)})
 }
