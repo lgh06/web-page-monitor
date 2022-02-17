@@ -15,7 +15,7 @@ const MONGODB_URI = process.env.MONGODB_URI || CONFIG.mongodbURI;
 // global.d.ts
 declare global {
   var mongodb: {
-    client: MongoClient
+    client?: MongoClient
   };
 }
 /**
