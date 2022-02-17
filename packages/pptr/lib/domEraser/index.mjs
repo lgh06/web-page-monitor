@@ -1,1 +1,1 @@
-export * from "./qq.mjs";
+export * as qq from "./qq.mjs";

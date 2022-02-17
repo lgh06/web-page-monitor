@@ -1,1 +1,1 @@
-export * from './weibo.mjs';
+export * as weibo from './weibo.mjs';

@@ -1,12 +1,5 @@
-const selectorArr = ['#List > div','#Copyright', 'body > div > div.qq_content.cf.slide-wrap'];
+export const selectorArr = ['#List > div','#Copyright', 'body > div > div.qq_content.cf.slide-wrap'];
 
-const urlRegExpArr = ['news.qq.com'];
+export const urlRegExpArr = ['news.qq.com'];
 
-const mode = 'html'; // html / text / both. if empty,  is both
-
-export const qq = {
-  // func,
-  mode,
-  selectorArr,
-  urlRegExpArr,
-}
+export const mode = 'html'; // html / text / both. if empty,  is both

@@ -18,14 +18,14 @@ export { task }';
 
 export const  sampleFunctionCreateEraser = `
 // selectorArr / mode used after puppeteer open one page ready, to remove some DOM elements
-const selectorArr = ['#List > div','#Copyright', 'body > div > div.qq_content.cf.slide-wrap'];
-const mode = 'html'; // html / text / both. if empty,  is both
+export const selectorArr = ['#List > div','#Copyright', 'body > div > div.qq_content.cf.slide-wrap'];
+export const mode = 'html'; // html / text / both. if empty,  is both
 
 // URL matcher, if empty, this file won't have any effect
-const urlRegExpArr = ['news.qq.com'];
+export const urlRegExpArr = ['news.qq.com'];
 
 // func used after puppeteer process closed, to erase / replace some result contents
-function replace(result) {
+export function replace(result) {
   // erase 227万次播放
   result = result.replace(/\ \d+万?次播放\ /g, ' ');
   // console.log('step 1', result);
@@ -44,11 +44,4 @@ function replace(result) {
   return result
 }
 
-
-export const eraser = {
-  selectorArr,
-  mode,
-  urlRegExpArr,
-  replace,
-}
 `;

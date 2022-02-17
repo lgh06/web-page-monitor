@@ -2,7 +2,7 @@
 // let user define erasers like this
 
 // this is a result eraser written by regexp
-function replace(result) {
+export function replace(result) {
   // erase 227万次播放
   result = result.replace(/\ \d+万?次播放\ /g, ' ');
   // console.log('step 1', result);
@@ -21,9 +21,4 @@ function replace(result) {
   return result
 }
 
-const urlRegExpArr = ['m.weibo.cn']
-
-export const weibo = {
-  replace,
-  urlRegExpArr,
-}
+export const urlRegExpArr = ['m.weibo.cn']
