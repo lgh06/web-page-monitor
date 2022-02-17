@@ -3,19 +3,19 @@ import { ChangeEvent, useEffect, MouseEvent } from 'react';
 // @ts-ignore
 import { ESMLoader } from "@webest/web-page-monitor-esm-loader"
 
-import { monacoEditorAtom, createScriptDetailAtom, userInfoAtom } from '../../../atoms';
+import { monacoEditorAtom, createScriptDetailAtom, userInfoAtom } from '../../../../atoms';
 import { useImmerAtom } from 'jotai/immer';
 
 import Head from 'next/head'
-import styles from '../../../styles/modules/market.module.scss'
+import styles from '../../../../styles/modules/market.module.scss'
 import Link from 'next/link'
-import { useI18n,genClassNameAndString, fetchAPI, useAPI } from '../../../helpers'
+import { useI18n,genClassNameAndString, fetchAPI, useAPI } from '../../../../helpers'
 import Cookies from 'js-cookie'
-import nextConfig from "../../../../next.config"
+import nextConfig from "../../../../../next.config"
 
 import dynamic from 'next/dynamic'
 const MonacoEditor = dynamic(
-  () => import('../../../components/monacoEditor'),
+  () => import('../../../../components/monacoEditor'),
   { ssr: false }
 )
 

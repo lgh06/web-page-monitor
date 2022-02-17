@@ -15,6 +15,8 @@
   "dependencies": {
     "@monaco-editor/react": "~4.3.1",
     "@types/node": "~16.11.25",
+    "@types/react-table": "^7.7.9",
+    "@types/styled-components": "^5.1.22",
     "@webest/web-page-monitor-esm-loader": "*",
     "@webest/web-page-monitor-helper": "*",
     "i18next": "^21.6.11",

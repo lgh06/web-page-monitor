@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { ChangeEvent, useEffect, MouseEvent } from 'react';
+import { ChangeEvent, useEffect, MouseEvent, useMemo } from 'react';
 // @ts-ignore
 import { ESMLoader } from "@webest/web-page-monitor-esm-loader"
 
@@ -10,9 +10,10 @@ import Head from 'next/head'
 import styles from '../../../styles/modules/market.module.scss'
 import Link from 'next/link'
 import { useI18n,genClassNameAndString, fetchAPI, useAPI } from '../../../helpers'
+import {  ScriptList } from '../../../components/scriptList';
 import Cookies from 'js-cookie'
 import nextConfig from "../../../../next.config"
-
+import type { Row } from "react-table"
 
 const Market: NextPage = () => {
   // https://nextjs.org/docs/migrating/from-react-router#nested-routes
@@ -49,13 +50,36 @@ const Market: NextPage = () => {
 
   }
 
+  let meColumns = useMemo(() => [
+    {
+      Header: 'alias',
+      accessor: 'alias',
+    },
+    {
+      Header: 'urlRegExpArr',
+      accessor: 'urlRegExpArr',
+    },
+    {
+      Header: 'details',
+      id: 'details',
+      Cell: ({ row: {original: or} }) => {
+        return (<>
+          <Link href={'/market/script/edit/' + or._id}>
+            <a>{t(`Edit`)}</a>
+          </Link>
+        </>
+        )
+      }
+    },
+  ],[]);
+
   return (
     <main>
       <div>
         {
           scriptDetail.scriptList.length < 3 ? (
             <>
-              <Link href={'/market/script/create'}>
+              <Link href={'/market/script/edit'}>
                 <a>{t(`Create a script`)}</a>
               </Link>&nbsp;&nbsp;&nbsp;&nbsp;
             </>
@@ -70,13 +94,10 @@ const Market: NextPage = () => {
         Scripts created by you :
       </div>
       <section className='list'>
-        {scriptDetail.scriptList.map((v: any, i) => {
-          return (
-            <div key={v._id}>
-              {JSON.stringify(v)}
-            </div>
-          )
-        })}
+        <ScriptList 
+          columns={ meColumns }  
+          data={scriptDetail.scriptList}
+        ></ScriptList>
       </section>
       <div>
         <input type="text" placeholder='Please Input a domain or URL to search' />

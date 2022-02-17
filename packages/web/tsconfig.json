@@ -4,7 +4,7 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/helpers/css.js", "src/helpers/i18n.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/helpers/css.js", "src/helpers/i18n.js", "src/components/scriptListTable.jsx"],
   "exclude": ["node_modules"]
 }

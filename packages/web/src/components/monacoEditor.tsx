@@ -1,4 +1,4 @@
-import { NextPage  } from "next/types";
+import type { NextPage  } from "next/types";
 import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react";
 import { useEffect, useRef } from "react";
 // const nodeTypes = (require as any).context('!!raw-loader!@types/node/', true, /\.d.ts$/);
