@@ -2,6 +2,8 @@ import { simpleMode } from "./simpleMode.mjs";
 import { sendResultToWorker } from "./sendResultToWorker.mjs";
 import * as amqp from 'amqplib';
 import { CONFIG } from "./CONFIG.mjs";
+import { ESMImport } from "@webest/web-page-monitor-esm-loader"
+
 
 
 const exchange = CONFIG.exchange;
