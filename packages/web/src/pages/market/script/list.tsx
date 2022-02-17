@@ -131,6 +131,9 @@ const Market: NextPage = () => {
   return (
     <main>
       <div>
+        <Link href="/create_task_simp">
+          <a>{t('Back to create task simple mode')}</a>
+        </Link>
         {
           scriptDetail.scriptList.length < 3 ? (
             <>
@@ -141,9 +144,6 @@ const Market: NextPage = () => {
           ) : null
         }
         
-        <Link href="/create_task_simp">
-          <a>{t('Back to create task simple mode')}</a>
-        </Link>
       </div>
       <h3>
         {t(`Scripts created by you`)} :
