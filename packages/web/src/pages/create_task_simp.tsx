@@ -129,7 +129,7 @@ const CreateTaskSimpPage: NextPage = () => {
     })
     if(resp.ok){
       // TODO hint or navigate to another page
-      alert('submit OK. You can close this page.')
+      alert(t('submit OK. You can close this page.'))
     }
     console.log(resp);
     // return true;

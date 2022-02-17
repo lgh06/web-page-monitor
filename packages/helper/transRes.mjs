@@ -46,6 +46,7 @@ let trans = {
   "Create Now": "立即创建",
   "Go back to user center": "返回用户中心",
   "Go to scripts market": "前往脚本市场",
+  "submit OK. You can close this page.": "提交成功，您可以关闭该页面。",
   // below is on script market page
   "Script Market": "脚本市场",
   "No Data": "没有数据",
@@ -73,6 +74,8 @@ let trans = {
   "Notice: All scripts you created will be <strong>public</strong>, you can only modify your own scripts.": "注意：所有您创建的脚本将会<strong>公开</strong>，您只能修改自己的脚本。",
   "Please input a script name, or keep it empty to use the default name": "请输入一个脚本名称，或保持默认值",
   "Create Script Now": "立即创建脚本",
+  "Please modify the example code!": "请修改示例代码！",
+  "Script length too long! need <= 5000 characters": "脚本长度太长，需要 <= 5000 个字符",
 }
 
 let enTrans = {};
