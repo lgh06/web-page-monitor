@@ -56,7 +56,11 @@ const Market: NextPage = () => {
         userId: userInfo._id,
         urlRegExpArr: customScriptModule.urlRegExpArr,
       }
-    })
+    });
+    if(resp && resp.ok && resp.value){
+      alert(t('Create script success!, will go to script list page'));
+      router.push('/market/script/list')
+    }
     // TODO
     console.log(resp)
     return true;

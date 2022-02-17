@@ -25,15 +25,13 @@ const Market: NextPage = () => {
   // update input date when first entry
   async function firstInit() {
     let scriptList: any = [];
-
     // TODO pagination
     scriptList = await fetchAPI(`/market/script?userId=${userInfo._id}`) 
-    
     setScriptDetail((v) => {
       if(scriptList.length){
         v.scriptList = scriptList;
       }
-    })
+    });
   }
   useEffect(() => {
     firstInit();
@@ -54,10 +52,16 @@ const Market: NextPage = () => {
   return (
     <main>
       <div>
-        <Link href={'/market/script/create'}>
-          <a>{t(`Create a script`)}</a>
-        </Link>
-        &nbsp;&nbsp;&nbsp;&nbsp;
+        {
+          scriptDetail.scriptList.length < 3 ? (
+            <>
+              <Link href={'/market/script/create'}>
+                <a>{t(`Create a script`)}</a>
+              </Link>&nbsp;&nbsp;&nbsp;&nbsp;
+            </>
+          ) : null
+        }
+        
         <Link href="/create_task_simp">
           <a>{t('Go to task create simple mode')}</a>
         </Link>
