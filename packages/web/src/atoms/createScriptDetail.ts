@@ -6,7 +6,7 @@ let createScriptDetail = {
   extra: {
   },
   // used on list
-  eraserList: [],
+  scriptList: [],
 }
 
 export const createScriptDetailAtom = atom(createScriptDetail);

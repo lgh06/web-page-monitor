@@ -32,15 +32,15 @@ const Market: NextPage = () => {
 
   // update input date when first entry
   async function firstInit() {
-    let eraserList: any = [];
+    let scriptList: any = [];
     if(slugArr.length === 0) {
       // TODO pagination
-      eraserList = await fetchAPI(`/market/script?userId=${userInfo._id}`) 
+      scriptList = await fetchAPI(`/market/script?userId=${userInfo._id}`) 
     }
     setScriptDetail((v) => {
       v.alias = (Math.floor(Date.now())).toString(36).toUpperCase();
-      if(eraserList.length){
-        v.eraserList = eraserList;
+      if(scriptList.length){
+        v.scriptList = scriptList;
       }
     })
   }
@@ -58,14 +58,13 @@ const Market: NextPage = () => {
       return
     }
 
-    let customEraserModule = await ESMLoader(editorValue.value, window);
-    console.log(customEraserModule, customEraserModule.urlRegExpArr)
+    let customScriptModule = await ESMLoader(editorValue.value, window);
     let resp = await fetchAPI('/market/script', {
       scriptDetail:{
         alias: scriptDetail.alias,
         value: editorValue.value,
         userId: userInfo._id,
-        urlRegExpArr: customEraserModule.urlRegExpArr,
+        urlRegExpArr: customScriptModule.urlRegExpArr,
       }
     })
     // TODO
@@ -103,21 +102,21 @@ const Market: NextPage = () => {
     <main>
       <div>
         <Link href={slugArr.length ? '/market/script': '/market/script/create'}>
-          <a>{slugArr.length ? t(`Go back to Market home`) : t(`Create a eraser`)}</a>
+          <a>{slugArr.length ? t(`Go back to Market home`) : t(`Create a script`)}</a>
         </Link>
       </div>
       {slugArr.length ? null : (
         <div>
           <input type="text" placeholder='Please Input a domain or URL to search' />
-          <button>Search a eraser</button>
+          <button>Search a script</button>
         </div>
       )}
       {slugArr[0] === 'create' ? createSection : null}
       <div>
-        Eraser created by you :
+        Scripts created by you :
       </div>
       <section className='list'>
-        {scriptDetail.eraserList.map((v: any, i) => {
+        {scriptDetail.scriptList.map((v: any, i) => {
           return (
             <div key={v._id}>
               {JSON.stringify(v)}
