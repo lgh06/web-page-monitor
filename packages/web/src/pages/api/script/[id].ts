@@ -1,19 +1,19 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getDB } from '../../../lib';
+import { getDB, ObjectId } from '../../../lib';
 
 // http://localhost:{port}/dynjs/{filename}
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<string>
 ) {
-  const { filename } = req.query
+  const id = String(req.query.id).replace('.js', '');
   let db = await getDB();
   if (!db) return res.status(500).send('');
 
-  db.collection('dynjs').findOne({filename}).then(doc => {
+  db.collection('script').findOne({_id: new ObjectId(id) }).then(doc => {
     if(doc){
-      return res.status(200).send(doc.content)
+      return res.setHeader('Content-Type', 'text/javascript;charset=UTF-8').status(200).send(doc.value)
     }else{
       return res.status(200).send('')
     }
