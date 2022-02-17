@@ -9,6 +9,8 @@ let createScriptDetail = {
   scriptList: [],
   // used on edit
   _id: null,
+  // used when readonly
+  readonly: false,
 }
 
 export const createScriptDetailAtom = atomWithReset(createScriptDetail);

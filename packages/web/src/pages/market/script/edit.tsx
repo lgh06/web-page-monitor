@@ -47,6 +47,9 @@ const Market: NextPage = () => {
           if(script[0]._id){
             v._id = script[0]._id;
           }
+          if(userInfo._id !== script[0].userId){
+            v.readonly = true;
+          }
         }
       });
       setEditorValue((v) => {
@@ -129,6 +132,13 @@ const Market: NextPage = () => {
           <a>{ t(`Go back to Market home`)}</a>
         </Link>
       </div>
+      {
+        scriptDetail.readonly && (
+          <div style={{zoom: 1.1}}>
+            You are in readonly mode now!!
+          </div>
+        )
+      }
       <section className='create'>
         {
           router.query.id ? (
@@ -146,7 +156,7 @@ const Market: NextPage = () => {
         <div>
           {router.query.id ? t(`Please modify the script name, or keep its name same as before`) 
             : t(`Please input a script name, or keep it empty to use the default name`)} : 
-          <input className='consolas' data-input-index="0" value={scriptDetail.alias} placeholder='script name' onChange={handleInputChange} />
+          <input disabled={scriptDetail.readonly} className='consolas' data-input-index="0" value={scriptDetail.alias} placeholder='script name' onChange={handleInputChange} />
         </div>
         <div>
           <MonacoEditor 
@@ -155,7 +165,7 @@ const Market: NextPage = () => {
             ></MonacoEditor>
         </div>
         <div>
-          <button onClick={handleBtnClick}>{router.query.id ? t(`Update`) : t(`Create Script Now`)}</button>
+          <button disabled={scriptDetail.readonly} onClick={handleBtnClick}>{router.query.id ? t(`Update`) : t(`Create Script Now`)}</button>
         </div>
       </section>
     </main>
