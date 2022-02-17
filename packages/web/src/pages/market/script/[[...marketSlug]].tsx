@@ -25,7 +25,7 @@ const Market: NextPage = () => {
   let [cn, cs] = genClassNameAndString(styles);
   const [editorValue] = useImmerAtom(monacoEditorAtom);
   const [userInfo] = useImmerAtom(userInfoAtom);
-  const [eraserDetail, setEraserDetail] = useImmerAtom(createScriptDetailAtom);
+  const [scriptDetail, setScriptDetail] = useImmerAtom(createScriptDetailAtom);
 
   let slugArr = router.query.marketSlug ? router.query.marketSlug : [];
   console.log(JSON.stringify(slugArr));
@@ -37,7 +37,7 @@ const Market: NextPage = () => {
       // TODO pagination
       eraserList = await fetchAPI(`/market/script?userId=${userInfo._id}`) 
     }
-    setEraserDetail((v) => {
+    setScriptDetail((v) => {
       v.alias = (Math.floor(Date.now())).toString(36).toUpperCase();
       if(eraserList.length){
         v.eraserList = eraserList;
@@ -51,7 +51,7 @@ const Market: NextPage = () => {
   async function handleBtnClick(ev: MouseEvent<HTMLButtonElement> ) {
     ev.preventDefault()
     console.log(editorValue);
-    console.log(eraserDetail.alias)
+    console.log(scriptDetail.alias)
     console.log(userInfo)
     if(!editorValue.value){
       alert(t('Please modify the example code!'));
@@ -61,8 +61,8 @@ const Market: NextPage = () => {
     let customEraserModule = await ESMLoader(editorValue.value, window);
     console.log(customEraserModule, customEraserModule.urlRegExpArr)
     let resp = await fetchAPI('/market/script', {
-      eraserDetail:{
-        alias: eraserDetail.alias,
+      scriptDetail:{
+        alias: scriptDetail.alias,
         value: editorValue.value,
         userId: userInfo._id,
         urlRegExpArr: customEraserModule.urlRegExpArr,
@@ -77,7 +77,7 @@ const Market: NextPage = () => {
     let index = inputElement.dataset.inputIndex;
     console.log(index, inputElement.value);
     if (index === '0') {
-      setEraserDetail(v =>{
+      setScriptDetail(v =>{
         v.alias = inputElement.value;
       })
     }
@@ -87,7 +87,7 @@ const Market: NextPage = () => {
     <section className='create'>
       <div>
         {t(`Please input a script name, or keep it empty to use the default name`)}
-        <input className='consolas' data-input-index="0" value={eraserDetail.alias} placeholder='script name' onChange={handleInputChange} />
+        <input className='consolas' data-input-index="0" value={scriptDetail.alias} placeholder='script name' onChange={handleInputChange} />
       </div>
       <div>
         <MonacoEditor defaultValue={editorValue.createScriptDefaultValue}></MonacoEditor>
@@ -117,7 +117,7 @@ const Market: NextPage = () => {
         Eraser created by you :
       </div>
       <section className='list'>
-        {eraserDetail.eraserList.map((v: any, i) => {
+        {scriptDetail.eraserList.map((v: any, i) => {
           return (
             <div key={v._id}>
               {JSON.stringify(v)}
