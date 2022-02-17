@@ -11,6 +11,10 @@ let createScriptDetail = {
   _id: null,
   // used when readonly
   readonly: false,
+  // used on search
+  searchKey: '',
+  searchValue: '',
+  publicScriptList: [],
 }
 
 export const createScriptDetailAtom = atomWithReset(createScriptDetail);

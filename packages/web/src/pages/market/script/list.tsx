@@ -32,16 +32,20 @@ const Market: NextPage = () => {
       if(scriptList.length){
         v.scriptList = scriptList;
       }
+      v.publicScriptList = []
     });
   }
   useEffect(() => {
     firstInit();
   },[router.query]);
 
-  async function handleBtnClick(ev: MouseEvent<HTMLButtonElement> ) {
-    ev.preventDefault()
-
-    return true;
+  async function handleBtnSearch(ev: MouseEvent<HTMLButtonElement> ) {
+    let publicScriptList: any = [];
+    // TODO pagination
+    publicScriptList = await fetchAPI(`/market/script?${scriptDetail.searchKey}=${scriptDetail.searchValue}`) 
+    setScriptDetail((v) => {
+      v.publicScriptList = publicScriptList;
+    });
   }
 
   async function handleBtnDelete(ev: MouseEvent<HTMLButtonElement> ) {
@@ -56,11 +60,20 @@ const Market: NextPage = () => {
     window.location.reload();
     return false;
   }
-  function handleInputChange(ev: ChangeEvent<HTMLInputElement>) {
-    let inputElement = ev.target;
-    let index = inputElement.dataset.inputIndex;
-    console.log(index, inputElement.value);
+  function handleSelectChange(ev: ChangeEvent<HTMLSelectElement>) {
+    let selectEle = ev.target;
+    console.log(selectEle.value);
+    setScriptDetail(v =>{
+      v.searchKey = selectEle.value;
+    })
+  }
 
+  function handleInputChange(ev: ChangeEvent<HTMLInputElement>){
+    let inputEle = ev.target;
+    console.log(inputEle.value);
+    setScriptDetail(v =>{
+      v.searchValue = inputEle.value;
+    })
   }
 
   let meColumns = useMemo(() => [
@@ -73,7 +86,7 @@ const Market: NextPage = () => {
       accessor: 'domainArr',
     },
     {
-      Header: 'Edit / View / Delete',
+      Header: 'Edit / Delete',
       id: 'editOrView',
       Cell: ({ row: {original: or} }) => {
         return (<div style={{
@@ -83,6 +96,31 @@ const Market: NextPage = () => {
             <a className='btn'>{t(`Edit`)}</a>
           </Link>
           <button data-row-id={or._id} onClick={handleBtnDelete} style={{marginLeft: '10px'}}>{t(`Delete`)}</button>
+        </div>
+        )
+      }
+    },
+  ],[]);
+
+  let publicColumns = useMemo(() => [
+    {
+      Header: 'alias',
+      accessor: 'alias',
+    },
+    {
+      Header: 'domainArr',
+      accessor: 'domainArr',
+    },
+    {
+      Header: 'View',
+      id: 'editOrView',
+      Cell: ({ row: {original: or} }) => {
+        return (<div style={{
+          display: 'flex',
+        }}>
+          <Link href={'/market/script/edit?id=' + or._id}>
+            <a className='btn'>{t(`View`)}</a>
+          </Link>
         </div>
         )
       }
@@ -106,19 +144,38 @@ const Market: NextPage = () => {
           <a>{t('Go to task create simple mode')}</a>
         </Link>
       </div>
-      <div>
+      <h3>
         Scripts created by you :
-      </div>
+      </h3>
       <section className='list'>
         <ScriptList 
           columns={ meColumns }  
           data={scriptDetail.scriptList}
         ></ScriptList>
       </section>
+      <h3>
+        Public Scripts : 
+      </h3>
       <div>
-        <input type="text" placeholder='Please Input a domain or URL to search' />
-        <button>Search a public script</button>
+        <select name="searchKey" id="searchKey"
+          onChange={handleSelectChange}
+        >
+          <option value="">--{t(`Please choose an field to search`)}--</option>
+          <option value="id">{t(`script id`)}</option>
+          <option value="alias">{t(`script alias`)}</option>
+          <option value="domain">{t(`domain`)}</option>
+        </select>
+        <input type="text" placeholder='Please Input a domain or URL to search' 
+          onChange={handleInputChange}
+        />
+        <button onClick={handleBtnSearch}>Search a public script</button>
       </div>
+      <section className='pub-list'>
+        <ScriptList 
+          columns={ publicColumns }  
+          data={scriptDetail.publicScriptList}
+        ></ScriptList>
+      </section>
     </main>
   );
 }

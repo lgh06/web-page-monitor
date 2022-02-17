@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-key */
 import { useTable } from "react-table";
 import styled from 'styled-components'
+import { useI18n } from '../helpers'
+
 
 
 const Styles = styled.div``;
@@ -17,7 +19,9 @@ function ScriptList({columns, data}) {
     columns,
     data,
   })
-
+  const { t, locale, router } = useI18n();
+  if(!data || data.length === 0) return <div>{t(`No Data`)}</div>
+  
   // Render the UI for your table
   return (
     // <Styles>

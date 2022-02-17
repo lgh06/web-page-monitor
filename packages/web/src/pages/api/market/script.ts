@@ -68,12 +68,20 @@ async function scriptGetHandler(
   let collectionName = 'script';
   let userId = req.query.userId as string;
   let id = req.query.id as string;
+  let alias = req.query.alias as string;
+  let domain = req.query.domain as string;
   if(userId){
     // a list
     return mongo.queryDoc(db, collectionName, { userId: new ObjectId(userId) }, {value: 0}, res)
   }else if(id){
     // one list contains a single object
     return mongo.queryDoc(db, collectionName, { _id: new ObjectId(id) }, null, res)
+  }else if(alias){
+    // one list contains a single object
+    return mongo.queryDoc(db, collectionName, { alias }, null, res)
+  }else if(domain){
+    // one list contains a single object
+    return mongo.queryDoc(db, collectionName, { domainArr: domain }, null, res)
   }else{
     res.status(404).json({ err: 'no param'})
   }
