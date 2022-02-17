@@ -36,7 +36,7 @@ async function scriptPostHandler(
     table.createIndex({ alias: 1 });
   }
 
-  // TODO one user can only have max 5 scripts
+  // TODO one user can only have max 3 scripts
   // VIP can have 10 script (maybe)
   return mongo.upsertDoc(db, collectionName, filter, newDoc, res)
 }
