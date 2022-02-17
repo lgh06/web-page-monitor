@@ -64,7 +64,7 @@ const Market: NextPage = () => {
       id: 'details',
       Cell: ({ row: {original: or} }) => {
         return (<>
-          <Link href={'/market/script/edit/' + or._id}>
+          <Link href={'/market/script/edit?id=' + or._id}>
             <a>{t(`Edit`)}</a>
           </Link>
         </>
