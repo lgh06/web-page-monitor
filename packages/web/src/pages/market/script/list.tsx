@@ -171,7 +171,7 @@ const Market: NextPage = () => {
         <input type="text" placeholder='Please Input a domain or URL to search' 
           onChange={handleInputChange}
         />
-        <button onClick={handleBtnSearch}>Search a public script</button>
+        <button disabled={!(scriptDetail.searchKey && scriptDetail.searchValue)} onClick={handleBtnSearch}>Search a public script</button>
       </div>
       <section className='pub-list'>
         <ScriptList 

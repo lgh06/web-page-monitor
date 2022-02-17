@@ -38,6 +38,7 @@ async function scriptPostHandler(
     table.createIndex({ domainArr: 1 });
     table.createIndex({ userId: 1 });
     table.createIndex({ alias: 1 });
+    table.createIndex({ private: 1 });
   }
 
   // TODO one user can only have max 3 scripts
