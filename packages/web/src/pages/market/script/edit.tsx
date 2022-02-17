@@ -11,7 +11,7 @@ import { useResetAtom } from 'jotai/utils'
 import Head from 'next/head'
 import styles from '../../../styles/modules/market.module.scss'
 import Link from 'next/link'
-import { useI18n,genClassNameAndString, fetchAPI, useAPI } from '../../../helpers'
+import { useI18n,genClassNameAndString, fetchAPI, useAPI, innerHTML } from '../../../helpers'
 import Cookies from 'js-cookie'
 import nextConfig from "../../../../next.config"
 
@@ -118,10 +118,15 @@ const Market: NextPage = () => {
       </div>
       <section className='create'>
         {
-          router.query.id && (
+          router.query.id ? (
             <div>
               {t(`Script Unique ID`)} : &nbsp; <br/>
-              <input className='consolas' data-input-index="-1" value={scriptDetail._id} placeholder='script id' disabled />
+              <input className='consolas' data-input-index="-1" value={scriptDetail._id || ''} placeholder='script id' disabled />
+            </div>
+          ) : (
+            <div style={{zoom: 1.1}}
+              {...innerHTML(t(`Notice: All scripts you created will be <strong>public</strong>, you can only modify your own scripts.`))}
+              >
             </div>
           )
         }

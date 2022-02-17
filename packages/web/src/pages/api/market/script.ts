@@ -23,10 +23,12 @@ async function scriptPostHandler(
     urlRegExpArr,
   };
   let filter = {
+    userId: new ObjectId(userId),
     _id: new ObjectId(_id),
   }
   if(!_id){
     delete filter._id;
+    delete filter.userId;
   }
   // res.status(200).json({ name: 'John Doe', body: req.body })
   let db = await getDB();
@@ -43,11 +45,19 @@ async function scriptPostHandler(
   return mongo.upsertDoc(db, collectionName, filter, newDoc, res)
 }
 
-async function scriptPutHandler(
+async function scriptDeleteHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ){
-  res.status(200).json({ name: 'John Doe', body: req.body })
+  let db = await getDB();
+  let collectionName = 'script';
+  let id = req.query.id as string;
+  if(id){
+    // one list contains a single object
+    return mongo.delOneDoc(db, collectionName, { _id: new ObjectId(id) }, res)
+  }else{
+    res.status(404).json({ err: 'no param'})
+  }
 }
 
 async function scriptGetHandler(
@@ -75,8 +85,8 @@ export default async function handler(
 ) {
   if(req.method === 'POST'){
     await scriptPostHandler(req, res);
-  }else if(req.method === 'PUT'){
-    await scriptPutHandler(req, res);
+  }else if(req.method === 'DELETE'){
+    await scriptDeleteHandler(req, res);
   }else if(req.method === 'GET'){
     await scriptGetHandler(req, res);
   }else{

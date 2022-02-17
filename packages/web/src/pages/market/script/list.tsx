@@ -43,6 +43,17 @@ const Market: NextPage = () => {
 
     return true;
   }
+
+  async function handleBtnDelete(ev: MouseEvent<HTMLButtonElement> ) {
+    ev.preventDefault();
+    let element = ev.target;
+    let rowId = (element as any).dataset.rowId;
+    let confirmed = confirm(t('Are you sure to delete this script') + '?');
+    console.log(rowId, confirmed)
+    let resp = await fetchAPI(`/market/script?id=${rowId}`, null , 'DELETE')
+    window.location.reload();
+    return false;
+  }
   function handleInputChange(ev: ChangeEvent<HTMLInputElement>) {
     let inputElement = ev.target;
     let index = inputElement.dataset.inputIndex;
@@ -60,14 +71,17 @@ const Market: NextPage = () => {
       accessor: 'urlRegExpArr',
     },
     {
-      Header: 'details',
-      id: 'details',
+      Header: 'Edit / View / Delete',
+      id: 'editOrView',
       Cell: ({ row: {original: or} }) => {
-        return (<>
+        return (<div style={{
+          display: 'flex',
+        }}>
           <Link href={'/market/script/edit?id=' + or._id}>
-            <a>{t(`Edit`)}</a>
+            <a className='btn'>{t(`Edit`)}</a>
           </Link>
-        </>
+          <button data-row-id={or._id} onClick={handleBtnDelete} style={{marginLeft: '10px'}}>{t(`Delete`)}</button>
+        </div>
         )
       }
     },
