@@ -27,7 +27,7 @@ const CreateTaskSimpPage: NextPage = () => {
     })
   }
 
-  function handleInputChange(ev: ChangeEvent<HTMLInputElement>) {
+  function handleInputChange(ev: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     console.log(ev.target)
     let inputElement = ev.target;
     let index = ev.target.dataset.inputIndex;
@@ -100,6 +100,16 @@ const CreateTaskSimpPage: NextPage = () => {
         v.extra.alias = String(inputElement.value);
       });
     }
+    if(index === '8'){
+      setTaskDetail(v =>{
+        let str = String(inputElement.value)
+        if(str && str !== ''){
+          v.extra.eraserArr = str.split('\n');
+        }else{
+          v.extra.eraserArr = [];
+        }
+      });
+    }
   }
 
   async function handleBtnClick(ev: MouseEvent<HTMLButtonElement> ) {
@@ -136,6 +146,8 @@ const CreateTaskSimpPage: NextPage = () => {
       && (taskDetail.extra.detectMode === '2' ? taskDetail.extra.detectWord : true) 
       && taskDetail.cssSelector
       && taskDetail.extra.alias
+      && taskDetail.extra.eraserArr.length <= 3
+      && ( taskDetail.extra.eraserArr.length ? taskDetail.extra.eraserArr.every(v => (v.length === 24)) : true )
     );
   }
   
@@ -226,6 +238,14 @@ const CreateTaskSimpPage: NextPage = () => {
       value={taskDetail.extra.detectWord}
       onChange={handleInputChange}
       />
+    </div>
+    <div>
+      {t(`Please input eraser script IDs`)}. &nbsp;
+      {t(`One line one id, 3 erasers max`)}. &nbsp;
+      {t(`You can find more erasers on Script Market`)} . &nbsp;
+      <Link href="/faq#WhatIsEraserScript"><a>{t('Eraser Script in FAQ')}</a></Link>
+       : <br/>
+      <textarea data-input-index="8" value={taskDetail.extra.eraserArr.join('\n')} onChange={handleInputChange} name="erasers" id="erasers" cols={20} rows={3}></textarea>
     </div>
     <div {...innerHTML(t('Note: Simple Mode is only suitable for monitor web pages,\
       not for txt, xml or other files without HTML structure.<br/>\

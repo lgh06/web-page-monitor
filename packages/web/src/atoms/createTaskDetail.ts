@@ -19,6 +19,7 @@ let createTaskDetail = {
     detectWord: '',
     alertProvider: '',
     alertDebounce: '',
+    eraserArr: [],
   },
 }
 
