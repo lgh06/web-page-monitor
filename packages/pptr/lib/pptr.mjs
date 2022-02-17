@@ -2,7 +2,6 @@ import { simpleMode } from "./simpleMode.mjs";
 import { sendResultToWorker } from "./sendResultToWorker.mjs";
 import * as amqp from 'amqplib';
 import { CONFIG } from "./CONFIG.mjs";
-import * as resultEraser from "./resultEraser/index.mjs";
 
 
 const exchange = CONFIG.exchange;
@@ -40,23 +39,38 @@ async function main() {
       if (taskDetail.mode === 'simp') {
         try {
           let [result, err] = await simpleMode(taskDetail);
-          let oneResultEraser = resultEraser.weibo;
-          if(
-              (!err) 
-              && oneResultEraser 
-              && oneResultEraser.urlRegExpArr 
-              && oneResultEraser.urlRegExpArr.length
-              && oneResultEraser.replace
-              && ( oneResultEraser.urlRegExpArr.find(reg => taskDetail.pageURL.match( new RegExp(reg) ) ) )
-            ){
-            // TODO dynamic resultEraser
-            try {
-              result = oneResultEraser.replace(result);
-            } catch (error) {
-              console.error('resultEraser error inside pptr.mjs', error)
-              err = err + 'resultEraser error';
+          let extra = taskDetail.extra;
+          let eraserModuleArr = [];
+          if(extra && extra.eraserArr && extra.eraserArr.length){
+            for(let id of extra.eraserArr){
+              try {
+                let mod = await ESMImport(`${CONFIG.dynJSPath}${id}.js`);
+                eraserModuleArr.push(mod);
+              } catch (error) {
+                console.error(`fetch script ${id} error`, error)
+              }
             }
           }
+          for(let mod of eraserModuleArr){
+            let oneResultEraser = mod;
+            if(
+                (!err) 
+                && oneResultEraser 
+                && oneResultEraser.urlRegExpArr 
+                && oneResultEraser.urlRegExpArr.length
+                && oneResultEraser.replace
+                && ( oneResultEraser.urlRegExpArr.find(reg => taskDetail.pageURL.match( new RegExp(reg) ) ) )
+              ){
+              // TODO dynamic resultEraser
+              try {
+                result = oneResultEraser.replace(result);
+              } catch (error) {
+                console.error('resultEraser error inside pptr.mjs', error)
+                err = err + 'resultEraser error';
+              }
+            }
+          }
+
           // if pptr result's length is less than `extra.minLength`, 
           // then treat it as an error.
           if((!err) && taskDetail && taskDetail.extra && taskDetail.extra.minLength && Number(taskDetail.extra.minLength) !== 0){
