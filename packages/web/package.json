@@ -14,9 +14,9 @@
   },
   "dependencies": {
     "@monaco-editor/react": "~4.3.1",
-    "@types/node": "^17.0.10",
-    "@webest/web-page-monitor-helper": "*",
+    "@types/node": "~16.11.25",
     "@webest/web-page-monitor-esm-loader": "*",
+    "@webest/web-page-monitor-helper": "*",
     "i18next": "^21.6.11",
     "immer": "~9.0.12",
     "jotai": "~1.5.2",
@@ -29,12 +29,13 @@
     "react": "~17.0.2",
     "react-dom": "~17.0.2",
     "react-i18next": "^11.15.4",
+    "react-table": "^7.7.0",
     "sass": "^1.49.0",
-    "socket.io-client": "~4.4.1"
+    "socket.io-client": "~4.4.1",
+    "styled-components": "^5.3.3"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.1",
-    "@types/node": "~16.13.2",
     "@types/react": "~17.0.38",
     "concurrently": "~7.0.0",
     "eslint": "~8.6.0",
