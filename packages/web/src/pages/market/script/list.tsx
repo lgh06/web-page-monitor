@@ -67,8 +67,8 @@ const Market: NextPage = () => {
       accessor: 'alias',
     },
     {
-      Header: 'urlRegExpArr',
-      accessor: 'urlRegExpArr',
+      Header: 'domainArr',
+      accessor: 'domainArr',
     },
     {
       Header: 'Edit / View / Delete',

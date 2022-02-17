@@ -78,15 +78,28 @@ const Market: NextPage = () => {
       alert(t('Script length too long! need <= 5000 characters'));
       return
     }
-
-    let customScriptModule = await ESMLoader(editorValue.value);
+    let customScriptModule;
+    try {
+      customScriptModule = await ESMLoader(editorValue.value);
+    } catch (error) {
+      alert(t('Please check the script!'));
+      return;
+    }
+    // TODO auth module in frontend
+    // and backend
+    let domainArr = [];
+    if(customScriptModule.urlRegExpArr && customScriptModule.urlRegExpArr.length){
+      domainArr = customScriptModule.urlRegExpArr.map(v =>{
+        return new URL('http://' + v).hostname
+      });
+    }
     let resp = await fetchAPI('/market/script', {
       scriptDetail:{
         _id: scriptDetail._id,
         alias: scriptDetail.alias,
         value: editorValue.value,
         userId: userInfo._id,
-        urlRegExpArr: customScriptModule.urlRegExpArr,
+        domainArr,
       }
     });
     if(resp && resp.ok && resp.value){

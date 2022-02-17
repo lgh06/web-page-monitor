@@ -13,14 +13,14 @@ async function scriptPostHandler(
     alias,
     value,
     userId,
-    urlRegExpArr,
+    domainArr,
     _id,
   } = req.body.scriptDetail;
   let newDoc = {
     alias,
     value,
     userId: new ObjectId(userId),
-    urlRegExpArr,
+    domainArr,
   };
   let filter = {
     userId: new ObjectId(userId),
@@ -35,7 +35,7 @@ async function scriptPostHandler(
   let collectionName = 'script';
   if(db){
     let table = db.collection(collectionName);
-    table.createIndex({ urlRegExpArr: 1 });
+    table.createIndex({ domainArr: 1 });
     table.createIndex({ userId: 1 });
     table.createIndex({ alias: 1 });
   }
