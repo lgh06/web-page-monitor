@@ -41,7 +41,7 @@ let trans = {
       在15分钟内的第一个重复任务将被忽略。",
   "Create Now": "立即创建",
   "Go back to user center": "返回用户中心",
-  "Go to eraser market": "前往橡皮市场",
+  "Go to scripts market": "前往脚本市场",
 
 }
 

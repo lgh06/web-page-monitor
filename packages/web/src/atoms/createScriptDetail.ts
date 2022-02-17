@@ -1,6 +1,6 @@
 import { atom } from 'jotai'
 
-let createEraserDetail = {
+let createScriptDetail = {
   // used on create
   alias: (Math.floor(Date.now())).toString(36).toUpperCase(),
   extra: {
@@ -9,4 +9,4 @@ let createEraserDetail = {
   eraserList: [],
 }
 
-export const createEraserDetailAtom = atom(createEraserDetail);
+export const createScriptDetailAtom = atom(createScriptDetail);

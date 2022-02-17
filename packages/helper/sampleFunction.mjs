@@ -16,7 +16,7 @@ export const  sampleFunctionCreateTask = `async function task({browser}){
 }' + '\n' + '\
 export { task }';
 
-export const  sampleFunctionCreateEraser = `
+export const  sampleFunctionCreateScript = `
 // selectorArr / mode used after puppeteer open one page ready, to remove some DOM elements
 export const selectorArr = ['#List > div','#Copyright', 'body > div > div.qq_content.cf.slide-wrap'];
 export const mode = 'html'; // html / text / both. if empty,  is both

@@ -3,7 +3,7 @@ import { ChangeEvent, useEffect, MouseEvent } from 'react';
 // @ts-ignore
 import { ESMLoader } from "@webest/web-page-monitor-esm-loader"
 
-import { monacoEditorAtom, createEraserDetailAtom, userInfoAtom } from '../../../atoms';
+import { monacoEditorAtom, createScriptDetailAtom, userInfoAtom } from '../../../atoms';
 import { useImmerAtom } from 'jotai/immer';
 
 import Head from 'next/head'
@@ -25,7 +25,7 @@ const Market: NextPage = () => {
   let [cn, cs] = genClassNameAndString(styles);
   const [editorValue] = useImmerAtom(monacoEditorAtom);
   const [userInfo] = useImmerAtom(userInfoAtom);
-  const [eraserDetail, setEraserDetail] = useImmerAtom(createEraserDetailAtom);
+  const [eraserDetail, setEraserDetail] = useImmerAtom(createScriptDetailAtom);
 
   let slugArr = router.query.marketSlug ? router.query.marketSlug : [];
   console.log(JSON.stringify(slugArr));
@@ -35,7 +35,7 @@ const Market: NextPage = () => {
     let eraserList: any = [];
     if(slugArr.length === 0) {
       // TODO pagination
-      eraserList = await fetchAPI(`/market/eraser?userId=${userInfo._id}`) 
+      eraserList = await fetchAPI(`/market/script?userId=${userInfo._id}`) 
     }
     setEraserDetail((v) => {
       v.alias = (Math.floor(Date.now())).toString(36).toUpperCase();
@@ -59,13 +59,13 @@ const Market: NextPage = () => {
     }
 
     let customEraserModule = await ESMLoader(editorValue.value, window);
-    console.log(customEraserModule, customEraserModule.eraser.urlRegExpArr)
-    let resp = await fetchAPI('/market/eraser', {
+    console.log(customEraserModule, customEraserModule.urlRegExpArr)
+    let resp = await fetchAPI('/market/script', {
       eraserDetail:{
         alias: eraserDetail.alias,
         value: editorValue.value,
         userId: userInfo._id,
-        urlRegExpArr: customEraserModule.eraser.urlRegExpArr,
+        urlRegExpArr: customEraserModule.urlRegExpArr,
       }
     })
     // TODO
@@ -86,14 +86,14 @@ const Market: NextPage = () => {
   let createSection = (
     <section className='create'>
       <div>
-        {t(`Please input a eraser name, or keep it empty to use the default name`)}
-        <input className='consolas' data-input-index="0" value={eraserDetail.alias} placeholder='eraser name' onChange={handleInputChange} />
+        {t(`Please input a script name, or keep it empty to use the default name`)}
+        <input className='consolas' data-input-index="0" value={eraserDetail.alias} placeholder='script name' onChange={handleInputChange} />
       </div>
       <div>
-        <MonacoEditor defaultValue={editorValue.createEraserDefaultValue}></MonacoEditor>
+        <MonacoEditor defaultValue={editorValue.createScriptDefaultValue}></MonacoEditor>
       </div>
       <div>
-        <button onClick={handleBtnClick}>{t(`Create Eraser Now`)}</button>
+        <button onClick={handleBtnClick}>{t(`Create Script Now`)}</button>
       </div>
     </section>
   )
@@ -102,7 +102,7 @@ const Market: NextPage = () => {
   return (
     <main>
       <div>
-        <Link href={slugArr.length ? '/market/eraser': '/market/eraser/create'}>
+        <Link href={slugArr.length ? '/market/script': '/market/script/create'}>
           <a>{slugArr.length ? t(`Go back to Market home`) : t(`Create a eraser`)}</a>
         </Link>
       </div>

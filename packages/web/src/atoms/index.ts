@@ -4,5 +4,5 @@
 
 export * from './user';
 export * from './createTaskDetail';
-export * from './createEraserDetail';
+export * from './createScriptDetail';
 export * from './monacoEditor';
