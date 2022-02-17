@@ -27,21 +27,11 @@ const Market: NextPage = () => {
   const [userInfo] = useImmerAtom(userInfoAtom);
   const [scriptDetail, setScriptDetail] = useImmerAtom(createScriptDetailAtom);
 
-  let slugArr = router.query.marketSlug ? router.query.marketSlug : [];
-  console.log(JSON.stringify(slugArr));
 
   // update input date when first entry
   async function firstInit() {
-    let scriptList: any = [];
-    if(slugArr.length === 0) {
-      // TODO pagination
-      scriptList = await fetchAPI(`/market/script?userId=${userInfo._id}`) 
-    }
     setScriptDetail((v) => {
       v.alias = (Math.floor(Date.now())).toString(36).toUpperCase();
-      if(scriptList.length){
-        v.scriptList = scriptList;
-      }
     })
   }
   useEffect(() => {
@@ -82,47 +72,24 @@ const Market: NextPage = () => {
     }
   }
 
-  let createSection = (
-    <section className='create'>
-      <div>
-        {t(`Please input a script name, or keep it empty to use the default name`)}
-        <input className='consolas' data-input-index="0" value={scriptDetail.alias} placeholder='script name' onChange={handleInputChange} />
-      </div>
-      <div>
-        <MonacoEditor defaultValue={editorValue.createScriptDefaultValue}></MonacoEditor>
-      </div>
-      <div>
-        <button onClick={handleBtnClick}>{t(`Create Script Now`)}</button>
-      </div>
-    </section>
-  )
-
-
   return (
     <main>
       <div>
-        <Link href={slugArr.length ? '/market/script': '/market/script/create'}>
-          <a>{slugArr.length ? t(`Go back to Market home`) : t(`Create a script`)}</a>
+        <Link href={ '/market/script/list'}>
+          <a>{ t(`Go back to Market home`)}</a>
         </Link>
       </div>
-      {slugArr.length ? null : (
+      <section className='create'>
         <div>
-          <input type="text" placeholder='Please Input a domain or URL to search' />
-          <button>Search a script</button>
+          {t(`Please input a script name, or keep it empty to use the default name`)}
+          <input className='consolas' data-input-index="0" value={scriptDetail.alias} placeholder='script name' onChange={handleInputChange} />
         </div>
-      )}
-      {slugArr[0] === 'create' ? createSection : null}
-      <div>
-        Scripts created by you :
-      </div>
-      <section className='list'>
-        {scriptDetail.scriptList.map((v: any, i) => {
-          return (
-            <div key={v._id}>
-              {JSON.stringify(v)}
-            </div>
-          )
-        })}
+        <div>
+          <MonacoEditor defaultValue={editorValue.createScriptDefaultValue}></MonacoEditor>
+        </div>
+        <div>
+          <button onClick={handleBtnClick}>{t(`Create Script Now`)}</button>
+        </div>
       </section>
     </main>
   );
