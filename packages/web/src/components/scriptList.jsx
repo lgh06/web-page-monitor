@@ -20,7 +20,7 @@ function ScriptList({columns, data}) {
 
   // Render the UI for your table
   return (
-    <Styles>
+    // <Styles>
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map(headerGroup => (
@@ -44,7 +44,7 @@ function ScriptList({columns, data}) {
           })}
         </tbody>
       </table>
-    </Styles>
+    // </Styles>
   )
 }
 

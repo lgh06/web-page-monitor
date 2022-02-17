@@ -1,4 +1,4 @@
-import { atom } from 'jotai'
+import { atomWithReset } from 'jotai/utils'
 import { sampleFunctionCreateTask, sampleFunctionCreateScript } from '@webest/web-page-monitor-helper';
 
 
@@ -8,4 +8,4 @@ let monacoEditor = {
   value: '',
 }
 
-export const monacoEditorAtom = atom(monacoEditor);
+export const monacoEditorAtom = atomWithReset(monacoEditor);

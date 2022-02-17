@@ -1,4 +1,4 @@
-import { atom } from 'jotai'
+import { atomWithReset } from 'jotai/utils'
 
 let createScriptDetail = {
   // used on create
@@ -7,6 +7,8 @@ let createScriptDetail = {
   },
   // used on list
   scriptList: [],
+  // used on edit
+  _id: null,
 }
 
-export const createScriptDetailAtom = atom(createScriptDetail);
+export const createScriptDetailAtom = atomWithReset(createScriptDetail);
