@@ -74,6 +74,10 @@ const Market: NextPage = () => {
       alert(t('Please modify the example code!'));
       return
     }
+    if(String(editorValue.value).length > 5000){
+      alert(t('Script length too long! need <= 5000 characters'));
+      return
+    }
 
     let customScriptModule = await ESMLoader(editorValue.value);
     let resp = await fetchAPI('/market/script', {
@@ -113,8 +117,17 @@ const Market: NextPage = () => {
         </Link>
       </div>
       <section className='create'>
+        {
+          router.query.id && (
+            <div>
+              {t(`Script Unique ID`)} : &nbsp; <br/>
+              <input className='consolas' data-input-index="-1" value={scriptDetail._id} placeholder='script id' disabled />
+            </div>
+          )
+        }
         <div>
-          {t(`Please input a script name, or keep it empty to use the default name`)}
+          {router.query.id ? t(`Please modify the script name, or keep its name same as before`) 
+            : t(`Please input a script name, or keep it empty to use the default name`)} : 
           <input className='consolas' data-input-index="0" value={scriptDetail.alias} placeholder='script name' onChange={handleInputChange} />
         </div>
         <div>
