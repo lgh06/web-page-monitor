@@ -1,7 +1,7 @@
 import { globalConfig } from "@webest/web-page-monitor-helper";
 
 let CONFIG = {
-  dynJSPath: `http://localhost:3002/api/dynjs/`,
+  dynJSPath: `http://localhost:3002/api/script/`,
   socketio: `http://localhost:3003/`,
   debug: false, // false in production
   pptrThreadNum: globalConfig.pptrThreadNum,

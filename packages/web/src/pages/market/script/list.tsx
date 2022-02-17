@@ -1,7 +1,5 @@
 import type { NextPage } from 'next'
 import { ChangeEvent, useEffect, MouseEvent, useMemo } from 'react';
-// @ts-ignore
-import { ESMLoader } from "@webest/web-page-monitor-esm-loader"
 
 import { monacoEditorAtom, createScriptDetailAtom, userInfoAtom } from '../../../atoms';
 import { useImmerAtom } from 'jotai/immer';

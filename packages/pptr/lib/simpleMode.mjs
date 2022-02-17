@@ -2,11 +2,11 @@
 // https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=outline
 import { CONFIG } from "./CONFIG.mjs";
 import puppeteer from 'puppeteer';
-import * as domEraser from './domEraser/index.mjs';
+import { ESMImport } from "@webest/web-page-monitor-esm-loader"
 
 async function simpleModeTask({browser, taskDetail}){
   try {
-    let {pageURL, cssSelector, detectMode, detectWord} = taskDetail;
+    let {pageURL, cssSelector, extra} = taskDetail;
     const page = await browser.newPage();
     await page.setViewport({
       width: 1920,
@@ -20,38 +20,51 @@ async function simpleModeTask({browser, taskDetail}){
     // TODO dynamic domEraser
     // TODO domEraser may delete the matchedElement
     // mention this in FAQ some day.
-    let oneDomEraser = domEraser.qq;
-    if( 
-        oneDomEraser
-        && oneDomEraser.urlRegExpArr
-        && oneDomEraser.urlRegExpArr.length
-        && oneDomEraser.selectorArr
-        && oneDomEraser.selectorArr.length
-        && oneDomEraser.urlRegExpArr.find(reg => pageURL.match( new RegExp(reg) ) ) 
-      ){
-      await page.evaluate((oneDomEraser) =>{
-        let {selectorArr, mode} = oneDomEraser;
-        let delElements = function(selector, mode){
-          let matchedEleArr = document.querySelectorAll(selector);
-          if(matchedEleArr && matchedEleArr.length){
-            matchedEleArr.forEach(ele =>{
-              if(mode === 'html'){
-                ele.innerHTML = ''
-              }else if(mode === 'text'){
-                ele.innerText = ''
-              }else{ // undefined or 'both'
-                ele.innerHTML = ''
-                ele.innerText = ''
-              }
+    let eraserModuleArr = [];
+    if(extra && extra.eraserArr && extra.eraserArr.length){
+      for(let id of extra.eraserArr){
+        try {
+          let mod = await ESMImport(`${CONFIG.dynJSPath}${id}.js`);
+          eraserModuleArr.push(mod);
+        } catch (error) {
+          console.error(`fetch script ${id} error`, error)
+        }
+      }
+    }
+    for(let mod of eraserModuleArr){
+      let oneDomEraser = mod;
+      if( 
+          oneDomEraser
+          && oneDomEraser.urlRegExpArr
+          && oneDomEraser.urlRegExpArr.length
+          && oneDomEraser.selectorArr
+          && oneDomEraser.selectorArr.length
+          && oneDomEraser.urlRegExpArr.find(reg => pageURL.match( new RegExp(reg) ) ) 
+        ){
+        await page.evaluate((oneDomEraser) =>{
+          let {selectorArr, mode} = oneDomEraser;
+          let delElements = function(selector, mode){
+            let matchedEleArr = document.querySelectorAll(selector);
+            if(matchedEleArr && matchedEleArr.length){
+              matchedEleArr.forEach(ele =>{
+                if(mode === 'html'){
+                  ele.innerHTML = ''
+                }else if(mode === 'text'){
+                  ele.innerText = ''
+                }else{ // undefined or 'both'
+                  ele.innerHTML = ''
+                  ele.innerText = ''
+                }
+              });
+            }
+          }
+          if(Array.isArray(selectorArr) && selectorArr.length){
+            selectorArr.forEach(selector => {
+              delElements(selector, mode)
             });
           }
-        }
-        if(Array.isArray(selectorArr) && selectorArr.length){
-          selectorArr.forEach(selector => {
-            delElements(selector, mode)
-          });
-        }
-      }, oneDomEraser);
+        }, oneDomEraser);
+    }
       // pass a function to puppeteer page.evaluate is hard.
       // DO NOT do this.
       // https://stackoverflow.com/questions/47304665/how-to-pass-a-function-in-puppeteers-evaluate-method
