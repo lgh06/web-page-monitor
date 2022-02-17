@@ -24,6 +24,10 @@ let trans = {
   "Notify you when": "通知您，当",
   "Page Changes": "页面变动时",
   "Word(s) Show up": "词语（文字）出现时",
+  "Please input eraser script IDs": "请输入橡皮脚本ID",
+  "One line one id, 3 erasers max": "一行一个ID，最多3个橡皮脚本",
+  "You can find more erasers on Script Market": "您可以在脚本市场上找到更多橡皮脚本",
+  "Eraser Script in FAQ": "什么是橡皮脚本",
   "Please input some words, multiple words can be separated by commas": "请输入一些词语（文字）,多个词语之间可以用逗号分隔",
   "Note: Simple Mode is only suitable for monitor web pages,\
       not for txt, xml or other files without HTML structure.<br/>\
@@ -42,7 +46,30 @@ let trans = {
   "Create Now": "立即创建",
   "Go back to user center": "返回用户中心",
   "Go to scripts market": "前往脚本市场",
-
+  // below is on script market page
+  "Script Market": "脚本市场",
+  "No Data": "没有数据",
+  "Scripts created by you": "您创建的脚本",
+  "Public Scripts": "公开的脚本",
+  "Update": "更新",
+  "Script Unique ID": "脚本唯一ID",
+  "You can modify the script name, or keep its name same as before": "您可以修改脚本名称，或保持原名称",
+  "Go back to Market home": "返回脚本市场首页",
+  "Create a script": "创建一个脚本",
+  "Back to create task simple mode": "回到创建简单模式任务",
+  "Go to script market": "前往脚本市场",
+  "Edit / Delete": "编辑/删除",
+  "Edit": "编辑",
+  "Delete": "删除",
+  "domains applied to": "应用到的域名",
+  "alias": "别名",
+  "Please choose an field to search": "请选择一个搜索字段",
+  "script id": "脚本ID",
+  "script alias": "脚本别名",
+  "domain": "域名",
+  "Please Input": "请输入",
+  "Search a public script": "搜索公开脚本",
+  "View": "查看",
 }
 
 let enTrans = {};

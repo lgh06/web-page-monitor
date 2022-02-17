@@ -79,15 +79,15 @@ const Market: NextPage = () => {
 
   let meColumns = useMemo(() => [
     {
-      Header: 'alias',
+      Header: t('alias'),
       accessor: 'alias',
     },
     {
-      Header: 'domainArr',
+      Header: t('domains applied to'),
       accessor: 'domainArr',
     },
     {
-      Header: 'Edit / Delete',
+      Header: t('Edit / Delete'),
       id: 'editOrView',
       Cell: ({ row: {original: or} }) => {
         return (<div style={{
@@ -105,15 +105,15 @@ const Market: NextPage = () => {
 
   let publicColumns = useMemo(() => [
     {
-      Header: 'alias',
+      Header: t('alias'),
       accessor: 'alias',
     },
     {
-      Header: 'domainArr',
+      Header: t('domains applied to'),
       accessor: 'domainArr',
     },
     {
-      Header: 'View',
+      Header: t('View'),
       id: 'editOrView',
       Cell: ({ row: {original: or} }) => {
         return (<div style={{
@@ -142,11 +142,11 @@ const Market: NextPage = () => {
         }
         
         <Link href="/create_task_simp">
-          <a>{t('Go to create task simple mode')}</a>
+          <a>{t('Back to create task simple mode')}</a>
         </Link>
       </div>
       <h3>
-        Scripts created by you :
+        {t(`Scripts created by you`)} :
       </h3>
       <section className='list'>
         <ScriptList 
@@ -155,7 +155,7 @@ const Market: NextPage = () => {
         ></ScriptList>
       </section>
       <h3>
-        Public Scripts : 
+      {t(`Public Scripts`)} : 
       </h3>
       <div>
         <select name="searchKey" id="searchKey"
@@ -166,10 +166,10 @@ const Market: NextPage = () => {
           <option value="alias">{t(`script alias`)}</option>
           <option value="domain">{t(`domain`)}</option>
         </select>
-        <input type="text" placeholder='Please Input a domain or URL to search' 
+        <input type="text" placeholder={t('Please Input')} 
           onChange={handleInputChange}
         />
-        <button disabled={!(scriptDetail.searchKey && scriptDetail.searchValue)} onClick={handleBtnSearch}>Search a public script</button>
+        <button disabled={!(scriptDetail.searchKey && scriptDetail.searchValue)} onClick={handleBtnSearch}>{t(`Search a public script`)}</button>
       </div>
       <section className='pub-list'>
         <ScriptList 

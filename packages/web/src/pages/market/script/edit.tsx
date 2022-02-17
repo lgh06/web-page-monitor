@@ -154,8 +154,8 @@ const Market: NextPage = () => {
           )
         }
         <div>
-          {router.query.id ? t(`Please modify the script name, or keep its name same as before`) 
-            : t(`Please input a script name, or keep it empty to use the default name`)} : 
+          {router.query.id ? t(`You can modify the script name, or keep its name same as before`) 
+            : t(`Please input a script name, or keep it empty to use the default name`)} :  <br/>
           <input disabled={scriptDetail.readonly} className='consolas' data-input-index="0" value={scriptDetail.alias} placeholder='script name' onChange={handleInputChange} />
         </div>
         <div>
