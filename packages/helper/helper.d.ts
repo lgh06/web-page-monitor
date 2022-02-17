@@ -29,7 +29,9 @@ export namespace  CronTime {
 }
 
 export let sampleFunctionCreateTask = '';
-export let sampleFunctionCreateScript = '';
+export let sampleFunctionCreateScript1 = '';
+export let sampleFunctionCreateScript2 = '';
+export let sampleFunctionCreateScript3 = '';
 
 export module globalConfig {
   mongodbURI: string;

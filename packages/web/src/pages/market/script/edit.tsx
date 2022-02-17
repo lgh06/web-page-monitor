@@ -3,6 +3,9 @@ import { ChangeEvent, useEffect, MouseEvent } from 'react';
 // @ts-ignore
 import { ESMLoader } from "@webest/web-page-monitor-esm-loader"
 
+import * as crossHelper from '@webest/web-page-monitor-helper';
+
+
 import { monacoEditorAtom, createScriptDetailAtom, userInfoAtom } from '../../../atoms';
 import { useImmerAtom } from 'jotai/immer';
 import { useResetAtom } from 'jotai/utils'
@@ -125,6 +128,14 @@ const Market: NextPage = () => {
     }
   }
 
+  function handleSelectChange(ev: ChangeEvent<HTMLSelectElement>) {
+    let selectEle = ev.target;
+    console.log(selectEle.value);
+    setEditorValue(v =>{
+      // v.searchKey = selectEle.value;
+      v.value = crossHelper['sampleFunctionCreateScript'+selectEle.value];
+    })
+  }
   return (
     <main>
       <div>
@@ -157,6 +168,20 @@ const Market: NextPage = () => {
           {router.query.id ? t(`You can modify the script name, or keep its name same as before`) 
             : t(`Please input a script name, or keep it empty to use the default name`)} :  <br/>
           <input disabled={scriptDetail.readonly} className='consolas' data-input-index="0" value={scriptDetail.alias} placeholder='script name' onChange={handleInputChange} />
+        </div>
+        <div>
+          {router.query.id ? null 
+            : (
+              <select name="searchKey" id="searchKey"
+                onChange={handleSelectChange}
+              >
+                <option value="">--{t(`Please choose an example`)}--</option>
+                <option value="1">{t(`example 1`)}</option>
+                <option value="2">{t(`example 2`)}</option>
+                <option value="3">{t(`example 3`)}</option>
+              </select>
+            )
+          }
         </div>
         <div>
           <MonacoEditor 
