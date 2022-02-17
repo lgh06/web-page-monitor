@@ -40,6 +40,9 @@ const Market: NextPage = () => {
   },[router.query]);
 
   async function handleBtnSearch(ev: MouseEvent<HTMLButtonElement> ) {
+    if(!scriptDetail.searchKey){
+      alert(t('Please select a search field:'));
+    }
     let publicScriptList: any = [];
     // TODO pagination
     publicScriptList = await fetchAPI(`/market/script?${scriptDetail.searchKey}=${scriptDetail.searchValue}`) 
