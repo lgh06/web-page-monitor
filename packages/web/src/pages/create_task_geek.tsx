@@ -127,7 +127,7 @@ const CreateTaskGeekPage: NextPage = () => {
       </input>
     </div>
     <div>
-      <MonacoEditor defaultValue={editorValue.createTaskDefaultValue}></MonacoEditor>
+      {/* <MonacoEditor defaultValue={editorValue.createTaskDefaultValue}></MonacoEditor> */}
       {/* <MonacoEditor defaultValue={'111' + editorValue.createTaskDefaultValue }></MonacoEditor> */}
     </div>
     <div>
