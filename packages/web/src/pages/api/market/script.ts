@@ -14,17 +14,19 @@ async function scriptPostHandler(
     value,
     userId,
     urlRegExpArr,
+    _id,
   } = req.body.scriptDetail;
-  const newDoc = {
+  let newDoc = {
     alias,
     value,
     userId: new ObjectId(userId),
     urlRegExpArr,
   };
   let filter = {
-    alias,
-    urlRegExpArr,
-    userId,
+    _id: new ObjectId(_id),
+  }
+  if(!_id){
+    delete filter._id;
   }
   // res.status(200).json({ name: 'John Doe', body: req.body })
   let db = await getDB();
@@ -54,9 +56,14 @@ async function scriptGetHandler(
 ){
   let db = await getDB();
   let collectionName = 'script';
-  let userId = String(req.query.userId);
+  let userId = req.query.userId as string;
+  let id = req.query.id as string;
   if(userId){
+    // a list
     return mongo.queryDoc(db, collectionName, { userId: new ObjectId(userId) }, {value: 0}, res)
+  }else if(id){
+    // one list contains a single object
+    return mongo.queryDoc(db, collectionName, { _id: new ObjectId(id) }, null, res)
   }else{
     res.status(404).json({ err: 'no param'})
   }

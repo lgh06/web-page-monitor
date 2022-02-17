@@ -8,9 +8,10 @@ import { monacoEditorAtom } from '../atoms';
 
 interface Props {
   defaultValue: string;
+  value: string;
 }
 
-const MonacoEditor: NextPage<Props> = ({defaultValue}) => {
+const MonacoEditor: NextPage<Props> = ({defaultValue, value}) => {
   const monaco = useMonaco();
   const editorRef = useRef(null);
   const [editorValue, setEditorValue] = useImmerAtom(monacoEditorAtom);
@@ -70,6 +71,7 @@ const MonacoEditor: NextPage<Props> = ({defaultValue}) => {
         height="500px"
         defaultLanguage="typescript"
         defaultValue={defaultValue}
+        value={value}
         onMount={handleEditorDidMount}
         onChange={handleEditorChange}
         options={{

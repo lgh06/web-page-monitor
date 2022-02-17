@@ -5,6 +5,8 @@ import { ESMLoader } from "@webest/web-page-monitor-esm-loader"
 
 import { monacoEditorAtom, createScriptDetailAtom, userInfoAtom } from '../../../atoms';
 import { useImmerAtom } from 'jotai/immer';
+import { useResetAtom } from 'jotai/utils'
+
 
 import Head from 'next/head'
 import styles from '../../../styles/modules/market.module.scss'
@@ -23,16 +25,41 @@ const Market: NextPage = () => {
   // https://nextjs.org/docs/migrating/from-react-router#nested-routes
   const { t, locale, router } = useI18n();
   let [cn, cs] = genClassNameAndString(styles);
-  const [editorValue] = useImmerAtom(monacoEditorAtom);
+  const [editorValue, setEditorValue] = useImmerAtom(monacoEditorAtom);
   const [userInfo] = useImmerAtom(userInfoAtom);
   const [scriptDetail, setScriptDetail] = useImmerAtom(createScriptDetailAtom);
+  const resetScriptDetail = useResetAtom(createScriptDetailAtom)
+  const resetEditorValue = useResetAtom(monacoEditorAtom)
 
 
   // update input date when first entry
   async function firstInit() {
-    setScriptDetail((v) => {
-      v.alias = (Math.floor(Date.now())).toString(36).toUpperCase();
-    })
+    resetScriptDetail();
+    resetEditorValue();
+    if(router.query.id){
+      console.log(router.query.id)
+      let script: any = [];
+      // TODO pagination
+      script = await fetchAPI(`/market/script?id=${router.query.id}`) 
+      setScriptDetail((v) => {
+        if(script && script.length === 1){
+          v.alias = script[0].alias;
+          if(script[0]._id){
+            v._id = script[0]._id;
+          }
+        }
+      });
+      setEditorValue((v) => {
+        if(script && script.length === 1){
+          v.value = script[0].value;
+        }
+      });
+    }else{
+      setScriptDetail((v) => {
+        v.alias = (Math.floor(Date.now())).toString(36).toUpperCase();
+      })
+    }
+
   }
   useEffect(() => {
     firstInit();
@@ -48,9 +75,10 @@ const Market: NextPage = () => {
       return
     }
 
-    let customScriptModule = await ESMLoader(editorValue.value, window);
+    let customScriptModule = await ESMLoader(editorValue.value);
     let resp = await fetchAPI('/market/script', {
       scriptDetail:{
+        _id: scriptDetail._id,
         alias: scriptDetail.alias,
         value: editorValue.value,
         userId: userInfo._id,
@@ -58,7 +86,8 @@ const Market: NextPage = () => {
       }
     });
     if(resp && resp.ok && resp.value){
-      alert(t('Create script success!, will go to script list page'));
+      alert(t(`${router.query.id ? 'Update' : 'Create'} script success!, will go to script list page`));
+      
       router.push('/market/script/list')
     }
     // TODO
@@ -89,10 +118,13 @@ const Market: NextPage = () => {
           <input className='consolas' data-input-index="0" value={scriptDetail.alias} placeholder='script name' onChange={handleInputChange} />
         </div>
         <div>
-          <MonacoEditor defaultValue={editorValue.createScriptDefaultValue}></MonacoEditor>
+          <MonacoEditor 
+            defaultValue={editorValue.value || editorValue.createScriptDefaultValue}
+            value={editorValue.value || editorValue.createScriptDefaultValue}
+            ></MonacoEditor>
         </div>
         <div>
-          <button onClick={handleBtnClick}>{t(`Create Script Now`)}</button>
+          <button onClick={handleBtnClick}>{router.query.id ? t(`Update`) : t(`Create Script Now`)}</button>
         </div>
       </section>
     </main>
