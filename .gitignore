@@ -6,3 +6,6 @@ packages/helper/globalConfig.prod.mjs
 packages/vendor-scripts-n-configs/docker_mongo/mongo-init.js
 packages/vendor-scripts-n-configs/docker_mongo/startMongo.sh
 packages/helper/globalConfig.prod.mjs.bak
+packages/helper/priv.mjs
+packages/helper/privPKCS8.pk8
+packages/helper/pub.mjs
