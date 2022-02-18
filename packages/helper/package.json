@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "cron": "1.8.2",
-    "i18next": "^21.6.11",
+    "i18next": "~21.6.11",
+    "jose": "~4.5.0",
     "mongodb": "=4.3.1"
   },
   "devDependencies": {

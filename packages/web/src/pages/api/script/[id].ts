@@ -2,7 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getDB, ObjectId, middlewares } from '../../../lib';
 
-// http://localhost:{port}/dynjs/{filename}
+// http://localhost:{port}/script/{id}.js
 async function handler(
   req: NextApiRequest,
   res: NextApiResponse<string>
