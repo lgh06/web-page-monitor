@@ -11,8 +11,7 @@ import { SignJWT,
   jwtVerify,
 } from "jose";
 
-// import * as rsaSignUtil from "jsrsasign-util";
-import * as rsaSign from "jsrsasign";
+import { KEYUTIL, jws } from "jsrsasign";
 
 export const pub ={
   "kty": "RSA",
@@ -47,9 +46,9 @@ const IOTestPage: NextPage = () => {
       const decodedJwt = await decodeJwt(jwt);
       console.log(decodedHeader, decodedJwt)
       
-      const pubKey = rsaSign.KEYUTIL.getKey(pub);
+      const pubKey = KEYUTIL.getKey(pub);
 
-      const jwtVerifyResult = rsaSign.jws.JWS.verifyJWT(jwt, pubKey, {alg: ['PS384']});
+      const jwtVerifyResult = jws.JWS.verifyJWT(jwt, pubKey, {alg: ['PS384']});
       console.log(jwtVerifyResult)
     }
 

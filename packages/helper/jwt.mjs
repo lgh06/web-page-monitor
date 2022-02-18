@@ -4,7 +4,7 @@ import { SignJWT,
   jwtVerify,
 } from "jose";
 // use jsrsasign only in web browser
-// import * as rsaSign from "jsrsasign";
+// import { KEYUTIL, jws } from "jsrsasign";
 
 // https://nodejs.org/docs/latest-v16.x/api/crypto.html#static-method-keyobjectfromkey
 // https://github.com/panva/jose/blob/c185e24def279e921258ccbafaf65d4bb571d60d/docs/README.md
@@ -48,8 +48,8 @@ console.log(protectedHeader2)
 console.log(payload2)
 
 // use jsrsasign only in web browser
-// const pubKey = rsaSign.KEYUTIL.getKey(pub);
-// const jwtVerifyResult = rsaSign.jws.JWS.verifyJWT(jwt, pubKey, {alg: ['PS384']});
+// const pubKey = KEYUTIL.getKey(pub);
+// const jwtVerifyResult = jws.JWS.verifyJWT(jwt, pubKey, {alg: ['PS384']});
 // console.log(jwtVerifyResult)
 
 
