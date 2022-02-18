@@ -5,7 +5,7 @@ import { getDB, ObjectId, middlewares } from '../../../lib';
 // http://localhost:{port}/script/{id}.js
 async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<string>
+  res: NextApiResponse<string|object>
 ) {
   const id = String(req.query.id).replace('.js', '');
   if(String(id).length !== 24){
