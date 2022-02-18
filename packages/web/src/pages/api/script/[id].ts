@@ -8,16 +8,19 @@ async function handler(
   res: NextApiResponse<string>
 ) {
   const id = String(req.query.id).replace('.js', '');
+  if(String(id).length !== 24){
+    res.status(404).json({ err: 'script id must be 24 chars'});
+    return;
+  }
   let db = await getDB();
   if (!db) return res.status(500).send('');
 
-  db.collection('script').findOne({_id: new ObjectId(id) }).then(doc => {
-    if(doc){
-      return res.setHeader('Content-Type', 'text/javascript;charset=UTF-8').status(200).send(doc.value)
-    }else{
-      return res.status(404).send('')
-    }
-  }).catch(e => {console.error(e)})
+  let doc = await db.collection('script').findOne({_id: new ObjectId(id) });
+  if(doc){
+    return res.setHeader('Content-Type', 'text/javascript;charset=UTF-8').status(200).send(doc.value)
+  }else{
+    return res.status(404).send('')
+  }
 }
 
 export default middlewares.addRequestId(handler);
