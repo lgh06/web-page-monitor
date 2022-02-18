@@ -17,6 +17,7 @@ let globalConfigLocal = {
   pptrThreadNum: 2,
   pptrToWorkerQueue: 'testPptrHistoryQueue001',
   dynJSPath: `http://localhost:3002/api/script/`,
+  // Nodemailer App config for local debug use
   nodemailer: {
     host: 'localhost',
     port: 10260,
