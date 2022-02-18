@@ -1,9 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getDB, ObjectId } from '../../../lib';
+import { getDB, ObjectId, middlewares } from '../../../lib';
 
 // http://localhost:{port}/dynjs/{filename}
-export default async function handler(
+async function handler(
   req: NextApiRequest,
   res: NextApiResponse<string>
 ) {
@@ -19,3 +19,5 @@ export default async function handler(
     }
   }).catch(e => {console.error(e)})
 }
+
+export default middlewares.addRequestId(handler);
