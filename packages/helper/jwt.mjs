@@ -3,7 +3,8 @@ import { SignJWT,
   decodeProtectedHeader,decodeJwt,
   jwtVerify,
 } from "jose";
-import fs from "fs"
+// use jsrsasign only in web browser
+// import * as rsaSign from "jsrsasign";
 
 // https://nodejs.org/docs/latest-v16.x/api/crypto.html#static-method-keyobjectfromkey
 // https://github.com/panva/jose/blob/c185e24def279e921258ccbafaf65d4bb571d60d/docs/README.md
@@ -45,3 +46,12 @@ const { payload: payload2, protectedHeader: protectedHeader2 } = await jwtVerify
 
 console.log(protectedHeader2)
 console.log(payload2)
+
+// use jsrsasign only in web browser
+// const pubKey = rsaSign.KEYUTIL.getKey(pub);
+// const jwtVerifyResult = rsaSign.jws.JWS.verifyJWT(jwt, pubKey, {alg: ['PS384']});
+// console.log(jwtVerifyResult)
+
+
+// "jose": "~4.5.0",
+// "jsrsasign": "^10.5.6",
