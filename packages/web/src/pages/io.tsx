@@ -5,11 +5,7 @@ import { useImmerAtom } from 'jotai/immer';
 import { userInfoAtom } from '../atoms';
 import { io } from "socket.io-client";
 import { CONFIG } from '../../CONFIG';
-import { SignJWT,
-  generateKeyPair, exportJWK,importJWK,
-  decodeProtectedHeader,decodeJwt,
-  jwtVerify,
-} from "jose";
+import { decodeProtectedHeader,decodeJwt } from "jose";
 
 import { KEYUTIL, jws } from "jsrsasign";
 
