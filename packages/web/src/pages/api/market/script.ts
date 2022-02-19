@@ -88,7 +88,7 @@ async function scriptGetHandler(
   }
 }
 
-async function handler(
+async function _handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -103,4 +103,4 @@ async function handler(
   }
 }
 
-export default middlewares.authJwt(handler);
+export default middlewares.authJwt(_handler);

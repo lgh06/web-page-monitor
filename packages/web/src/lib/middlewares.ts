@@ -24,7 +24,7 @@ const authJwt: NextMiddleware = async (req, res, next) => {
   let {verified} = await jwt.verifyJwt(jwtToken);
   if(!req.headers.authorization || !verified){
     res.status(401);
-    res.send('forbidden');
+    res.json({err:'forbidden'});
     res.end();
   }else{
     await next();

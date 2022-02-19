@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { getDB, ObjectId, middlewares } from '../../../lib';
 
 // http://localhost:{port}/script/{id}.js
-async function handler(
+async function _handler(
   req: NextApiRequest,
   res: NextApiResponse<string|object>
 ) {
@@ -23,4 +23,4 @@ async function handler(
   }
 }
 
-export default middlewares.addRequestId(handler);
+export default middlewares.addRequestId(_handler);

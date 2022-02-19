@@ -1,11 +1,11 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getDB, ObjectId } from '../../../lib';
+import { getDB, middlewares, ObjectId } from '../../../lib';
 import { CronTime } from '@webest/web-page-monitor-helper';
 import { mongo } from '@webest/web-page-monitor-helper/node';
 
 
-export default async function handler(
+async function _handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -86,3 +86,5 @@ export default async function handler(
   }
   return mongo.upsertDoc(db, 'task', filter, newDoc, res)
 }
+
+export default middlewares.authJwt(_handler);
