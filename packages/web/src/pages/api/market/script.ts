@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getDB, ObjectId } from '../../../lib';
+import { getDB, ObjectId, middlewares } from '../../../lib';
 import { CronTime } from '@webest/web-page-monitor-helper';
 import { mongo } from '@webest/web-page-monitor-helper/node';
 
@@ -88,7 +88,7 @@ async function scriptGetHandler(
   }
 }
 
-export default async function handler(
+async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -102,3 +102,5 @@ export default async function handler(
     res.status(200).json({ err: 'no method match' })
   }
 }
+
+export default middlewares.authJwt(handler);

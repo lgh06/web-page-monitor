@@ -3,6 +3,7 @@ import { SignJWT,
   jwtVerify,
 } from "jose";
 import { priv } from "../priv.mjs";
+import { pub } from "../pub.mjs";
 
 
 async function sign(payloadObject){
@@ -16,8 +17,8 @@ async function sign(payloadObject){
 // nodejs side use
 async function verifyJwt(jwtToken){
   try {
-  
-    const { payload, protectedHeader } = await jwtVerify(jwt, publicKey, {
+    var publicKey = await importJWK(pub, 'PS384')
+    const { payload, protectedHeader } = await jwtVerify(jwtToken, publicKey, {
       // issuer: 'urn:example:issuer',
       // audience: 'urn:example:audience'
     })
@@ -28,6 +29,7 @@ async function verifyJwt(jwtToken){
       jwt: payload,
     }
   } catch (error) {
+    // console.error(error)
     return {
       verified: false,
       header: null,

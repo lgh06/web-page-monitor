@@ -10,7 +10,12 @@ export namespace mongo {
 }
 
 export namespace jwt{
-  function sign(payloadObject: any): Promise<string>
+  function sign(payloadObject: any): Promise<string>;
+  function verifyJwt(jwtToken: any): Promise<{
+    verified: boolean;
+    header: JWTHeaderParameters;
+    jwt: JWTPayload;
+  }>;
 }
 
 // declare module '@webest/web-page-monitor-helper/mongo' {
