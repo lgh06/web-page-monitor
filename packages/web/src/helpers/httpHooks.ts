@@ -25,12 +25,27 @@ export function useAPI(endPoint: string, postedObject: undefined | object = unde
 }
 
 export async function fetchAPI(endPoint: string, postedObject: undefined | object = undefined, method?: string) {
+  let headers = {};
+  if(typeof postedObject === 'object' ){
+    headers['Content-Type'] = 'application/json';
+    // 'Content-Type': 'application/x-www-form-urlencoded',
+  }
+  if(typeof window !== 'undefined' && window.localStorage){
+    let { userInfo } = window.localStorage;
+    console.log('inside fetchAPI', userInfo);
+    if(userInfo){
+      let parsedUserInfo;
+      try {
+        parsedUserInfo = JSON.parse(userInfo);
+        headers['Authorization'] = `Bearer ${parsedUserInfo.jwtToken}`;
+      } catch (error) {
+        console.log('localStorage userInfo parse error', error);
+      }
+    }
+  }
   let resp = await fetch(`${CONFIG.backHost}/api${endPoint}`, {
     method: (method ? String(method).toUpperCase() : null) || (postedObject ? 'POST' : 'GET'),
-    headers: typeof postedObject === 'object' ? {
-      'Content-Type': 'application/json'
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-    } : {},
+    headers: headers,
     redirect: 'follow',
     body: typeof postedObject === 'object' ? JSON.stringify(postedObject) : null
   });
