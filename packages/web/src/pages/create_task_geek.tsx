@@ -134,7 +134,7 @@ const CreateTaskGeekPage: NextPage = () => {
       <button data-btn-index="0" onClick={handleBtnClick} disabled={!taskDetail.cronPassed}>Create Now</button>
     </div>
     <div>
-      <Link href="./login"><a>Go Back to user center</a></Link>
+      <Link href="/login"><a>Go Back to user center</a></Link>
     </div>
   </>);
 }

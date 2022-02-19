@@ -36,6 +36,7 @@ export async function fetchAPI(endPoint: string, postedObject: undefined | objec
     if(userInfo){
       let parsedUserInfo;
       try {
+        // TODO save userInfo to another localStorage item
         parsedUserInfo = JSON.parse(userInfo);
         headers['Authorization'] = `Bearer ${parsedUserInfo.jwtToken}`;
       } catch (error) {
