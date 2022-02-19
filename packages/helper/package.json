@@ -11,7 +11,8 @@
     "registry": "https://registry.npmmirror.com/"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "postinstall": "node jwt-standalone-gen-cert.mjs"
   },
   "dependencies": {
     "cron": "1.8.2",
