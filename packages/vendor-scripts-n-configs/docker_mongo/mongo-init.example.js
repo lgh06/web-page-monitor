@@ -1,3 +1,4 @@
+// this file better located on server /home/ubuntu/  , or /home/anotheruser  
 print("Started Adding the Users.");
 db = db.getSiblingDB("admin");
 db.createUser({
