@@ -1,3 +1,11 @@
+/**
+ * !!!!!!!!!
+ * DO NOT import this file in web, neither frontend nor backend.
+ * 在web項目的前端或後端中，都不要引入這個文件。
+ * use .env.production instead.
+ * 使用 .env.production 文件。
+ * !!!!!!
+ */
 import { globalConfigProd } from "./globalConfig.prod.mjs";
 // config value across all projects.  
 // if not defined here, use sub-package defined values
