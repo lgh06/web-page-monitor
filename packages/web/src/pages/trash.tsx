@@ -5,7 +5,7 @@ import { useImmerAtom } from 'jotai/immer';
 import { userInfoAtom } from '../atoms';
 import { io } from "socket.io-client";
 import { frontCONFIG as CONFIG } from '../../CONFIG';
-import { getInfoFromToken } from '../helpers';
+import { verifyJwt } from '../helpers';
 
 
 /**
@@ -29,7 +29,7 @@ const IOTestPage: NextPage = () => {
 
   useEffect(()=>{
     async function test() {
-      let info = await getInfoFromToken(userInfo.jwtToken);
+      let info = await verifyJwt(userInfo.jwtToken + 'sd');
       console.log(info);
     }
 

@@ -1,6 +1,5 @@
 import { SignJWT,
-  generateKeyPair, exportJWK,importJWK,exportPKCS8,
-  decodeProtectedHeader,decodeJwt,
+  importJWK,
   jwtVerify,
 } from "jose";
 import { priv } from "../priv.mjs";
@@ -14,8 +13,32 @@ async function sign(payloadObject){
   return signedJwt;
 }
 
+// nodejs side use
+async function verifyJwt(jwtToken){
+  try {
+  
+    const { payload, protectedHeader } = await jwtVerify(jwt, publicKey, {
+      // issuer: 'urn:example:issuer',
+      // audience: 'urn:example:audience'
+    })
+    
+    return {
+      verified: true,
+      header: protectedHeader,
+      jwt: payload,
+    }
+  } catch (error) {
+    return {
+      verified: false,
+      header: null,
+      jwt: null,
+    }
+  }
+}
+
 let jwt = {
   sign,
+  verifyJwt,
 }
 
 
