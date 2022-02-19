@@ -5,17 +5,13 @@ import { useImmerAtom } from 'jotai/immer';
 import { userInfoAtom } from '../atoms';
 import { io } from "socket.io-client";
 import { CONFIG } from '../../CONFIG';
-import { decodeProtectedHeader,decodeJwt } from "jose";
+import { decodeProtectedHeader,decodeJwt, } from "jose";
 
 import { KEYUTIL, jws } from "jsrsasign";
 
-export const pub ={
-  "kty": "RSA",
-  "n": "4hgRBMq4u0VQS3ikP0EoWfNLKsHWNNKxNwYvKO98uffQiK9pOcdEYudo0yPHZZ0i56RkO24tdV80fldU3h0KEdXuxNb9yPlfWQ7NUY5OFQhh6GeqnEqPoA4VYDCTrznYij2sro34zhvvgVwtzoaBZ57fol9BO29KsXGn5HGFWIx7SIGhXGEpmho9ikXtSCJsm8Pvb75gPcwZfQjETg-kGljOKpsNA-IwM0P7_cBlsbmk-wGCwNG2nmvggOV1SlrAvzKbXfKzkIS8WJ0kOcyzL7woc2PpIw_A-DFgd7hIIe61NCH80mlZQQNp6aKluSDNBuA1b9jCP-Ql0rIq0oLapw",
-  "e": "AQAB"
-}
+import { pub } from "@webest/web-page-monitor-helper";
 
-const jwt = `eyJhbGciOiJQUzM4NCJ9.eyJ1cm46ZXhhbXBsZTpjbGFpbSI6dHJ1ZX0.TdIWYvY1CpgYnQLrPukiJE_jVUmd0bUzI5NLk3W3FQSKv8BLFm9TMYxoumBUD26S0fzghUDhC5AFaKd-78PfBggvt0TE22GJLmXzXL3c1O2UG3sA6IBrS4QSzxiojNLrRxTGamoHpvY3IOl8eRRM1XTSvHXw85uPWtcBCDcGmB2myn1C7_MUmWQHNOo-1rZfuCo4CQFAYzdYp57xXWPJRZLU0Lza0deMG4LREmtibvU5xBplJqw5qfT6NoD_Cgh48F1OYgndYzKljWLw2Gk9sP2zxXxGSSIn5TFkGSy3Ao6SiP25ZWbs_isOq6VdpvfqkCCn_ygtxrAS7oB5JWJa0A`
+const jwt = `eyJhbGciOiJQUzM4NCJ9.eyJ1cm46ZXhhbXBsZTpjbGFpbSI6dHJ1ZX0.tfXLqzNaid3JURMMZMkbCBk8h63VFwpPG6lRH4cnwuEQdYTUNKPuCRHIlbajrWjS03Lms0X-CWF7VFih32y6gyCiBQqXkxwOz0FLYZ9DIuu9-pRzAErOn2QwMLNGe7BEut4TURrj4mMz7Osh8QHBmHdIQoWDaOLY_oduykQlQvA3oDazWbjMg49lSlofS8HVjejUMIRPUnnS5q3XHV-s7LNTdpEcub96-5D4K2QguUasGBy9z5KvF91SQzkcGXtB0m89DZPuAg9rOEeUmG9hWFXGuB_nQaw5NiMMIuTHRr6lzoioOggBSjkeLeauURslHAPzDR3Lvo8Igj80Ik5mTQ`
 
 /**
  * https://socket.io/docs/v4/client-initialization/

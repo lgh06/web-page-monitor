@@ -1,5 +1,6 @@
 // https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-d-ts.html#types-in-modules
 import type { MongoClient, Db, Document, ModifyResult, Filter, WithoutId } from "mongodb";
+import type { KeyLike } from "crypto";
 
 
 export namespace  CronTime {
@@ -43,6 +44,9 @@ export module globalConfig {
   pptrToWorkerQueue: string;
 }
 
+
+export let pub: KeyLike;
+export let priv: KeyLike;
 // declare module '@webest/web-page-monitor-helper/node' {
 //   async function upsertDoc(db: Db, collectionName: string, doc: Document): Promise<ModifyResult<Document>>{}
 // }
