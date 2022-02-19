@@ -114,7 +114,7 @@ and after installed `packages/helper`, we will generate a keypair for jwt use.
 Modify `packages\helper\globalConfig.prod.mjs`  
 ( mongodb / rabbitmq / dynJSPath / nodemailer )  
 and  `packages\web\.env.production`  
-(nextHost / i18nDebug)  
+(nextHost / i18nDebug / mongodb)  
 
 ## other running notes  
 [**\*\*packages/vendor-scripts-n-configs/README.md\*\***](packages/vendor-scripts-n-configs/README.md)  
