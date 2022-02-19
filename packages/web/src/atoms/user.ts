@@ -11,6 +11,7 @@ let userInfo = {
   code: '',
   oauthProvider: '',
   logged: false,
+  jwtToken: '',
 }
 
 export const userInfoAtom = atomWithStorage('userInfo',userInfo);

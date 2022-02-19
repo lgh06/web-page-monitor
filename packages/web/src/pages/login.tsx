@@ -68,7 +68,7 @@ const LoginPage: NextPage = () => {
           if (emailResp && emailResp.length && emailResp[0] && emailResp[0].email) {
             router.replace("/login")
             // TODO error catch and hint
-            let { value: { _id } } = await fetchAPI('/user/save', {
+            let { value: { _id }, jwtToken } = await fetchAPI('/user/save', {
               email: emailResp[0].email,
               oauthProvider: provider,
               emailVerified: emailResp[0].state === 'confirmed'
@@ -79,6 +79,7 @@ const LoginPage: NextPage = () => {
               v.logged = true;
               v.oauthProvider = String(provider);
               v._id = _id;
+              v.jwtToken = jwtToken;
             });
           }
         }

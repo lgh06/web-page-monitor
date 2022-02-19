@@ -11,8 +11,6 @@ import { KEYUTIL, jws } from "jsrsasign";
 
 import { pub } from "@webest/web-page-monitor-helper";
 
-const jwt = `eyJhbGciOiJQUzM4NCJ9.eyJ1cm46ZXhhbXBsZTpjbGFpbSI6dHJ1ZX0.tfXLqzNaid3JURMMZMkbCBk8h63VFwpPG6lRH4cnwuEQdYTUNKPuCRHIlbajrWjS03Lms0X-CWF7VFih32y6gyCiBQqXkxwOz0FLYZ9DIuu9-pRzAErOn2QwMLNGe7BEut4TURrj4mMz7Osh8QHBmHdIQoWDaOLY_oduykQlQvA3oDazWbjMg49lSlofS8HVjejUMIRPUnnS5q3XHV-s7LNTdpEcub96-5D4K2QguUasGBy9z5KvF91SQzkcGXtB0m89DZPuAg9rOEeUmG9hWFXGuB_nQaw5NiMMIuTHRr6lzoioOggBSjkeLeauURslHAPzDR3Lvo8Igj80Ik5mTQ`
-
 /**
  * https://socket.io/docs/v4/client-initialization/
  */
@@ -34,18 +32,18 @@ const IOTestPage: NextPage = () => {
 
   useEffect(()=>{
     async function test() {
-      const decodedHeader = await decodeProtectedHeader(jwt);
-      const decodedJwt = await decodeJwt(jwt);
+      const decodedHeader = await decodeProtectedHeader(userInfo.jwtToken);
+      const decodedJwt = await decodeJwt(userInfo.jwtToken);
       console.log(decodedHeader, decodedJwt)
       
       const pubKey = KEYUTIL.getKey(pub);
 
-      const jwtVerifyResult = jws.JWS.verifyJWT(jwt, pubKey, {alg: ['PS384']});
+      const jwtVerifyResult = jws.JWS.verifyJWT(userInfo.jwtToken, pubKey, {alg: ['PS384']});
       console.log(jwtVerifyResult)
     }
 
     test()
-  },[]);
+  },[userInfo]);
 
   async function connectSocketIO(){
     if(socket.connected) {

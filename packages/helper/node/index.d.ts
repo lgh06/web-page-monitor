@@ -9,6 +9,10 @@ export namespace mongo {
   function delOneDoc(db: Db | null, collectionName: string, condition: Filter<Document>, res: NextApiResponse<any>): Promise<DeleteResult>;
 }
 
+export namespace jwt{
+  function sign(payloadObject: any): Promise<string>
+}
+
 // declare module '@webest/web-page-monitor-helper/mongo' {
 //   function upsertDoc(db: Db, collectionName: string, doc: Document): Promise<ModifyResult<Document>>;
 // }

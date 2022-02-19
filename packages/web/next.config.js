@@ -9,13 +9,10 @@ const nextConfig = {
   // experimental: {
 
   // },
-  // webpack: (config) => {
-  //   config.externals = [
-  //     ...config.externals,
-  //     'mongodb',
-  //   ]
-  //   return config;
-  // },
+  webpack: (config) => {
+    config.experiments.topLevelAwait = true;
+    return config;
+  },
 }
 
 module.exports = nextConfig

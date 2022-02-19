@@ -2,7 +2,7 @@
 import { ReturnDocument } from 'mongodb';
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getDB } from '../../../lib';
-import { mongo } from '@webest/web-page-monitor-helper/node';
+import { mongo, jwt } from '@webest/web-page-monitor-helper/node';
 
 export default async function handler(
   req: NextApiRequest,
@@ -15,5 +15,14 @@ export default async function handler(
 
   let db = await getDB();
   db?.collection('user').createIndex({ email: 1 }, {unique: true});
-  return mongo.upsertDoc(db, 'user', filter, newDoc, res)
+  let returnedDoc;
+  try {
+    returnedDoc = await mongo.upsertDoc(db, 'user', filter, newDoc);
+    const { value: { email, _id } } = returnedDoc;
+    console.log(returnedDoc)
+    const jwtToken = await jwt.sign({ email, _id});
+    return res.status(200).json({...returnedDoc, jwtToken});
+  } catch (e) {
+    return res.status(500).json({ err: e });
+  }
 }
