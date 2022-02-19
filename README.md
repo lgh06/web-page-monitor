@@ -106,7 +106,15 @@ npm stop
 we executed bellow commands in postinstall:  
 > installed pm2 and pm2-logrotate  
 
-> `git update-index --skip-worktree packages/helper/globalConfig.prod.mjs`  
+> `git update-index --skip-worktree packages/helper/globalConfig.prod.mjs`    
+
+and after installed `packages/helper`, we will generate a keypair for jwt use.  
+
+## production  
+Modify `packages\helper\globalConfig.prod.mjs`  
+( mongodb / rabbitmq / dynJSPath / nodemailer )  
+and  `packages\web\.env.production`  
+(nextHost / i18nDebug)  
 
 ## other running notes  
 [**\*\*packages/vendor-scripts-n-configs/README.md\*\***](packages/vendor-scripts-n-configs/README.md)  
