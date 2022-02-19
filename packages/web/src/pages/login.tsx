@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring';
-import CONFIG from '../../CONFIG';
+import { frontCONFIG as CONFIG } from '../../CONFIG';
 import { useImmerAtom } from 'jotai/immer';
 import { userInfoAtom } from '../atoms';
 import { useAPI, useI18n, fetchAPI, genClassNameAndString } from '../helpers';

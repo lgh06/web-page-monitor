@@ -10,7 +10,9 @@ const nextConfig = {
 
   // },
   webpack: (config) => {
-    config.experiments.topLevelAwait = true;
+    // https://github.com/vercel/next.js/issues/12557#issuecomment-994278512
+    // topLevelAwait https://webpack.js.org/configuration/experiments/
+    // config.experiments.topLevelAwait = true;
     return config;
   },
 }

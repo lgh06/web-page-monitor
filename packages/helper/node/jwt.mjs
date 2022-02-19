@@ -3,11 +3,11 @@ import { SignJWT,
   decodeProtectedHeader,decodeJwt,
   jwtVerify,
 } from "jose";
+import { priv } from "../priv.mjs";
 
-let { priv } = await import("../priv.mjs");
-var privateKey = await importJWK(priv, 'PS384')
 
 async function sign(payloadObject){
+  var privateKey = await importJWK(priv, 'PS384')
   const signedJwt = await new SignJWT(payloadObject)
     .setProtectedHeader({ alg: 'PS384' })
     .sign(privateKey);

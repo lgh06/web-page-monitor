@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { CONFIG } from '../../CONFIG';
+import { frontCONFIG as CONFIG } from '../../CONFIG';
 
 export function useAPI(endPoint: string, postedObject: undefined | object = undefined, method?: string) {
   const [data, setData] = useState(null);

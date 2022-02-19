@@ -1,6 +1,6 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import { CONFIG } from "../../CONFIG";
+import { frontCONFIG as CONFIG } from "../../CONFIG";
 import { transResources } from "@webest/web-page-monitor-helper";
 
 

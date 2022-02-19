@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { useImmerAtom } from 'jotai/immer';
 import { userInfoAtom } from '../atoms';
 import { io } from "socket.io-client";
-import { CONFIG } from '../../CONFIG';
+import { frontCONFIG as CONFIG } from '../../CONFIG';
 import { getInfoFromToken } from '../helpers';
 
 

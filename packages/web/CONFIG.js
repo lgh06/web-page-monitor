@@ -15,6 +15,14 @@ let CONFIG = {
   giteeOauthClientSecret: '580f096526be60dcc2ef88bb933182918c2e2a6ab1f6880fbd54ac33db5a69a2',
   giteeRedirectUri: `http://${host}:${backPort}/api/login?provider=gitee`,
   socketio: `http://${host}:3003/`,
+  useProdConfig: globalConfig.useProdConfig,
 };
 
-export { CONFIG, CONFIG as default };
+// remove DB configs from frontend side's config
+let frontCONFIG = {
+  ...CONFIG,
+  dbName: undefined,
+  mongodbURI: undefined,
+}
+
+export { CONFIG, frontCONFIG };
