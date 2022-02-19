@@ -3,7 +3,7 @@ import { ChangeEvent, useEffect, MouseEvent } from 'react';
 // @ts-ignore
 import { ESMLoader } from "@webest/web-page-monitor-esm-loader"
 
-import * as crossHelper from '@webest/web-page-monitor-helper';
+import { sampleFunctionCreateScript1, sampleFunctionCreateScript2, sampleFunctionCreateScript3 } from '@webest/web-page-monitor-helper';
 
 
 import { monacoEditorAtom, createScriptDetailAtom, userInfoAtom } from '../../../atoms';
@@ -131,6 +131,11 @@ const Market: NextPage = () => {
   function handleSelectChange(ev: ChangeEvent<HTMLSelectElement>) {
     let selectEle = ev.target;
     console.log(selectEle.value);
+    let crossHelper = {
+      sampleFunctionCreateScript1,
+      sampleFunctionCreateScript2,
+      sampleFunctionCreateScript3,
+    }
     setEditorValue(v =>{
       // v.searchKey = selectEle.value;
       v.value = crossHelper['sampleFunctionCreateScript'+selectEle.value];

@@ -9,7 +9,7 @@ i18n
   .init({
     resources: transResources,
     fallbackLng: 'en',
-    debug: !CONFIG.useProdConfig,
+    debug: CONFIG.i18nDebug,
     nsSeparator: false,
     keySeparator: false,
     interpolation: {
