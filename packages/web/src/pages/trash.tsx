@@ -5,11 +5,8 @@ import { useImmerAtom } from 'jotai/immer';
 import { userInfoAtom } from '../atoms';
 import { io } from "socket.io-client";
 import { CONFIG } from '../../CONFIG';
-import { decodeProtectedHeader,decodeJwt, } from "jose";
+import { getInfoFromToken } from '../helpers';
 
-import { KEYUTIL, jws } from "jsrsasign";
-
-import { pub } from "@webest/web-page-monitor-helper";
 
 /**
  * https://socket.io/docs/v4/client-initialization/
@@ -32,14 +29,8 @@ const IOTestPage: NextPage = () => {
 
   useEffect(()=>{
     async function test() {
-      const decodedHeader = await decodeProtectedHeader(userInfo.jwtToken);
-      const decodedJwt = await decodeJwt(userInfo.jwtToken);
-      console.log(decodedHeader, decodedJwt)
-      
-      const pubKey = KEYUTIL.getKey(pub);
-
-      const jwtVerifyResult = jws.JWS.verifyJWT(userInfo.jwtToken, pubKey, {alg: ['PS384']});
-      console.log(jwtVerifyResult)
+      let info = await getInfoFromToken(userInfo.jwtToken);
+      console.log(info);
     }
 
     test()
