@@ -99,6 +99,7 @@ const LoginPage: NextPage = () => {
       v.oauthProvider = '';
       v._id = '';
       v.code = '';
+      v.jwtToken = '';
     });
     router.push('/login');
   }
