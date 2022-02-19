@@ -1,3 +1,7 @@
+/**
+ * this file is a single executable file, 
+ * run `node jwt-standalone-demo.mjs` to run this file
+ */
 import { SignJWT,
   generateKeyPair, exportJWK,importJWK,exportPKCS8,
   decodeProtectedHeader,decodeJwt,
