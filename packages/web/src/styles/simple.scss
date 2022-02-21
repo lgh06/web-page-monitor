@@ -84,7 +84,10 @@ html {
 
 /* Add a little padding to ensure spacing is correct between content and nav */
 main, #__next > :nth-child(1):not(:only-child) {
-  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+}
+#__next{
+  padding-bottom: 1.5rem;
 }
 
 #__next > * > footer {
