@@ -5,7 +5,7 @@ import { ParsedUrlQuery } from 'querystring';
 import { frontCONFIG as CONFIG } from '../../CONFIG';
 import { useImmerAtom } from 'jotai/immer';
 import { userInfoAtom } from '../atoms';
-import { useAPI, useI18n, fetchAPI, genClassNameAndString } from '../helpers';
+import { useAPI, useI18n, fetchAPI, genClassNameAndString, logOut } from '../helpers';
 import Link from 'next/link';
 import styles from '../styles/modules/login.module.scss';
 
@@ -88,21 +88,6 @@ const LoginPage: NextPage = () => {
 
   }, [router.query]);
 
-  /**
-   * Events
-   */
-  function logOut() {
-    setUserInfo((v) => {
-      v.email = undefined;
-      v.emailState = '';
-      v.logged = false;
-      v.oauthProvider = '';
-      v._id = '';
-      v.code = '';
-      v.jwtToken = '';
-    });
-    router.push('/login');
-  }
 
   const linkStyle = {
     textDecoration: "underline"
@@ -114,7 +99,7 @@ const LoginPage: NextPage = () => {
   if (userInfo.logged) {
     res = (<main>
       <div>{t(`Welcome`)}, {userInfo.email} <br />
-        <button onClick={logOut}>{t(`Log Out`)}</button>
+        <button onClick={() => logOut({setUserInfo, router})}>{t(`Log Out`)}</button>
       </div>
       <div>
         <Link href='/create_task_simp'><a {...cn('link')}> {t(`Create a task in Simple Mode`)} ({t(`Recommended`)})</a></Link>

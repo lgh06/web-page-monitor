@@ -1,4 +1,6 @@
 let trans = {
+  // Below is global login alert
+  "Your session has expired, please login again.":"你的登录状态过期，请重新登录。",
   // Below is on home page
   "Welcome to Web Page Monitor": "欢迎使用网页变动通知系统",
   "Web Page Monitor": "网页变动通知系统",

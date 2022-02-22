@@ -35,3 +35,16 @@ export async function verifyJwt(jwtToken){
     }
   }
 }
+
+export function logOut({setUserInfo, router}){
+  setUserInfo((v) => {
+    v.email = undefined;
+    v.emailState = '';
+    v.logged = false;
+    v.oauthProvider = '';
+    v._id = '';
+    v.code = '';
+    v.jwtToken = '';
+  });
+  router.push('/login');
+}

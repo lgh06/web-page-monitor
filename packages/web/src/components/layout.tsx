@@ -3,15 +3,34 @@ import Head from 'next/head'
 // import Image from 'next/image'
 import styles from '../styles/modules/Home.module.scss'
 import Link from 'next/link'
-import { useI18n } from '../helpers'
+import { useI18n, verifyJwt, logOut } from '../helpers'
 import Cookies from 'js-cookie'
 import nextConfig from "../../next.config"
+import { userInfoAtom } from '../atoms';
+import { useImmerAtom } from 'jotai/immer'
+import { useEffect } from 'react'
+
 
 function Footer() {
-  let { t, locale } = useI18n();
+  let { t, locale, router } = useI18n();
+  let [userInfo,setUserInfo] = useImmerAtom(userInfoAtom);
   let switchLanguage = (lang: string) => {
     Cookies.set('NEXT_LOCALE', lang, { expires: 365 });
   }
+
+  useEffect(() => {
+    let { jwtToken } = userInfo;
+    console.log(jwtToken)
+    if(jwtToken){
+      verifyJwt(jwtToken).then(result =>{
+        if(!result.verified){
+          alert(t('Your session has expired, please login again.'));
+          // below line copied from login.tsx logOut function
+          logOut({setUserInfo, router});
+        }
+      });
+    }
+  }, [userInfo, router]);
   return (
     <>
       <footer className={styles.footer}>
