@@ -63,10 +63,10 @@ async function _handler(
   };
 
   let filter = {
-    cronSyntax,
+    userId,
     pageURL,
     cssSelector,
-    userId,
+    cronSyntax,
     mode,
   }
   let db = await getDB();
