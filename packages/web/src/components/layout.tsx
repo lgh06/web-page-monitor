@@ -25,12 +25,17 @@ function Footer() {
       verifyJwt(jwtToken).then(result =>{
         if(!result.verified){
           alert(t('Your session has expired, please login again.'));
-          // below line copied from login.tsx logOut function
           logOut({setUserInfo, router});
         }
       });
+    }else{ // jwtToken is null or empty
+      if( ! ['/login', '/faq', '/', ''].includes(router.pathname) ){
+        alert(t('You need to login first.'));
+        logOut({setUserInfo, router});
+        router.push('/login');
+      }
     }
-  }, [userInfo, router]);
+  }, [userInfo.jwtToken, router]);
   return (
     <>
       <footer className={styles.footer}>
