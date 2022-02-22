@@ -13,7 +13,7 @@ const Home: NextPage = () => {
     Cookies.set('NEXT_LOCALE', lang, { expires: 365 });
   }
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>{t(`Web Page Monitor`)}</title>
         <meta name="description" content={t(`Welcome to Web Page Monitor`)} />
@@ -67,27 +67,6 @@ const Home: NextPage = () => {
         </div>
       </main>
 
-      <footer className={styles.footer}>
-        <a
-          href={locale === 'en' ? 
-            "https://github.com/lgh06/web-page-monitor" : 
-            "https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git"}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {t('Created by')}{' '}
-          <span className={styles.logo}>
-            {t('Daniel Gehuan Liu')}
-            {/* <img src="/vercel.svg" alt="Vercel Logo" width={72} height={16} ></img> */}
-          </span>
-        </a>
-        <Link href={nextConfig.i18n!.defaultLocale === 'zh' ? '/' : '/zh' } locale={false}>
-          <a onClick={() => switchLanguage('zh')}>简体中文</a>
-        </Link>
-        <Link href={nextConfig.i18n!.defaultLocale === 'en' ? '/' : '/en' } locale={false}>
-          <a onClick={() => switchLanguage('en')}>English</a>
-        </Link>
-      </footer>
     </div>
   )
 }

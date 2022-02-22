@@ -112,7 +112,7 @@ const LoginPage: NextPage = () => {
   let backLink = <><div><Link href="/"><a {...cn('link')}>{t(`Go Back to home`)}</a></Link></div></>;
 
   if (userInfo.logged) {
-    res = (<>
+    res = (<main>
       <div>{t(`Welcome`)}, {userInfo.email} <br />
         <button onClick={logOut}>{t(`Log Out`)}</button>
       </div>
@@ -126,15 +126,15 @@ const LoginPage: NextPage = () => {
         <Link href='/faq#WhatIsSimpleMode'><a {...cn('link')}>see FAQ for Simple Mode / Geek Mode helps </a></Link>
       </div> */}
       <Back/>
-    </>
+    </main>
     )
   } else {
-    res = (<>
+    res = (<main>
         <a {...cn('link')} href={url}>{t(`Login with Gitee.com OAuth`)}</a>
         {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
         <div>// TODO other OAuth login providers</div>
         <Back/>
-      </>
+      </main>
     )
   }
   return res;

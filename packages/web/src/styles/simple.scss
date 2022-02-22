@@ -55,6 +55,9 @@ html {
   display: grid;
   grid-template-columns:
     1fr min(80rem, 95%) 1fr;
+  // https://stackoverflow.com/questions/643879
+  grid-template-rows: 1fr auto;
+  min-height: 100vh;
   margin: 0;
 }
 
@@ -83,23 +86,17 @@ html {
 }
 
 /* Add a little padding to ensure spacing is correct between content and nav */
-main, #__next > :nth-child(1):not(:only-child) {
+main, #__next > :nth-child(1){
   margin-top: 1.5rem;
 }
-#__next{
-  padding-bottom: 1.5rem;
-}
 
-#__next > * > footer {
+#__next > footer {
   margin-top: 1rem;
-  padding: 2rem 1rem 1.5rem 1rem;
+  padding: 1rem 1rem 1.5rem 1rem;
   color: var(--text-light);
   font-size: 0.9rem;
   text-align: center;
   border-top: 1px solid var(--border);
-  @media screen and (max-width: 700px) {
-    border-top: 0 none;
-  }
 }
 
 /* Format headers */
