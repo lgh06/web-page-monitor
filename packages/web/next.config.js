@@ -22,5 +22,9 @@ let nextConfig = {
 if(process.env.NEXT_PUBLIC_export_lang){
   delete nextConfig.i18n;
 }
+// if basePath, then add
+if(process.env.NEXT_PUBLIC_basePath){
+  nextConfig.basePath = process.env.NEXT_PUBLIC_basePath;
+}
 
 module.exports = nextConfig
