@@ -6,7 +6,7 @@ export function useAPI(endPoint: string, postedObject: undefined | object = unde
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     async function http() {
-      let resp = await fetch(`${CONFIG.backHost}/api${endPoint}`, {
+      let resp = await fetch(`${CONFIG.apiHost}${CONFIG.apiPrefix}${endPoint}`, {
         method: (method ? String(method).toUpperCase() : null) || (postedObject ? 'POST' : 'GET'),
         headers: typeof postedObject === 'object' ? {
           'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ export async function fetchAPI(endPoint: string, postedObject: undefined | objec
       }
     }
   }
-  let resp = await fetch(`${CONFIG.backHost}/api${endPoint}`, {
+  let resp = await fetch(`${CONFIG.apiHost}${CONFIG.apiPrefix}${endPoint}`, {
     method: (method ? String(method).toUpperCase() : null) || (postedObject ? 'POST' : 'GET'),
     headers: headers,
     redirect: 'follow',
