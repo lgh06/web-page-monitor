@@ -9,6 +9,7 @@
     "dev": "lerna bootstrap && lerna run dev --parallel --no-bail",
     "start": "lerna bootstrap && lerna run start --stream --concurrency 1 --no-bail",
     "stop": "lerna run stop",
-    "reload": "lerna run build && pm2 reload all"
+    "r": "lerna run build && pm2 reload all",
+    "rw": "lerna run build --scope @webest/web-page-monitor-web && pm2 reload web"
   }
 }
