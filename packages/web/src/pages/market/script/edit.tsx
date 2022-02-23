@@ -26,7 +26,7 @@ const MonacoEditor = dynamic(
 
 const Market: NextPage = () => {
   // https://nextjs.org/docs/migrating/from-react-router#nested-routes
-  const { t, locale, router } = useI18n();
+  const { t, router } = useI18n();
   let [cn, cs] = genClassNameAndString(styles);
   const [editorValue, setEditorValue] = useImmerAtom(monacoEditorAtom);
   const [userInfo] = useImmerAtom(userInfoAtom);

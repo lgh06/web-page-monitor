@@ -6,9 +6,18 @@ import Link from 'next/link'
 import { useI18n } from '../helpers'
 import Cookies from 'js-cookie'
 import nextConfig from "../../next.config"
+import { useEffect } from 'react'
 
 const Home: NextPage = () => {
-  let { t, locale } = useI18n();
+  let { t, router } = useI18n();
+  useEffect(() =>{
+    if(router.query && router.query.code){
+      let queryString = "?";
+      Object.keys(router.query).forEach(v => (queryString += `${v}=${router.query[v]}&`));
+      queryString = queryString.substring(0, queryString.length - 1);
+      router.push('/login' + queryString);
+    }
+  }, [router.query])
   let switchLanguage = (lang: string) => {
     Cookies.set('NEXT_LOCALE', lang, { expires: 365 });
   }

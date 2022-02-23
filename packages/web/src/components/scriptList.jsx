@@ -19,7 +19,7 @@ function ScriptList({columns, data}) {
     columns,
     data,
   })
-  const { t, locale, router } = useI18n();
+  const { t } = useI18n();
   if(!data || data.length === 0) return <div>{t(`No Data`)}</div>
   
   // Render the UI for your table
