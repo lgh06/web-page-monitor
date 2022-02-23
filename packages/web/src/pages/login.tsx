@@ -23,12 +23,12 @@ const LoginPage: NextPage = () => {
   let genUrl = (giteeRedirectUri: string) => {
     return `https://gitee.com/oauth/authorize?client_id=${CONFIG.giteeOauthClientId}&redirect_uri=${encodeURIComponent(giteeRedirectUri)}&response_type=code`;
   }
-  const [giteeRedirectUri, setGiteeRedirectUri] = useState(encodeURIComponent(CONFIG.giteeRedirectUri));
-  const [url, setUrl] = useState(genUrl(giteeRedirectUri));
-
+  
   const router = useRouter();
   const [userInfo, setUserInfo] = useImmerAtom(userInfoAtom);
-
+  
+  const [giteeRedirectUri, setGiteeRedirectUri] = useState('');
+  const [url, setUrl] = useState('');
 
   /**
    * get user info from gitee
@@ -38,11 +38,12 @@ const LoginPage: NextPage = () => {
     let { locale } = router;
     if(typeof window !== 'undefined'){
       let { origin } = window.location;
-      let fullUri = `${origin}/?provider=gitee`;
+      let fullUri = `${origin}${router.basePath}?provider=gitee`;
       setGiteeRedirectUri(encodeURIComponent(fullUri))
       setUrl(genUrl(fullUri));
+      console.log('inside useEffect login.tsx', url, giteeRedirectUri, code, provider, locale);
     }
-    if (code && provider) {
+    if (code && provider && url && giteeRedirectUri) {
       getUserInfo(router.query);
     }
     async function getUserInfo(query: ParsedUrlQuery) {
@@ -86,7 +87,7 @@ const LoginPage: NextPage = () => {
       }
     }
 
-  }, [router.query]);
+  }, [router, url, giteeRedirectUri]);
 
 
   const linkStyle = {
