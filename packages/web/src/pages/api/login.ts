@@ -7,7 +7,7 @@ type Data = {
 }
 
 /**
- * 
+ * Deprecated
  * see https://gitee.com/api/v5/oauth_doc#/list-item-2  
  * see https://gitee.com/oauth/applications
  * 

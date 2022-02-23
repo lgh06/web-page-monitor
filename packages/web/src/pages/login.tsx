@@ -38,7 +38,7 @@ const LoginPage: NextPage = () => {
     let { locale } = router;
     if(typeof window !== 'undefined'){
       let { origin } = window.location;
-      let fullUri = `${origin}/api/login?provider=gitee`;
+      let fullUri = `${origin}/?provider=gitee`;
       setGiteeRedirectUri(encodeURIComponent(fullUri))
       setUrl(genUrl(fullUri));
     }
