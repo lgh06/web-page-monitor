@@ -21,7 +21,7 @@ const addRequestId: NextMiddleware = async (req, res, next) => {
 const cors: NextMiddleware = async (req, res, next) => {
   if(req.method === 'OPTIONS'){
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST,GET,PUT,DELETE,OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', '*');
     res.setHeader('Access-Control-Max-Age', 1728000);
     res.setHeader('Content-Type', 'text/plain; charset=UTF-8');
@@ -29,8 +29,8 @@ const cors: NextMiddleware = async (req, res, next) => {
     res.status(204);
     res.end();
   }else{
-    res.setHeader('Access-Control-Allow-Methods', '*')
     res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', 'POST,GET,PUT,DELETE,OPTIONS');
     res.setHeader("Access-Control-Allow-Headers", "*");
     res.setHeader("Access-Control-Expose-Headers", "*");
     await next();
