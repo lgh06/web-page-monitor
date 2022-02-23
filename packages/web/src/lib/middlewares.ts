@@ -18,6 +18,24 @@ const addRequestId: NextMiddleware = async (req, res, next) => {
   await next();
 };
 
+const cors: NextMiddleware = async (req, res, next) => {
+  if(req.method === 'OPTIONS'){
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range');
+    res.setHeader('Access-Control-Max-Age', 1728000);
+    res.setHeader('Content-Type', 'text/plain; charset=UTF-8');
+    res.setHeader('Content-Length', 0);
+    res.status(204);
+    res.end();
+  }else{
+    res.setHeader('Access-Control-Allow-Methods', '*')
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    await next();
+  }
+};
+
 const authJwt: NextMiddleware = async (req, res, next) => {
   let authorization = req.headers.authorization;
   let jwtToken = String(authorization).substring(7);
@@ -35,17 +53,27 @@ const authJwt: NextMiddleware = async (req, res, next) => {
 const withAddRequestIdMiddleware = label(
   {
     addRequestId,
+    cors,
   },
+  ['cors']
 );
 const withAuthJwtMiddleware = label(
   {
     authJwt,
+    cors,
+  },
+  ['cors']
+);
+const withCorsMiddleware = label(
+  {
+    cors,
   },
 );
 
 const middlewares = {
   addRequestId: withAddRequestIdMiddleware("addRequestId"),
   authJwt: withAuthJwtMiddleware("authJwt"),
+  cors: withCorsMiddleware("cors"),
 }
 
 export { middlewares, middlewares as default }

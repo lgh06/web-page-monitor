@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { middlewares } from '../../lib';
 
 type Data = {
   [key: string]: string | string[];
@@ -13,7 +14,7 @@ type Data = {
  * @param req 
  * @param res 
  */
-export default async function handler(
+async function _handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
@@ -22,3 +23,5 @@ export default async function handler(
   let host =  'http://' + req.headers.host;
   res.redirect(307, `${host}/${locale === 'en' ? '' : 'zh'}/login?code=${code}&provider=${provider}`)
 }
+
+export default middlewares.cors(_handler);

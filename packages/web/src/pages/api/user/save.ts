@@ -1,10 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { ReturnDocument } from 'mongodb';
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getDB } from '../../../lib';
+import { getDB, middlewares } from '../../../lib';
 import { mongo, jwt } from '@webest/web-page-monitor-helper/node';
 
-export default async function handler(
+async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -26,3 +26,5 @@ export default async function handler(
     return res.status(500).json({ err: e });
   }
 }
+
+export default middlewares.cors(handler);
