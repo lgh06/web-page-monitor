@@ -3,18 +3,26 @@ import { initReactI18next } from "react-i18next";
 import { frontCONFIG as CONFIG } from "../../CONFIG";
 import { transResources } from "@webest/web-page-monitor-helper";
 
+let initOptions = {
+  // next export
+  // lng: 'zh',
+  resources: transResources,
+  fallbackLng: 'en',
+  debug: CONFIG.i18nDebug,
+  nsSeparator: false,
+  keySeparator: false,
+  interpolation: {
+    escapeValue: false // react already safes from xss
+  }
+}
+if(process.env.NEXT_PUBLIC_export_lang){
+  initOptions.lng = process.env.NEXT_PUBLIC_export_lang;
+}
 
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next
-  .init({
-    resources: transResources,
-    fallbackLng: 'en',
-    debug: CONFIG.i18nDebug,
-    nsSeparator: false,
-    keySeparator: false,
-    interpolation: {
-      escapeValue: false // react already safes from xss
-    }
-  });
+  .init(initOptions);
+
+  console.dir('LGHI18n', i18n)
 
   export { i18n , i18n as default};

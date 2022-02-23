@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+let nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // next export
   i18n: {
     locales: ['en', 'zh'],
     defaultLocale: 'en',
@@ -15,6 +16,11 @@ const nextConfig = {
     // config.experiments.topLevelAwait = true;
     return config;
   },
+}
+
+// if static export, then disable i18n
+if(process.env.NEXT_PUBLIC_export_lang){
+  delete nextConfig.i18n;
 }
 
 module.exports = nextConfig

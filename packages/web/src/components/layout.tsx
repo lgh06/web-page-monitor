@@ -52,7 +52,7 @@ function Footer() {
             {/* <img src="/vercel.svg" alt="Vercel Logo" width={72} height={16} ></img> */}
           </span>
         </a>
-        <Link href={'/zh'} locale={false}>
+        <Link href={process.env.NEXT_PUBLIC_export_lang ? '/' : '/zh'} locale={false}>
           <a onClick={() => switchLanguage('zh')}>简体中文</a>
         </Link>
         <Link href={'/'} locale={false}>
