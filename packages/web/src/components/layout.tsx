@@ -52,10 +52,10 @@ function Footer() {
             {/* <img src="/vercel.svg" alt="Vercel Logo" width={72} height={16} ></img> */}
           </span>
         </a>
-        <Link href={nextConfig.i18n!.defaultLocale === 'zh' ? '/' : '/zh' } locale={false}>
+        <Link href={'/zh'} locale={false}>
           <a onClick={() => switchLanguage('zh')}>简体中文</a>
         </Link>
-        <Link href={nextConfig.i18n!.defaultLocale === 'en' ? '/' : '/en' } locale={false}>
+        <Link href={'/'} locale={false}>
           <a onClick={() => switchLanguage('en')}>English</a>
         </Link>
       </footer>

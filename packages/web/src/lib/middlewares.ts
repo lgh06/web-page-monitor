@@ -22,7 +22,7 @@ const cors: NextMiddleware = async (req, res, next) => {
   if(req.method === 'OPTIONS'){
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range');
+    res.setHeader('Access-Control-Allow-Headers', '*');
     res.setHeader('Access-Control-Max-Age', 1728000);
     res.setHeader('Content-Type', 'text/plain; charset=UTF-8');
     res.setHeader('Content-Length', 0);
@@ -31,7 +31,8 @@ const cors: NextMiddleware = async (req, res, next) => {
   }else{
     res.setHeader('Access-Control-Allow-Methods', '*')
     res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.setHeader("Access-Control-Allow-Headers", "*");
+    res.setHeader("Access-Control-Expose-Headers", "*");
     await next();
   }
 };
