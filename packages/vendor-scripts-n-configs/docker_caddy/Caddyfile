@@ -1,4 +1,6 @@
 monit-api-01.or.passby.me monit-api-01.or.yanqiankeji.com {
   uri replace /webmonitorapi/ /api/
-  reverse_proxy http://124.222.9.133:3002
+  reverse_proxy http://124.222.9.133:3002 {
+    	header_up Host {upstream_hostport}
+  }
 }
