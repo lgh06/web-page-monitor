@@ -13,3 +13,5 @@ services:
       # - $PWD/site:/srv
       - $PWD/caddy_data:/data
       - $PWD/caddy_config:/config
+    logging:
+      driver: local
