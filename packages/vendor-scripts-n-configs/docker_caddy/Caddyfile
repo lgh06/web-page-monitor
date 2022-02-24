@@ -4,3 +4,9 @@ monit-api-01.or.passby.me monit-api-01.or.yanqiankeji.com {
     	header_up Host {upstream_hostport}
   }
 }
+
+monit.or.passby.me monit.or.yanqiankeji.com {
+  reverse_proxy http://124.222.9.133:3002 {
+    	header_up Host {upstream_hostport}
+  }
+}
