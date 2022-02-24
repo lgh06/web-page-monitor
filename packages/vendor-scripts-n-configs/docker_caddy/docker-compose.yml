@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8083:8083"
+    volumes:
+      - $PWD/Caddyfile:/etc/caddy/Caddyfile
+      # - $PWD/site:/srv
+      - $PWD/caddy_data:/data
+      - $PWD/caddy_config:/config
