@@ -36,49 +36,33 @@ function Footer() {
       }
     }
   }, [userInfo.jwtToken, router]);
-
-  let copyRightURL = "https://beian.miit.gov.cn/";
-  let copyRightHTML = <></>;
-
-  if(hostName && hostName.match('passby.me')){
-    copyRightHTML = <>
-      <a href={copyRightURL} target="_blank" rel="noopener noreferrer">
-        <span>津ICP备14006885号-1</span>
-      </a>
-    </>
-  }else if(hostName && hostName.match('yanqiankeji.com')){
-    copyRightHTML = <>
-      <a href={copyRightURL} target="_blank" rel="noopener noreferrer">
-        <span>豫ICP备20008770号-1</span>
-      </a>
-    </>;
-  }else if(hostName && hostName === 'other'){
-  }else{
-    copyRightURL = ( 
-      locale === 'en' ? 
-        "https://github.com/lgh06/web-page-monitor" : 
-        "https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git");
-    copyRightHTML = <>
-      <a href={copyRightURL} target="_blank" rel="noopener noreferrer">
-        {t('Created by')}{' '}
-        <span className={styles.logo}>
-          {t('Daniel Gehuan Liu')}
-          {/* <img src="/vercel.svg" alt="Vercel Logo" width={72} height={16} ></img> */}
-        </span>
-      </a>
-
-    </>
-  }
-
-
-    console.log('inside getCopyright',copyRightURL, copyRightHTML, hostName)
-
   
+
+  let [copyRightURL, setCopyRightURL] = useState("https://beian.miit.gov.cn/");
+  let [copyRightText, setCopyRightText]= useState(t('Daniel Gehuan Liu'));
+  
+  useEffect(()=>{
+    if(hostName && hostName.match('passby.me')){
+      setCopyRightText(t('津ICP备14006885号-1'));
+    }else if(hostName && hostName.match('yanqiankeji.com')){
+        setCopyRightText(t('豫ICP备20008770号-1'));
+    }else if(hostName && hostName === 'other'){
+    }else{
+      setCopyRightURL( 
+        locale === 'en' ? 
+          "https://github.com/lgh06/web-page-monitor" : 
+          "https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git");
+      setCopyRightText(t('Created by') + t('Daniel Gehuan Liu'));
+    }
+    console.log('inside getCopyright',copyRightURL, copyRightText, hostName)
+  }, [locale, hostName])
 
   return (
     <>
       <footer className={styles.footer}>
-        { copyRightHTML }
+        <a href={copyRightURL} target="_blank" rel="noopener noreferrer">
+          <span>{copyRightText}</span>
+        </a>
         <Link href={process.env.NEXT_PUBLIC_export_lang ? '/' : '/zh'} locale={false}>
           <a onClick={() => switchLanguage('zh')}>简体中文</a>
         </Link>
