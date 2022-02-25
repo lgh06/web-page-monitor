@@ -1,3 +1,6 @@
+{
+  auto_https disable_redirects
+}
 monit-api-01.or.passby.me monit-api-01.or.yanqiankeji.com {
   header -Server
   uri replace /webmonitorapi/ /api/
