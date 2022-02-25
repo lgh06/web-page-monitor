@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "concurrently --kill-others-on-fail \"next dev -p 3002\" \"wait-on http://localhost:3002/ && start http://localhost:3002/\"",
     "build": "next build",
+    "static": "next build && next export -o monitor",
+    "static-zh": "next build && next export -o monitor/zh",
     "static:en": "next build && cross-env NEXT_PUBLIC_export_lang=en next export -o monitor_en",
     "static:zh": "next build && cross-env NEXT_PUBLIC_export_lang=zh NEXT_PUBLIC_basePath=/zh next export -o monitor_zh",
     "start": "npm run build && pm2 start ecosystem.config.js --time && pm2 save",
