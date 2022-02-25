@@ -8,7 +8,7 @@ import Cookies from 'js-cookie'
 import nextConfig from "../../next.config"
 import { userInfoAtom } from '../atoms';
 import { useImmerAtom } from 'jotai/immer'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 
 function Footer() {
@@ -37,37 +37,32 @@ function Footer() {
     }
   }, [userInfo.jwtToken, router]);
 
-  let copyRightURL="";
+  let [copyRightURL, setCopyRightURL]= useState("https://beian.miit.gov.cn/");
   let copyRightHTML = <></>;
-  console.log('hostName',hostName)
-  let getCopyright = () => {
-    if(hostName && hostName.match('passby.me')){
-      copyRightURL="https://beian.miit.gov.cn/";
-      copyRightHTML = <>
-        <span>津ICP备14006885号-1</span>
-      </>
-    }else if(hostName && hostName.match('yanqiankeji.com')){
-      copyRightURL="https://beian.miit.gov.cn/";
-      copyRightHTML = <>
-        <span>豫ICP备20008770号-1</span>
-      </>;
-    }else if(hostName && hostName === 'other'){
-    }else{
-      copyRightURL = 
-        locale === 'en' ? 
-          "https://github.com/lgh06/web-page-monitor" : 
-          "https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git";
-      copyRightHTML = <>
-        {t('Created by')}{' '}
-        <span className={styles.logo}>
-          {t('Daniel Gehuan Liu')}
-          {/* <img src="/vercel.svg" alt="Vercel Logo" width={72} height={16} ></img> */}
-        </span>
-      </>
-    }
-    console.log('inside getCopyright',copyRightURL, copyRightHTML, hostName)
-    return {copyRightURL, copyRightHTML};
+
+  if(hostName && hostName.match('passby.me')){
+    copyRightHTML = <>
+      <span>津ICP备14006885号-1</span>
+    </>
+  }else if(hostName && hostName.match('yanqiankeji.com')){
+    copyRightHTML = <>
+      <span>豫ICP备20008770号-1</span>
+    </>;
+  }else if(hostName && hostName === 'other'){
+  }else{
+    setCopyRightURL( 
+      locale === 'en' ? 
+        "https://github.com/lgh06/web-page-monitor" : 
+        "https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git");
+    copyRightHTML = <>
+      {t('Created by')}{' '}
+      <span className={styles.logo}>
+        {t('Daniel Gehuan Liu')}
+        {/* <img src="/vercel.svg" alt="Vercel Logo" width={72} height={16} ></img> */}
+      </span>
+    </>
   }
+    console.log('inside getCopyright',copyRightURL, copyRightHTML, hostName)
 
   
 
@@ -75,12 +70,12 @@ function Footer() {
     <>
       <footer className={styles.footer}>
         <a
-          href={getCopyright().copyRightURL}
+          href={copyRightURL}
           target="_blank"
           rel="noopener noreferrer"
         >
           {
-            getCopyright().copyRightHTML
+            copyRightHTML
           }
         </a>
         <Link href={process.env.NEXT_PUBLIC_export_lang ? '/' : '/zh'} locale={false}>
