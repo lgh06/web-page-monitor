@@ -37,22 +37,22 @@ function Footer() {
     }
   }, [userInfo.jwtToken, router]);
   
-
-  let [copyRightURL, setCopyRightURL] = useState("https://beian.miit.gov.cn/");
+  let beianURL = "https://beian.miit.gov.cn/";
+  let github = "https://github.com/lgh06/web-page-monitor";
+  let [copyRightURL, setCopyRightURL] = useState(t(github));
   let [copyRightText, setCopyRightText]= useState(t('Daniel Gehuan Liu'));
   
   useEffect(()=>{
-    if(hostName && hostName.match('passby.me')){
+    if(hostName && hostName.match('passby.me') && locale === 'zh'){
+      setCopyRightURL(beianURL);
       setCopyRightText(t('津ICP备14006885号-1'));
-    }else if(hostName && hostName.match('yanqiankeji.com')){
-        setCopyRightText(t('豫ICP备20008770号-1'));
+    }else if(hostName && hostName.match('yanqiankeji.com') && locale === 'zh'){
+      setCopyRightURL(beianURL);
+      setCopyRightText(t('豫ICP备20008770号-1'));
     }else if(hostName && hostName === 'other'){
     }else{
-      setCopyRightURL( 
-        locale === 'en' ? 
-          "https://github.com/lgh06/web-page-monitor" : 
-          "https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git");
-      setCopyRightText(t('Created by') + t('Daniel Gehuan Liu'));
+      setCopyRightURL(t(github));
+      setCopyRightText(t('Created by') + ' ' + t('Daniel Gehuan Liu'));
     }
     console.log('inside getCopyright',copyRightURL, copyRightText, hostName)
   }, [locale, hostName])

@@ -9,6 +9,7 @@ let trans = {
   "Login": "登录",
   "Daniel Gehuan Liu": "阿欢课堂",
   "Created by": "创建者",
+  "https://github.com/lgh06/web-page-monitor":"https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git",
   // Below is on login page
   "Create a task in Simple Mode": "创建一个简单模式的任务",
   "Go Back to home": "返回首页",
