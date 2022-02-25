@@ -12,6 +12,10 @@ export function useI18n(){
   if(i18n.language !== locale){
     i18n.changeLanguage(locale);
   }
+  let hostName = "";
+  if(typeof window !== 'undefined' && window.location && window.location.hostname){
+    hostName = window.location.hostname;
+  }
   const t = (...args: any[]) => {
     let firstString = args[0];
     // lower case for the english key when translated to Chinese
@@ -21,5 +25,5 @@ export function useI18n(){
     return originT(firstString, ...args.slice(1));
   }
   
-  return { t, i18n, router, locale, isReady }
+  return { t, i18n, router, locale, isReady, hostName }
 }
