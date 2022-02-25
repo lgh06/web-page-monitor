@@ -39,6 +39,7 @@ function Footer() {
 
   let copyRightURL="";
   let copyRightHTML = <></>;
+  console.log('hostName',hostName)
   let getCopyright = () => {
     if(hostName && hostName.match('passby.me')){
       copyRightURL="https://beian.miit.gov.cn/";
