@@ -63,10 +63,21 @@ function Footer() {
         <a href={copyRightURL} target="_blank" rel="noopener noreferrer">
           <span>{copyRightText}</span>
         </a>
-        <Link href={process.env.NEXT_PUBLIC_export_lang ? '/' : '/zh'} locale={false}>
+        {/**
+         * Next.js default language is en, prefix is / , zh is /zh
+         * 
+         * when static export, any language no prefix, just do a js language switch
+         * 
+         * static export default language is en
+         */}
+        <Link 
+          href={'/zh'} 
+          locale={false}>
           <a onClick={() => switchLanguage('zh')}>简体中文</a>
         </Link>
-        <Link href={'/'} locale={false}>
+        <Link 
+          href={'/'}
+          locale={false}>
           <a onClick={() => switchLanguage('en')}>English</a>
         </Link>
       </footer>
