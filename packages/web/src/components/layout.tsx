@@ -39,29 +39,33 @@ function Footer() {
 
   let copyRightURL="";
   let copyRightHTML = <></>;
-  if(hostName && hostName.match('passby.me')){
-    copyRightURL="https://beian.miit.gov.cn/";
-    copyRightHTML = <>
-      <span>津ICP备14006885号-1</span>
-    </>
-  }else if(hostName && hostName.match('yanqiankeji.com')){
-    copyRightURL="https://beian.miit.gov.cn/";
-    copyRightHTML = <>
-      <span>豫ICP备20008770号-1</span>
-    </>;
-  }else if(hostName && hostName === 'other'){
-  }else{
-    copyRightURL = 
-      locale === 'en' ? 
-        "https://github.com/lgh06/web-page-monitor" : 
-        "https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git";
-    copyRightHTML = <>
-      {t('Created by')}{' '}
-      <span className={styles.logo}>
-        {t('Daniel Gehuan Liu')}
-        {/* <img src="/vercel.svg" alt="Vercel Logo" width={72} height={16} ></img> */}
-      </span>
-    </>
+  let getCopyright = () => {
+    if(hostName && hostName.match('passby.me')){
+      copyRightURL="https://beian.miit.gov.cn/";
+      copyRightHTML = <>
+        <span>津ICP备14006885号-1</span>
+      </>
+    }else if(hostName && hostName.match('yanqiankeji.com')){
+      copyRightURL="https://beian.miit.gov.cn/";
+      copyRightHTML = <>
+        <span>豫ICP备20008770号-1</span>
+      </>;
+    }else if(hostName && hostName === 'other'){
+    }else{
+      copyRightURL = 
+        locale === 'en' ? 
+          "https://github.com/lgh06/web-page-monitor" : 
+          "https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git";
+      copyRightHTML = <>
+        {t('Created by')}{' '}
+        <span className={styles.logo}>
+          {t('Daniel Gehuan Liu')}
+          {/* <img src="/vercel.svg" alt="Vercel Logo" width={72} height={16} ></img> */}
+        </span>
+      </>
+    }
+
+    return {copyRightURL, copyRightHTML};
   }
 
   
@@ -70,14 +74,13 @@ function Footer() {
     <>
       <footer className={styles.footer}>
         <a
-          href={copyRightURL}
+          href={getCopyright().copyRightURL}
           target="_blank"
           rel="noopener noreferrer"
         >
           {
-            copyRightHTML
+            getCopyright().copyRightHTML
           }
-
         </a>
         <Link href={process.env.NEXT_PUBLIC_export_lang ? '/' : '/zh'} locale={false}>
           <a onClick={() => switchLanguage('zh')}>简体中文</a>
