@@ -27,6 +27,7 @@ const Home: NextPage = () => {
         <title>{t(`Web Page Monitor`)}</title>
         <meta name="description" content={t(`Welcome to Web Page Monitor`)} />
         <link rel="icon" href="/favicon.ico" />
+        <meta name="msvalidate.01" content="F18D53D95B52E2C08B800882D9946CA0" />
       </Head>
 
       <main className={styles.main}>
