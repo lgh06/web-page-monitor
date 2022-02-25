@@ -37,31 +37,40 @@ function Footer() {
     }
   }, [userInfo.jwtToken, router]);
 
-  let [copyRightURL, setCopyRightURL]= useState("https://beian.miit.gov.cn/");
+  let copyRightURL = "https://beian.miit.gov.cn/";
   let copyRightHTML = <></>;
 
   if(hostName && hostName.match('passby.me')){
     copyRightHTML = <>
-      <span>津ICP备14006885号-1</span>
+      <a href={copyRightURL} target="_blank" rel="noopener noreferrer">
+        <span>津ICP备14006885号-1</span>
+      </a>
     </>
   }else if(hostName && hostName.match('yanqiankeji.com')){
     copyRightHTML = <>
-      <span>豫ICP备20008770号-1</span>
+      <a href={copyRightURL} target="_blank" rel="noopener noreferrer">
+        <span>豫ICP备20008770号-1</span>
+      </a>
     </>;
   }else if(hostName && hostName === 'other'){
   }else{
-    setCopyRightURL( 
+    copyRightURL = ( 
       locale === 'en' ? 
         "https://github.com/lgh06/web-page-monitor" : 
         "https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git");
     copyRightHTML = <>
-      {t('Created by')}{' '}
-      <span className={styles.logo}>
-        {t('Daniel Gehuan Liu')}
-        {/* <img src="/vercel.svg" alt="Vercel Logo" width={72} height={16} ></img> */}
-      </span>
+      <a href={copyRightURL} target="_blank" rel="noopener noreferrer">
+        {t('Created by')}{' '}
+        <span className={styles.logo}>
+          {t('Daniel Gehuan Liu')}
+          {/* <img src="/vercel.svg" alt="Vercel Logo" width={72} height={16} ></img> */}
+        </span>
+      </a>
+
     </>
   }
+
+
     console.log('inside getCopyright',copyRightURL, copyRightHTML, hostName)
 
   
@@ -69,15 +78,7 @@ function Footer() {
   return (
     <>
       <footer className={styles.footer}>
-        <a
-          href={copyRightURL}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {
-            copyRightHTML
-          }
-        </a>
+        { copyRightHTML }
         <Link href={process.env.NEXT_PUBLIC_export_lang ? '/' : '/zh'} locale={false}>
           <a onClick={() => switchLanguage('zh')}>简体中文</a>
         </Link>
