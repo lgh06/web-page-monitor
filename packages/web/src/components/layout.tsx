@@ -37,17 +37,19 @@ function Footer() {
     }
   }, [userInfo.jwtToken, router]);
 
-  let copyRightURL="https://beian.miit.gov.cn/";
+  let copyRightURL="";
   let copyRightHTML = <></>;
-  if(hostName.match('passby.me')){
+  if(hostName && hostName.match('passby.me')){
+    copyRightURL="https://beian.miit.gov.cn/";
     copyRightHTML = <>
       <span>津ICP备14006885号-1</span>
     </>
-  }else if(hostName.match('yanqiankeji.com')){
+  }else if(hostName && hostName.match('yanqiankeji.com')){
+    copyRightURL="https://beian.miit.gov.cn/";
     copyRightHTML = <>
       <span>豫ICP备20008770号-1</span>
     </>;
-  }else if(hostName === 'other'){
+  }else if(hostName && hostName === 'other'){
   }else{
     copyRightURL = 
       locale === 'en' ? 
