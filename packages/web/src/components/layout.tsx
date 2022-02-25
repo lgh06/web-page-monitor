@@ -65,7 +65,7 @@ function Footer() {
         </span>
       </>
     }
-
+    console.log('inside getCopyright',copyRightURL, copyRightHTML, hostName)
     return {copyRightURL, copyRightHTML};
   }
 
