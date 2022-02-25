@@ -45,10 +45,10 @@ function Footer() {
   useEffect(()=>{
     if(hostName && hostName.match('passby.me') && locale === 'zh'){
       setCopyRightURL(beianURL);
-      setCopyRightText(t('津ICP备14006885号-1'));
+      setCopyRightText('津ICP备14006885号-1');
     }else if(hostName && hostName.match('yanqiankeji.com') && locale === 'zh'){
       setCopyRightURL(beianURL);
-      setCopyRightText(t('豫ICP备20008770号-1'));
+      setCopyRightText('豫ICP备20008770号-1');
     }else if(hostName && hostName === 'other'){
     }else{
       setCopyRightURL(t(github));
