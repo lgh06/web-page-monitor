@@ -17,7 +17,8 @@ async function _handler(
 
   let doc = await db.collection('script').findOne({_id: new ObjectId(id) });
   if(doc){
-    return res.setHeader('Content-Type', 'text/javascript;charset=UTF-8').status(200).send(doc.value)
+    return res.setHeader('Content-Type', 'text/javascript;charset=UTF-8')
+      .setHeader("Cache-Control", "max-age=3600").status(200).send(doc.value)
   }else{
     return res.status(404).send('')
   }
