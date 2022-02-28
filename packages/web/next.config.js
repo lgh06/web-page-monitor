@@ -10,6 +10,30 @@ let nextConfig = {
   // experimental: {
 
   // },
+  async headers(){
+    return [
+      {
+        source: '/:path*', // automatically handles all locales
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'max-age=3600',
+          },
+        ],
+      },
+      {
+        // index page
+        source: '/',
+        locale: false,
+        headers: [
+          {
+           key: 'Cache-Control',
+           value: 'no-store',
+          },
+        ],
+      }
+    ]
+  },
   webpack: (config) => {
     // https://github.com/vercel/next.js/issues/12557#issuecomment-994278512
     // topLevelAwait https://webpack.js.org/configuration/experiments/
