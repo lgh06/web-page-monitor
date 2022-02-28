@@ -9,7 +9,7 @@ module.exports = {
       "name": "web",
       "script": "node_modules/next/dist/bin/next",
       "args": "start -p 3002",
-      "instances" : 4,
+      "instances" : 2,
       "exec_mode" : "cluster"
     }
   ]
