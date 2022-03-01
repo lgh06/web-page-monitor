@@ -9,6 +9,7 @@ import nextConfig from "../../next.config"
 import { userInfoAtom } from '../atoms';
 import { useImmerAtom } from 'jotai/immer'
 import { useEffect, useState } from 'react'
+import { NavHeader } from "./nav-header";
 
 
 function Footer() {
@@ -88,6 +89,7 @@ function Footer() {
 export default function Layout({ children }) {
   return (
     <>
+      <NavHeader />
       {children}
       <Footer />
     </>
