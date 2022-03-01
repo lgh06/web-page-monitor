@@ -58,6 +58,9 @@
 
 .card {
   margin: 1rem;
+  @media screen and (max-width: 320px) {
+    margin: .5rem 0;
+  }
   padding: 1.5rem;
   text-align: left;
   color: inherit;
