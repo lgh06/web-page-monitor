@@ -50,5 +50,9 @@ if(process.env.NEXT_PUBLIC_export_lang){
 if(process.env.NEXT_PUBLIC_basePath){
   nextConfig.basePath = process.env.NEXT_PUBLIC_basePath;
 }
+// if distDir, then add
+if(process.env.NEXT_distDir){
+  nextConfig.distDir = process.env.NEXT_distDir;
+}
 
 module.exports = nextConfig

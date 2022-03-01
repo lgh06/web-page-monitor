@@ -4,7 +4,7 @@
   "license": "See monorepo's LICENSE.md",
   "scripts": {
     "dev": "concurrently --kill-others-on-fail \"next dev -p 3002\" \"wait-on http://localhost:3002/ && start http://localhost:3002/\"",
-    "build": "next build",
+    "build": "cross-env NEXT_distDir=.next2 next build && node copyNext.js",
     "static": "next build && next export -o monitor",
     "static-zh": "next build && next export -o monitor/zh",
     "static:en": "next build && cross-env-shell NEXT_PUBLIC_export_lang=en next export -o monitor_en",
@@ -22,6 +22,7 @@
     "@types/styled-components": "^5.1.22",
     "@webest/web-page-monitor-esm-loader": "*",
     "@webest/web-page-monitor-helper": "*",
+    "fs-extra": "^10.0.1",
     "i18next": "~21.6.11",
     "immer": "~9.0.12",
     "jose": "~4.5.0",

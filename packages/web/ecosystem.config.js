@@ -10,7 +10,7 @@ module.exports = {
       "script": "node_modules/next/dist/bin/next",
       "args": "start -p 3002",
       "instances" : 2,
-      "exec_mode" : "cluster"
+      "exec_mode" : "cluster",
     }
   ]
 }
