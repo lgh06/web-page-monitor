@@ -36,10 +36,10 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>
           { userInfo.email ? (<>
-            {t(`Welcome`)}, {userInfo.email} <br/>
+            {t(`Welcome`)}, {userInfo.email} <br/><br/>
             <Link href="/login"><a>{t('Go to User Center')}</a></Link>
           </>):(<>
-            {t('Welcome to Web Page Monitor')}!!<br/>
+            {t('Welcome to Web Page Monitor')}!!<br/><br/>
             {t('Please')}
             <Link href="/login"><a>{t('Login')}</a></Link>
             </>)}
