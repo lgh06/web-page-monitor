@@ -35,6 +35,9 @@
   @media screen and (max-width: 700px) {
     font-size: 1.8rem;
   }
+  > a{
+    margin-top: 1.5rem;
+  }
 }
 
 .title,
@@ -51,6 +54,7 @@
 .grid {
   display: flex;
   align-items: center;
+  margin-top: 1.5rem;
   justify-content: center;
   flex-wrap: wrap;
   max-width: 800px;
