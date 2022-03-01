@@ -12,6 +12,7 @@
     @media screen and (max-width: 700px) {
       flex-direction: column;
     }
+    user-select: none;
     width: 100%;
     padding: .5rem;
     border-bottom: 1px solid var(--border);
