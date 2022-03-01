@@ -1,0 +1,16 @@
+.nav-header{
+  grid-column: 1 / span 3;
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(1.9px);    
+  background: rgba(var(--bg), .8);
+  .wrap{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    box-sizing: border-box;
+  }
+}

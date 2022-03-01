@@ -9,7 +9,7 @@ import nextConfig from "../../next.config"
 import { userInfoAtom } from '../atoms';
 import { useImmerAtom } from 'jotai/immer'
 import { useEffect, useState } from 'react'
-import { NavHeader } from "./nav-header";
+import { NavHeader } from "./navHeader";
 
 
 function Footer() {
