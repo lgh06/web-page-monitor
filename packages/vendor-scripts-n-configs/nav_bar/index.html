@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="module" src="./module.js"></script>
+</head>
+
+<body>
+  <style>
+    details {
+      border: 1px solid #aaa;
+      border-radius: 4px;
+      padding: .5em .5em 0;
+    }
+
+    summary {
+      font-weight: bold;
+      margin: -.5em -.5em 0;
+      padding: .5em;
+    }
+
+    details[open] {
+      padding: .5em;
+    }
+
+    details[open] summary {
+      border-bottom: 1px solid #aaa;
+      margin-bottom: .5em;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    nav {
+      font-family: monospace;
+    }
+
+    ul {
+      background: darkorange;
+      list-style: none;
+      margin: 0;
+      padding-left: 0;
+    }
+
+    li {
+      color: #fff;
+      background: darkorange;
+      display: block;
+      float: left;
+      padding: 1rem;
+      position: relative;
+      text-decoration: none;
+      transition-duration: 0.5s;
+    }
+    @media screen and (max-width: 600px) {
+      ul li{
+        display: block;
+        width: 100%;
+      }
+    }
+
+    li a {
+      color: #fff;
+    }
+
+    li:hover {
+      background: red;
+      cursor: pointer;
+    }
+
+    ul li ul {
+      background: orange;
+      visibility: hidden;
+      opacity: 0;
+      min-width: 5rem;
+      position: absolute;
+      transition: all 0.5s ease;
+      margin-top: 1rem;
+      left: 0;
+      display: none;
+    }
+
+    ul li:hover>ul,
+    ul li:focus-within>ul, /* this is the line we add */
+    ul li ul:hover {
+      visibility: visible;
+      opacity: 1;
+      display: block;
+    }
+
+    ul li ul li {
+      clear: both;
+      width: 100%;
+    }
+  </style>
+</body>
+<!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details -->
+<details>
+  <summary>Details</summary>
+  Something small enough to escape casual notice.
+</details>
+
+<nav role="navigation">
+  <ul>
+    <li><a href="#">111</a></li>
+    <li><a href="#">222</a>
+      <ul class="dropdown">
+        <li>
+          <a href="#">555</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">333</a>
+      <ul class="dropdown">
+        <li>
+          <a href="#">444</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+</html>
