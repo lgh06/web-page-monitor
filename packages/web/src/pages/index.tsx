@@ -7,9 +7,12 @@ import { useI18n } from '../helpers'
 import Cookies from 'js-cookie'
 import nextConfig from "../../next.config"
 import { useEffect } from 'react'
+import { userInfoAtom } from '../atoms'
+import { useImmerAtom } from 'jotai/immer'
 
 const Home: NextPage = () => {
   let { t, router } = useI18n();
+  const [userInfo, setUserInfo] = useImmerAtom(userInfoAtom);
   useEffect(() =>{
     if(router.query && router.query.code){
       let queryString = "?";
@@ -32,8 +35,14 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          {t('Welcome to Web Page Monitor')}!!<br/>
-          {t('Please')} <Link href="/login"><a>{t('Login')}</a></Link>
+          { userInfo.email ? (<>
+            {t(`Welcome`)}, {userInfo.email} <br/>
+            <Link href="/login"><a>{t('Go to User Center')}</a></Link>
+          </>):(<>
+            {t('Welcome to Web Page Monitor')}!!<br/>
+            {t('Please')}
+            <Link href="/login"><a>{t('Login')}</a></Link>
+            </>)}
         </h1>
 
         {/* <p className={styles.description}>

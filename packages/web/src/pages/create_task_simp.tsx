@@ -154,14 +154,7 @@ const CreateTaskSimpPage: NextPage = () => {
   return (<>
     <style jsx>{`
       div > input + a {
-        color:blue;
         margin-left: 3em;
-      }
-      div > a {
-        color:blue;
-      }
-      a:hover{
-        text-decoration: underline;
       }
     `}</style>
     <div>

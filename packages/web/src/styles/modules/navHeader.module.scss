@@ -2,15 +2,55 @@
   grid-column: 1 / span 3;
   position: sticky;
   top: 0;
-  backdrop-filter: blur(1.9px);    
+  backdrop-filter: blur(1px);    
   background: rgba(var(--bg), .8);
   .wrap{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: row;
+    @media screen and (max-width: 700px) {
+      flex-direction: column;
+    }
     width: 100%;
-    padding: 1rem;
+    padding: .5rem;
     border-bottom: 1px solid var(--border);
     box-sizing: border-box;
+    > input[type=checkbox]{
+      display: none;
+      // when checked, the nav-header ul list will be shown
+      @media screen and (max-width: 700px) {
+        &:checked ~ ul{
+          display: block;
+        }
+      }
+    }
+    > label{
+      display:none;
+      // only show open menu label on mobile
+      @media screen and (max-width: 700px) {
+        display:block;
+      }
+    }
+
+    ul{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      // align-items: flex-end;
+      @media screen and (max-width: 700px) {
+        display:none;
+      }
+      li{
+        margin-left: 1rem;
+        @media screen and (max-width: 700px) {
+          text-align: right;
+        }
+        a{
+          color: var(--text);
+        }
+      }
+    }
   }
 }

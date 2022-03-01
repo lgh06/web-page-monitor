@@ -16,11 +16,38 @@ type Props = {
 const [cn,cs] = genClassNameAndString(styles);
 
 const NavHeader: FunctionComponent<Props> = ({ test }) => {
+  const { t } = useI18n();
+  const [userInfo] = useImmerAtom(userInfoAtom);
   return <>
   <div {...cn('nav-header')} >
     <div {...cn('wrap')}>
-          dasda
-
+      <input type="checkbox" id="nav-button" />
+      <label htmlFor="nav-button">Menu</label>
+      <ul>
+        <li>
+          <Link href="/">
+          <a>{t(`Home`)}</a>
+          </Link>
+        </li>
+        {
+          userInfo.email ? (<>
+            <li>
+              <Link href="/login"><a>{t(`User Center`)}</a></Link>
+            </li>
+            <li>
+              <Link href="/create_task_simp"><a>{t(`Create a task in Simple Mode`)}</a></Link>
+            </li>
+            <li>
+              <Link href="/market/script/list"><a>{t(`Script Market`)}</a></Link>
+            </li>
+          </>) : null
+        }
+        <li>
+          <Link href="/faq">
+            <a>{t(`FAQ`)}</a>
+          </Link>
+        </li>
+      </ul>
     </div>
   </div>
   </>

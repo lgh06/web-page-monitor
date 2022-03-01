@@ -19,14 +19,10 @@ const FaqPage: NextPage = () => {
   return (<>
     <style jsx>{`
       a{
-        margin-left: 3rem;
         cursor: pointer;
       }
-      h1, h2{
-        margin-left: 3rem;
-      }
-      p{
-        margin-left: 3rem;
+      h1, h2, p, p > a{
+        word-break: break-all;
       }
       p > a{
         margin-left: 0;
