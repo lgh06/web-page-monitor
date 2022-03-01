@@ -22,7 +22,7 @@ const NavHeader: FunctionComponent<Props> = ({ test }) => {
   <div {...cn('nav-header')} >
     <div {...cn('wrap')}>
       <input type="checkbox" id="nav-button" />
-      <label htmlFor="nav-button">Menu</label>
+      <label htmlFor="nav-button">{t(`Menu`)}</label>
       <ul>
         <li>
           <Link href="/">

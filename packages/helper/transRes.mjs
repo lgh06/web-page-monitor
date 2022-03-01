@@ -11,6 +11,7 @@ let trans = {
   "Created by": "创建者",
   "FAQ":"常见问题",
   "Home":"首页",
+  "Menu":"菜单",
   "Go to User Center":"前往用户中心",
   "User Center":"用户中心",
   "https://github.com/lgh06/web-page-monitor":"https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git",
