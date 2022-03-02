@@ -32,6 +32,6 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
-    "make-fetch-happen": "^10.0.3"
+    "make-fetch-happen": "~10.0.3"
   }
 }
