@@ -136,7 +136,7 @@ const Market: NextPage = () => {
         </Link>
         &nbsp;&nbsp;
         {
-          scriptDetail.scriptList.length < 3 ? (
+          (scriptDetail.scriptList.length && scriptDetail.scriptList.length) < 3 ? (
             <>
               <Link href={'/market/script/edit'}>
                 <a>{t(`Create a script`)}</a>
