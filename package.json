@@ -4,7 +4,7 @@
   "license": "See monorepo's LICENSE.md",
   "scripts": {
     "init": "lerna bootstrap",
-    "setpm2":"npm i pm2 -g && pm2 install pm2-logrotate && pm2 set pm2-logrotate:rotateInterval \"0 15 2,4,6,8,10,12,14,16,18,20,22,24,26,28,30 * *\"",
+    "setpm2":"npm i pm2@5.2.0 -g && pm2 install pm2-logrotate && pm2 set pm2-logrotate:rotateInterval \"0 15 2,4,6,8,10,12,14,16,18,20,22,24,26,28,30 * *\"",
     "postinstall": "npm i lerna@3.22.1 -g && npm run setpm2 && npm run init && git update-index --skip-worktree packages/helper/globalConfig.prod.mjs",
     "dev": "lerna bootstrap && lerna run dev --parallel --no-bail",
     "start": "lerna bootstrap && lerna run start --stream --concurrency 1 --no-bail",
