@@ -90,7 +90,7 @@ async function _postHandler(
   let userTaskCount = await db.collection("task").countDocuments({
     userId,
   });
-  if(userTaskCount > 3){
+  if(userTaskCount >= 3){
     return res.status(400).json({ err: 'user task count is over 3' })
   }
   return mongo.upsertDoc(db, 'task', filter, newDoc, res, true);
