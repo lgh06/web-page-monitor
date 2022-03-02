@@ -73,7 +73,7 @@ const TaskEditSimpPage: NextPage = () => {
       if (passed) {
         setTaskDetail(v => {
           v.cronPassed = true;
-          v.cronMsg = 'cron syntax check passed. ';
+          v.cronMsg = 'Cron syntax check passed.';
         })
       } else {
         setTaskDetail(v => {
@@ -148,23 +148,29 @@ const TaskEditSimpPage: NextPage = () => {
     let userId = userInfo._id;
     // return;
     let resp;
-    if(router.query.id && taskDetail._id && router.query.id === taskDetail._id){
-      // edit an existing task
-      resp = await fetchAPI('/task', {
-        taskDetail
-      })
-    }else{
-      // create a new task
-      resp = await fetchAPI('/task', {
-        taskDetail: {
-          userId,
-          ...taskDetail,
-          mode: 'simp', // this page is simp mode.
-        }
-      })
-    }
-    if(resp.ok || resp.acknowledged){
-      router.push("/task/list");
+    try {
+      if(router.query.id && taskDetail._id && router.query.id === taskDetail._id){
+        // edit an existing task
+        resp = await fetchAPI('/task', {
+          taskDetail
+        })
+      }else{
+        // create a new task
+        resp = await fetchAPI('/task', {
+          taskDetail: {
+            userId,
+            ...taskDetail,
+            mode: 'simp', // this page is simp mode.
+          }
+        })
+      }
+      if(resp.ok || resp.acknowledged){
+        router.push("/task/list");
+      }else{
+        alert(t(`Create Error: Network issue or exceed max task number`));
+      }
+    } catch (error) {
+      alert(t(`Create Error: ${error.message}`));
     }
     console.log(resp);
     // return true;
@@ -284,6 +290,9 @@ const TaskEditSimpPage: NextPage = () => {
       <Link href="/faq#WhatIsEraserScript"><a>{t('Eraser Script in FAQ')}</a></Link>
        : <br/>
       <textarea data-input-index="8" value={taskDetail.extra.eraserArr.join('\n')} onChange={handleInputChange} name="erasers" id="erasers" cols={20} rows={3}></textarea>
+    </div>
+    <div {...innerHTML(t('Note: One user can only create max 3 tasks, and lasts max 7 days per task.\
+      Minimum interval between two tasks is 10 minutes.'))}>
     </div>
     <div {...innerHTML(t('Note: Simple Mode is only suitable for monitor web pages,\
       not for txt, xml or other files without HTML structure.<br/>\

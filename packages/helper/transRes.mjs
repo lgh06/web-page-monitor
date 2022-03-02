@@ -31,6 +31,9 @@ let trans = {
   "Recommended": "推荐",
   "Choose an end time, from 10 minutes later to 7 days later": "选择一个结束时间，从10分钟后到7天（最晚）",
   "Please Input a cron syntax" : "请输入Cron定时任务表达式",
+  "Cron syntax check passed.": "Cron定时任务表达式检查通过",
+  "Between every jobs, need >= 10 minutes, please check.": "每个任务间隔时间，需要大于等于10分钟，请检查。",
+  "Error: Please check the cron syntax": "错误：请检查Cron定时任务表达式",
   "Cron Syntax Help in FAQ": "什么是Cron定时任务表达式",
   "Please input a CSS selector, if you do not know what that is, keep it as default \"body\"": `请输入CSS选择器，如果不知道填什么，请使用默认值body`,
   "Please input an alias name of this task, or keep it as default": "为该任务起个名字，或者保持默认值",
@@ -48,18 +51,19 @@ let trans = {
   "注意：简单模式仅适用于监控网页，\
       不适用于txt,xml或其他没有HTML结构的文件。<br/>\
       我们的极客(高级)模式将很快开放，将有更多的高级功能等待您发掘。",
-  "Note: If the combination of cron syntax and cssSelector and pageURL are same,\
-      this will update existing task, not create a new one.":
-  "注意：如果cron表达式和css选择器和网址相同，\
-      则会更新已有任务，而不会创建新任务。",
   "Note: We need 15 minutes to distribute our tasks to different servers. <br/>\
       the first repeated task within 15 minutes will be ignored.":
   "注意：我们需要15分钟分配任务到不同的服务器。<br/>\
       在15分钟内的第一个重复任务将被忽略。",
+  "Note: One user can only create max 3 tasks, and lasts max 7 days per task.\
+      Minimum interval between two tasks is 10 minutes.":
+  "注意：一个用户只能创建最多3个任务，每个任务最长持续七天。\
+      两个任务之间的最小间隔为10分钟。",
   "Create Now": "立即创建",
   "Go back to user center": "返回用户中心",
   "Go to scripts market": "前往脚本市场",
-  "submit OK. You can close this page.": "提交成功，您可以关闭该页面。",
+  "Submit OK. You can close this page.": "提交成功，您可以关闭该页面。",
+  "Create Error: Network issue or exceed max task number": "创建失败：网络问题或超过最大任务数量",
   // below is on script market page
   "Script Market": "脚本市场",
   "No Data": "没有数据",

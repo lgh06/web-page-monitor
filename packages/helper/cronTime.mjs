@@ -34,7 +34,7 @@ function toLocalISOString(oneDate, plusMinutes = 0, offset = 0) {
 
 function checkTimes(timestampArr, firstJobMinutes = 10, betweenJobMinutes = 10) {
   if(!timestampArr || !timestampArr[0]){
-    return [false, ['please check the cron syntax']]
+    return [false, ['Error: Please check the cron syntax']]
   }
   // let now = Date.now();
   let errors = new Set();
@@ -48,7 +48,7 @@ function checkTimes(timestampArr, firstJobMinutes = 10, betweenJobMinutes = 10) 
     // }
     if (i >= 1) {
       if ((v - a[i - 1]) < 60 * betweenJobMinutes * 1000) {
-        errors.add(`between every jobs, need >= ${betweenJobMinutes} minutes, please check. `);
+        errors.add(`Between every jobs, need >= ${betweenJobMinutes} minutes, please check.`);
       }
     }
   });
