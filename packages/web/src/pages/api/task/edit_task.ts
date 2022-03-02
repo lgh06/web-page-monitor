@@ -5,7 +5,7 @@ import { CronTime } from '@webest/web-page-monitor-helper';
 import { mongo } from '@webest/web-page-monitor-helper/node';
 
 
-async function _handler(
+async function postHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -85,6 +85,34 @@ async function _handler(
     db.collection("taskHistory").createIndex({ finishTime: 1 }, { expireAfterSeconds: 3600 * 24 * 130 });
   }
   return mongo.upsertDoc(db, 'task', filter, newDoc, res)
+}
+
+async function deleteHandler(
+  req: NextApiRequest,
+  res: NextApiResponse
+){
+  let db = await getDB();
+  let collectionName = 'script';
+  let id = req.query.id as string;
+  if(id){
+    // one list contains a single object
+    return mongo.delOneDoc(db, collectionName, { _id: new ObjectId(id) }, res)
+  }else{
+    res.status(404).json({ err: 'no param'})
+  }
+}
+
+async function _handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  if(req.method === 'POST'){
+    await postHandler(req, res);
+  }else if(req.method === 'DELETE'){
+    await deleteHandler(req, res);
+  }else{
+    res.status(200).json({ err: 'no method match' })
+  }
 }
 
 export default middlewares.authJwt(_handler);

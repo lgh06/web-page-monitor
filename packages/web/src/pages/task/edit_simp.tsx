@@ -114,13 +114,12 @@ const TaskEditSimpPage: NextPage = () => {
 
   async function handleBtnClick(ev: MouseEvent<HTMLButtonElement> ) {
     ev.preventDefault()
-    // let data = await fetchAPI('/task/create_task', {test: "string one"});
     // console.log(data)
     console.log(taskDetail)
     console.log(userInfo)
     let userId = userInfo._id;
 
-    let resp = await fetchAPI('/task/create_task', {
+    let resp = await fetchAPI('/task/edit_task', {
       taskDetail: {
         userId,
         ...taskDetail,
