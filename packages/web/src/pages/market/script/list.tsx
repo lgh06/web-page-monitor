@@ -131,7 +131,7 @@ const Market: NextPage = () => {
   return (
     <main>
       <div>
-        <Link href="/create_task_simp">
+        <Link href="/task/edit_simp">
           <a>{t('Back to create task simple mode')}</a>
         </Link>
         &nbsp;&nbsp;

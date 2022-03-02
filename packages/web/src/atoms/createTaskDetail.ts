@@ -21,6 +21,8 @@ let createTaskDetail = {
     alertDebounce: '',
     eraserArr: [],
   },
+  // used on list
+  taskList: [],
 }
 
 export const createTaskDetailAtom = atom(createTaskDetail);

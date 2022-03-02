@@ -103,7 +103,7 @@ const LoginPage: NextPage = () => {
         <button onClick={() => logOut({setUserInfo, router})}>{t(`Log Out`)}</button>
       </div>
       <div>
-        <Link href='/create_task_simp'><a {...cn('link')}> {t(`Create a task in Simple Mode`)} ({t(`Recommended`)})</a></Link>
+        <Link href='/task/edit_simp'><a {...cn('link')}> {t(`Create a task in Simple Mode`)} ({t(`Recommended`)})</a></Link>
       </div>
       {/* <div>
         <Link href='/create_task_geek'><a {...cn('link')}>create a task in Geek Mode (Code Mode)</a></Link>

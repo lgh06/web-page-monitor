@@ -35,7 +35,7 @@ const NavHeader: FunctionComponent<Props> = ({ test }) => {
               <Link href="/login"><a>{t(`User Center`)}</a></Link>
             </li>
             <li>
-              <Link href="/create_task_simp"><a>{t(`Create a task in Simple Mode`)}</a></Link>
+              <Link href="/task/edit_simp"><a>{t(`Create a task in Simple Mode`)}</a></Link>
             </li>
             <li>
               <Link href="/market/script/list"><a>{t(`Script Market`)}</a></Link>
