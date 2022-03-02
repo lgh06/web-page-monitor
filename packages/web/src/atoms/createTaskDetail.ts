@@ -25,6 +25,8 @@ let createTaskDetail = {
   },
   // used on list
   taskList: [],
+  // used when submitting, prevent multiple submit
+  submitting: false,
 }
 
 export const createTaskDetailAtom = atomWithReset(createTaskDetail);

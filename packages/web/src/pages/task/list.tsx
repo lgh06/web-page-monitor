@@ -78,15 +78,15 @@ const TaskListSimpPage: NextPage = () => {
   return (<>
     <main>
       <div>
-        <Link href="/task/edit_simp">
-          <a>{t('Back to create task simple mode')}</a>
+        <Link href="/login">
+          <a>{t('Back to User Center')}</a>
         </Link>
         &nbsp;&nbsp;
         {
           taskDetail?.taskList?.length < 3 ? (
             <>
               <Link href={'/task/edit_simp'}>
-                <a>{t(`Create a script`)}</a>
+                <a>{t(`Create a task in Simple Mode`)}</a>
               </Link>&nbsp;&nbsp;&nbsp;&nbsp;
             </>
           ) : null

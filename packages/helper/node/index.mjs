@@ -8,13 +8,18 @@ let mongo = {
    * @param {*} filter 
    * @param {*} doc 
    * @param {*} res 
+   * @param {Boolean} useInsert 
    * @returns 
    */
-  upsertDoc: async function (db, collectionName,filter, doc, res) {
+  upsertDoc: async function (db, collectionName,filter, doc, res, useInsert = false) {
     if( (!db) && res) return res.status(500).send('db lost');
     const options = { upsert: true, returnDocument: ReturnDocument.AFTER };
     if((!filter) || Object.keys(filter).length === 0){
-      return mongo.insertDoc(db, collectionName, doc, res);
+      if(useInsert){
+        return mongo.insertDoc(db, collectionName, doc, res);
+      }else{
+        filter = doc;
+      }
     }
     // https://mongodb.github.io/node-mongodb-native/4.3/classes/Collection.html#findOneAndReplace
     let p = db.collection(collectionName).findOneAndReplace(filter, doc, options).then(returnedDoc => {

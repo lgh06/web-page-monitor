@@ -140,36 +140,34 @@ const TaskEditSimpPage: NextPage = () => {
 
   async function handleBtnClick(ev: MouseEvent<HTMLButtonElement> ) {
     ev.preventDefault()
+    setTaskDetail(v => {
+      v.submitting = true;
+    });
     console.log(taskDetail._id)
     // console.log(userInfo)
     let userId = userInfo._id;
     // return;
+    let resp;
     if(router.query.id && taskDetail._id && router.query.id === taskDetail._id){
       // edit an existing task
-      let resp = await fetchAPI('/task', {
+      resp = await fetchAPI('/task', {
         taskDetail
       })
-      if(resp.ok){
-        alert(t('Update OK'))
-      }
-      console.log(resp);
-      // return true;
     }else{
       // create a new task
-      let resp = await fetchAPI('/task', {
+      resp = await fetchAPI('/task', {
         taskDetail: {
           userId,
           ...taskDetail,
           mode: 'simp', // this page is simp mode.
         }
       })
-      if(resp.ok){
-        // TODO hint or navigate to another page
-        alert(t('Submit OK. You can close this page.'))
-      }
-      console.log(resp);
-      // return true;
     }
+    if(resp.ok || resp.acknowledged){
+      router.push("/task/list");
+    }
+    console.log(resp);
+    // return true;
 
   }
 
@@ -188,15 +186,22 @@ const TaskEditSimpPage: NextPage = () => {
       && taskDetail.extra.alias
       && taskDetail.extra.eraserArr.length <= 3
       && ( taskDetail.extra.eraserArr.length ? taskDetail.extra.eraserArr.every(v => (v.length === 24)) : true )
+      && taskDetail.submitting === false
     );
   }
   
-  return (<>
+  return (<main>
     <style jsx>{`
       div > input + a {
         margin-left: 3em;
       }
     `}</style>
+    <div>
+      <Link href="/login"><a>{t('Go back to user center')}</a></Link>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <Link href="/market/script/list"><a>{t('Go to script market')}</a></Link>
+    </div>
+    <br/>
     <div>
       {/* input cron syntax <br /> */}
       {t(taskDetail.cronMsg)}:<br/>
@@ -284,21 +289,13 @@ const TaskEditSimpPage: NextPage = () => {
       not for txt, xml or other files without HTML structure.<br/>\
       Our Geek Mode will be coming soon, for more advanced features.'))}>
     </div>
-    <div {...innerHTML(t('Note: If the combination of cron syntax and cssSelector and pageURL are same,\
-      this will update existing task, not create a new one.'))}>
-    </div>
     <div {...innerHTML(t('Note: We need 15 minutes to distribute our tasks to different servers. <br/>\
       the first repeated task within 15 minutes will be ignored.'))}>
     </div>
     <div>
       <button data-btn-index="0" onClick={handleBtnClick} disabled={btnDisabled()}>{router.query.id ? t(`Update`) : t('Create Now')}</button>
     </div>
-    <div>
-      <Link href="/login"><a>{t('Go back to user center')}</a></Link>
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <Link href="/market/script/list"><a>{t('Go to script market')}</a></Link>
-    </div>
-  </>);
+  </main>);
 }
 
 export default TaskEditSimpPage

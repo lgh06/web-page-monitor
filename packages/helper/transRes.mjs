@@ -12,6 +12,7 @@ let trans = {
   "FAQ":"常见问题",
   "Home":"首页",
   "Menu":"菜单",
+  "Task List":"任务列表",
   "Go to User Center":"前往用户中心",
   "User Center":"用户中心",
   "https://github.com/lgh06/web-page-monitor":"https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git",
@@ -21,6 +22,9 @@ let trans = {
   "Log Out": "退出登录",
   "Welcome": "欢迎",
   "Login with Gitee.com OAuth": "使用Gitee.com OAuth登录",
+  // below is on task list page
+  "Back to User Center": "返回用户中心",
+  "Tasks created by you": "您创建的任务",
   // Below is on create task page
   "Please input a URL start with https:// or http://": "请输入以https://或http://开头的网址",
   "URL check passed. ": "URL检查通过",
@@ -66,7 +70,7 @@ let trans = {
   "You can modify the script name, or keep its name same as before": "您可以修改脚本名称，或保持原名称",
   "Go back to Market home": "返回脚本市场首页",
   "Create a script": "创建一个脚本",
-  "Back to create task simple mode": "回到创建简单模式任务",
+  "Back to create task simple mode": "返回创建简单模式任务",
   "Go to script market": "前往脚本市场",
   "Edit / Delete": "编辑/删除",
   "Edit": "编辑",

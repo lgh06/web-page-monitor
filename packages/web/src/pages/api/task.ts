@@ -62,7 +62,7 @@ async function _postHandler(
     userId = new ObjectId(userId);
   }
   const newDoc = {
-    cronSyntax, endTime, cssSelector, pageURL, userId, mode, nextExecuteTime,
+    userId, cronSyntax, endTime, cssSelector, pageURL, mode, nextExecuteTime,
     extra,
   };
 
@@ -87,7 +87,7 @@ async function _postHandler(
     db.collection("taskHistory").createIndex({ taskId: 1, finishTime: -1 });
     db.collection("taskHistory").createIndex({ finishTime: 1 }, { expireAfterSeconds: 3600 * 24 * 130 });
   }
-  return mongo.upsertDoc(db, 'task', filter, newDoc, res)
+  return mongo.upsertDoc(db, 'task', filter, newDoc, res, true);
 }
 
 async function _deleteHandler(
@@ -124,7 +124,7 @@ async function _getHandler(
   }else{
     return res.status(404).json({ err: 'no param'})
   }
-  mongo.queryDoc(db, collectionName, condition, project, res)
+  return mongo.queryDoc(db, collectionName, condition, project, res)
 }
 
 async function _handler(

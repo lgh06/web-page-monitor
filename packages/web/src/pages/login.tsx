@@ -99,19 +99,25 @@ const LoginPage: NextPage = () => {
 
   if (userInfo.logged) {
     res = (<main>
-      <div>{t(`Welcome`)}, {userInfo.email} <br />
-        <button onClick={() => logOut({setUserInfo, router})}>{t(`Log Out`)}</button>
+      <Back/><br />
+      <div>
+        {t(`Welcome`)}, {userInfo.email} 
       </div>
       <div>
         <Link href='/task/edit_simp'><a {...cn('link')}> {t(`Create a task in Simple Mode`)} ({t(`Recommended`)})</a></Link>
       </div>
+      <div>
+        <Link href='/task/list'><a {...cn('link')}> {t(`Task List`)}</a></Link>
+      </div><br/>
       {/* <div>
         <Link href='/create_task_geek'><a {...cn('link')}>create a task in Geek Mode (Code Mode)</a></Link>
       </div> */}
       {/* <div>
         <Link href='/faq#WhatIsSimpleMode'><a {...cn('link')}>see FAQ for Simple Mode / Geek Mode helps </a></Link>
       </div> */}
-      <Back/>
+      <div>
+        <button onClick={() => logOut({setUserInfo, router})}>{t(`Log Out`)}</button>
+      </div>
     </main>
     )
   } else {

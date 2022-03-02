@@ -17,9 +17,9 @@ async function scriptPostHandler(
     _id,
   } = req.body.scriptDetail;
   let newDoc = {
+    userId: new ObjectId(userId),
     alias,
     value,
-    userId: new ObjectId(userId),
     domainArr,
   };
   let filter = {
