@@ -1,11 +1,14 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getDB, middlewares, ObjectId } from '../../../lib';
+import { getDB, middlewares, ObjectId } from '../../lib';
 import { CronTime } from '@webest/web-page-monitor-helper';
 import { mongo } from '@webest/web-page-monitor-helper/node';
 
 
-async function postHandler(
+const collectionName = 'task';
+
+
+async function _postHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -87,19 +90,41 @@ async function postHandler(
   return mongo.upsertDoc(db, 'task', filter, newDoc, res)
 }
 
-async function deleteHandler(
+async function _deleteHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ){
   let db = await getDB();
-  let collectionName = 'script';
   let id = req.query.id as string;
   if(id){
-    // one list contains a single object
     return mongo.delOneDoc(db, collectionName, { _id: new ObjectId(id) }, res)
   }else{
     res.status(404).json({ err: 'no param'})
   }
+}
+
+async function _getHandler(
+  req: NextApiRequest,
+  res: NextApiResponse
+){
+  let db = await getDB();
+  let collectionName = 'task';
+  let userId = req.query.userId as string;
+  let id = req.query.id as string;
+
+  let condition = {};
+  let project = null;
+  if(userId){
+    // a list
+    condition = { userId: new ObjectId(userId) };
+    // project = {value: 0};
+  }else if(id){
+    // one list contains a single object
+    condition =  { _id: new ObjectId(id) };
+  }else{
+    return res.status(404).json({ err: 'no param'})
+  }
+  mongo.queryDoc(db, collectionName, condition, project, res)
 }
 
 async function _handler(
@@ -107,11 +132,13 @@ async function _handler(
   res: NextApiResponse
 ) {
   if(req.method === 'POST'){
-    await postHandler(req, res);
+    await _postHandler(req, res);
   }else if(req.method === 'DELETE'){
-    await deleteHandler(req, res);
+    await _deleteHandler(req, res);
+  }else if(req.method === 'GET'){
+    await _getHandler(req, res);
   }else{
-    res.status(200).json({ err: 'no method match' })
+    res.status(400).json({ err: 'no method match' })
   }
 }
 

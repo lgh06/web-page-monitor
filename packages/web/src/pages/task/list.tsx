@@ -20,7 +20,7 @@ const TaskListSimpPage: NextPage = () => {
   async function firstInit() {
     let taskList: any = [];
     // TODO pagination
-    taskList = await fetchAPI(`/market/script?userId=${userInfo._id}`) 
+    taskList = await fetchAPI(`/task?userId=${userInfo._id}`) 
     setTaskDetail((v) => {
       if(taskList.length){
         v.taskList = taskList;
@@ -36,7 +36,7 @@ const TaskListSimpPage: NextPage = () => {
     if(!confirmed){
       return;
     }
-    let resp = await fetchAPI(`/task/delete_task?id=${rowId}`, null , 'DELETE')
+    let resp = await fetchAPI(`/task?id=${rowId}`, null , 'DELETE')
     window.location.reload();
     return false;
   }
@@ -89,7 +89,7 @@ const TaskListSimpPage: NextPage = () => {
         }
       </div>
       <h3>
-        {t(`Scripts created by you`)} :
+        {t(`Tasks created by you`)} :
       </h3>
       <section className='list'>
         <ScriptList

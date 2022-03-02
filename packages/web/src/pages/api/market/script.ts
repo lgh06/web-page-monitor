@@ -78,10 +78,10 @@ async function scriptGetHandler(
     // one list contains a single object
     return mongo.queryDoc(db, collectionName, { _id: new ObjectId(id) }, null, res)
   }else if(alias){
-    // one list contains a single object
+    // a list
     return mongo.queryDoc(db, collectionName, { alias }, null, res)
   }else if(domain){
-    // one list contains a single object
+    // a list
     return mongo.queryDoc(db, collectionName, { domainArr: domain }, null, res)
   }else{
     res.status(404).json({ err: 'no param'})

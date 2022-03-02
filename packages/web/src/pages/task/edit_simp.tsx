@@ -119,7 +119,7 @@ const TaskEditSimpPage: NextPage = () => {
     console.log(userInfo)
     let userId = userInfo._id;
 
-    let resp = await fetchAPI('/task/edit_task', {
+    let resp = await fetchAPI('/task', {
       taskDetail: {
         userId,
         ...taskDetail,
