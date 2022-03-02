@@ -3,6 +3,7 @@
  * Add Core Method ESMLoader
  */
 
+
 // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs
 // https://datatracker.ietf.org/doc/html/rfc3986#section-2.2
 // https://developer.mozilla.org/en-US/docs/Glossary/percent-encoding
@@ -14,7 +15,7 @@ export const escapeHtml = s => (s + '').replace(/[&<>"']/g, m => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;',
     '"': '&quot;', "'": '&#39;'
 })[m]);
-export const nodeFetch = url =>
+export const nodeFetchOld = url =>
     import(/* webpackIgnore: true */'http')
         .then(({ default: http }) =>
             new Promise((resolve, rej) => {
@@ -33,6 +34,14 @@ export const nodeFetch = url =>
             })
         );
 
+export const nodeFetch = url =>{
+  return import(/* webpackIgnore: true */'make-fetch-happen').then( ({ default: cacheFetch }) => {
+    cacheFetch = cacheFetch.defaults({
+      cachePath: './cache'
+    });
+    return cacheFetch(url).then(res => res.text());
+  });
+}
 
 export const fetch = typeof window !== 'undefined' ? window.fetch : nodeFetch;
 export const fetchImport = url => fetch(url).then(ESMLoader);

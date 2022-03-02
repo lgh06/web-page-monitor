@@ -30,5 +30,8 @@
   "homepage": "https://github.com/direktspeed/esm-loader#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "make-fetch-happen": "^10.0.3"
   }
 }
