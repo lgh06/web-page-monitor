@@ -1,6 +1,7 @@
 import { NextPage } from "next/types";
 import { ChangeEvent, useEffect, MouseEvent, useMemo } from 'react';
 import { useImmerAtom } from 'jotai/immer';
+import { useResetAtom } from 'jotai/utils'
 import { createTaskDetailAtom, monacoEditorAtom, userInfoAtom } from '../../atoms';
 import { CronTime } from '@webest/web-page-monitor-helper';
 import { fetchAPI, useI18n, innerHTML } from "../../helpers/index";
@@ -13,11 +14,14 @@ const TaskListSimpPage: NextPage = () => {
 
   const [taskDetail, setTaskDetail] = useImmerAtom(createTaskDetailAtom);
   const [userInfo, setUserInfo] = useImmerAtom(userInfoAtom);
+  const resetTaskDetail = useResetAtom(createTaskDetailAtom)
+
   const { t } = useI18n();
   const router = useRouter();
 
   // update input date when first entry
   async function firstInit() {
+    resetTaskDetail();
     let taskList: any = [];
     // TODO pagination
     taskList = await fetchAPI(`/task?userId=${userInfo._id}`) 
@@ -79,7 +83,7 @@ const TaskListSimpPage: NextPage = () => {
         </Link>
         &nbsp;&nbsp;
         {
-          taskDetail.taskList.length < 3 ? (
+          taskDetail?.taskList?.length < 3 ? (
             <>
               <Link href={'/task/edit_simp'}>
                 <a>{t(`Create a script`)}</a>

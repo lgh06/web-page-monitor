@@ -48,3 +48,30 @@ export function logOut({setUserInfo, router}){
   });
   router.push('/login');
 }
+
+export function mergeToTarget(source, target, func?) {
+
+  // https://stackoverflow.com/a/34624648/5332156
+  // Prevent undefined objects
+  // if (!aObject) return aObject;
+
+  let value;
+  if(typeof target === "undefined"){
+    target = {};
+  }
+  for (const key in source) {
+
+    // Prevent self-references to parent object
+    // if (Object.is(source[key], source)) continue;
+    
+    value = source[key];
+
+    if(func){
+      target[key] = (value === null && !target[key] && target[key] !== '') ? null : (typeof value === "object" && !Array.isArray(value)) ? mergeToTarget(value, target[key], func) : func(value, target[key])
+    }else{
+      target[key] = (value === null && !target[key] && target[key] !== '') ? null : (typeof value === "object" && !Array.isArray(value)) ? mergeToTarget(value, target[key]) : value;
+    }
+
+  }
+  return target;
+}

@@ -14,7 +14,7 @@ let mongo = {
     if( (!db) && res) return res.status(500).send('db lost');
     const options = { upsert: true, returnDocument: ReturnDocument.AFTER };
     if((!filter) || Object.keys(filter).length === 0){
-      filter = doc;
+      return mongo.insertDoc(db, collectionName, doc, res);
     }
     // https://mongodb.github.io/node-mongodb-native/4.3/classes/Collection.html#findOneAndReplace
     let p = db.collection(collectionName).findOneAndReplace(filter, doc, options).then(returnedDoc => {

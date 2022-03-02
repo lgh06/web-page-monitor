@@ -20,6 +20,7 @@ async function _postHandler(
     userId,
     mode,
     extra,
+    _id,
   } = req.body.taskDetail;
 
   // endTime in DB is a Date type
@@ -66,11 +67,10 @@ async function _postHandler(
   };
 
   let filter = {
-    userId,
-    pageURL,
-    cssSelector,
-    cronSyntax,
-    mode,
+    _id: new ObjectId(_id),
+  }
+  if(!_id){
+    delete filter._id;
   }
   let db = await getDB();
   // create index for task collection

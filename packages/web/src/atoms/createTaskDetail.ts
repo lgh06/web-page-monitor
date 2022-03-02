@@ -1,6 +1,8 @@
-import { atom } from 'jotai'
+import { atomWithReset } from 'jotai/utils'
 
 let createTaskDetail = {
+  // used on edit
+  _id: null,
   endLocalMinuteString: '',
   endMaxLocalMinuteString: '',
   endTime: 0,
@@ -25,4 +27,4 @@ let createTaskDetail = {
   taskList: [],
 }
 
-export const createTaskDetailAtom = atom(createTaskDetail);
+export const createTaskDetailAtom = atomWithReset(createTaskDetail);

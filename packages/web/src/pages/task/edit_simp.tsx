@@ -1,34 +1,62 @@
 import { NextPage } from "next/types";
 import { ChangeEvent, useEffect, MouseEvent } from 'react';
+import { useAtom } from 'jotai';
 import { useImmerAtom } from 'jotai/immer';
+import { useResetAtom, RESET } from 'jotai/utils'
+
 import { createTaskDetailAtom, monacoEditorAtom, userInfoAtom } from '../../atoms';
 import { CronTime } from '@webest/web-page-monitor-helper';
-import { fetchAPI, useI18n, innerHTML } from "../../helpers/index";
+import { fetchAPI, useI18n, innerHTML, mergeToTarget } from "../../helpers/index";
 import Link from "next/link";
 
+
+let mergeTaskValueFunc = (initValue, dbValue) =>{
+  return dbValue ? dbValue : initValue;
+}
 
 const TaskEditSimpPage: NextPage = () => {
 
   const [taskDetail, setTaskDetail] = useImmerAtom(createTaskDetailAtom);
+  const [,setOneTaskDetail] = useAtom(createTaskDetailAtom);
   const [userInfo, setUserInfo] = useImmerAtom(userInfoAtom);
-  const { t } = useI18n();
+  const { t, router } = useI18n();
+  const resetTaskDetail = useResetAtom(createTaskDetailAtom)
 
   // update input date when first entry
-  function updateDate() {
-    setTaskDetail(v => {
-      v.mode = 'simp'; // this page for simp-le mode
-      let nowDate = new Date();
-      // TODO different type user, different end time
-      v.endLocalMinuteString = CronTime.toLocalISOString(nowDate, 7*60*24);
-      v.endMaxLocalMinuteString = CronTime.toLocalISOString(nowDate, 7*60*24);
-      v.endTime = new Date(v.endLocalMinuteString).valueOf()
-      v.startLocalMinuteString = CronTime.toLocalISOString(nowDate, 10);
-      v.extra.alias = (Math.floor(nowDate.valueOf())).toString(36).toUpperCase();
-    })
+  async function firstInit() {
+    resetTaskDetail();
+    if(router.query.id){
+      let script: any = [];
+      // TODO pagination
+      script = await fetchAPI(`/task?id=${router.query.id}`) 
+      let oneTask = script[0];
+      setOneTaskDetail(mergeToTarget(taskDetail,oneTask, mergeTaskValueFunc));
+      console.log(oneTask._id, oneTask)
+      setTaskDetail(v => {
+
+        let nowDate = new Date();
+        let endTimeDate = new Date(oneTask.endTime)
+        v.endTime = endTimeDate.valueOf();
+        v.endLocalMinuteString = CronTime.toLocalISOString(endTimeDate);
+        v.startLocalMinuteString = CronTime.toLocalISOString(nowDate, 10);
+        v.endMaxLocalMinuteString = CronTime.toLocalISOString(nowDate, 7*60*24);
+
+      })
+    }else{
+      setTaskDetail(v => {
+        v.mode = 'simp'; // this page for simp-le mode
+        let nowDate = new Date();
+        // TODO different type user, different end time
+        v.endLocalMinuteString = CronTime.toLocalISOString(nowDate, 7*60*24);
+        v.endMaxLocalMinuteString = CronTime.toLocalISOString(nowDate, 7*60*24);
+        v.endTime = new Date(v.endLocalMinuteString).valueOf()
+        v.startLocalMinuteString = CronTime.toLocalISOString(nowDate, 10);
+        v.extra.alias = (Math.floor(nowDate.valueOf())).toString(36).toUpperCase();
+      })
+    }
   }
 
   function handleInputChange(ev: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    console.log(ev.target)
     let inputElement = ev.target;
     let index = ev.target.dataset.inputIndex;
     if (index === '0') {
@@ -41,7 +69,6 @@ const TaskEditSimpPage: NextPage = () => {
       }else{
         let nextArr = CronTime.getNextTimes(inputElement.value);
         [passed, errorMsg] = CronTime.checkTimes(nextArr);
-        // console.log(nextArr, passed, errorMsg)
       }
       if (passed) {
         setTaskDetail(v => {
@@ -67,7 +94,6 @@ const TaskEditSimpPage: NextPage = () => {
       setTaskDetail(v => {
         v.pageURL = inputElement.value;
       })
-      // console.log(nextArr, passed, errorMsg)
       let str = String(inputElement.value);
       let passed = (str.startsWith('https://') || str.startsWith('http://')) && str.match(/http.+\..+/);
       if (passed) {
@@ -114,29 +140,44 @@ const TaskEditSimpPage: NextPage = () => {
 
   async function handleBtnClick(ev: MouseEvent<HTMLButtonElement> ) {
     ev.preventDefault()
-    // console.log(data)
-    console.log(taskDetail)
-    console.log(userInfo)
+    console.log(taskDetail._id)
+    // console.log(userInfo)
     let userId = userInfo._id;
-
-    let resp = await fetchAPI('/task', {
-      taskDetail: {
-        userId,
-        ...taskDetail,
-        mode: 'simp', // this page is simp mode.
+    // return;
+    if(router.query.id && taskDetail._id && router.query.id === taskDetail._id){
+      // edit an existing task
+      let resp = await fetchAPI('/task', {
+        taskDetail
+      })
+      if(resp.ok){
+        alert(t('Update OK'))
       }
-    })
-    if(resp.ok){
-      // TODO hint or navigate to another page
-      alert(t('submit OK. You can close this page.'))
+      console.log(resp);
+      // return true;
+    }else{
+      // create a new task
+      let resp = await fetchAPI('/task', {
+        taskDetail: {
+          userId,
+          ...taskDetail,
+          mode: 'simp', // this page is simp mode.
+        }
+      })
+      if(resp.ok){
+        // TODO hint or navigate to another page
+        alert(t('Submit OK. You can close this page.'))
+      }
+      console.log(resp);
+      // return true;
     }
-    console.log(resp);
-    // return true;
+
   }
 
   useEffect(() => {
-    updateDate();
-  }, []);
+    if(router.isReady){
+      firstInit();
+    }
+  }, [router.query]);
 
   function btnDisabled(){
     return !(
@@ -250,7 +291,7 @@ const TaskEditSimpPage: NextPage = () => {
       the first repeated task within 15 minutes will be ignored.'))}>
     </div>
     <div>
-      <button data-btn-index="0" onClick={handleBtnClick} disabled={btnDisabled()}>{t('Create Now')}</button>
+      <button data-btn-index="0" onClick={handleBtnClick} disabled={btnDisabled()}>{router.query.id ? t(`Update`) : t('Create Now')}</button>
     </div>
     <div>
       <Link href="/login"><a>{t('Go back to user center')}</a></Link>

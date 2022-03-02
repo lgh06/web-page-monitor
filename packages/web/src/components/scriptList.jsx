@@ -8,6 +8,8 @@ import { useI18n } from '../helpers'
 const Styles = styled.div``;
 
 function ScriptList({columns, data}) {
+  const { t } = useI18n();
+  console.log(data)
   // Use the state and functions returned from useTable to build your UI
   const {
     getTableProps,
@@ -18,9 +20,9 @@ function ScriptList({columns, data}) {
   } = useTable({
     columns,
     data,
-  })
-  const { t } = useI18n();
+  });
   if(!data || data.length === 0) return <div>{t(`No Data`)}</div>
+
   
   // Render the UI for your table
   return (
