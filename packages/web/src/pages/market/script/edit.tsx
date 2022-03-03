@@ -73,6 +73,9 @@ const Market: NextPage = () => {
 
   async function handleBtnClick(ev: MouseEvent<HTMLButtonElement> ) {
     ev.preventDefault()
+    setScriptDetail(v =>{
+      v.submitting = true;
+    })
     console.log(editorValue);
     console.log(scriptDetail.alias)
     console.log(userInfo)
@@ -199,7 +202,7 @@ const Market: NextPage = () => {
             ></MonacoEditor>
         </div>
         <div>
-          <button disabled={scriptDetail.readonly} onClick={handleBtnClick}>{router.query.id ? t(`Update`) : t(`Create Script Now`)}</button>
+          <button disabled={scriptDetail.readonly || scriptDetail.submitting} onClick={handleBtnClick}>{router.query.id ? t(`Update`) : t(`Create Script Now`)}</button>
         </div>
       </section>
     </main>

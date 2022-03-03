@@ -15,6 +15,8 @@ let createScriptDetail = {
   searchKey: '',
   searchValue: '',
   publicScriptList: [],
+  // submitting
+  submitting: false,
 }
 
 export const createScriptDetailAtom = atomWithReset(createScriptDetail);
