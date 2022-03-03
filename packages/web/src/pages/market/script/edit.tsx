@@ -99,22 +99,26 @@ const Market: NextPage = () => {
         return new URL('http://' + v).hostname
       });
     }
-    let resp = await fetchAPI('/market/script', {
-      scriptDetail:{
-        _id: scriptDetail._id,
-        alias: scriptDetail.alias,
-        value: editorValue.value,
-        userId: userInfo._id,
-        domainArr,
+    let resp;
+    try {
+      resp = await fetchAPI('/market/script', {
+        scriptDetail:{
+          _id: scriptDetail._id,
+          alias: scriptDetail.alias,
+          value: editorValue.value,
+          userId: userInfo._id,
+          domainArr,
+        }
+      });
+      if( (resp && resp.ok && resp.value) || resp.acknowledged){
+        alert(t(`${router.query.id ? 'Update' : 'Create'} script success!, will go to script list page`));
+        router.push('/market/script/list')
+      }else{
+        alert(t(`Create Error: Network issue or exceed max script number`));
       }
-    });
-    if(resp && resp.ok && resp.value){
-      alert(t(`${router.query.id ? 'Update' : 'Create'} script success!, will go to script list page`));
-      
-      router.push('/market/script/list')
+    } catch (error) {
+      alert(t(`Create Error: ${error.message}`));
     }
-    // TODO
-    console.log(resp)
     return true;
   }
   function handleInputChange(ev: ChangeEvent<HTMLInputElement>) {

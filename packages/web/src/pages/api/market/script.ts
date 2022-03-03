@@ -18,14 +18,18 @@ async function scriptPostHandler(
   } = req.body.scriptDetail;
   userId = req.userInfo._id || userId;
 
+  if(typeof userId === 'string'){
+    userId = new ObjectId(userId);
+  }
+
   let newDoc = {
-    userId: new ObjectId(userId),
+    userId,
     alias,
     value,
     domainArr,
   };
   let filter = {
-    userId: new ObjectId(userId),
+    userId,
     _id: new ObjectId(_id),
   }
   if(!_id){
@@ -41,6 +45,13 @@ async function scriptPostHandler(
     table.createIndex({ userId: 1 });
     table.createIndex({ alias: 1 });
     table.createIndex({ private: 1 });
+  }
+
+  let userScriptCount = await db.collection(collectionName).countDocuments({
+    userId,
+  });
+  if(userScriptCount >= 3){
+    return res.status(400).json({ err: 'user script count is over 3' })
   }
 
   // TODO one user can only have max 3 scripts

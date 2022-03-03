@@ -92,6 +92,7 @@ let trans = {
   "Notice: All scripts you created will be <strong>public</strong>, you can only modify your own scripts.": "注意：所有您创建的脚本将会<strong>公开</strong>，您只能修改自己的脚本。",
   "Please input a script name, or keep it empty to use the default name": "请输入一个脚本名称，或保持默认值",
   "Create Script Now": "立即创建脚本",
+  "Create Error: Network issue or exceed max script number": "创建失败：网络问题或超过最大脚本数量",
   "Please modify the example code!": "请修改示例代码！",
   "Script length too long! need <= 5000 characters": "脚本长度太长，需要 <= 5000 个字符",
   "Please choose an example": "请选择一个示例",
