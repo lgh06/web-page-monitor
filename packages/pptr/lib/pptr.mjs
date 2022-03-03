@@ -107,4 +107,7 @@ try {
 } catch (error) {
   console.error(error)
 }
-
+// https://github.com/puppeteer/puppeteer/issues/7902#issuecomment-1046020683
+process.on('uncaughtException', function (err) {
+  console.log('Caught exception: ' + err);
+});
