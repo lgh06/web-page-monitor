@@ -50,7 +50,7 @@ async function scriptPostHandler(
   let userScriptCount = await db.collection(collectionName).countDocuments({
     userId,
   });
-  if(userScriptCount >= 3){
+  if( (!_id && userScriptCount >= 3) || (_id && userScriptCount >= 6)){
     return res.status(400).json({ err: 'user script count is over 3' })
   }
 
