@@ -25,6 +25,7 @@ let trans = {
   // below is on task list page
   "Back to User Center": "返回用户中心",
   "Tasks created by you": "您创建的任务",
+  "URL": "URL网址",
   // Below is on create task page
   "Please input a URL start with https:// or http://": "请输入以https://或http://开头的网址",
   "URL check passed. ": "URL检查通过",

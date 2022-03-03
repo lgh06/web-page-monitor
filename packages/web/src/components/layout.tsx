@@ -21,12 +21,18 @@ function Footer() {
 
   useEffect(() => {
     let { jwtToken } = userInfo;
-    console.log(jwtToken)
+    // console.log(jwtToken)
     if(jwtToken){
       verifyJwt(jwtToken).then(result =>{
         if(!result.verified){
           alert(t('Your session has expired, please login again.'));
           logOut({setUserInfo, router});
+        }else{
+          setUserInfo(v => {
+            v._id = String(result.jwt._id);
+            v.email = String(result.jwt.email);
+            // console.log(userInfo)
+          })
         }
       });
     }else{ // jwtToken is null or empty
@@ -55,7 +61,7 @@ function Footer() {
       setCopyRightURL(t(github));
       setCopyRightText(t('Created by') + ' ' + t('Daniel Gehuan Liu'));
     }
-    console.log('inside getCopyright',copyRightURL, copyRightText, hostName)
+    // console.log('inside getCopyright',copyRightURL, copyRightText, hostName)
   }, [locale, hostName])
 
   return (

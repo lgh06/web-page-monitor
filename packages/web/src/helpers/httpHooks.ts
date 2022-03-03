@@ -32,11 +32,13 @@ export async function fetchAPI(endPoint: string, postedObject: undefined | objec
   }
   if(typeof window !== 'undefined' && window.localStorage){
     let { userInfo } = window.localStorage;
-    console.log('inside fetchAPI', userInfo);
+    // console.log('inside fetchAPI', userInfo);
     if(userInfo){
       let parsedUserInfo;
       try {
         // TODO save userInfo to another localStorage item
+        // read jwtToken from localStorage
+        // and append to HTTP API request header
         parsedUserInfo = JSON.parse(userInfo);
         headers['Authorization'] = `Bearer ${parsedUserInfo.jwtToken}`;
       } catch (error) {

@@ -23,6 +23,6 @@ i18n
   .use(initReactI18next) // passes i18n down to react-i18next
   .init(initOptions);
 
-  console.dir('LGHI18n', i18n)
+  // console.dir('LGHI18n', i18n)
 
   export { i18n , i18n as default};

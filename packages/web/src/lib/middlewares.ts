@@ -41,12 +41,13 @@ const cors: NextMiddleware = async (req, res, next) => {
 const authJwt: NextMiddleware = async (req, res, next) => {
   let authorization = req.headers.authorization;
   let jwtToken = String(authorization).substring(7);
-  let {verified} = await jwt.verifyJwt(jwtToken);
+  let { verified, header, jwt: jwtBody} = await jwt.verifyJwt(jwtToken);
   if(!req.headers.authorization || !verified){
     res.status(401);
     res.json({err:'forbidden'});
     res.end();
   }else{
+    console.log(verified, header, jwtBody, typeof jwtBody);
     await next();
   }
   // res.setHeader("X-Response-TTime", Date.now());

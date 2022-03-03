@@ -9,7 +9,7 @@ const Styles = styled.div``;
 
 function ScriptList({columns, data}) {
   const { t } = useI18n();
-  console.log(data)
+  // console.log(data)
   // Use the state and functions returned from useTable to build your UI
   const {
     getTableProps,

@@ -16,6 +16,7 @@ export function clickGoBack(router:NextRouter){
 const pubKey = KEYUTIL.getKey(pub);
 
 // web browser frontend use
+// verifyJwt
 export async function verifyJwt(jwtToken){
   try {
     const decodedHeader = await decodeProtectedHeader(jwtToken);
