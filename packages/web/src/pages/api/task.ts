@@ -103,6 +103,7 @@ async function _deleteHandler(
 ){
   let db = await getDB();
   let id = req.query.id as string;
+  // TODO auth this task belongs to current user
   if(id){
     return mongo.delOneDoc(db, collectionName, { _id: new ObjectId(id) }, res)
   }else{
@@ -121,6 +122,9 @@ async function _getHandler(
 
   let condition = {};
   let project = null;
+  if(req.userInfo._id && userId !== req.userInfo._id){
+    return res.status(401).json({ err: 'forbidden'})
+  }
   if(userId){
     // a list
     condition = { userId: new ObjectId(userId) };

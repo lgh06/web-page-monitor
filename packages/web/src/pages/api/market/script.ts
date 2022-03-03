@@ -67,6 +67,7 @@ async function scriptDeleteHandler(
   let collectionName = 'script';
   let id = req.query.id as string;
   if(id){
+    // TODO auth this script belongs to current user
     // one list contains a single object
     return mongo.delOneDoc(db, collectionName, { _id: new ObjectId(id) }, res)
   }else{
@@ -75,7 +76,7 @@ async function scriptDeleteHandler(
 }
 
 async function scriptGetHandler(
-  req: NextApiRequest,
+  req: NextApiRequestWithUserInfo,
   res: NextApiResponse
 ){
   let db = await getDB();
@@ -86,6 +87,9 @@ async function scriptGetHandler(
   let domain = req.query.domain as string;
   if(userId){
     // a list
+    if(req.userInfo._id && userId !== req.userInfo._id){
+      return res.status(401).json({ err: 'forbidden'})
+    }
     return mongo.queryDoc(db, collectionName, { userId: new ObjectId(userId) }, {value: 0}, res)
   }else if(id){
     // one list contains a single object
