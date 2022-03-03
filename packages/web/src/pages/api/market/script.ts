@@ -1,11 +1,11 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getDB, ObjectId, middlewares } from '../../../lib';
+import { getDB, ObjectId, middlewares, NextApiRequestWithUserInfo } from '../../../lib';
 import { CronTime } from '@webest/web-page-monitor-helper';
 import { mongo } from '@webest/web-page-monitor-helper/node';
 
 async function scriptPostHandler(
-  req: NextApiRequest,
+  req: NextApiRequestWithUserInfo,
   res: NextApiResponse
 ){
 
@@ -16,6 +16,8 @@ async function scriptPostHandler(
     domainArr,
     _id,
   } = req.body.scriptDetail;
+  userId = req.userInfo._id || userId;
+
   let newDoc = {
     userId: new ObjectId(userId),
     alias,
@@ -89,7 +91,7 @@ async function scriptGetHandler(
 }
 
 async function _handler(
-  req: NextApiRequest,
+  req: NextApiRequestWithUserInfo,
   res: NextApiResponse
 ) {
   if(req.method === 'POST'){

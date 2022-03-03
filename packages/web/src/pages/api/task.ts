@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getDB, middlewares, ObjectId } from '../../lib';
+import { getDB, middlewares, ObjectId, NextApiRequestWithUserInfo } from '../../lib';
 import { CronTime } from '@webest/web-page-monitor-helper';
 import { mongo } from '@webest/web-page-monitor-helper/node';
 
@@ -9,7 +9,7 @@ const collectionName = 'task';
 
 
 async function _postHandler(
-  req: NextApiRequest,
+  req: NextApiRequestWithUserInfo,
   res: NextApiResponse
 ) {
   let {
@@ -22,6 +22,7 @@ async function _postHandler(
     extra,
     _id,
   } = req.body.taskDetail;
+  userId = req.userInfo._id || userId;
 
   // endTime in DB is a Date type
   // need convert timestamp int to Date type
@@ -97,7 +98,7 @@ async function _postHandler(
 }
 
 async function _deleteHandler(
-  req: NextApiRequest,
+  req: NextApiRequestWithUserInfo,
   res: NextApiResponse
 ){
   let db = await getDB();
@@ -110,7 +111,7 @@ async function _deleteHandler(
 }
 
 async function _getHandler(
-  req: NextApiRequest,
+  req: NextApiRequestWithUserInfo,
   res: NextApiResponse
 ){
   let db = await getDB();
@@ -134,7 +135,7 @@ async function _getHandler(
 }
 
 async function _handler(
-  req: NextApiRequest,
+  req: NextApiRequestWithUserInfo,
   res: NextApiResponse
 ) {
   if(req.method === 'POST'){

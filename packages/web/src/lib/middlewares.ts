@@ -1,5 +1,6 @@
 import { label, NextMiddleware } from "next-api-middleware";
 import { jwt } from "@webest/web-page-monitor-helper/node";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 // https://github.com/htunnicliff/next-api-middleware
 
@@ -38,7 +39,14 @@ const cors: NextMiddleware = async (req, res, next) => {
   }
 };
 
-const authJwt: NextMiddleware = async (req, res, next) => {
+export type NextApiRequestWithUserInfo= NextApiRequest & {
+  userInfo: {
+    _id: string;
+    email: string;
+  }
+}
+
+const authJwt: NextMiddleware = async (req: NextApiRequestWithUserInfo, res, next) => {
   let authorization = req.headers.authorization;
   let jwtToken = String(authorization).substring(7);
   let { verified, header, jwt: jwtBody} = await jwt.verifyJwt(jwtToken);
@@ -47,7 +55,7 @@ const authJwt: NextMiddleware = async (req, res, next) => {
     res.json({err:'forbidden'});
     res.end();
   }else{
-    console.log(verified, header, jwtBody, typeof jwtBody);
+    req.userInfo = jwtBody;
     await next();
   }
   // res.setHeader("X-Response-TTime", Date.now());
