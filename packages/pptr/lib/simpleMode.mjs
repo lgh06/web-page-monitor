@@ -4,10 +4,11 @@ import { CONFIG } from "./CONFIG.mjs";
 import puppeteer from 'puppeteer';
 import { ESMImport } from "@webest/web-page-monitor-esm-loader"
 
-async function simpleModeTask({browser, taskDetail}){
+async function simpleModeTask({ taskDetail, page }){
   try {
     let {pageURL, cssSelector, extra} = taskDetail;
-    const page = await browser.newPage();
+    // const context = await browser.createIncognitoBrowserContext();
+    // const page = await context.newPage();
     await page.setViewport({
       width: 1920,
       height: 1080,
@@ -98,7 +99,9 @@ async function simpleMode(taskDetail) {
   let browser, p1;
   try {
     browser = await puppeteer.launch(usedLauchOption);
-    p1 = simpleModeTask({ browser, taskDetail });
+    const context = await browser.createIncognitoBrowserContext();
+    const page = await context.newPage();
+    p1 = simpleModeTask({ taskDetail, page });
   } catch (error) {
     console.error(error)
     return [null, error];
