@@ -122,11 +122,11 @@ async function _getHandler(
 
   let condition = {};
   let project = null;
-  if(req.userInfo._id && userId !== req.userInfo._id){
-    return res.status(401).json({ err: 'forbidden'})
-  }
   if(userId){
     // a list
+    if(req.userInfo._id && userId !== req.userInfo._id){
+      return res.status(401).json({ err: 'forbidden'})
+    }
     condition = { userId: new ObjectId(userId) };
     // project = {value: 0};
   }else if(id){
