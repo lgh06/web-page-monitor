@@ -1,4 +1,4 @@
-import { getDB, ObjectId } from './lib/index.mjs';
+import { getDB, ObjectId } from '../lib/index.mjs';
 import { CronTime } from '@webest/web-page-monitor-helper';
 import { delayedMQSend } from "./rabbitMQ.mjs";
 

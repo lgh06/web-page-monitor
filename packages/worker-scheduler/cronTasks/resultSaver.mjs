@@ -1,10 +1,10 @@
 import * as amqp from 'amqplib';
 import hashFunc from 'crypto-js/md5.js';
-import { getDB, ObjectId } from './lib/index.mjs';
+import { getDB, ObjectId } from '../lib/index.mjs';
 import { mongo } from "@webest/web-page-monitor-helper/node/index.mjs";
 import { singleTaskHistoryChecker } from './taskHistoryChecker.mjs';
 
-import { CONFIG } from "./CONFIG.mjs";
+import { CONFIG } from "../CONFIG.mjs";
 
 let connString = CONFIG.mqConnString
 

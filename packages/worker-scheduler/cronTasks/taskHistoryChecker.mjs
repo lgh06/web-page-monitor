@@ -1,4 +1,4 @@
-import { getDB, ObjectId } from "./lib/index.mjs"
+import { getDB, ObjectId } from "../lib/index.mjs"
 import { diffNotifier } from "./diffNotifier.mjs";
 import { Db } from "mongodb";
 

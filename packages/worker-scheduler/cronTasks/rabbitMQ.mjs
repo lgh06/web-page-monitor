@@ -1,6 +1,6 @@
 import * as amqp from 'amqplib';
 import { CronTime } from "@webest/web-page-monitor-helper";
-import { CONFIG } from './CONFIG.mjs';
+import { CONFIG } from '../CONFIG.mjs';
 
 
 let connString = CONFIG.mqConnString
