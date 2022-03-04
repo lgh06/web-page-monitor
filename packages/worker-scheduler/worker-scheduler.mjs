@@ -1,7 +1,7 @@
 
 import { taskIntervalExecuter } from "./cronTasks/taskIntervalExecuter.mjs";
-import { pointsMonthlyAdder } from "./memberPoints/pointsMonthlyAdder.mjs";
+import { pointsMonthlyExecuter } from "./memberPoints/pointsMonthlyExecuter.mjs";
 
 
 taskIntervalExecuter();
-pointsMonthlyAdder();
+pointsMonthlyExecuter();
