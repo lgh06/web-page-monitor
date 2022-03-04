@@ -15,6 +15,7 @@ async function handler(
 
   let db = await getDB();
   db?.collection('user').createIndex({ email: 1 }, {unique: true});
+  db?.collection('user').createIndex({ nextAddPointsTime: 1 });
   let returnedDoc;
   try {
     returnedDoc = await mongo.upsertDoc(db, 'user', filter, newDoc);
