@@ -116,7 +116,7 @@ async function _handler(
   }else if(req.method === 'GET'){
     await scriptGetHandler(req, res);
   }else{
-    res.status(200).json({ err: 'no method match' })
+    res.status(400).json({ err: 'no method match' })
   }
 }
 

@@ -1,4 +1,4 @@
-import { label, NextMiddleware } from "next-api-middleware";
+import { label, NextMiddleware, use } from "next-api-middleware";
 import { jwt } from "@webest/web-page-monitor-helper/node";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -87,4 +87,4 @@ const middlewares = {
   cors: withCorsMiddleware("cors"),
 }
 
-export { middlewares, middlewares as default }
+export { middlewares, middlewares as default };

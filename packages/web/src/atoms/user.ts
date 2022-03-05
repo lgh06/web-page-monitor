@@ -12,6 +12,8 @@ let userInfo = {
   oauthProvider: '',
   logged: false,
   jwtToken: '',
+  // only used in frontend
+  fetchedOn: Date.now()
 }
 
 export const userInfoAtom = atomWithStorage('userInfo',userInfo);

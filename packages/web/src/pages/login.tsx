@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring';
 import { frontCONFIG as CONFIG } from '../../CONFIG';
@@ -69,7 +69,7 @@ const LoginPage: NextPage = () => {
           if (emailResp && emailResp.length && emailResp[0] && emailResp[0].email) {
             router.replace("/login")
             // TODO error catch and hint
-            let { value: { _id }, jwtToken } = await fetchAPI('/user/save', {
+            let { value: { _id }, jwtToken } = await fetchAPI('/user', {
               email: emailResp[0].email,
               oauthProvider: provider,
               emailVerified: emailResp[0].state === 'confirmed'
@@ -88,6 +88,17 @@ const LoginPage: NextPage = () => {
     }
 
   }, [router, url, giteeRedirectUri]);
+
+  let fetchUserPoints = async () =>{
+    let resp = await fetchAPI(`/user?id=${userInfo._id}`)
+    console.log('points',resp)
+  }
+
+  useEffect(()=>{
+    if(userInfo.logged){
+      fetchUserPoints()
+    }
+  },[userInfo.logged]);
 
 
   const linkStyle = {
