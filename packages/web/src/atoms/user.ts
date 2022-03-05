@@ -13,7 +13,8 @@ let userInfo = {
   logged: false,
   jwtToken: '',
   // only used in frontend
-  fetchedOn: Date.now()
+  points: 80,
+  nextAddPointsTime: Date.now() + 3600 * 1000 * 24 * 31,
 }
 
 export const userInfoAtom = atomWithStorage('userInfo',userInfo);

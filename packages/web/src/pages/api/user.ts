@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { ReturnDocument } from 'mongodb';
+import { ObjectId, ReturnDocument } from 'mongodb';
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getDB, middlewares, NextApiRequestWithUserInfo } from '../../lib';
 import { mongo, jwt } from '@webest/web-page-monitor-helper/node';
@@ -22,12 +22,21 @@ async function userPostHandler(
   let returnedDoc;
   try {
     returnedDoc = await mongo.upsertDoc(db, 'user', filter, newDoc);
-    const { value: { email, _id } } = returnedDoc;
-    console.log(returnedDoc)
+    const { value: { email, _id, nextAddPointsTime, points } } = returnedDoc;
+    // if one user not have nextAddPointsTime yet
+    // (a new user)
+    if(!nextAddPointsTime){
+      await db.collection(collectionName).updateOne({ _id }, 
+        { $set: { 
+            nextAddPointsTime: Date.now() + 3600 * 1000 * 24 * 31,
+            points: 80,
+          } 
+        });
+    }
     const jwtToken = await jwt.sign({ email, _id});
-    return res.status(200).json({...returnedDoc, jwtToken});
+    res.status(200).json({...returnedDoc, jwtToken});
   } catch (e) {
-    return res.status(500).json({ err: e });
+    res.status(500).json({ err: e });
   }
 }
 
@@ -36,11 +45,13 @@ async function userGetHandler(
   res: NextApiResponse
 ) {
   let db = await getDB();
-  let id = req.query.id as string;
-  res.json({
-    userIdFromJwt: req.userInfo._id,
-    userIdFromReq: id,
-  })
+  let id = String (req.userInfo._id || req.query.id);
+
+  let condition = { _id: new ObjectId(id) };
+  let project = {nextAddPointsTime: 1, points: 1, _id: 0}
+  res.setHeader("Cache-Control", "max-age=30")
+
+  await mongo.queryDoc(db, collectionName, condition, project, res)
 }
 
 

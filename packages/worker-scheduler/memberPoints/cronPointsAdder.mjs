@@ -26,7 +26,7 @@ async function normalAdder(now){
         // TODO VIP points add another integer
         db.collection(tableName).updateOne({ _id: doc._id }, {
           '$set': {
-            nextAddPointsTime: new Date(now).valueOf() + 3600 * 1000 * 24 * 31 + 300 * 1000 * 10,
+            nextAddPointsTime: new Date(now).valueOf() + 3600 * 1000 * 24 * 31 + 600 * 1000,
             points: 80,
           }
         }).catch(e => console.error(e))
@@ -69,7 +69,7 @@ async function errorAdder(now){
       docs.forEach(doc => {
         db.collection(tableName).updateOne({ _id: doc._id }, {
           '$set': {
-            nextAddPointsTime: new Date(now).valueOf() + 3600 * 1000 * 24 * 31 + 300 * 1000 * 10,
+            nextAddPointsTime: new Date(now).valueOf() + 3600 * 1000 * 24 * 31 + 600 * 1000,
             points: 80,
           }
         }).catch(e => console.error(e))

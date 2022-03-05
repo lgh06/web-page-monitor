@@ -91,7 +91,12 @@ const LoginPage: NextPage = () => {
 
   let fetchUserPoints = async () =>{
     let resp = await fetchAPI(`/user?id=${userInfo._id}`)
-    console.log('points',resp)
+    if(resp.length && resp[0].points && resp[0].nextAddPointsTime){
+      setUserInfo((v)=>{
+        v.points = resp[0].points;
+        v.nextAddPointsTime = resp[0].nextAddPointsTime;
+      })
+    }
   }
 
   useEffect(()=>{
@@ -119,6 +124,12 @@ const LoginPage: NextPage = () => {
       </div>
       <div>
         <Link href='/task/list'><a {...cn('link')}> {t(`Task List`)}</a></Link>
+      </div><br/>
+      <div>
+        {t(`Points`)}: {userInfo.points}
+      </div>
+      <div>
+        {t(`Next Add Points Time`)}: {new Date(userInfo.nextAddPointsTime).toLocaleString()}
       </div><br/>
       {/* <div>
         <Link href='/create_task_geek'><a {...cn('link')}>create a task in Geek Mode (Code Mode)</a></Link>

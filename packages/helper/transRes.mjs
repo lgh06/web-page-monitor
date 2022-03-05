@@ -22,6 +22,8 @@ let trans = {
   "Log Out": "退出登录",
   "Welcome": "欢迎",
   "Login with Gitee.com OAuth": "使用Gitee.com OAuth登录",
+  "Points": "点数",
+  "Next Add Points Time" : "下次增加点数时间",
   // below is on task list page
   "Back to User Center": "返回用户中心",
   "Tasks created by you": "您创建的任务",
