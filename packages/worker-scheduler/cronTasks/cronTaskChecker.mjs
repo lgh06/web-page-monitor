@@ -58,6 +58,13 @@ async function normalChecker(now, mqConn, mqChannel) {
     // also need create another data structure to let taskHistory save multiple records for one pptr task.
     if (docs && docs.length) {
       docs.forEach(async (doc) => {
+        if(doc.userInfo && doc.userInfo[0]){
+          // if one user not have enough points,
+          // then we should not execute this task.
+          if(doc.userInfo[0].points <=0){
+            return false;
+          }
+        }
         // generate a random time to balance pptr's tasks
         // we may reboot the server, on 59 minute 40second
         let random15s = Math.floor(Math.random() * 15) * 1000;
