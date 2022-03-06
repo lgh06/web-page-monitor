@@ -66,6 +66,15 @@ async function resultSaver(mqConn, mqChannel) {
         taskId: new ObjectId(taskDetail._id),
       }
       try {
+        // await 
+        // minus points of one user
+        if(taskDetail && taskDetail.userInfo && taskDetail.userInfo._id && taskDetail.userInfo.points) {
+          await db.collection('user').updateOne({ _id: taskDetail.userInfo._id }, {
+            '$inc': {
+              points: -1,
+            }
+          }).catch(e => console.error(e))
+        }
         await mongo.insertDoc(db, 'taskHistory', oneTaskHistory);
         await singleTaskHistoryChecker(taskDetail, db);
       } catch (error) {
