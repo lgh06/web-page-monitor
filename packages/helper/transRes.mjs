@@ -24,6 +24,7 @@ let trans = {
   "Login with Gitee.com OAuth": "使用Gitee.com OAuth登录",
   "Points": "点数",
   "Next Add Points Time" : "下次增加点数时间",
+  "Top up": "充值",
   // below is on task list page
   "Back to User Center": "返回用户中心",
   "Tasks created by you": "您创建的任务",
@@ -102,6 +103,10 @@ let trans = {
   "RegExp result replace eraser": "正则表达式替换,橡皮脚本",
   "one file, two type eraser": "一个文件包含两种类型的橡皮脚本",
   "Are you sure to delete this script": "您确定要删除这个脚本吗",
+  // below is on member redeem page
+  "Please input a coupon code": "请输入一个兑换代码",
+  "Coupon Code Help in FAQ": "什么是兑换代码",
+  "Redeem Now": "立即兑换",
 }
 
 let enTrans = {};

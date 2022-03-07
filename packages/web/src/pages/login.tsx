@@ -127,6 +127,10 @@ const LoginPage: NextPage = () => {
       </div><br/>
       <div>
         {t(`Points`)}: {userInfo.points}
+        &nbsp;
+        <Link href="/member/redeem">
+          <a>{t(`Top up`)}</a>
+        </Link>
       </div>
       <div>
         {t(`Next Add Points Time`)}: {new Date(userInfo.nextAddPointsTime).toLocaleString()}

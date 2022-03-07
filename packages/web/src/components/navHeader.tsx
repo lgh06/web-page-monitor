@@ -19,7 +19,7 @@ const NavHeader: FunctionComponent<Props> = ({ test }) => {
   const { t } = useI18n();
   const [userInfo] = useImmerAtom(userInfoAtom);
   return <>
-  <div {...cn('nav-header')} >
+  <header {...cn('nav-header')} >
     <div {...cn('wrap')}>
       <input type="checkbox" id="nav-button" />
       <label htmlFor="nav-button">{t(`Menu`)}</label>
@@ -49,7 +49,7 @@ const NavHeader: FunctionComponent<Props> = ({ test }) => {
         </li>
       </ul>
     </div>
-  </div>
+  </header>
   </>
 }
 

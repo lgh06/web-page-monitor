@@ -3,8 +3,8 @@
   position: sticky;
   top: 0;
   backdrop-filter: blur(1px);    
-  background: rgba(var(--bg), .8);
   .wrap{
+    background-color: rgba(var(--accent-bg-rgb), 0.4);
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
