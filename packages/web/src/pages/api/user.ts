@@ -49,7 +49,7 @@ async function userGetHandler(
 
   let condition = { _id: new ObjectId(id) };
   let project = {nextAddPointsTime: 1, points: 1, _id: 0}
-  res.setHeader("Cache-Control", "max-age=30")
+  res.setHeader("Cache-Control", "max-age=15")
 
   await mongo.queryDoc(db, collectionName, condition, project, res)
 }

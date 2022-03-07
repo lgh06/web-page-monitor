@@ -28,6 +28,13 @@ const MemberRedeemPage: NextPage = () => {
 
   async function handleBtnClick(ev: MouseEvent<HTMLButtonElement> ) {
     ev.preventDefault()
+    console.log(redeemInfo.coupon)
+    let res = await fetchAPI('/member/redeem', {
+      redeemInfo: {
+        coupon: redeemInfo.coupon
+      }
+    });
+    console.log(res)
   }
   function btnDisabled(){
     return redeemInfo.coupon === ''

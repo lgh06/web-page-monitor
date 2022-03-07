@@ -14,7 +14,9 @@ async function normalAdder(now){
           $lt: getNextStepMinuteTimestamp(now, 5, 2)
         },
         points: {
-          $not: { $gt: 80 } 
+          // we only reset points to 80
+          // when user has less than 80 points
+          $not: { $gte: 80 } 
         }
         // TODO pagination and be careful for memory leak. future.
       },
@@ -58,7 +60,7 @@ async function errorAdder(now){
           },
         ],
         points: {
-          $not: { $gt: 80 } 
+          $not: { $gte: 80 } 
         }
         // TODO pagination and be careful for memory leak. future.
       },
