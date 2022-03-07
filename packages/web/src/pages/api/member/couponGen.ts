@@ -12,11 +12,14 @@ async function couponGenHandler(
   let now = Date.now()
   let { pwd } = req.query;
 
-  // let salt = 100;
-  // let seconds = 360;
-  // let nowHour = Math.floor(Date.now() / 1000 / seconds);
-
-  // let generatedPwd = (nowHour + salt).toString(36);
+  // below value used in browser console or command line nodejs
+  function getPwd(salt, seconds){
+    salt = salt || 100;
+    seconds = seconds || 360;
+    let nowHour = Math.floor(Date.now() / 1000 / seconds);
+    let generatedPwd = (nowHour + salt).toString(36);
+    return generatedPwd;
+  }
 
   let salt = Number(process.env.COUPON_GEN_PWD_SALT || '100');
   let seconds = Number(process.env.COUPON_GEN_SECONDS || '360');
