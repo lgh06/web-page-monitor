@@ -45,7 +45,7 @@ const MemberRedeemPage: NextPage = () => {
         if(resp && resp.addedPoints){
           alert(t('Points added: ') + resp.addedPoints)
         }else{
-          alert(t('Error: ') + resp.err)
+          alert(t('Error: ' + resp.err))
         }
       } catch (error) {
         alert(t('Error: ') + error)

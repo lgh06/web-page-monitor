@@ -22,20 +22,29 @@ async function memberRedeemHandler(
   let jwtResult = await jwt.verifyJwt(coupon);
   if(jwtResult.verified){
 
-    // TODO see if the coupon is used before
 
-    // TODO verify coupon and its points
     // one RMB = 100 cents = 100 points
     // 10 RMB = 1000 cents = 1000 points
 
     let db = await getDB();
     let collectionName = 'user';
 
+    let couponUsedResult = await mongo.queryDoc(db, 'coupon', { couponId: jwtResult.jwt.couponId}, {});
+    if(couponUsedResult && couponUsedResult.length > 0){
+      return res.json({ err: 'Coupon is used before' })
+    }
+
     await db.collection(collectionName).updateOne({_id: userId}, {
       $inc: {
         points: jwtResult.jwt.points,
       },
     });
+
+    await db.collection('coupon').createIndex({couponId: 1});
+    let couponFilter = {
+      couponId: jwtResult.jwt.couponId,
+    }
+    await mongo.upsertDoc(db, 'coupon', couponFilter, jwtResult.jwt)
 
     res.json({addedPoints: jwtResult.jwt.points})
 

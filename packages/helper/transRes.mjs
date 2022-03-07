@@ -110,6 +110,7 @@ let trans = {
   "Coupon invalid. Please try again or contact us.": "兑换代码无效，请重试或联系我们。",
   "Points added: ": "点数已增加：",
   "Error: coupon is invalid": "错误：兑换代码无效",
+  "Error: Coupon is used before": "错误：兑换代码已经使用过",
 }
 
 let enTrans = {};
