@@ -9,11 +9,26 @@ async function couponGenHandler(
   res: NextApiResponse
 ){
 
-  // let {
-  //   couponId,
-  //   points,
-  //   expire,
-  // } = req.query;
+  let now = Date.now()
+  let { pwd } = req.query;
+
+  // let salt = 100;
+  // let seconds = 360;
+  // let nowHour = Math.floor(Date.now() / 1000 / seconds);
+
+  // let generatedPwd = (nowHour + salt).toString(36);
+
+  let salt = Number(process.env.COUPON_GEN_PWD_SALT || '100');
+  let seconds = Number(process.env.COUPON_GEN_SECONDS || '360');
+  let nowHour = Math.floor(Date.now() / 1000 / seconds);
+
+  let generatedPwd = (nowHour + salt).toString(36);
+
+  if( pwd !== generatedPwd ){
+    return res.status(400).json({ err: 'Unauth' })
+  }
+
+
   let couponId, points, expire;
 
   // TODO add extra auth for this API
@@ -22,7 +37,6 @@ async function couponGenHandler(
   // TODO backup jwt certs in other places
   // or all coupons cannot be verified!!
 
-  let now = Date.now()
 
   couponId = couponId || now.toString(36).toUpperCase();
   points = points || 1000;
