@@ -8,7 +8,7 @@ let initOptions = {
   // lng: 'zh',
   resources: transResources,
   fallbackLng: 'en',
-  debug: CONFIG.i18nDebug,
+  debug: false,
   nsSeparator: false,
   keySeparator: false,
   interpolation: {

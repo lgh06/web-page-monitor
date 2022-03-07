@@ -22,7 +22,7 @@ async function couponGenHandler(
   }
 
   let salt = Number(process.env.COUPON_GEN_PWD_SALT || '100');
-  let seconds = Number(process.env.COUPON_GEN_SECONDS || '360');
+  let seconds = Number(process.env.COUPON_GEN_PWD_SECONDS || '360');
   let nowHour = Math.floor(Date.now() / 1000 / seconds);
 
   let generatedPwd = Number(nowHour + salt).toString(36);
