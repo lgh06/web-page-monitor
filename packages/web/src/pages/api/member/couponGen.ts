@@ -14,8 +14,8 @@ async function couponGenHandler(
 
   // below value used in browser console or command line nodejs
   function getPwd(salt, seconds){
-    salt = salt || 100;
-    seconds = seconds || 360;
+    salt = Number(salt || '100');
+    seconds = Number(seconds || '360');
     let nowHour = Math.floor(Date.now() / 1000 / seconds);
     let generatedPwd = Number(nowHour + salt).toString(36);
     return generatedPwd;
