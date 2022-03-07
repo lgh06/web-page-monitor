@@ -107,6 +107,9 @@ let trans = {
   "Please input a coupon code": "请输入一个兑换代码",
   "Coupon Code Help in FAQ": "什么是兑换代码",
   "Redeem Now": "立即兑换",
+  "Coupon invalid. Please try again or contact us.": "兑换代码无效，请重试或联系我们。",
+  "Points added: ": "点数已增加：",
+  "Error: coupon is invalid": "错误：兑换代码无效",
 }
 
 let enTrans = {};

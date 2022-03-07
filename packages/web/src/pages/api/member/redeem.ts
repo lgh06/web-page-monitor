@@ -2,7 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getDB, ObjectId, middlewares, NextApiRequestWithUserInfo } from '../../../lib';
 import { CronTime } from '@webest/web-page-monitor-helper';
-import { mongo } from '@webest/web-page-monitor-helper/node';
+import { mongo, jwt } from '@webest/web-page-monitor-helper/node';
 
 async function memberRedeemHandler(
   req: NextApiRequestWithUserInfo,
@@ -19,26 +19,30 @@ async function memberRedeemHandler(
     userId = new ObjectId(userId);
   }
 
-  coupon = Number(coupon);
-  if(Number.isNaN(coupon)){
-    coupon = 1;
+  let jwtResult = await jwt.verifyJwt(coupon);
+  if(jwtResult.verified){
+
+    // TODO see if the coupon is used before
+
+    // TODO verify coupon and its points
+    // one RMB = 100 cents = 100 points
+    // 10 RMB = 1000 cents = 1000 points
+
+    let db = await getDB();
+    let collectionName = 'user';
+
+    await db.collection(collectionName).updateOne({_id: userId}, {
+      $inc: {
+        points: jwtResult.jwt.points,
+      },
+    });
+
+    res.json({addedPoints: jwtResult.jwt.points})
+
+  }else{
+    return res.status(400).json({ err: 'coupon is invalid' })
   }
 
-  // TODO verify coupon and its price
-  // one RMB = 100 cents = 100 coupon
-  // 10 RMB = 1000 cents = 1000 coupon
-
-  // res.status(200).json({ name: 'John Doe', body: req.body })
-  let db = await getDB();
-  let collectionName = 'user';
-
-  await db.collection(collectionName).updateOne({_id: userId}, {
-    $inc: {
-      points: coupon,
-    },
-  });
-
-  res.json({});
 
 }
 

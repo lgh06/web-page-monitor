@@ -4,7 +4,7 @@ import { useImmerAtom } from 'jotai/immer';
 import { useResetAtom } from 'jotai/utils'
 import { monacoEditorAtom, redeemInfoAtom, userInfoAtom } from '../../atoms';
 import { CronTime } from '@webest/web-page-monitor-helper';
-import { fetchAPI, useI18n, innerHTML } from "../../helpers/index";
+import { fetchAPI, useI18n, innerHTML, verifyJwt } from "../../helpers/index";
 import Link from "next/link";
 import { ScriptList } from "../../components/scriptList";
 import { useRouter } from "next/router";
@@ -14,7 +14,11 @@ const MemberRedeemPage: NextPage = () => {
   const [redeemInfo, setRedeemInfo] = useImmerAtom(redeemInfoAtom);
   const [userInfo, setUserInfo] = useImmerAtom(userInfoAtom);
   const { t, router } = useI18n();
-  const resetRedeemInfo = useResetAtom(redeemInfoAtom)
+  const resetRedeemInfo = useResetAtom(redeemInfoAtom);
+
+  useEffect(()=>{
+    resetRedeemInfo()
+  },[router]);
 
   function handleInputChange(ev: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     let inputElement = ev.target;
@@ -29,12 +33,26 @@ const MemberRedeemPage: NextPage = () => {
   async function handleBtnClick(ev: MouseEvent<HTMLButtonElement> ) {
     ev.preventDefault()
     console.log(redeemInfo.coupon)
-    let res = await fetchAPI('/member/redeem', {
-      redeemInfo: {
-        coupon: redeemInfo.coupon
+    let jwtResult = await verifyJwt(redeemInfo.coupon);
+    if (jwtResult.verified) {
+      let resp;
+      try {
+        resp = await fetchAPI('/member/redeem', {
+          redeemInfo: {
+            coupon: redeemInfo.coupon
+          }
+        });
+        if(resp && resp.addedPoints){
+          alert(t('Points added: ') + resp.addedPoints)
+        }else{
+          alert(t('Error: ') + resp.err)
+        }
+      } catch (error) {
+        alert(t('Error: ') + error)
       }
-    });
-    console.log(res)
+    }else{
+      alert(t('Coupon invalid. Please try again or contact us.'))
+    }
   }
   function btnDisabled(){
     return redeemInfo.coupon === ''
