@@ -17,7 +17,7 @@ async function couponGenHandler(
     salt = salt || 100;
     seconds = seconds || 360;
     let nowHour = Math.floor(Date.now() / 1000 / seconds);
-    let generatedPwd = (nowHour + salt).toString(36);
+    let generatedPwd = Number(nowHour + salt).toString(36);
     return generatedPwd;
   }
 
@@ -25,7 +25,7 @@ async function couponGenHandler(
   let seconds = Number(process.env.COUPON_GEN_SECONDS || '360');
   let nowHour = Math.floor(Date.now() / 1000 / seconds);
 
-  let generatedPwd = (nowHour + salt).toString(36);
+  let generatedPwd = Number(nowHour + salt).toString(36);
 
   if( pwd !== generatedPwd ){
     return res.status(400).json({ err: 'Unauth' })
