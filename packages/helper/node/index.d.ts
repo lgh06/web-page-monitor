@@ -14,7 +14,7 @@ export namespace jwt{
   function verifyJwt(jwtToken: any): Promise<{
     verified: boolean;
     header: JWTHeaderParameters;
-    jwt: JWTPayload;
+    payload: JWTPayload;
   }>;
 }
 

@@ -29,8 +29,8 @@ function Footer() {
           logOut({setUserInfo, router});
         }else{
           setUserInfo(v => {
-            v._id = String(result.jwt._id);
-            v.email = String(result.jwt.email);
+            v._id = String(result.payload._id);
+            v.email = String(result.payload.email);
             // console.log(userInfo)
           })
         }

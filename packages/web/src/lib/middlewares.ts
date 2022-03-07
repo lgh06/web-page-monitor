@@ -49,13 +49,13 @@ export type NextApiRequestWithUserInfo= NextApiRequest & {
 const authJwt: NextMiddleware = async (req: NextApiRequestWithUserInfo, res, next) => {
   let authorization = req.headers.authorization;
   let jwtToken = String(authorization).substring(7);
-  let { verified, header, jwt: jwtBody} = await jwt.verifyJwt(jwtToken);
+  let { verified, header, payload} = await jwt.verifyJwt(jwtToken);
   if(!req.headers.authorization || !verified){
     res.status(401);
     res.json({err:'forbidden'});
     res.end();
   }else{
-    req.userInfo = jwtBody;
+    req.userInfo = payload;
     await next();
   }
   // res.setHeader("X-Response-TTime", Date.now());

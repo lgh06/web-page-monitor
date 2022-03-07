@@ -29,24 +29,27 @@ async function memberRedeemHandler(
     let db = await getDB();
     let collectionName = 'user';
 
-    let couponUsedResult = await mongo.queryDoc(db, 'coupon', { couponId: jwtResult.jwt.couponId}, {});
+    let couponUsedResult = await mongo.queryDoc(db, 'coupon', { couponId: jwtResult.payload.couponId}, {});
     if(couponUsedResult && couponUsedResult.length > 0){
       return res.json({ err: 'Coupon is used before' })
+    }
+    if(jwtResult.payload.expire < Date.now()){
+      return res.json({ err: 'Coupon is expired.' })
     }
 
     await db.collection(collectionName).updateOne({_id: userId}, {
       $inc: {
-        points: jwtResult.jwt.points,
+        points: jwtResult.payload.points,
       },
     });
 
     await db.collection('coupon').createIndex({couponId: 1});
     let couponFilter = {
-      couponId: jwtResult.jwt.couponId,
+      couponId: jwtResult.payload.couponId,
     }
-    await mongo.upsertDoc(db, 'coupon', couponFilter, jwtResult.jwt)
+    await mongo.upsertDoc(db, 'coupon', couponFilter, jwtResult.payload)
 
-    res.json({addedPoints: jwtResult.jwt.points})
+    res.json({addedPoints: jwtResult.payload.points})
 
   }else{
     return res.status(400).json({ err: 'coupon is invalid' })

@@ -34,7 +34,8 @@ const MemberRedeemPage: NextPage = () => {
     ev.preventDefault()
     console.log(redeemInfo.coupon)
     let jwtResult = await verifyJwt(redeemInfo.coupon);
-    if (jwtResult.verified) {
+    console.log(jwtResult.payload)
+    if (jwtResult.verified && jwtResult.payload.expire >= Date.now()) {
       let resp;
       try {
         resp = await fetchAPI('/member/redeem', {

@@ -26,13 +26,13 @@ export async function verifyJwt(jwtToken){
     return {
       verified: jwtVerifyResult,
       header: decodedHeader,
-      jwt: decodedJwt,
+      payload: decodedJwt,
     }
   } catch (error) {
     return {
       verified: false,
       header: null,
-      jwt: null,
+      payload: null,
     }
   }
 }

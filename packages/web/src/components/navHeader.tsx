@@ -4,7 +4,7 @@ import Head from 'next/head'
 // import Image from 'next/image'
 import styles from '../styles/modules/navHeader.module.scss'
 import Link from 'next/link'
-import { useI18n, verifyJwt, logOut, genClassNameAndString } from '../helpers'
+import { useI18n, genClassNameAndString } from '../helpers'
 import nextConfig from "../../next.config"
 import { userInfoAtom } from '../atoms';
 import { useImmerAtom } from 'jotai/immer'

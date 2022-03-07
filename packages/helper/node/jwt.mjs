@@ -26,14 +26,14 @@ async function verifyJwt(jwtToken){
     return {
       verified: true,
       header: protectedHeader,
-      jwt: payload,
+      payload: payload,
     }
   } catch (error) {
     // console.error(error)
     return {
       verified: false,
       header: null,
-      jwt: null,
+      payload: null,
     }
   }
 }
