@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { frontCONFIG as CONFIG } from '../../CONFIG';
+import * as JSONbig  from 'json-bigint';
 
 export function useAPI(endPoint: string, postedObject: undefined | object = undefined, method?: string) {
   const [data, setData] = useState(null);
@@ -57,20 +58,23 @@ export async function fetchAPI(endPoint: string, postedObject: undefined | objec
       "data": postedObject
     }
 
-    resp = await fetch(`${CONFIG.wxApiHost}/transfer`, {
+    resp = fetch(`${CONFIG.wxApiHost}/transfer`, {
       method: 'POST',
       headers: headers,
       redirect: 'follow',
       body: JSON.stringify(mergedPostedObject)
     });
   }else{
-    resp = await fetch(`${CONFIG.apiHost}${CONFIG.apiPrefix}${endPoint}`, {
+    resp = fetch(`${CONFIG.apiHost}${CONFIG.apiPrefix}${endPoint}`, {
       method: (method ? String(method).toUpperCase() : null) || (postedObject ? 'POST' : 'GET'),
       headers: headers,
       redirect: 'follow',
       body: typeof postedObject === 'object' ? JSON.stringify(postedObject) : null
     });
   }
-  const res = await resp.json();
+  const res = await resp.then(r => r.text()).then(r => {
+    // console.log(r)
+    return JSONbig.parse(r)
+  });
   return res;
 }
