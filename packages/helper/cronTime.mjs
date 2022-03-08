@@ -21,6 +21,7 @@ function getNextTimes(cron, count = 500) {
 
 /**
  * better use this function in web frontend to get one user's local time
+ * 2022-03-15T17:29
  */
 function toLocalISOString(oneDate, plusMinutes = 0, offset = 0) {
   let aNewDate = new Date(oneDate);
@@ -30,6 +31,19 @@ function toLocalISOString(oneDate, plusMinutes = 0, offset = 0) {
     offset = aNewDate.getTimezoneOffset();
   }
   return new Date(aNewDate.setMinutes(aNewDate.getMinutes() - offset + plusMinutes)).toISOString().substring(0, 16)
+}
+/**
+ * better use this function in web frontend to get one user's local time
+ * 2022-03-08 17:29:00
+ */
+function toLocalString(oneDate, plusMinutes = 0, offset = 0) {
+  let aNewDate = new Date(oneDate);
+  // TODO
+  // one user one timezone offset, and store to DB
+  if(!offset){
+    offset = aNewDate.getTimezoneOffset();
+  }
+  return new Date(aNewDate.setMinutes(aNewDate.getMinutes() - offset + plusMinutes)).toISOString().replace('T', ' ').substring(0, 16);
 }
 
 function checkTimes(timestampArr, firstJobMinutes = 10, betweenJobMinutes = 10) {
@@ -63,6 +77,7 @@ function checkTimes(timestampArr, firstJobMinutes = 10, betweenJobMinutes = 10) 
 let CronTime = {
   getNextTimes,
   toLocalISOString,
+  toLocalString,
   checkTimes,
 }
 
