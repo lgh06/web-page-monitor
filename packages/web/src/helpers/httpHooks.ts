@@ -46,12 +46,31 @@ export async function fetchAPI(endPoint: string, postedObject: undefined | objec
       }
     }
   }
-  let resp = await fetch(`${CONFIG.apiHost}${CONFIG.apiPrefix}${endPoint}`, {
-    method: (method ? String(method).toUpperCase() : null) || (postedObject ? 'POST' : 'GET'),
-    headers: headers,
-    redirect: 'follow',
-    body: typeof postedObject === 'object' ? JSON.stringify(postedObject) : null
-  });
+  let resp;
+  if(String(endPoint).startsWith('/wx')){
+    if(!CONFIG.wxApiHost){
+      return new Error('wxApiHost is not defined');
+    }
+    let mergedPostedObject = {
+      "method": "post",
+      "url": endPoint.substring(3),
+      "data": postedObject
+    }
+
+    resp = await fetch(`${CONFIG.wxApiHost}/transfer`, {
+      method: 'POST',
+      headers: headers,
+      redirect: 'follow',
+      body: JSON.stringify(mergedPostedObject)
+    });
+  }else{
+    resp = await fetch(`${CONFIG.apiHost}${CONFIG.apiPrefix}${endPoint}`, {
+      method: (method ? String(method).toUpperCase() : null) || (postedObject ? 'POST' : 'GET'),
+      headers: headers,
+      redirect: 'follow',
+      body: typeof postedObject === 'object' ? JSON.stringify(postedObject) : null
+    });
+  }
   const res = await resp.json();
   return res;
 }

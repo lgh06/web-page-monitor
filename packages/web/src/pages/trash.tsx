@@ -5,7 +5,7 @@ import { useImmerAtom } from 'jotai/immer';
 import { userInfoAtom } from '../atoms';
 import { io } from "socket.io-client";
 import { frontCONFIG as CONFIG } from '../../CONFIG';
-import { verifyJwt } from '../helpers';
+import { fetchAPI, verifyJwt } from '../helpers';
 
 
 /**
@@ -29,12 +29,16 @@ const IOTestPage: NextPage = () => {
 
   useEffect(()=>{
     async function test() {
-      let info = await verifyJwt(userInfo.jwtToken + 'sd');
-      console.log(info);
+      // let info = await verifyJwt(userInfo.jwtToken + 'sd');
+      // console.log(info);
+      let wxResp = await fetchAPI('/wx/product/order/get', {
+        "order_id":1500318592371988
+      });
+      console.log(wxResp);
     }
 
     test()
-  },[userInfo]);
+  },[]);
 
   async function connectSocketIO(){
     if(socket.connected) {
