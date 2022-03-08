@@ -1,0 +1,3 @@
+[submodule "packages/wxministore-pay"]
+	path = packages/wxministore-pay
+	url = git@gitee.com:lgh06/wxministore-pay.git
