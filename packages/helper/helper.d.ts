@@ -21,6 +21,14 @@ export namespace  CronTime {
    */
   function toLocalISOString(oneDate: Date, plusMinutes = 0):string;
   /**
+   * Calculate a ISO string in local time, minute, with seconds and spaces
+   * 
+   * @param {Date} oneDate 
+   * @param {number} plusMinutes 
+   * @returns a string, in your timezone 2022-01-19 13:14:00
+   */
+  function toLocalString(oneDate: Date, plusMinutes = 0):string;
+  /**
    * check if a timestampArr's first time is 6 minutes later.  
    * and check if time between them >= 5 minutes.
    * @param  timestampArr

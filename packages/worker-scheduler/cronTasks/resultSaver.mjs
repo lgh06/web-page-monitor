@@ -69,7 +69,7 @@ async function resultSaver(mqConn, mqChannel) {
         // await 
         // minus points of one user
         if(taskDetail && taskDetail.userInfo && taskDetail.userInfo._id && taskDetail.userInfo.points) {
-          await db.collection('user').updateOne({ _id: taskDetail.userInfo._id }, {
+          await db.collection('user').updateOne({ _id: new ObjectId(taskDetail.userInfo._id) }, {
             '$inc': {
               points: -1,
             }

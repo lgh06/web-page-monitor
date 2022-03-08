@@ -6,6 +6,7 @@ import { userInfoAtom } from '../atoms';
 import { io } from "socket.io-client";
 import { frontCONFIG as CONFIG } from '../../CONFIG';
 import { fetchAPI, verifyJwt } from '../helpers';
+import { CronTime } from '@webest/web-page-monitor-helper';
 
 
 /**
@@ -32,9 +33,31 @@ const IOTestPage: NextPage = () => {
       // let info = await verifyJwt(userInfo.jwtToken + 'sd');
       // console.log(info);
       let wxResp = await fetchAPI('/wx/product/order/get', {
-        "order_id":1500318592371988
+        "order_id":'3201767440079389440' 
       });
       console.log(wxResp);
+      let wxResp2 = await fetchAPI('/wx/product/order/get_list', {
+        "start_create_time": CronTime.toLocalString(new Date(), -60*24),
+        "end_create_time": CronTime.toLocalString(new Date(), 5),
+        status: 17,
+        page: 1,
+        page_size: 200,
+      });
+      console.log(wxResp2);
+      // let wxResp2_5 = await fetchAPI('/wx/product/shipmethods/get', {
+        
+      // });
+      // console.log(wxResp2_5);
+      let wxResp3 = await fetchAPI('/wx/product/delivery/send', {
+        order_id: '3201767440079389440',
+        // delivery_list: [
+        //   {
+        //     delivery_id:"HSWL",
+        //     waybill_id: Math.floor(Math.random() * 100000000000)
+        //   },
+        // ],
+      });
+      console.log(wxResp3);
     }
 
     test()

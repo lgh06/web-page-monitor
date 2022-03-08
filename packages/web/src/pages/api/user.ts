@@ -26,7 +26,7 @@ async function userPostHandler(
     // if one user not have nextAddPointsTime yet
     // (a new user)
     if(!nextAddPointsTime){
-      await db.collection(collectionName).updateOne({ _id }, 
+      await db.collection(collectionName).updateOne({ _id: new ObjectId(_id) }, 
         { $set: { 
             nextAddPointsTime: Date.now() + 3600 * 1000 * 24 * 31,
             points: 80,
