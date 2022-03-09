@@ -8,6 +8,7 @@ async function memberRedeemHandler(
   req: NextApiRequestWithUserInfo,
   res: NextApiResponse
 ){
+  let collectionName = 'couponUsed';
 
   let {
     userId,
@@ -27,9 +28,8 @@ async function memberRedeemHandler(
     // 10 RMB = 1000 cents = 1000 points
 
     let db = await getDB();
-    let collectionName = 'user';
 
-    let couponUsedResult = await mongo.queryDoc(db, 'coupon', { couponId: jwtResult.payload.couponId}, {});
+    let couponUsedResult = await mongo.queryDoc(db, collectionName, { couponId: jwtResult.payload.couponId}, {});
     if(couponUsedResult && couponUsedResult.length > 0){
       return res.json({ err: 'Coupon is used before' })
     }
@@ -37,17 +37,17 @@ async function memberRedeemHandler(
       return res.json({ err: 'Coupon is expired.' })
     }
 
-    await db.collection(collectionName).updateOne({_id: userId}, {
+    await db.collection('user').updateOne({_id: userId}, {
       $inc: {
         points: jwtResult.payload.points,
       },
     });
 
-    await db.collection('coupon').createIndex({couponId: 1});
+    await db.collection(collectionName).createIndex({couponId: 1});
     let couponFilter = {
       couponId: jwtResult.payload.couponId,
     }
-    await mongo.upsertDoc(db, 'coupon', couponFilter, jwtResult.payload)
+    await mongo.upsertDoc(db, collectionName, couponFilter, jwtResult.payload)
 
     res.json({addedPoints: jwtResult.payload.points})
 
