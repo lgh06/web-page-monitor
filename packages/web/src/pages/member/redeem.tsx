@@ -34,31 +34,69 @@ const MemberRedeemPage: NextPage = () => {
 
   async function handleBtnClick(ev: MouseEvent<HTMLButtonElement> ) {
     ev.preventDefault()
-    console.log(redeemInfo.coupon)
-    let jwtResult = await verifyJwt(redeemInfo.coupon);
-    console.log(jwtResult.payload)
-    if (jwtResult.verified && jwtResult.payload.expire >= Date.now()) {
+    let btnElement = ev.target as HTMLButtonElement;
+    let btnIndex = btnElement.dataset.btnIndex;
+    console.log(btnIndex)
+
+    setRedeemInfo(v =>{
+      v.submitting = true;
+    });
+    setTimeout(() =>{
+      setRedeemInfo(v =>{
+        v.submitting = false;
+      });    
+    }, 1000 * 10)
+
+    // return;
+    if(btnIndex === '1'){
       let resp;
       try {
-        resp = await fetchAPI('/member/redeem', {
-          redeemInfo: {
-            coupon: redeemInfo.coupon
-          }
+        resp = await fetchAPI('/member/checkWxMiniPay', {
+          emailOrComment: userInfo.email,
         });
-        if(resp && resp.addedPoints){
-          alert(t('Points added: ') + resp.addedPoints)
+        console.log(resp)
+        if(resp.success && resp.points && resp.email){
+          alert(t(`Added points: `) + resp.points + ' ' + t(`for account: `) + resp.email);
         }else{
-          alert(t('Error: ' + resp.err))
+          alert(resp.err)
         }
       } catch (error) {
-        alert(t('Error: ') + error)
+        alert(t(`Error: `) + error.message)
       }
-    }else{
-      alert(t('Coupon invalid. Please try again or contact us.'))
+
+    }else if(btnIndex === '3'){
+      console.log(redeemInfo.coupon)
+      let jwtResult = await verifyJwt(redeemInfo.coupon);
+      console.log(jwtResult.payload)
+      if (jwtResult.verified && jwtResult.payload.expire >= Date.now()) {
+        let resp;
+        try {
+          resp = await fetchAPI('/member/redeem', {
+            redeemInfo: {
+              coupon: redeemInfo.coupon
+            }
+          });
+          if(resp && resp.addedPoints){
+            alert(t('Points added: ') + resp.addedPoints)
+          }else{
+            alert(t('Error: ' + resp.err))
+          }
+        } catch (error) {
+          alert(t('Error: ') + error)
+        }
+      }else{
+        alert(t('Coupon invalid. Please try again or contact us.'))
+      }
     }
+
   }
-  function btnDisabled(){
-    return redeemInfo.coupon === ''
+  function btnDisabled(btnIndex){
+    if(redeemInfo.submitting){
+      return true;
+    }
+    if(btnIndex === '3'){
+      return redeemInfo.coupon === ''
+    }
   }
   return (
     <main {...cn('redeem')}>
@@ -79,7 +117,8 @@ const MemberRedeemPage: NextPage = () => {
           3. {t(`Pay that order`)}
         </div>
         <div {...cn('bold')}>
-          4. !!!!{t(`Click this button after payment:`)}!!!!  <button>{t(`Check Payment Status`)}</button>  
+          4. !!!!{t(`Click this button after payment:`)}!!!!  &nbsp;
+          <button data-btn-index="1" onClick={handleBtnClick} disabled={btnDisabled(1)}>{t(`Check Payment Status`)}</button>  
         </div>
       </details>
       <details open={locale === 'en'? true : null}>
@@ -113,7 +152,7 @@ const MemberRedeemPage: NextPage = () => {
           <Link href="/faq#WhatIsACoupon"><a>{t(`Coupon Code Help in FAQ`)}</a></Link>
         </div>
         <div>
-          <button data-btn-index="0" onClick={handleBtnClick} disabled={btnDisabled()}>{t('Redeem Now')}</button>
+          <button data-btn-index="3" onClick={handleBtnClick} disabled={btnDisabled(3)}>{t('Redeem Now')}</button>
         </div>
         <div>
         </div>

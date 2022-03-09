@@ -18,6 +18,9 @@ async function checkWxMiniPayHandler(
     // according to the comment / remark filled on user's one order
   
     let { emailOrComment } = req.body;
+    if(!emailOrComment){
+      emailOrComment = req.userInfo.email;
+    }
     // get recent order array from wx
     // NOTICE:  we used json-bigint for JSON parse.
     let wxResp = await fetchAPI('/wx/product/order/get_list',{
@@ -49,7 +52,7 @@ async function checkWxMiniPayHandler(
   
     if(matchedArr && matchedArr.length){
       let totalPrice = 0;
-      matchedArr.forEach(async (order) =>{
+      for (let order of matchedArr) {
         let order_id = String(order.order_id);
         let wxResp2 = await fetchAPI('/wx/product/delivery/send', {
           order_id,
@@ -59,7 +62,7 @@ async function checkWxMiniPayHandler(
             ]
           }]
         });
-        if(wxResp2 && wxResp2.errcode && ( wxResp2.errcode === 0 || String(wxResp2.errcode) === '0' )){
+        if(wxResp2 && wxResp2.errcode === 0){
           // update points
           // TODO reject aftersale refund
           let productPrice = Number(order.order_detail.price_info.product_price);
@@ -70,23 +73,24 @@ async function checkWxMiniPayHandler(
           }
           await db.collection('user').updateOne({email: emailOrComment}, {
             $inc: {
-              points: productPrice * 100,  // one RMB = 100 cents = 100 points
+              points: productPrice ,  // 1 cent = 1 point
             },
           });
         }
-      });
+      }
+      console.log(`${emailOrComment} added ${totalPrice} points`);
       return res.json({
         email: emailOrComment,
-        points: totalPrice * 100, // one RMB = 100 cents = 100 points
+        points: totalPrice, // 1 cent = 1 point
         success: true,
       });
     }else{
-      res.json({err:'no matched order'})
+      res.json({err:'no matched order', success: false});
     }
   
     
   } catch (error) {
-    res.status(500).json(error)
+    res.status(500).json({err: error.message})
   }
 }
 

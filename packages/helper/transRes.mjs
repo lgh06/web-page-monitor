@@ -124,6 +124,8 @@ let trans = {
   "Pay that order": "支付订单",
   "Click this button after payment:": "支付后点击这个按钮：",
   "Check Payment Status": "查询支付状态",
+  "Added points: ": "已增加点数：",
+  "for account: ": "账户：",
 }
 
 let enTrans = {};
