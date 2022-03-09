@@ -24,7 +24,7 @@ async function checkWxMiniPayHandler(
     // get recent order array from wx
     // NOTICE:  we used json-bigint for JSON parse.
     let wxResp = await fetchAPI('/wx/product/order/get_list',{
-      start_create_time: CronTime.toLocalString(new Date(), -60*48),
+      start_create_time: CronTime.toLocalString(new Date(), -60*24),
       end_create_time: CronTime.toLocalString(new Date(), 5),
       status: 20,
       page: 1,
