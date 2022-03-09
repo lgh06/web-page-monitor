@@ -22,7 +22,7 @@ let mongo = {
       }
     }
     // https://mongodb.github.io/node-mongodb-native/4.3/classes/Collection.html#findOneAndReplace
-    let p = db.collection(collectionName).findOneAndReplace(filter, doc, options).then(returnedDoc => {
+    let p = db.collection(collectionName).findOneAndUpdate(filter, { $set: doc}, options).then(returnedDoc => {
       return returnedDoc
     })
     if (res) {
