@@ -30,6 +30,13 @@ const IOTestPage: NextPage = () => {
 
   useEffect(()=>{
     async function test() {
+
+      let resp0 = await fetchAPI('/member/checkWxMiniPay', {
+        emailOrComment: "hnnk@qq.com"
+      })
+      console.log(resp0);
+
+      return;
       // let info = await verifyJwt(userInfo.jwtToken + 'sd');
       // console.log(info);
       // let wxResp = await fetchAPI('/wx/product/order/get', {
