@@ -111,6 +111,19 @@ let trans = {
   "Points added: ": "点数已增加：",
   "Error: coupon is invalid": "错误：兑换代码无效",
   "Error: Coupon is used before": "错误：兑换代码已经使用过",
+  "Add points through a coupon code": "通过兑换代码增加点数",
+  "Add points through PayPal": "通过PayPal增加点数",
+  "You can get a coupon code by sending cash to ": "您可以获得兑换代码，通过转账到",
+  "You should comment your email address while send payments or email us to hnnk@qq.com after paid, then we can add points to your account manually.": 
+      "您应该在付款时评论您的邮箱地址，或者付款后发送邮件到hnnk@qq.com，我们才能手动增加点数到您的账户。",
+  "This payment method is recommended for people outside mainland China.": "这种支付方式推荐给非中国大陆人士。",
+  "Add points through WeChat": "通过微信增加点数",
+  "This payment method is recommended for people in mainland China.": "这种支付方式推荐给中国大陆人士。",
+  "Scan below QR code, click right bottom circle red button.": "扫描下面的二维码，点击右下角的 买 按钮。",
+  "At the bottom comment box, type in your email address:": "在最下方的 备注 框中输入您的邮箱地址：",
+  "Pay that order": "支付订单",
+  "Click this button after payment:": "支付后点击这个按钮：",
+  "Check Payment Status": "查询支付状态",
 }
 
 let enTrans = {};
