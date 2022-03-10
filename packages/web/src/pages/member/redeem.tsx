@@ -58,7 +58,7 @@ const MemberRedeemPage: NextPage = () => {
         if(resp.success && resp.points && resp.email){
           alert(t(`Added points: `) + resp.points + ' ' + t(`for account: `) + resp.email);
         }else{
-          alert(resp.err)
+          alert(t(resp.err))
         }
       } catch (error) {
         alert(t(`Error: `) + error.message)
@@ -103,8 +103,9 @@ const MemberRedeemPage: NextPage = () => {
       <details open={locale === 'zh'? true : null}>
         <summary>{t(`Add points through WeChat`)}</summary>
         <div>
-          {t(`This payment method is recommended for people in mainland China.`)} 
-          10 RMB = 1000 points <br/><br/>
+          {t(`This payment method is recommended for people in mainland China`)} , &nbsp;
+          {t(`and who use a mobile phone`)}  ({t(`also suitable for PC users`)}) <br/>
+          10 RMB = 1000 points <br/>
         </div>
         <div>
           1. {t(`Scan below QR code, will open a wechat mini app , then click right bottom circle red button.`)} 
@@ -130,8 +131,8 @@ const MemberRedeemPage: NextPage = () => {
       <details open={locale === 'en'? true : null}>
         <summary>{t(`Add points through PayPal`)}</summary>
         <div>
-          {t(`This payment method is recommended for people outside mainland China.`)} 
-          1 US dollar = 600 points <br/><br/>
+          {t(`This payment method is recommended for people outside mainland China.`)} <br/>
+          1 US dollar = 600 points <br/>
         </div>
         <div>
           {t(`You can get a coupon code by sending cash to `)}
@@ -142,8 +143,8 @@ const MemberRedeemPage: NextPage = () => {
       <details>
         <summary>{t(`Add points through a coupon code`)}</summary>
         <div>
-          {t(`This payment method is recommended for people outside mainland China.`)} 
-          1 US dollar = 600 points <br/><br/>
+          {t(`This payment method is recommended for people outside mainland China.`)} <br/>
+          1 US dollar = 600 points <br/>
 
         </div>
         <div>
