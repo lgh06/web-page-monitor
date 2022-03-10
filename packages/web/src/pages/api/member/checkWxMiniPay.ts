@@ -23,7 +23,7 @@ async function checkWxMiniPayHandler(
     }
     // get recent order array from wx
     // NOTICE:  we used json-bigint for JSON parse.
-    let wxResp = await fetchAPI('/wx/product/order/get_list',{
+    let wxResp = await fetchAPI('/wxminishop/product/order/get_list',{
       start_create_time: CronTime.toLocalString(new Date(), -60*24),
       end_create_time: CronTime.toLocalString(new Date(), 5),
       status: 20,
@@ -54,7 +54,7 @@ async function checkWxMiniPayHandler(
       let totalPrice = 0;
       for (let order of matchedArr) {
         let order_id = String(order.order_id);
-        let wxResp2 = await fetchAPI('/wx/product/delivery/send', {
+        let wxResp2 = await fetchAPI('/wxminishop/product/delivery/send', {
           order_id,
           delivery_list: [{
             "": [

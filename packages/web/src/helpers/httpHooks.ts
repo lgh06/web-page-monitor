@@ -48,9 +48,9 @@ export async function fetchAPI(endPoint: string, postedObject: undefined | objec
     }
   }
   let resp;
-  if(String(endPoint).startsWith('/wx')){
-    if(!CONFIG.wxApiHost){
-      return new Error('wxApiHost is not defined');
+  if(String(endPoint).startsWith('/wxminishop')){
+    if(!CONFIG.wxMiniShopApiHost){
+      return new Error('wxMiniShopApiHost is not defined');
     }
     let mergedPostedObject = {
       "method": "post",
@@ -58,7 +58,7 @@ export async function fetchAPI(endPoint: string, postedObject: undefined | objec
       "data": postedObject
     }
 
-    resp = fetch(`${CONFIG.wxApiHost}/transfer`, {
+    resp = fetch(`${CONFIG.wxMiniShopApiHost}/transfer`, {
       method: 'POST',
       headers: headers,
       redirect: 'follow',
