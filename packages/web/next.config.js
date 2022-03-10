@@ -26,7 +26,7 @@ let nextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'max-age=36000',
+            value: 'max-age=2592000',
           },
         ],
       },
