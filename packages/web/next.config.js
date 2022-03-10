@@ -22,6 +22,15 @@ let nextConfig = {
         ],
       },
       {
+        source: '/images/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'max-age=36000',
+          },
+        ],
+      },
+      {
         // index page
         source: '/',
         locale: false,
