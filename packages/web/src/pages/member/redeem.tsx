@@ -129,7 +129,7 @@ const MemberRedeemPage: NextPage = () => {
         </div>
         <div>
           {t(`Notice: `)} <br/>
-          {t(`If you paid an order however forgot to comment your email address, we won't deliver your order and please wait a refund, about 7 days. `)} <br/>
+          {t(`If you paid an order however forgot to comment your email address, or forget step 5 (click check button), we won't deliver your order and please wait a refund, about 7 days. `)} <br/>
           {t(`For other issues, contact us though email hnnk@qq.com . ( or phone number: +86-17729721992. (Shanghai Timezone, 10:00 - 18:00 only) )`)} <br/>
         </div>
       </details>
