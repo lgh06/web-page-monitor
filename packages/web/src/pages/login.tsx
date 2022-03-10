@@ -134,6 +134,13 @@ const LoginPage: NextPage = () => {
       </div>
       <div>
         {t(`Next Add Points Time`)}: {new Date(userInfo.nextAddPointsTime).toLocaleString()}
+      </div>
+      <div>
+        {t(`If your points below 80, then it will be reset to 80 on `)} {t(`Next Add Points Time`)}
+      </div>
+      <div>
+        {t(`Every time one cron task's check will consume 1 point.`)}
+        {t(`Points consumed for different tasks may vary, in the future.`)}
       </div><br/>
       {/* <div>
         <Link href='/create_task_geek'><a {...cn('link')}>create a task in Geek Mode (Code Mode)</a></Link>

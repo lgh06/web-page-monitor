@@ -29,6 +29,9 @@ let trans = {
   "Back to User Center": "返回用户中心",
   "Tasks created by you": "您创建的任务",
   "URL": "URL网址",
+  "If your points below 80, then it will be reset to 80 on ": "如果您的点数低于80，则会重置到80，在",
+  "Every time one cron task's check will consume 1 point.": "每次定时任务的检查都会消耗1点。",
+  "Points consumed for different tasks may vary, in the future.": "在未来，不同任务消耗的点数可能会有所不同。",
   // Below is on create task page
   "Please input a URL start with https:// or http://": "请输入以https://或http://开头的网址",
   "URL check passed. ": "URL检查通过",
