@@ -8,7 +8,7 @@ import { fetchAPI } from "../../../helpers/httpHooks"
 import crypto from 'crypto';
 import { ReturnDocument } from 'mongodb';
 
-const md5 = (str) => crypto.createHash('md5').update(str).digest('hex').toUpperCase();
+const md5 = (str) => crypto.createHash('md5').update(str).digest('hex');
 
 
 export default async function wxPayNotifyHandler(
@@ -19,10 +19,12 @@ export default async function wxPayNotifyHandler(
 
   let {order_id = "", pay_price = 0, aoid, pay_time, sign} = req.body;
   let signCalculated = md5(aoid + order_id + pay_price + pay_time + secret);
-  console.log('signCalculated', signCalculated)
-  console.log('signFromRequest', sign)
-  // TODO auth order from sign
-  console.log('wxPayNotifyHandler order_id pay_price', order_id, pay_price);
+
+  if(signCalculated === sign) {
+
+  }else{
+    return res.status(400).json({err: 'Do not hack me!'})
+  }
   if(order_id && pay_price){
     let email = order_id.substring(0, order_id.length - 9);
     
