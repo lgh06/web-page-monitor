@@ -54,7 +54,7 @@ export async function fetchAPI(endPoint: string, postedObject: undefined | objec
     }
     let mergedPostedObject = {
       "method": "post",
-      "url": endPoint.substring(3),
+      "url": endPoint.substring(11),
       "data": postedObject
     }
 
