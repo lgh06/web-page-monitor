@@ -115,10 +115,10 @@ let trans = {
   "Error: coupon is invalid": "错误：兑换代码无效",
   "Error: Coupon is used before": "错误：兑换代码已经使用过",
   "Add points through a coupon code": "通过兑换代码增加点数",
-  "Add points through PayPal": "通过PayPal增加点数",
+  "Buy a coupon code through PayPal": "通过PayPal购买兑换代码",
   "You can get a coupon code by sending cash to ": "您可以获得兑换代码，通过转账到",
-  "You should comment your email address while send payments or email us to hnnk@qq.com after paid, then we can add points to your account manually.": 
-      "您应该在付款时评论您的邮箱地址，或者付款后发送邮件到hnnk@qq.com，我们才能手动增加点数到您的账户。",
+  "You should comment your email address while send payments or email us to hnnk@qq.com after paid, then we can send a coupon code to your email, manually.": 
+      "您应该在付款时评论您的邮箱地址，或者付款后发送邮件到hnnk@qq.com，以便我们把兑换代码发送给您。",
   "This payment method is recommended for people outside mainland China.": "这种支付方式推荐给非中国大陆人士。",
   "Add points through WeChat Mini Shop": "通过微信小商店增加点数",
   "This payment method is recommended for people in mainland China": "这种支付方式推荐给中国大陆人士",

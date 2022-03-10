@@ -74,10 +74,11 @@ const FaqPage: NextPage = () => {
       then watch pages need logged in or hidden in deeper links without a URL . <br/>
       Then notify you via your code defined endpoint, like mailgun , AWS mobile text message , or a firebase push... (WiP)
       </p>
-      <h2 id="WhatIsACoupon"> What Is A Coupon ?</h2>
+      <h2 id="WhatIsACoupon"> What Is A Coupon Code?</h2>
       <p>
+        Global users can charge points in a indirect way, for now.  <br/>
         You can use a coupon code to redeem more points.<br/>
-        You can buy a coupon code from <a target="_blank" rel="noreferrer" href="https://www.example.com/">Somewhere</a>
+        See details on our <Link href="/member/redeem"><a>Redeem Page</a></Link>
       </p>
       {/* @ts-ignore */}
       <a onClick={clickGoBack(router)}>Go back</a>

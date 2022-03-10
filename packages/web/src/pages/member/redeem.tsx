@@ -190,7 +190,7 @@ const MemberRedeemPage: NextPage = () => {
         </div>
       </details>
       <details open={locale === 'en'? true : null}>
-        <summary>{t(`Add points through PayPal`)}</summary>
+        <summary>{t(`Buy a coupon code through PayPal`)}</summary>
         <div>
           {t(`This payment method is recommended for people outside mainland China.`)} <br/>
           1 US dollar = 600 points <br/>
@@ -198,10 +198,10 @@ const MemberRedeemPage: NextPage = () => {
         <div>
           {t(`You can get a coupon code by sending cash to `)}
           <a href="https://www.paypal.com/paypalme/lgh06" target="_blank" rel="noopener noreferrer">PayPal</a><br/>
-          {t(`You should comment your email address while send payments or email us to hnnk@qq.com after paid, then we can add points to your account manually.`)} <br/>
+          {t(`You should comment your email address while send payments or email us to hnnk@qq.com after paid, then we can send a coupon code to your email, manually.`)} <br/>
         </div>
       </details>
-      <details>
+      <details open={locale === 'en'? true : null}>
         <summary>{t(`Add points through a coupon code`)}</summary>
         <div>
           {t(`This payment method is recommended for people outside mainland China.`)} <br/>
@@ -222,6 +222,8 @@ const MemberRedeemPage: NextPage = () => {
         <div>
           <button data-btn-index="3" onClick={handleBtnClick} disabled={btnDisabled(3)}>{t('Redeem Now')}</button>
         </div>
+        {t(`Contact us though email hnnk@qq.com . ( or phone number: +86-17729721992. (Shanghai Timezone, 10:00 - 18:00 only) )`)} <br/>
+        {t(`Please provide email account / pay method / pay time / pay amount / your timezone if you contact us, that will help our checking sooner.`)} <br/>
         <div>
         </div>
       </details>
