@@ -6,6 +6,7 @@ import { mongo, jwt } from '@webest/web-page-monitor-helper/node';
 
 import { fetchAPI } from "../../../helpers/httpHooks"
 import crypto from 'crypto';
+import { ReturnDocument } from 'mongodb';
 
 const md5 = (str) => crypto.createHash('md5').update(str).digest('hex').toUpperCase();
 
@@ -30,10 +31,12 @@ export default async function wxPayNotifyHandler(
       return res.status(500).json({err: 'db is not ready'})
     }
 
-    let result = await mongo.updateOne(db, 'user',{email}, {
+    const options = { upsert: false, returnDocument: ReturnDocument.AFTER };
+    let result = await db.collection('user').findOneAndUpdate({email}, {
       $inc: {
         points: pay_price * 100,
-      }
+      },
+      options
     });
 
     let { ok, value = {} } = result;
