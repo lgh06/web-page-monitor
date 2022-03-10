@@ -41,8 +41,7 @@ export default async function wxPayNotifyHandler(
       $inc: {
         points: Math.floor(pay_price * 100),
       },
-      options
-    });
+    }, options);
 
     let { ok, value = {} } = result;
     if(ok){
