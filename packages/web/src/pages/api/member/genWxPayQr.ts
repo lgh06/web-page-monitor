@@ -26,10 +26,11 @@ async function genWxPayQrHandler(
     }
 
     let payData = {
-      'name': '阿欢电脑配件',
+      'name': '阿欢电脑配件' + '_' + amountYuan,
       'pay_type': 'native',
       'price': amountYuan,
       'order_id': orderId,
+      'order_uid': email,
       'notify_url': 'http://monit.or.passby.me/api/member/wxpaynotify',
     };
     
@@ -51,6 +52,8 @@ async function genWxPayQrHandler(
 
     res.status(200).setHeader('Cache-Control', 'max-age=0').json({
       jsonResult,
+      orderId,
+      orderUid: email,
     })
     
   } catch (error) {
