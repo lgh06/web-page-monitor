@@ -137,6 +137,13 @@ let trans = {
     "如果您已经付款，但是忘记评论您的邮箱地址或忘记上述第五步的查询支付状态，我们将不会发货，请耐心等待7天左右，自动退款。或手动去微信小商店找到订单，退款。",
   "For other issues, contact us though email hnnk@qq.com . ( or phone number: +86-17729721992. (Shanghai Timezone, 10:00 - 18:00 only) )":
     "其他问题，请发电子邮件到 hnnk@qq.com 。（或者电话：+86-17729721992（中国上海时区，10:00 - 18:00））",
+  "Add points through WeChat Pay": "通过微信支付增加点数",
+  "and who use a PC": "和使用 电脑 的用户",
+  "also suitable for mobile users": "使用手机也可以",
+  "Click Here": "点击这里",
+  "to pay 2 RMB Yuan": "支付2元人民币",
+  "to pay 5 RMB Yuan": "支付5元人民币",
+  "to pay 10 RMB Yuan": "支付10元人民币",
 }
 
 let enTrans = {};

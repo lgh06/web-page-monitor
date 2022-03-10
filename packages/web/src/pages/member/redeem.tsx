@@ -34,6 +34,7 @@ const MemberRedeemPage: NextPage = () => {
 
   async function handleBtnClick(ev: MouseEvent<HTMLButtonElement> ) {
     ev.preventDefault()
+    if(redeemInfo.submitting) return;
     let btnElement = ev.target as HTMLButtonElement;
     let btnIndex = btnElement.dataset.btnIndex;
     console.log(btnIndex)
@@ -49,6 +50,7 @@ const MemberRedeemPage: NextPage = () => {
 
     // return;
     if(btnIndex === '1'){
+      // wechat minishop pay
       let resp;
       try {
         resp = await fetchAPI('/member/checkWxMiniPay', {
@@ -64,7 +66,27 @@ const MemberRedeemPage: NextPage = () => {
         alert(t(`Error: `) + error.message)
       }
 
+    }else if(btnIndex.startsWith('2')){
+      let amountStr = btnIndex.substring(1)
+      let amountYuan = Number(amountStr);
+      // wechat pay
+      let resp1;
+      resp1 = await fetchAPI('/member/genWxPayQr', {
+        email: userInfo.email,
+        amountYuan,
+      });
+      console.log(resp1)
+      let { jsonResult } = resp1;
+      if(jsonResult && jsonResult.status && jsonResult.status === 'ok'){
+        if(jsonResult.info && jsonResult.info.qr){
+          setRedeemInfo(v =>{
+            v.wxPayQrUrl = 'https://xorpay.com/qr?data=' + jsonResult.info.qr;
+          });
+        }
+      }
+
     }else if(btnIndex === '3'){
+      // verify coupon code
       console.log(redeemInfo.coupon)
       let jwtResult = await verifyJwt(redeemInfo.coupon);
       console.log(jwtResult.payload)
@@ -95,11 +117,41 @@ const MemberRedeemPage: NextPage = () => {
       return true;
     }
     if(btnIndex === '3'){
+      // coupon code
       return redeemInfo.coupon === ''
+    }
+
+    if(btnIndex === '2'){
+      // wechat pay
+      // TODO
     }
   }
   return (
     <main {...cn('redeem')}>
+      <details open={locale === 'zh'? true : null}>
+        <summary>{t(`Add points through WeChat Pay`)}</summary>
+        <div>
+          {t(`This payment method is recommended for people in mainland China`)} , &nbsp;
+          {t(`and who use a PC`)}  ({t(`also suitable for mobile users`)}) <br/>
+          1 RMB = 100 points <br/>
+        </div>
+        <div>
+          <button data-btn-index="22" onClick={handleBtnClick} disabled={btnDisabled(2)}>{t(`Click Here`)} {t(`to pay 2 RMB Yuan`)} </button> &nbsp; &nbsp;
+          <button data-btn-index="25" onClick={handleBtnClick} disabled={btnDisabled(2)}>{t(`Click Here`)} {t(`to pay 5 RMB Yuan`)} </button> &nbsp; &nbsp;
+          <button data-btn-index="210" onClick={handleBtnClick} disabled={btnDisabled(2)}>{t(`Click Here`)} {t(`to pay 10 RMB Yuan`)} </button> &nbsp; &nbsp;
+        </div>
+        <div>
+          {
+            redeemInfo.wxPayQrUrl && <>
+              <img {...cn('qr')} src={redeemInfo.wxPayQrUrl} alt="minishop qr code" title="minishop qr code" />
+            </>
+          }
+        </div>
+        <div>
+          {t(`Notice: `)} <br/>
+          {t(`For other issues, contact us though email hnnk@qq.com . ( or phone number: +86-17729721992. (Shanghai Timezone, 10:00 - 18:00 only) )`)} <br/>
+        </div>
+      </details>
       <details open={locale === 'zh'? true : null}>
         <summary>{t(`Add points through WeChat Mini Shop`)}</summary>
         <div>
