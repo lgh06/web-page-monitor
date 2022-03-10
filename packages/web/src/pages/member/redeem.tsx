@@ -149,7 +149,10 @@ const MemberRedeemPage: NextPage = () => {
         </div>
         <div>
           {t(`Notice: `)} <br/>
-          {t(`For other issues, contact us though email hnnk@qq.com . ( or phone number: +86-17729721992. (Shanghai Timezone, 10:00 - 18:00 only) )`)} <br/>
+          {t(`After pay success, please wait 1 minute (avg.) , then go to User Center check if points added.`)} <br/>
+          {t(`If your points not added, after payment, more than 1 hour, please let us know.`)} <br/>
+          {t(`Contact us though email hnnk@qq.com . ( or phone number: +86-17729721992. (Shanghai Timezone, 10:00 - 18:00 only) )`)} <br/>
+          {t(`Please provide email account / pay method / pay time / pay amount / your timezone if you contact us, that will help our checking sooner.`)} <br/>
         </div>
       </details>
       <details open={locale === 'zh'? true : null}>
@@ -182,7 +185,8 @@ const MemberRedeemPage: NextPage = () => {
         <div>
           {t(`Notice: `)} <br/>
           {t(`If you paid an order however forgot to comment your email address, or forget step 5 (click check button), we won't deliver your order and please wait a refund, about 7 days. `)} <br/>
-          {t(`For other issues, contact us though email hnnk@qq.com . ( or phone number: +86-17729721992. (Shanghai Timezone, 10:00 - 18:00 only) )`)} <br/>
+          {t(`Contact us though email hnnk@qq.com . ( or phone number: +86-17729721992. (Shanghai Timezone, 10:00 - 18:00 only) )`)} <br/>
+          {t(`Please provide email account / pay method / pay time / pay amount / your timezone if you contact us, that will help our checking sooner.`)} <br/>
         </div>
       </details>
       <details open={locale === 'en'? true : null}>
