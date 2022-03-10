@@ -117,7 +117,7 @@ let trans = {
   "You should comment your email address while send payments or email us to hnnk@qq.com after paid, then we can add points to your account manually.": 
       "您应该在付款时评论您的邮箱地址，或者付款后发送邮件到hnnk@qq.com，我们才能手动增加点数到您的账户。",
   "This payment method is recommended for people outside mainland China.": "这种支付方式推荐给非中国大陆人士。",
-  "Add points through WeChat": "通过微信增加点数",
+  "Add points through WeChat Mini Shop": "通过微信小商店增加点数",
   "This payment method is recommended for people in mainland China": "这种支付方式推荐给中国大陆人士",
   "and who use a mobile phone": "和使用 手机 的用户",
   "also suitable for PC users": "使用电脑也可以",

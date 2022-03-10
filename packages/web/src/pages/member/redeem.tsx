@@ -101,7 +101,7 @@ const MemberRedeemPage: NextPage = () => {
   return (
     <main {...cn('redeem')}>
       <details open={locale === 'zh'? true : null}>
-        <summary>{t(`Add points through WeChat`)}</summary>
+        <summary>{t(`Add points through WeChat Mini Shop`)}</summary>
         <div>
           {t(`This payment method is recommended for people in mainland China`)} , &nbsp;
           {t(`and who use a mobile phone`)}  ({t(`also suitable for PC users`)}) <br/>
