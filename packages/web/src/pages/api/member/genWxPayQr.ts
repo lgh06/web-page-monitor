@@ -21,6 +21,10 @@ async function genWxPayQrHandler(
     const aid = process.env.NEXT_WX_PAY_AID
     const secret = process.env.NEXT_WX_PAY_SECRET
 
+    if(!aid || !secret){
+      return res.status(500).json({err: 'aid or secret is not set'})
+    }
+
     let payData = {
       'name': '阿欢电脑配件',
       'pay_type': 'native',

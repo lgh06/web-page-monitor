@@ -10,6 +10,9 @@ async function checkWxMiniPayHandler(
   req: NextApiRequestWithUserInfo,
   res: NextApiResponse
 ){
+  if(!process.env.NEXT_WX_MINI_SHOP_API_HOST){
+    return res.status(500).json({err: 'NEXT_WX_MINI_SHOP_API_HOST is not set'})
+  }
   
   try {
     let db = await getDB();
@@ -34,7 +37,7 @@ async function checkWxMiniPayHandler(
     let matchedArr = [];
   
     // find matched order according to emailOrComment ( order's customer_notes )
-    if(!wxResp.errcode && wxResp.orders.length){
+    if(!wxResp.errcode && wxResp.orders && wxResp.orders.length){
       matchedArr = Array.from(wxResp.orders).filter((order: any)=>{
         let { ext_info = {} } = order;
         let { customer_notes = "" } = ext_info;

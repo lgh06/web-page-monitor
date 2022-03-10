@@ -16,6 +16,9 @@ export default async function wxPayNotifyHandler(
   res: NextApiResponse
 ) {
   const secret = process.env.NEXT_WX_PAY_SECRET
+  if(!secret){
+    return res.status(500).json({err: 'secret is not set'})
+  }
 
   let {order_id = "", pay_price = 0, aoid, pay_time, sign} = req.body;
   let signCalculated = md5(aoid + order_id + pay_price + pay_time + secret);
