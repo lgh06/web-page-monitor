@@ -107,18 +107,24 @@ const MemberRedeemPage: NextPage = () => {
           10 RMB = 1000 points <br/><br/>
         </div>
         <div>
-          1. {t(`Scan below QR code, click right bottom circle red button.`)} <br/>
-          <img src="/images/wxmini.jpg" alt="wechat qr code" />
+          1. {t(`Scan below QR code, will open a wechat mini app , then click right bottom circle red button.`)} 
         </div>
         <div {...cn('bold')} style={{margin: '1rem auto'}}>
           2. !!!! {t(`At the bottom comment box, type in your email address:`)} {userInfo.email}  !!!!
         </div>
         <div>
-          3. {t(`Pay that order`)}
+          3. {t(`Fill in a whatever address, and whatever mobile number , in mainland China.`)} <br/>
+          &nbsp; &nbsp; {t(`This address and mobile number is required by WeChat, you can fill anything, it doesn't matter.`)}
+        </div>
+        <div>
+          4. {t(`Pay that order`)}
         </div>
         <div {...cn('bold')}>
-          4. !!!!{t(`Click this button after payment:`)}!!!!  &nbsp;
+          5. !!!!{t(`Back to current page, Click this button after payment:`)}!!!!  &nbsp;
           <button data-btn-index="1" onClick={handleBtnClick} disabled={btnDisabled(1)}>{t(`Check Payment Status`)}</button>  
+        </div>
+        <div>
+          <img src="/images/wxmini.jpg" alt="minishop qr code" title="minishop qr code" />
         </div>
       </details>
       <details open={locale === 'en'? true : null}>

@@ -119,13 +119,16 @@ let trans = {
   "This payment method is recommended for people outside mainland China.": "这种支付方式推荐给非中国大陆人士。",
   "Add points through WeChat": "通过微信增加点数",
   "This payment method is recommended for people in mainland China.": "这种支付方式推荐给中国大陆人士。",
-  "Scan below QR code, click right bottom circle red button.": "扫描下面的二维码，点击右下角的 买 按钮。",
+  "Scan below QR code, will open a wechat mini app , then click right bottom circle red button.": "扫描下面的二维码，在微信小程序里，点击最右下角的 买 按钮。",
   "At the bottom comment box, type in your email address:": "在最下方的 备注 框中输入您的邮箱地址：",
   "Pay that order": "支付订单",
-  "Click this button after payment:": "支付后点击这个按钮：",
+  "Back to current page, Click this button after payment:": "支付后点击这个按钮：",
   "Check Payment Status": "查询支付状态",
   "Added points: ": "已增加点数：",
   "for account: ": "账户：",
+  "Fill in a whatever address, and whatever mobile number , in mainland China.": "填写一个任意的中国大陆地址和手机号码。",
+  "This address and mobile number is required by WeChat, you can fill anything, it doesn't matter.": 
+    "这个地址和手机号码是微信的要求，您可以填任何东西，无所谓。",
 }
 
 let enTrans = {};
