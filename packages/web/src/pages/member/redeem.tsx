@@ -125,7 +125,7 @@ const MemberRedeemPage: NextPage = () => {
           <button data-btn-index="1" onClick={handleBtnClick} disabled={btnDisabled(1)}>{t(`Check Payment Status`)}</button>  
         </div>
         <div>
-          <img src="/images/wxmini.jpg" alt="minishop qr code" title="minishop qr code" />
+          <img {...cn('qr')} src="/images/wxmini.jpg" alt="minishop qr code" title="minishop qr code" />
         </div>
       </details>
       <details open={locale === 'en'? true : null}>
@@ -137,7 +137,7 @@ const MemberRedeemPage: NextPage = () => {
         <div>
           {t(`You can get a coupon code by sending cash to `)}
           <a href="https://www.paypal.com/paypalme/lgh06" target="_blank" rel="noopener noreferrer">PayPal</a><br/>
-          {t(`You should comment your email address while send payments or email us to hnnk@qq.com after paid, then we can add points to your account manually.`)} <br/>
+          {t(`You should comment your email address while send payments or email us to hnnk@qq.com after paid, then we send coupon code to your email , manually.`)} <br/>
         </div>
       </details>
       <details>
