@@ -59,7 +59,7 @@ async function pptr() {
 async function main(){
   const socket = io(CONFIG.socketio, { autoConnect: false });
   // TODO add token or other encrypt way
-  let userInfo = {email: 'hnnk@qq.com', type: "pptr"};
+  let userInfo = {email: 'xxxxx@qq.com', type: "pptr"};
   socket.auth = { userInfo};
   if(userInfo.email && !socket.connected){
     connectSocketIO({socket});

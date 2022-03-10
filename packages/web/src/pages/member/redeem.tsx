@@ -127,6 +127,11 @@ const MemberRedeemPage: NextPage = () => {
         <div>
           <img {...cn('qr')} src="/images/wxmini.jpg" alt="minishop qr code" title="minishop qr code" />
         </div>
+        <div>
+          {t(`Notice: `)} <br/>
+          {t(`If you paid an order however forgot to comment your email address, we won't deliver your order and please wait a refund, about 7 days. `)} <br/>
+          {t(`For other issues, contact Us though email hnnk@qq.com . ( or phone number: +86-17729721992（中国上海时区，10. (Shanghai Timezone, 10:00 - 18:00 only) )`)} <br/>
+        </div>
       </details>
       <details open={locale === 'en'? true : null}>
         <summary>{t(`Add points through PayPal`)}</summary>

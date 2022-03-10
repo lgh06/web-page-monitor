@@ -132,6 +132,11 @@ let trans = {
   "Fill in a whatever address, and whatever mobile number , in mainland China.": "填写一个任意的中国大陆地址和手机号码。",
   "This address and mobile number is required by WeChat, you can fill anything, it doesn't matter.": 
     "这个地址和手机号码是微信的要求，您可以填任何东西，无所谓。",
+  "Notice: ": "注意：",
+  "If you paid an order however forgot to comment your email address, we won't deliver your order and please wait a refund, about 7 days. ":
+    "如果您已经付款，但是忘记评论您的邮箱地址，我们将不会发货，请耐心等待7天左右，自动退款。或手动去微信小商店找到订单，退款。",
+  "For other issues, contact us though email hnnk@qq.com . ( or phone number: +86-17729721992. (Shanghai Timezone, 10:00 - 18:00 only) )":
+    "其他问题，请发电子邮件到 hnnk@qq.com 。（或者电话：+86-17729721992（中国上海时区，10:00 - 18:00））",
 }
 
 let enTrans = {};

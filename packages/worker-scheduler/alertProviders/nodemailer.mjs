@@ -87,7 +87,7 @@ async function alertSender({content, htmlContent, taskDetail, configIndex = 0}) 
   try {
     let info = await transporter.sendMail({
       from: oneMailConfig.from, // sender address
-      to: taskDetail.userInfo.email || "hnnk@qq.com", // list of receivers
+      to: taskDetail.userInfo.email, // list of receivers
       subject: `网页变动通知 Web Page Changes Alert`, // Subject line
       text: content || "Hello world?", // plain text body
       html: htmlContent || content || "<b>Hello world?</b>", // html body

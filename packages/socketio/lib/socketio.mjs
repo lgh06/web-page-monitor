@@ -26,7 +26,7 @@ function socketio() {
   });
 
   setInterval(() => {
-    let email = "hnnk@qq.com";
+    let email = "xxxx@qq.com";
     io.to('room' + email).emit('room' + email,
       {
         msg: `Welcome user ${email} from server`,
