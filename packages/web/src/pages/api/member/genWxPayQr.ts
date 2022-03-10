@@ -5,6 +5,9 @@ import { middlewares, NextApiRequestWithUserInfo } from '../../../lib';
 import { fetchAPI } from "../../../helpers/httpHooks"
 import crypto from 'crypto';
 
+const md5 = (str) => crypto.createHash('md5').update(str).digest('hex').toUpperCase();
+
+
 async function genWxPayQrHandler(
   req: NextApiRequestWithUserInfo,
   res: NextApiResponse
@@ -13,14 +16,11 @@ async function genWxPayQrHandler(
   try {
     let { email, amountYuan } = req.body;
 
-    let orderId = email+ '_' + Math.floor(Date.now()/1000).toString(36)
-
+    let orderId = email+ '_' + Date.now().toString(36)
 
     const aid = process.env.NEXT_WX_PAY_AID
     const secret = process.env.NEXT_WX_PAY_SECRET
-    
-    const md5 = (str) => crypto.createHash('md5').update(str).digest('hex').toUpperCase();
-    
+
     let payData = {
       'name': '阿欢电脑配件',
       'pay_type': 'native',

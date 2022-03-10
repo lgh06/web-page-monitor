@@ -101,6 +101,33 @@ let mongo = {
       })
     }
     return p;
+  },
+  /**
+   * 
+   * @param {Db} db 
+   * @param {*} collectionName 
+   * @param {*} filter 
+   * @param {*} doc 
+   * @param {*} res 
+   * @returns 
+   */
+  updateOne:  async function (db, collectionName,filter, doc, res) {
+    if( (!db) && res) return res.status(500).send('db lost');
+    const options = { upsert: false, returnDocument: ReturnDocument.AFTER };
+    if((!filter) || Object.keys(filter).length === 0){
+      filter = doc;
+    }
+    let p = db.collection(collectionName).findOneAndUpdate(filter, { $set: doc}, options).then(returnedDoc => {
+      return returnedDoc
+    })
+    if (res) {
+      p = p.then(doc => {
+        return res.status(200).json(doc)
+      }).catch((e) => {
+        return res.status(500).json({ err: e });
+      })
+    }
+    return p;
   }
 }
 
