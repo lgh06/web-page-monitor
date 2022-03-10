@@ -36,7 +36,7 @@ export default async function wxPayNotifyHandler(
     const options = { upsert: false, returnDocument: ReturnDocument.AFTER };
     let result = await db.collection('user').findOneAndUpdate({email}, {
       $inc: {
-        points: pay_price * 100,
+        points: Math.floor(pay_price * 100),
       },
       options
     });

@@ -73,7 +73,7 @@ async function checkWxMiniPayHandler(
           }
           await db.collection('user').updateOne({email: emailOrComment}, {
             $inc: {
-              points: productPrice ,  // 1 cent = 1 point
+              points: Math.floor(productPrice) ,  // 1 cent = 1 point
             },
           });
         }

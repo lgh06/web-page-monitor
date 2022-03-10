@@ -39,7 +39,7 @@ async function memberRedeemHandler(
 
     await db.collection('user').updateOne({_id: userId}, {
       $inc: {
-        points: jwtResult.payload.points,
+        points: Math.floor(jwtResult.payload.points),
       },
     });
 
