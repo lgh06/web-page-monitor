@@ -40,8 +40,7 @@ const Home: NextPage = () => {
             <Link href="/login"><a>{t('Go to User Center')}</a></Link>
           </>):(<>
             {t('Welcome to Web Page Monitor')}!!<br/>
-            {t('Please')}
-            <Link href="/login"><a>{t('Login')}</a></Link>
+            {t('Please')} <Link href="/login"><a>{t('Login')}</a></Link>
             </>)}
         </h1>
 
