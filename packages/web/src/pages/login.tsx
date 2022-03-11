@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import React, { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring';
-import { frontCONFIG as CONFIG } from '../../CONFIG';
+import { CONFIG } from '../../CONFIG';
 import { useImmerAtom } from 'jotai/immer';
 import { userInfoAtom } from '../atoms';
 import { useAPI, useI18n, fetchAPI, genClassNameAndString, logOut } from '../helpers';
@@ -49,48 +49,29 @@ const LoginPage: NextPage = () => {
     async function getUserInfo(query: ParsedUrlQuery) {
       let { code, provider } = query;
       if (provider === 'gitee' && code) {
-        // if we have code, then ask for access_token
-        // https://gitee.com/api/v5/oauth_doc#/list-item-2
-        let resp = await fetch(`https://gitee.com/oauth/token?grant_type=authorization_code&code=${code}&client_id=${CONFIG.giteeOauthClientId}&redirect_uri=${giteeRedirectUri}`, {
-          method: 'POST',
-          body: new URLSearchParams(`client_secret=${CONFIG.giteeOauthClientSecret}`)
+        let resp = await fetchAPI('/user/oauth',{
+          code,
+          redirectUri: giteeRedirectUri,
+          provider
         });
-        const data = await resp.json();
-        // got access_token
-        const { access_token, refresh_token, scope } = data;
-        if (String(scope).includes('email')) {
-          // ask for emails
-          // https://gitee.com/api/v5/swagger#/getV5Emails
-          let resp2 = await fetch(`https://gitee.com/api/v5/emails?access_token=${access_token}`, {
-            method: 'GET',
-          });
-          const emailResp = await resp2.json();
-          // emailResp, array, may have multiple emailResp
-          if (emailResp && emailResp.length && emailResp[0] && emailResp[0].email) {
-            router.replace("/login")
-            // TODO error catch and hint
-            let { value: { _id }, jwtToken } = await fetchAPI('/user', {
-              email: emailResp[0].email,
-              oauthProvider: provider,
-              emailVerified: emailResp[0].state === 'confirmed'
-            })
-            setUserInfo((v) => {
-              v.email = emailResp[0].email;
-              v.emailState = emailResp[0].state;
-              v.logged = true;
-              v.oauthProvider = String(provider);
-              v._id = _id;
-              v.jwtToken = jwtToken;
-            });
-          }
-        }
+        router.replace("/login")
+        // TODO error catch and hint
+        let { value: { _id, email, emailState, oauthProvider }, jwtToken } = resp;
+        setUserInfo((v) => {
+          v.email = email;
+          v.emailState = emailState;
+          v.logged = true;
+          v.oauthProvider = oauthProvider;
+          v._id = _id;
+          v.jwtToken = jwtToken;
+        });
       }
     }
 
   }, [router, url, giteeRedirectUri]);
 
   let fetchUserPoints = async () =>{
-    let resp = await fetchAPI(`/user?id=${userInfo._id}`)
+    let resp = await fetchAPI(`/user/info?id=${userInfo._id}`)
     if(resp.length && resp[0].points && resp[0].nextAddPointsTime){
       setUserInfo((v)=>{
         v.points = resp[0].points;

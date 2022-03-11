@@ -1,20 +1,21 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { ObjectId, ReturnDocument } from 'mongodb';
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getDB, middlewares, NextApiRequestWithUserInfo } from '../../lib';
+import { getDB, middlewares, NextApiRequestWithUserInfo } from '../../../lib';
 import { mongo, jwt } from '@webest/web-page-monitor-helper/node';
 
 let collectionName = 'user';
 
 
-async function userPostHandler(
-  req: NextApiRequest,
+// below function used by sibling oauth.ts
+async function _userPostHandler(
+  reqObj: any,
   res: NextApiResponse
 ) {
   // TODO enhancement
-  const { email, emailVerified, oauthProvider } = req.body;
+  const { email, emailState, oauthProvider } = reqObj;
   const filter = { email };
-  const newDoc = {email, emailVerified, oauthProvider};
+  const newDoc = {email, emailState, oauthProvider};
 
   let db = await getDB();
   db?.collection('user').createIndex({ email: 1 }, {unique: true});
@@ -60,10 +61,7 @@ async function _handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if(req.method === 'POST'){
-    await middlewares.cors(userPostHandler)(req, res);
-  }else if(req.method === 'DELETE'){
-  }else if(req.method === 'GET'){
+  if(req.method === 'GET'){
     await middlewares.authJwt(userGetHandler)(req, res);
   }else{
     res.status(400).json({ err: 'no method match' })
@@ -71,3 +69,4 @@ async function _handler(
 }
 
 export default _handler;
+export { _userPostHandler }

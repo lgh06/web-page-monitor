@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { useImmerAtom } from 'jotai/immer';
 import { userInfoAtom } from '../atoms';
 import { io } from "socket.io-client";
-import { frontCONFIG as CONFIG } from '../../CONFIG';
+import { CONFIG } from '../../CONFIG';
 import { fetchAPI, verifyJwt } from '../helpers';
 import { CronTime } from '@webest/web-page-monitor-helper';
 

@@ -5,7 +5,6 @@ import { atomWithStorage } from 'jotai/utils'
 let userInfo = {
   _id: '',
   email: undefined,
-  // DB save emailVerified: true / false
   // different provider have different emailState
   emailState: '', // like confirmed, unverified, ... 
   code: '',

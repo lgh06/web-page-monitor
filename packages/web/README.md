@@ -18,7 +18,7 @@ Do not upgrade, see https://github.com/lgh06/web-page-monitor/issues/9
         "$oid": "61e952c4e851350024c81233"
     },
     email: "some@qq.com",
-    emailVerified: true,
+    emailState: 'confirmed',
     // gitee or github
     oauthProvider: "gitee",
     countryCode: 86,

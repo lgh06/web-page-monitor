@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { frontCONFIG as CONFIG } from '../../CONFIG';
+import { CONFIG } from '../../CONFIG';
 import * as JSONbig  from 'json-bigint';
 
 export function useAPI(endPoint: string, postedObject: undefined | object = undefined, method?: string) {
