@@ -46,6 +46,8 @@ export function logOut({setUserInfo, router}){
     v._id = '';
     v.code = '';
     v.jwtToken = '';
+    v.nextAddPointsTime = 0;
+    v.points = 0;
   });
   router.push('/login');
 }

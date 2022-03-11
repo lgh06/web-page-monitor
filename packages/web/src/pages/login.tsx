@@ -49,22 +49,30 @@ const LoginPage: NextPage = () => {
     async function getUserInfo(query: ParsedUrlQuery) {
       let { code, provider } = query;
       if (provider === 'gitee' && code) {
-        let resp = await fetchAPI('/user/oauth',{
-          code,
-          redirectUri: giteeRedirectUri,
-          provider
-        });
-        router.replace("/login")
-        // TODO error catch and hint
-        let { value: { _id, email, emailState, oauthProvider }, jwtToken } = resp;
-        setUserInfo((v) => {
-          v.email = email;
-          v.emailState = emailState;
-          v.logged = true;
-          v.oauthProvider = oauthProvider;
-          v._id = _id;
-          v.jwtToken = jwtToken;
-        });
+        try {
+          let resp = await fetchAPI('/user/oauth',{
+            code,
+            redirectUri: giteeRedirectUri,
+            provider
+          });
+          if(resp.err){
+            alert(t(resp.err));
+            return;
+          }
+          router.replace("/login")
+          // TODO error catch and hint
+          let { value: { _id, email, emailState, oauthProvider }, jwtToken } = resp;
+          setUserInfo((v) => {
+            v.email = email;
+            v.emailState = emailState;
+            v.logged = true;
+            v.oauthProvider = oauthProvider;
+            v._id = _id;
+            v.jwtToken = jwtToken;
+          });
+        } catch (error) {
+          alert(error)
+        }
       }
     }
 

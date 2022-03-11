@@ -30,7 +30,7 @@ async function oauthPostHandler(
       if (String(scope).includes('email')) {
         // ask for emails
         // https://gitee.com/api/v5/swagger#/getV5Emails
-        let resp2 = await fetch(`https://gitee.com/api/v5/emails?access_token=${access_token}`, {
+        let resp2 = await fetch(`https://gitee.com/api/v5/emails?access_token=${access_token}1`, {
           method: 'GET',
         });
         const emailResp = await resp2.json();
@@ -47,7 +47,7 @@ async function oauthPostHandler(
           }, res);
         }
       }
-      return res.status(400).json({ err: 'no email returned from gitee' })
+      return res.status(400).json({ err: 'No email returned from gitee, please ensure your email address is already binded to gitee and verified and allowed us read.' })
     } catch (error) {
       res.status(400).json({ err: error })
     }

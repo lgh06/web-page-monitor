@@ -25,6 +25,8 @@ let trans = {
   "Points": "点数",
   "Next Add Points Time" : "下次增加点数时间",
   "Top up": "充值",
+  "No email returned from gitee, please ensure your email address is already binded to gitee and verified and allowed us read.":
+    "无法获取email地址，请确认你的Gitee.com账号已绑定邮箱地址，已验证，并且允许我们读取。",
   // below is on task list page
   "Back to User Center": "返回用户中心",
   "Tasks created by you": "您创建的任务",
