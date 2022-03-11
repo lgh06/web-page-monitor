@@ -30,7 +30,7 @@ async function oauthPostHandler(
       if (String(scope).includes('email')) {
         // ask for emails
         // https://gitee.com/api/v5/swagger#/getV5Emails
-        let resp2 = await fetch(`https://gitee.com/api/v5/emails?access_token=${access_token}1`, {
+        let resp2 = await fetch(`https://gitee.com/api/v5/emails?access_token=${access_token}`, {
           method: 'GET',
         });
         const emailResp = await resp2.json();
