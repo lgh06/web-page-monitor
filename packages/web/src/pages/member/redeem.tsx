@@ -18,8 +18,23 @@ const MemberRedeemPage: NextPage = () => {
   const { t, router, locale } = useI18n();
   const resetRedeemInfo = useResetAtom(redeemInfoAtom);
 
+  let copyMail = (mode) => {
+    let p;
+    if(userInfo.email && typeof window !== 'undefined'){
+      p = navigator.clipboard.writeText(userInfo.email)
+    }
+    if(mode === 1){
+      p.then(() => {
+        alert(t('Copy email success'));
+      }, () => {alert(t('Copy email failed, please select and copy manually.'))})
+    }
+  }
+
   useEffect(()=>{
     resetRedeemInfo()
+    if(userInfo.email && typeof window !== 'undefined'){
+      window.navigator.clipboard.writeText(userInfo.email)
+    }
   },[router]);
 
   function handleInputChange(ev: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -129,44 +144,18 @@ const MemberRedeemPage: NextPage = () => {
   return (
     <main {...cn('redeem')}>
       <details open={locale === 'zh'? true : null}>
-        <summary>{t(`Add points through WeChat Pay`)}</summary>
-        <div>
-          {t(`This payment method is recommended for people in mainland China`)} , &nbsp;
-          {t(`and who use a PC`)}  ({t(`also suitable for mobile users`)}) <br/>
-          1 RMB = 100 points <br/>
-        </div>
-        <div>
-          <button data-btn-index="22" onClick={handleBtnClick} disabled={btnDisabled(2)}>{t(`Click Here`)} {t(`to pay 2 RMB Yuan`)} </button> &nbsp; &nbsp;
-          <button data-btn-index="25" onClick={handleBtnClick} disabled={btnDisabled(2)}>{t(`Click Here`)} {t(`to pay 5 RMB Yuan`)} </button> &nbsp; &nbsp;
-          <button data-btn-index="210" onClick={handleBtnClick} disabled={btnDisabled(2)}>{t(`Click Here`)} {t(`to pay 10 RMB Yuan`)} </button> &nbsp; &nbsp;
-        </div>
-        <div>
-          {
-            redeemInfo.wxPayQrUrl && <>
-              <img {...cn('qr')} src={redeemInfo.wxPayQrUrl} alt="minishop qr code" title="minishop qr code" />
-            </>
-          }
-        </div>
-        <div>
-          {t(`Notice: `)} <br/>
-          {t(`After pay success, please wait 1 minute (avg.) , then go to User Center check if points added.`)} <br/>
-          {t(`If your points not added, after payment, more than 1 hour, please let us know.`)} <br/>
-          {t(`Contact us though email hnnk@qq.com . ( or phone number: +86-17729721992. (Shanghai Timezone, 10:00 - 18:00 only) )`)} <br/>
-          {t(`Please provide email account / pay method / pay time / pay amount / your timezone if you contact us, that will help our checking sooner.`)} <br/>
-        </div>
-      </details>
-      <details open={locale === 'zh'? true : null}>
         <summary>{t(`Add points through WeChat Mini Shop`)}</summary>
         <div>
           {t(`This payment method is recommended for people in mainland China`)} , &nbsp;
-          {t(`and who use a mobile phone`)}  ({t(`also suitable for PC users`)}) <br/>
           10 RMB = 1000 points <br/>
         </div>
         <div>
           1. {t(`Scan below QR code, will open a wechat mini app , then click right bottom circle red button.`)} 
         </div>
-        <div {...cn('bold')} style={{margin: '1rem auto'}}>
-          2. !!!! {t(`At the bottom comment box, type in your email address:`)} {userInfo.email}  !!!!
+        <div {...cn('bold no-select')} style={{margin: '1rem auto'}}>
+          2. !!!! {t(`At the bottom comment box, type in your email address:`)} 
+          <span {...cn('can-select')} onClick={copyMail}>{userInfo.email}</span>  !!!! &nbsp; &nbsp;
+          <button {...cn('copy-mail')} onClick={() => copyMail(1)}>{t(`Copy`)}</button>
         </div>
         <div>
           3. {t(`Fill in a whatever address, and whatever mobile number , in mainland China.`)} <br/>
@@ -185,6 +174,32 @@ const MemberRedeemPage: NextPage = () => {
         <div>
           {t(`Notice: `)} <br/>
           {t(`If you paid an order however forgot to comment your email address, or forget step 5 (click check button), we won't deliver your order and please wait a refund, about 7 days. `)} <br/>
+          {t(`Contact us though email hnnk@qq.com . ( or phone number: +86-17729721992. (Shanghai Timezone, 10:00 - 18:00 only) )`)} <br/>
+          {t(`Please provide email account / pay method / pay time / pay amount / your timezone if you contact us, that will help our checking sooner.`)} <br/>
+        </div>
+      </details>
+      <details open={locale === 'zh'? true : null}>
+        <summary>{t(`Add points through WeChat Pay`)}</summary>
+        <div>
+          {t(`This payment method is recommended for people in mainland China`)} , &nbsp;
+          1 RMB = 100 points <br/>
+        </div>
+        <div>
+          <button data-btn-index="22" onClick={handleBtnClick} disabled={btnDisabled(2)}>{t(`Click Here`)} {t(`to pay 2 RMB Yuan`)} </button> &nbsp; &nbsp;
+          <button data-btn-index="25" onClick={handleBtnClick} disabled={btnDisabled(2)}>{t(`Click Here`)} {t(`to pay 5 RMB Yuan`)} </button> &nbsp; &nbsp;
+          <button data-btn-index="210" onClick={handleBtnClick} disabled={btnDisabled(2)}>{t(`Click Here`)} {t(`to pay 10 RMB Yuan`)} </button> &nbsp; &nbsp;
+        </div>
+        <div>
+          {
+            redeemInfo.wxPayQrUrl && <>
+              <img {...cn('qr')} src={redeemInfo.wxPayQrUrl} alt="minishop qr code" title="minishop qr code" />
+            </>
+          }
+        </div>
+        <div>
+          {t(`Notice: `)} <br/>
+          {t(`After pay success, please wait 1 minute (avg.) , then go to User Center check if points added.`)} <br/>
+          {t(`If your points not added, after payment, more than 1 hour, please let us know.`)} <br/>
           {t(`Contact us though email hnnk@qq.com . ( or phone number: +86-17729721992. (Shanghai Timezone, 10:00 - 18:00 only) )`)} <br/>
           {t(`Please provide email account / pay method / pay time / pay amount / your timezone if you contact us, that will help our checking sooner.`)} <br/>
         </div>

@@ -10,4 +10,14 @@ main.redeem{
   img.qr{
     max-height: min(50vh, 300px);
   }
+  .can-select{
+    user-select: text;
+  }
+  .no-select{
+    user-select: none;
+  }
+  .copy-mail{
+    margin: 0;
+    padding: .4rem .5rem;
+  }
 }
