@@ -55,11 +55,11 @@ const LoginPage: NextPage = () => {
             redirectUri: giteeRedirectUri,
             provider
           });
+          router.replace("/login")
           if(resp.err){
             alert(t(resp.err));
             return;
           }
-          router.replace("/login")
           // TODO error catch and hint
           let { value: { _id, email, emailState, oauthProvider }, jwtToken } = resp;
           setUserInfo((v) => {
