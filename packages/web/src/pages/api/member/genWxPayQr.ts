@@ -31,7 +31,7 @@ async function genWxPayQrHandler(
       'price': amountYuan,
       'order_id': orderId,
       'order_uid': email,
-      'notify_url': 'http://monit.or.passby.me/api/member/wxpaynotify',
+      'notify_url': 'https://www.webpagemonitor.net/api/member/wxpaynotify',
     };
     
     //签名
