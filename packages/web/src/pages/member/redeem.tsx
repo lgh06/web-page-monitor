@@ -94,6 +94,11 @@ const MemberRedeemPage: NextPage = () => {
       let { jsonResult } = resp1;
       if(jsonResult && jsonResult.status && jsonResult.status === 'ok'){
         if(jsonResult.info && jsonResult.info.qr){
+          if(typeof window !== 'undefined' && window.navigator && window.navigator.userAgent){
+            if(String(window.navigator.userAgent).includes('MicroMessenger')){
+              window.location.href = jsonResult.info.qr;
+            }
+          }
           setRedeemInfo(v =>{
             v.wxPayQrUrl = 'https://xorpay.com/qr?data=' + jsonResult.info.qr;
           });
