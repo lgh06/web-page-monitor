@@ -7,8 +7,8 @@ import Layout from '../components/layout'
 // https://nextjs.org/docs/basic-features/layouts
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
+    <Layout {...pageProps}>
+      <Component {...pageProps}  />
     </Layout>
   )
 }

@@ -92,8 +92,15 @@ function Footer() {
   )
 }
 
-export default function Layout({ children }) {
+export default function Layout({ children, statusCode }) {
   let { t } = useI18n();
+  if(statusCode){
+    return (
+      <>
+        {children}
+      </>
+    )
+  }
   return (
     <>
       <Head>

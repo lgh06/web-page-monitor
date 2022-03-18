@@ -49,4 +49,8 @@ in Mac OS `${install_prefix}/etc/rabbitmq/`, ( homebrew's `${install_prefix}` sh
 > https://github.com/lgh06/web-page-monitor/issues/15  (auth and safety)  
 > https://github.com/lgh06/web-page-monitor/issues/16  (production configs)  
 
+## windows trouble shooting  
+https://github.com/docker/for-win/issues/3171#issuecomment-554587817  
+https://stackoverflow.com/questions/65272764/ports-are-not-available-listen-tcp-0-0-0-0-50070-bind-an-attempt-was-made-to  
+
 
