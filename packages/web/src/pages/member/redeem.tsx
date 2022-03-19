@@ -217,7 +217,7 @@ const MemberRedeemPage: NextPage = () => {
         </div>
         <div>
           {t(`You can get a coupon code by sending cash to `)}
-          <a href="https://www.paypal.com/paypalme/lgh06" target="_blank" rel="noopener noreferrer">PayPal</a><br/>
+          <a href="https://www.paypal.com/paypalme/lgh06" target="_blank" rel="noopener noreferrer nofollow">PayPal</a><br/>
           {t(`You should comment your email address while send payments or email us to hnnk@qq.com after paid, then we can send a coupon code to your email, manually.`)} <br/>
         </div>
       </details>

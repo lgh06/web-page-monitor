@@ -67,7 +67,7 @@ function Footer() {
   return (
     <>
       <footer className={styles.footer}>
-        <a href={copyRightURL} target="_blank" rel="noopener noreferrer">
+        <a href={copyRightURL} target="_blank" rel="noopener noreferrer nofollow">
           <span>{copyRightText}</span>
         </a>
         {/**

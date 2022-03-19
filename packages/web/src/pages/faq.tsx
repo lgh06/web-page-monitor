@@ -40,7 +40,7 @@ const FaqPage: NextPage = () => {
         so you can monitor any URL you want, on the cloud, or on your local computer</p>
       <h2 id="WhatIsACronSyntaxCronPattern"> What Is A Cron Syntax / Cron Pattern ?</h2>
       <p>We used <code>node-cron</code> inside to parse cron patterns / syntax, go to  &nbsp;
-        <a target="_blank" rel="noreferrer" href="https://github.com/kelektiv/node-cron/blob/master/README.md#available-cron-patterns">https://github.com/kelektiv/node-cron/blob/master/README.md#available-cron-patterns</a>
+        <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/kelektiv/node-cron/blob/master/README.md#available-cron-patterns">https://github.com/kelektiv/node-cron/blob/master/README.md#available-cron-patterns</a>
         &nbsp; for some clues.  (// Add more explanations here)
         </p>
         <p>Also, we do not support <code>/</code> showing in cron syntax, because we run tasks in distributed / decentralized
