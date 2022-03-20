@@ -109,26 +109,26 @@ export default function Layout({ children, statusCode }) {
         <meta name="description" content={t(`Web Site Page Changes Monitor,Cloud watch web updates,with custom scripts`)} />
         <link rel="icon" href="/favicon.ico" />
         <meta name="msvalidate.01" content="F18D53D95B52E2C08B800882D9946CA0" />
+        <script defer id="bd1"
+          dangerouslySetInnerHTML={{
+            __html: `var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.setAttribute("defer", true);
+              hm.src = "https://hm.baidu.com/hm.js?155feb4af4ff86279f1fb8e01eebc1e6";
+              document.body.appendChild(hm);
+            })();`,
+          }}/>
       </Head>
       <Script defer id="gtag1"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-PTKMFSF');`,
         }}/>
-      <script defer id="bd1"
-        dangerouslySetInnerHTML={{
-          __html: `var _hmt = _hmt || [];
-          (function() {
-            var hm = document.createElement("script");
-            hm.setAttribute("defer", true);
-            hm.src = "https://hm.baidu.com/hm.js?155feb4af4ff86279f1fb8e01eebc1e6";
-            document.body.appendChild(hm);
-          })();`,
-        }}/>
       <NavHeader />
       {children}
       <Footer />
-      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PTKMFSF"height="0" width="0" style={{display:'none',visibility:'hidden'}}></iframe></noscript>
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PTKMFSF" height="0" width="0" style={{display:'none',visibility:'hidden'}}></iframe></noscript>
     </>
   )
 }
