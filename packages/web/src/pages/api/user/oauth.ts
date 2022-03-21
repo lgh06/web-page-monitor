@@ -14,13 +14,16 @@ async function oauthPostHandler(
   res: NextApiResponse
 ) {
 
-  const { code, redirectUri, provider } = req.body;
+  const { code, redirectUri, provider, ua } = req.body;
   // if we have code, then ask for access_token
   if(provider === 'gitee'){
     try {
       // https://gitee.com/api/v5/oauth_doc#/list-item-2
       let resp = await fetch(`https://gitee.com/oauth/token?grant_type=authorization_code&code=${code}&client_id=${CONFIG.giteeOauthClientId}&redirect_uri=${redirectUri}`, {
         method: 'POST',
+        headers:{
+          'User-Agent': ua || 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.82 Safari/537.36',
+        },
         body: new URLSearchParams(`client_secret=${CONFIG.giteeOauthClientSecret}`)
       });
       const data = await resp.json();
@@ -34,6 +37,7 @@ async function oauthPostHandler(
           method: 'GET',
         });
         const emailResp = await resp2.json();
+        console.log(emailResp)
         // emailResp, array, may have multiple emailResp
         if (emailResp && emailResp.length && emailResp[0] && emailResp[0].email) {
           // TODO save to db and generate jwt
