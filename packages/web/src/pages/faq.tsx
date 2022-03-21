@@ -32,7 +32,7 @@ const FaqPage: NextPage = () => {
       }
     `}</style>
     <div className={highlight}>
-      <h1>FAQ // TODO 中文版</h1>
+      <h1>FAQ</h1>
       <h2 id="WhatCanThisSiteDo"> What Can This Site Do?</h2>
       <p>Watch / Monitor a web page&apos;s changes, send you a email alert, or phone call alert (Work in Progress).</p>
       <h2> Why should I choose your service, not choose A,B,C...?</h2>

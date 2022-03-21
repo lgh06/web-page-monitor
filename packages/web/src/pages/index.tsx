@@ -39,7 +39,7 @@ const Home: NextPage = () => {
             {t(`Welcome`)}, {userInfo.email} <br/>
             <Link href="/login"><a>{t('Go to User Center')}</a></Link>
           </>):(<>
-            {t('Welcome to Web Page Monitor')}!!<br/>
+            {t('Welcome to Web Page Monitor')}!! <span style={{zoom: .45}}>alpha</span> <br/>
             {t('Please')} <Link href="/login"><a>{t('Login')}</a></Link>
             </>)}
         </h1>

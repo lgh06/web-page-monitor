@@ -8,7 +8,8 @@ import { useI18n, genClassNameAndString } from '../helpers'
 import nextConfig from "../../next.config"
 import { userInfoAtom } from '../atoms';
 import { useImmerAtom } from 'jotai/immer'
-import { useEffect, useState, FunctionComponent } from 'react'
+import { useEffect, useState } from 'react'
+import type { FunctionComponent } from 'react'
 
 type Props = {
   test?: string
@@ -45,6 +46,11 @@ const NavHeader: FunctionComponent<Props> = ({ test }) => {
         <li>
           <Link href="/faq">
             <a>{t(`FAQ`)}</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/about">
+            <a>{t(`About`)}</a>
           </Link>
         </li>
       </ul>

@@ -12,7 +12,9 @@ import styles from '../styles/modules/login.module.scss';
 
 const Back = () => {
   let { t } = useI18n();
-  return (<div>
+  return (<div style={{
+    marginTop: '.3rem',
+  }}>
         <Link href="/"><a {...cn('link')}>{t(`Go Back to home`)}</a></Link>
     </div>)
 }
@@ -145,8 +147,9 @@ const LoginPage: NextPage = () => {
   } else {
     res = (<main>
         <a {...cn('link')} href={url}>{t(`Login with Gitee.com OAuth`)}</a>
+        
         {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
-        <div>// TODO other OAuth login providers</div>
+        {/* <div>// TODO other OAuth login providers</div> */}
         <Back/>
       </main>
     )

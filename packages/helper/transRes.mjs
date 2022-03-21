@@ -1,4 +1,6 @@
 let trans = {
+  // below is global nav
+  "About":"关于",
   // Below is global login alert
   "Your session has expired, please login again.":"你的登录状态过期，请重新登录。",
   "You need to login first.":"需要登录",
