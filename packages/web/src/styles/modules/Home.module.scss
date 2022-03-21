@@ -10,6 +10,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  h1{
+    span> br:nth-of-type(1){
+      @media screen and (min-width: 500px) {
+        display: none;
+      }
+    }
+    span> br:nth-of-type(2){
+      @media screen and (min-width: 370px) {
+        display: none;
+      }
+    }
+  }
 }
 
 .footer {
@@ -32,7 +44,7 @@
   margin: 0;
   line-height: 1.15;
   font-size: 3rem;
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 840px) {
     font-size: 1.8rem;
   }
   > a{
@@ -86,6 +98,9 @@
 .card h2 {
   margin: 0 0 1rem 0;
   font-size: 1.5rem;
+  @media screen and (max-width: 840px) {
+    font-size: 1.2rem;
+  }
 }
 
 .card p {

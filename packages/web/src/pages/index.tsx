@@ -3,7 +3,7 @@ import Head from 'next/head'
 // import Image from 'next/image'
 import styles from '../styles/modules/Home.module.scss'
 import Link from 'next/link'
-import { useHeadTitle, useI18n } from '../helpers'
+import { innerHTML, useHeadTitle, useI18n } from '../helpers'
 import { useEffect } from 'react'
 import { userInfoAtom } from '../atoms'
 import { useImmerAtom } from 'jotai/immer'
@@ -37,7 +37,7 @@ const Home: NextPage = () => {
             {t(`Welcome`)}, {userInfo.email} <br/>
             <Link href="/login"><a>{t('Go to User Center')}</a></Link>
           </>):(<>
-            {t('Welcome to Web Page Monitor')}!! <span style={{zoom: .45}}>alpha</span> <br/>
+            <span {...innerHTML(t('Welcome to Web Page Monitor'))}></span> <span style={{zoom: .45}}>alpha</span> <br/>
             {t('Please')} <Link href="/login"><a>{t('Login')}</a></Link>
             </>)}
         </h1>
