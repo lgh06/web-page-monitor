@@ -18,12 +18,57 @@ const AboutPage: NextPage = () => {
     <div {...cn('about-page')}>
       {
         locale === 'en' ? <>
-          <h1>About</h1>
-          <h2> What Can This Site Do?</h2>
-          <p>Watch / Monitor a web page&apos;s changes. <br/> If one page changes or one word you specify shows up,
-            then send you a email alert, or phone call alert (Work in Progress).</p>
-          {/* @ts-ignore */}
-          <a onClick={clickGoBack(router)}>Go back</a>
+        <h1>About</h1>
+        <h2> What Can this site do?</h2>
+        <p>Monitor / detect a web page changes continuously, at least ten minutes&apos; intervals, <b>on cloud</b>.<br/> Send email alerts or phone alerts (under development) if a web page changes or a specified keyword appears.</p>
+        <h2>Give me the scenarios / use cases please ?</h2>
+        <p>The application scenario is very wide. Theoretically supports detecting any publicly available web page. (Detection of web pages that require login to view is under development)
+          <ul>
+            <li>Check if a job site has posted a new job.</li>
+            <li>Check if a website has new information on tender announcements and bid winning announcements.</li>
+            <li>Check if a certain examination website has released the results to avoid waiting for a long time.</li>
+          </ul>
+        </p>
+        <h2>Differences and advantages compared to other websites? <br/> Why should I choose you ? </h2>
+        <p>Main advantages:
+          <ul>
+            <li>
+            Cloud detection, <b>no</b> always open PC anymore, save on electricity costs. If turn on your own computer for a month, the electricity bill is far greater than $1!
+            </li>
+            <li>Cheap and affordable. 80 free checks per month; minimum top-up of 1 US dollar to get 500 checks.<br/>
+              The minimum detection interval is currently 10 minutes for both free and paid users。
+            </li>
+            <li>Just click the mouse, enter the URL and fill in a few options. <b>No</b> need to install various software plug-ins on this machine.
+            </li>
+            <li>Developers are Chinese, responding quickly to various issues and developing and updating versions quickly.</li>
+            <li>Servers are currently deployed within China mainland for now, which allows for faster and more accurate web updates due to low network latency and fewer detection failures compared to similar services abroad. (Multiple detection server locations and global detection servers, are under development)
+            </li>
+            <li>
+              Adopt various ways to avoid false alarms and excessive disturbance and improve mail delivery rate:
+              <ol>
+                <li>Support setting CSS element selector to detect web changes only in specified areas to avoid false alerts</li>
+                <li>Supports using CSS element selectors again to remove unwanted elements and adapt to more complex pages within the above specified area.&nbsp;See also: &nbsp;
+                  <Link href="/faq#WhatIsEraserScript">
+                    <a>Eraser Script</a>
+                  </Link>
+                </li>
+                <li>Support for using regular expressions to remove unwanted information or formatting results after the page content has been fetched (after above two steps).&nbsp;See also: &nbsp;
+                  <Link href="/faq#WhatIsEraserScript">
+                    <a>Eraser Script</a>
+                  </Link>
+                </li>
+                <li>Email alerts for the same task are sent up to once every 6 hours by default.(The ability to customize the frequency of email notifications is under development)</li>
+                <li>Use Amazon AWS and AliCloud email delivery services to improve email delivery rates and avoid mails going to spam.</li>
+              </ol>
+            </li>
+            <li>
+            The project is open source, but commercial and profit-making activities are prohibited. ( For commercial and deployment support, please contact the developer. 
+              For detailed license agreements see the License information at the following link: )<br/>
+              Github  Link： <a href="https://github.com/lgh06/web-page-monitor" target="_blank" rel="noopener noreferrer">here</a><br/>
+              Coding Link： <a href="https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git" target="_blank" rel="noopener noreferrer">here</a>
+            </li>
+          </ul>
+        </p>
         </> : null
       }
       {
@@ -69,7 +114,7 @@ const AboutPage: NextPage = () => {
                     <a>橡皮脚本</a>
                   </Link>
                 </li>
-                <li>邮件提醒默认6小时发送一次。（自定义邮件通知频率的功能正在开发中）</li>
+                <li>同一任务的邮件提醒，默认每6小时最多发送一次。（自定义邮件通知频率的功能正在开发中）</li>
                 <li>使用亚马逊AWS和阿里云的邮件发送服务，提升邮件送达率，避免垃圾邮件误报。</li>
               </ol>
             </li>
@@ -82,7 +127,7 @@ const AboutPage: NextPage = () => {
           </ul>
         </p>
         {/* @ts-ignore */}
-        <a onClick={clickGoBack(router)}>Go back</a>
+        {/* <a onClick={clickGoBack(router)}>Go back</a> */}
         
         </> : null
       }
