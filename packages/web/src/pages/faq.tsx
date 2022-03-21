@@ -2,12 +2,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { NextPage } from "next/types";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { clickGoBack } from "../helpers";
+import { clickGoBack, useHeadTitle } from "../helpers";
 
 const FaqPage: NextPage = () => {
   let router = useRouter()
   let [highlight, setHighlight] = useState('');
-  let [hash, setHash] = useState('')
+  let [hash, setHash] = useState('');
+  let headTitle = useHeadTitle('FAQ');
   useLayoutEffect(() => {
     if(window?.location.hash){
       setHash(String(window.location.hash));
@@ -31,6 +32,7 @@ const FaqPage: NextPage = () => {
         background-color: lightpink;
       }
     `}</style>
+    {headTitle}
     <div className={highlight}>
       <h1>FAQ</h1>
       <h2 id="WhatCanThisSiteDo"> What Can This Site Do?</h2>

@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie'
+import Head from 'next/head';
 
 export function useI18n(){
   const { t: originT, i18n } = useTranslation();
@@ -26,4 +27,13 @@ export function useI18n(){
   }
   
   return { t, i18n, router, locale, isReady, hostName }
+}
+
+export function useHeadTitle(titleName = ""){
+  const { t, router, locale } = useI18n();
+  return (
+    <Head>
+    <title>{ t(titleName) + '-' + t(`Web Site Page Changes Monitor`)}</title>
+    </Head>
+  )
 }

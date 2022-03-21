@@ -14,7 +14,7 @@ import { useResetAtom } from 'jotai/utils'
 import Head from 'next/head'
 import styles from '../../../styles/modules/market.module.scss'
 import Link from 'next/link'
-import { useI18n,genClassNameAndString, fetchAPI, useAPI, innerHTML } from '../../../helpers'
+import { useI18n,genClassNameAndString, fetchAPI, useAPI, innerHTML, useHeadTitle } from '../../../helpers'
 import Cookies from 'js-cookie'
 import nextConfig from "../../../../next.config"
 
@@ -33,7 +33,7 @@ const Market: NextPage = () => {
   const [scriptDetail, setScriptDetail] = useImmerAtom(createScriptDetailAtom);
   const resetScriptDetail = useResetAtom(createScriptDetailAtom)
   const resetEditorValue = useResetAtom(monacoEditorAtom)
-
+  let headTitle = useHeadTitle('Edit Script');
 
   // update input date when first entry
   async function firstInit() {
@@ -150,6 +150,7 @@ const Market: NextPage = () => {
   }
   return (
     <main>
+      {headTitle}
       <div>
         <Link href={ '/market/script/list'}>
           <a>{ t(`Go back to Market home`)}</a>

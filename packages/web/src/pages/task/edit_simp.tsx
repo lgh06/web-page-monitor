@@ -6,7 +6,7 @@ import { useResetAtom, RESET } from 'jotai/utils'
 
 import { createTaskDetailAtom, monacoEditorAtom, userInfoAtom } from '../../atoms';
 import { CronTime } from '@webest/web-page-monitor-helper';
-import { fetchAPI, useI18n, innerHTML, mergeToTarget } from "../../helpers/index";
+import { fetchAPI, useI18n, innerHTML, mergeToTarget, useHeadTitle } from "../../helpers/index";
 import Link from "next/link";
 
 
@@ -21,6 +21,8 @@ const TaskEditSimpPage: NextPage = () => {
   const [userInfo, setUserInfo] = useImmerAtom(userInfoAtom);
   const { t, router } = useI18n();
   const resetTaskDetail = useResetAtom(createTaskDetailAtom)
+  let headTitle = useHeadTitle('Edit Task');
+
 
   // update input date when first entry
   async function firstInit() {
@@ -197,6 +199,7 @@ const TaskEditSimpPage: NextPage = () => {
   }
   
   return (<main>
+    {headTitle}
     <style jsx>{`
       div > input + a {
         margin-left: 3em;

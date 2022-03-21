@@ -3,9 +3,7 @@ import Head from 'next/head'
 // import Image from 'next/image'
 import styles from '../styles/modules/Home.module.scss'
 import Link from 'next/link'
-import { useI18n } from '../helpers'
-import Cookies from 'js-cookie'
-import nextConfig from "../../next.config"
+import { useHeadTitle, useI18n } from '../helpers'
 import { useEffect } from 'react'
 import { userInfoAtom } from '../atoms'
 import { useImmerAtom } from 'jotai/immer'
@@ -21,9 +19,8 @@ const Home: NextPage = () => {
       router.push('/login' + queryString);
     }
   }, [router.query])
-  let switchLanguage = (lang: string) => {
-    Cookies.set('NEXT_LOCALE', lang, { expires: 365 });
-  }
+
+  let headTitle = useHeadTitle('Home Page');
   return (
     <div>
       <Head>
@@ -32,6 +29,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" /> */}
         <meta name="msvalidate.01" content="F18D53D95B52E2C08B800882D9946CA0" />
       </Head>
+      {headTitle}
 
       <main className={styles.main}>
         <h1 className={styles.title}>

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { NextPage } from "next/types";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { clickGoBack, genClassNameAndString } from "../helpers";
+import { clickGoBack, genClassNameAndString, useHeadTitle } from "../helpers";
 import styles from "../styles/modules/about.module.scss";
 
 const [cn,cs] = genClassNameAndString(styles);
@@ -11,10 +11,13 @@ const [cn,cs] = genClassNameAndString(styles);
 const AboutPage: NextPage = () => {
   let router = useRouter();
   let { locale } = router;
+  let headTitle = useHeadTitle('About');
+
   useLayoutEffect(() => {
 
   })
   return (<>
+    {headTitle}
     <div {...cn('about-page')}>
       {
         locale === 'en' ? <>

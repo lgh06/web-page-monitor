@@ -4,7 +4,7 @@ import { useImmerAtom } from 'jotai/immer';
 import { useResetAtom } from 'jotai/utils'
 import { monacoEditorAtom, redeemInfoAtom, userInfoAtom } from '../../atoms';
 import { CronTime } from '@webest/web-page-monitor-helper';
-import { fetchAPI, useI18n, innerHTML, verifyJwt, genClassNameAndString } from "../../helpers/index";
+import { fetchAPI, useI18n, innerHTML, verifyJwt, genClassNameAndString, useHeadTitle } from "../../helpers/index";
 import Link from "next/link";
 import { ScriptList } from "../../components/scriptList";
 import { useRouter } from "next/router";
@@ -17,6 +17,7 @@ const MemberRedeemPage: NextPage = () => {
   const [userInfo, setUserInfo] = useImmerAtom(userInfoAtom);
   const { t, router, locale } = useI18n();
   const resetRedeemInfo = useResetAtom(redeemInfoAtom);
+  let headTitle = useHeadTitle('Redeem');
 
   let copyMail = (mode) => {
     let p;
@@ -148,6 +149,7 @@ const MemberRedeemPage: NextPage = () => {
   }
   return (
     <main {...cn('redeem')}>
+      {headTitle}
       <details open={locale === 'zh'? true : null}>
         <summary>{t(`Add points through WeChat Mini Shop`)}</summary>
         <div>

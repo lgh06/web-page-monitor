@@ -4,7 +4,7 @@ import { useImmerAtom } from 'jotai/immer';
 import { useResetAtom } from 'jotai/utils'
 import { createTaskDetailAtom, monacoEditorAtom, userInfoAtom } from '../../atoms';
 import { CronTime } from '@webest/web-page-monitor-helper';
-import { fetchAPI, useI18n, innerHTML } from "../../helpers/index";
+import { fetchAPI, useI18n, innerHTML, useHeadTitle } from "../../helpers/index";
 import Link from "next/link";
 import { ScriptList } from "../../components/scriptList";
 import { useRouter } from "next/router";
@@ -14,7 +14,9 @@ const TaskListSimpPage: NextPage = () => {
 
   const [taskDetail, setTaskDetail] = useImmerAtom(createTaskDetailAtom);
   const [userInfo, setUserInfo] = useImmerAtom(userInfoAtom);
-  const resetTaskDetail = useResetAtom(createTaskDetailAtom)
+  const resetTaskDetail = useResetAtom(createTaskDetailAtom);
+  let headTitle = useHeadTitle('Task List');
+
 
   const { t } = useI18n();
   const router = useRouter();
@@ -76,6 +78,7 @@ const TaskListSimpPage: NextPage = () => {
   ],[]);
 
   return (<>
+    {headTitle}
     <main>
       <div>
         <Link href="/login">

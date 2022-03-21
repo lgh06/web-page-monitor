@@ -5,7 +5,7 @@ import { ParsedUrlQuery } from 'querystring';
 import { CONFIG } from '../../CONFIG';
 import { useImmerAtom } from 'jotai/immer';
 import { userInfoAtom } from '../atoms';
-import { useAPI, useI18n, fetchAPI, genClassNameAndString, logOut } from '../helpers';
+import { useAPI, useI18n, fetchAPI, genClassNameAndString, logOut, useHeadTitle } from '../helpers';
 import Link from 'next/link';
 import styles from '../styles/modules/login.module.scss';
 
@@ -32,6 +32,7 @@ const LoginPage: NextPage = () => {
   const [giteeRedirectUri, setGiteeRedirectUri] = useState('');
   const [url, setUrl] = useState('');
 
+  let headTitle = useHeadTitle(userInfo.logged ? 'User Center' : 'Login');
   /**
    * get user info from gitee
    */
@@ -106,6 +107,7 @@ const LoginPage: NextPage = () => {
 
   if (userInfo.logged) {
     res = (<main>
+      {headTitle}
       <Back/><br />
       <div>
         {t(`Welcome`)}, {userInfo.email} 
@@ -146,6 +148,7 @@ const LoginPage: NextPage = () => {
     )
   } else {
     res = (<main>
+        {headTitle}
         <a {...cn('link')} href={url}>{t(`Login with Gitee.com OAuth`)}</a>
         
         {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}

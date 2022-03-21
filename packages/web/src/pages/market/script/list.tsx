@@ -7,7 +7,7 @@ import { useImmerAtom } from 'jotai/immer';
 import Head from 'next/head'
 import styles from '../../../styles/modules/market.module.scss'
 import Link from 'next/link'
-import { useI18n,genClassNameAndString, fetchAPI, useAPI } from '../../../helpers'
+import { useI18n,genClassNameAndString, fetchAPI, useAPI, useHeadTitle } from '../../../helpers'
 import {  ScriptList } from '../../../components/scriptList';
 import Cookies from 'js-cookie'
 import nextConfig from "../../../../next.config"
@@ -19,6 +19,7 @@ const Market: NextPage = () => {
   let [cn, cs] = genClassNameAndString(styles);
   const [userInfo] = useImmerAtom(userInfoAtom);
   const [scriptDetail, setScriptDetail] = useImmerAtom(createScriptDetailAtom);
+  let headTitle = useHeadTitle('Script Market');
 
 
   // update input date when first entry
@@ -130,6 +131,7 @@ const Market: NextPage = () => {
 
   return (
     <main>
+      {headTitle}
       <div>
         <Link href="/task/edit_simp">
           <a>{t('Back to create task simple mode')}</a>

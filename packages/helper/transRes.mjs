@@ -1,4 +1,9 @@
 let trans = {
+  // below is every page's title
+  "Home Page":"首页",
+  "Edit Script":"编辑脚本",
+  "Edit Task":"编辑任务",
+  "Redeem":"充值点数",
   // below is global nav
   "About":"关于",
   // Below is global login alert
