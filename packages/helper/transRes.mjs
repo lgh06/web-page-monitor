@@ -7,7 +7,7 @@ let trans = {
   "Web Site Page Changes Monitor":"网站网页页面更新变动监控提醒",
   "Web Site Page Changes Monitor,Cloud watch web updates,with custom scripts":"网站网页页面更新变更监控提醒，云端监控网页变动更新",
   // Below is on home page
-  "Welcome to Web Page Monitor": "欢迎使用网页变动通知系统",
+  "Welcome to Web Page Monitor": "欢迎使用网页变动检测通知系统",
   "Web Page Monitor": "网页变动通知系统",
   "Please": "请",
   "Login": "登录",
