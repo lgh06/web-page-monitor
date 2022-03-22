@@ -82,11 +82,13 @@ async function _postHandler(
     // TODO MongDB authentication and authorization
     // create different users and passwords and roles
     // TODO below index should be deleted once we have first user.
-    db.collection("task").createIndex({ endTime: 1 }, { expireAfterSeconds: 3600 * 24 * 130 });
+    // keep task for 60 days after endTime
+    db.collection("task").createIndex({ endTime: 1 }, { expireAfterSeconds: 3600 * 24 * 60 });
     db.collection("task").createIndex({ nextExecuteTime: 1, endTime: 1, });
     db.collection("task").createIndex({ userId: 1, endTime: -1, });
     db.collection("taskHistory").createIndex({ taskId: 1, finishTime: -1 });
-    db.collection("taskHistory").createIndex({ finishTime: 1 }, { expireAfterSeconds: 3600 * 24 * 130 });
+    // keep taskHistory for 30 days after finishTime
+    db.collection("taskHistory").createIndex({ finishTime: 1 }, { expireAfterSeconds: 3600 * 24 * 30 });
   }
   let userTaskCount = await db.collection("task").countDocuments({
     userId,
