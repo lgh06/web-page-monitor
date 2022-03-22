@@ -13,9 +13,6 @@ const AboutPage: NextPage = () => {
   let { locale } = useI18n();
   let headTitle = useHeadTitle('About');
 
-  useLayoutEffect(() => {
-
-  })
   return (<>
     {headTitle}
     <div {...cn('about-page')}>
