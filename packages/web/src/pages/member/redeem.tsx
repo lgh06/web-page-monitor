@@ -215,7 +215,7 @@ const MemberRedeemPage: NextPage = () => {
         <summary>{t(`Buy a coupon code through PayPal`)}</summary>
         <div>
           {t(`This payment method is recommended for people outside mainland China.`)} <br/>
-          1 US dollar = 600 points <br/>
+          1 US dollar = 500 points <br/>
         </div>
         <div>
           {t(`You can get a coupon code by sending cash to `)}
@@ -227,7 +227,7 @@ const MemberRedeemPage: NextPage = () => {
         <summary>{t(`Add points through a coupon code`)}</summary>
         <div>
           {t(`This payment method is recommended for people outside mainland China.`)} <br/>
-          1 US dollar = 600 points <br/>
+          1 US dollar = 500 points <br/>
 
         </div>
         <div>
