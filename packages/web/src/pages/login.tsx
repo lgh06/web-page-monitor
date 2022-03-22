@@ -21,7 +21,7 @@ const Back = () => {
 
 let [cn, cs] = genClassNameAndString(styles);
 const LoginPage: NextPage = () => {
-  let { t } = useI18n();
+  let { t, locale } = useI18n();
   let genUrl = (giteeRedirectUri: string) => {
     return `https://gitee.com/oauth/authorize?client_id=${CONFIG.giteeOauthClientId}&redirect_uri=${encodeURIComponent(giteeRedirectUri)}&response_type=code`;
   }
@@ -38,7 +38,6 @@ const LoginPage: NextPage = () => {
    */
   useEffect(() => {
     let { code, provider } = router.query;
-    let { locale } = router;
     if(typeof window !== 'undefined'){
       let { origin } = window.location;
       let fullUri = `${origin}${router.basePath}?provider=gitee`;

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { NextPage } from "next/types";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { clickGoBack, genClassNameAndString, useHeadTitle } from "../helpers";
+import { clickGoBack, genClassNameAndString, useHeadTitle, useI18n } from "../helpers";
 import styles from "../styles/modules/about.module.scss";
 
 const [cn,cs] = genClassNameAndString(styles);
@@ -10,7 +10,7 @@ const [cn,cs] = genClassNameAndString(styles);
 
 const AboutPage: NextPage = () => {
   let router = useRouter();
-  let { locale } = router;
+  let { locale } = useI18n();
   let headTitle = useHeadTitle('About');
 
   useLayoutEffect(() => {
@@ -32,6 +32,7 @@ const AboutPage: NextPage = () => {
             <li>Check if a job site has posted a new job.</li>
             <li>Check if a website has new information on tender announcements and bid winning announcements.</li>
             <li>Check if a certain examination website has released the results to avoid waiting for a long time.</li>
+            <li>And so on.</li>
           </ul>
         </p>
         <h2>Differences and advantages compared to other websites? <br/> Why should I choose you ? </h2>
@@ -85,11 +86,12 @@ const AboutPage: NextPage = () => {
           <br/> 另请参阅 <Link href="/faq"><a>常见问题</a></Link> 页面。
         </p>
         <h2> 主要应用场景是什么? 举个例子？ </h2>
-        <p>应用场景非常广泛。理论上支持检测任何公开的网页。(检测需要登录后才能查看的网页，正在开发中)
+        <p>理论上支持检测任何公开的网页（检测需要登录后才能查看的网页，功能正在开发中）。应用场景非常广泛， 比如： 
           <ul>
-            <li>查看某招聘网站有没有发新的招聘信息</li>
-            <li>查看某网站是不是有了新的招标公告、投标中标公告信息。</li>
-            <li>查看某考试网站是不是发布了成绩，避免苦苦等待，漫漫无期。</li>
+            <li>查看某招聘网站有没有发新的招聘信息；</li>
+            <li>查看某网站是不是有了新的招标公告、投标中标公告信息；</li>
+            <li>查看某考试网站是不是发布了成绩，避免苦苦等待，漫漫无期；</li>
+            <li>等等其他你需要查看网页更新/变动的场景。</li>
           </ul>
         </p>
         <h2> 与其他网站相比有什么不同与优势? 为什么选择我们的服务？ </h2>

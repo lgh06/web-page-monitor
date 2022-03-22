@@ -76,16 +76,16 @@ function Footer() {
          * 
          * when static export, any language no prefix, just do a js language switch
          * 
-         * static export default language is en
+         * static export default language is defined in .env.production
          */}
         <Link 
-          href={'/zh'} 
-          locale={false}>
+          href={process.env.NEXT_PUBLIC_export_lang ? '/' : ""}
+          locale={process.env.NEXT_PUBLIC_export_lang ? false : "zh"}>
           <a onClick={() => switchLanguage('zh')}>简体中文</a>
         </Link>
         <Link 
-          href={'/'}
-          locale={false}>
+          href={process.env.NEXT_PUBLIC_export_lang ? '/' : ""}
+          locale={process.env.NEXT_PUBLIC_export_lang ? false : "en"}>
           <a onClick={() => switchLanguage('en')}>English</a>
         </Link>
       </footer>

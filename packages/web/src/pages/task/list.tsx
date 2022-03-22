@@ -18,7 +18,7 @@ const TaskListSimpPage: NextPage = () => {
   let headTitle = useHeadTitle('Task List');
 
 
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const router = useRouter();
 
   // update input date when first entry
@@ -75,7 +75,7 @@ const TaskListSimpPage: NextPage = () => {
         )
       }
     },
-  ],[]);
+  ],[locale]);
 
   return (<>
     {headTitle}

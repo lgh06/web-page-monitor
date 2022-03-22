@@ -2,11 +2,11 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { NextPage } from "next/types";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { clickGoBack, useHeadTitle } from "../helpers";
+import { clickGoBack, useHeadTitle, useI18n } from "../helpers";
 
 const FaqPage: NextPage = () => {
   let router = useRouter();
-  let { locale } = router;
+  let { locale } = useI18n();
   let [highlight, setHighlight] = useState('');
   let [hash, setHash] = useState('');
   let headTitle = useHeadTitle('FAQ');
