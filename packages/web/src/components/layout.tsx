@@ -131,7 +131,7 @@ export default function Layout({ children, statusCode }) {
         <Script defer id="tct2"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
-          __html: `(typeof window !=='undefined' && document.getElementById('tct1') ) ? document.getElementById('tct1').onload = () => {window.aegis = new Aegis({id: 'Ll387HjmVom9LP6Yv0',reportApiSpeed: true, reportAssetSpeed: true, spa: true})} : null`,
+          __html: `(typeof window !=='undefined' && document.getElementById('tct1') ) ? document.getElementById('tct1').onload = () => {window.aegis = new Aegis({id: 'Ll387HjmVom9LP6Yv0',reportApiSpeed: true, reportAssetSpeed: true, spa: true, delay: 10000})} : null`,
         }}/>
       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PTKMFSF" height="0" width="0" style={{display:'none',visibility:'hidden'}}></iframe></noscript>
     </>
