@@ -123,6 +123,7 @@ export default function Layout({ children, statusCode }) {
         }}/>
       <Script defer id="tct1"
         strategy="afterInteractive"
+        crossOrigin="anonymous"
         src="https://cdn-go.cn/aegis/aegis-sdk/latest/aegis.min.js"
         />
         <Script defer id="tct2"
