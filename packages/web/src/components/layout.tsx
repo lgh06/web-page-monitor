@@ -116,7 +116,6 @@ export default function Layout({ children, statusCode }) {
       {children}
       <Footer />
       <Script defer id="bd1"
-      crossOrigin='anonymous'
         src='https://hm.baidu.com/hm.js?155feb4af4ff86279f1fb8e01eebc1e6'
         strategy="afterInteractive"/>
       <Script defer id="gtag1"
