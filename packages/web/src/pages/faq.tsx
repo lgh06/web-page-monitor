@@ -48,12 +48,12 @@ const FaqPage: NextPage = () => {
         <h1>FAQ</h1>
         <h2 id="WhatCanThisSiteDo"> What Can This Site Do?</h2>
         <p>Watch / Monitor a web page&apos;s changes, send you a email alert, or phone call alert (Work in Progress).
-          <br/> See also <Link href="/about"><a>About</a></Link> page.
+          <br/> See also <Link prefetch={false} href="/about"><a>About</a></Link> page.
         </p>
         <h2> Why should I choose your service, not choose A,B,C...?</h2>
         <p>Open Source, affordable, and we use modern techniques like Headless Chromium, 
           so you can monitor any URL you want, on the cloud, or on your local computer.
-          <br/> See also <Link href="/about"><a>About</a></Link> page.
+          <br/> See also <Link prefetch={false} href="/about"><a>About</a></Link> page.
         </p>
         <h2 id="WhatIsACronSyntaxCronPattern"> What Is A Cron Syntax / Cron Pattern ?</h2>
         <p>We used <code>node-cron</code> inside to parse cron patterns / syntax, go to  &nbsp;
@@ -95,7 +95,7 @@ const FaqPage: NextPage = () => {
         <p>
           Global users can charge points in a indirect way, for now.  <br/>
           You can use a coupon code to redeem more points.<br/>
-          See details on our <Link href="/member/redeem"><a>Redeem Page</a></Link>
+          See details on our <Link prefetch={false} href="/member/redeem"><a>Redeem Page</a></Link>
         </p>
         </> : null
       }
@@ -104,12 +104,12 @@ const FaqPage: NextPage = () => {
         <h1>常见问题</h1>
         <h2 id="WhatCanThisSiteDo"> 这个网站能做什么？</h2>
         <p>监控/检测一个网页的变化，向你发送电子邮件提醒，或电话提醒（开发中）。
-          <br/> 另请参阅 <Link href="/about"><a>关于</a></Link> 页面。
+          <br/> 另请参阅 <Link prefetch={false} href="/about"><a>关于</a></Link> 页面。
         </p>
         <h2> 为什么我应该选择你的服务，而不是选择其他服务商？</h2>
         <p>开源，价格合理，我们使用现代技术，如Headless Chromium。
           所以你可以在云端或通过本地部署源码，来监控/检测你想要的任何URL。
-          <br/> 另请参阅 <Link href="/about"><a>关于</a></Link> 页面。
+          <br/> 另请参阅 <Link prefetch={false} href="/about"><a>关于</a></Link> 页面。
         </p>
         <h2 id="WhatIsACronSyntaxCronPattern"> 什么是Cron定时任务表达式？</h2>
         <p>我们使用内置的 <code>node-cron</code> 来解析Cron定时任务表达式  &nbsp; 你可以去
@@ -151,7 +151,7 @@ const FaqPage: NextPage = () => {
         <p>
           目前，海外用户可以以间接的方式充值点数。  <br/>
           你可以使用优惠券/充值代码来充值更多的积分。<br/>
-          在<Link href="/member/redeem"><a>充值页面</a></Link>查看更多详情。
+          在<Link prefetch={false} href="/member/redeem"><a>充值页面</a></Link>查看更多详情。
         </p>
         </> : null
       }

@@ -109,7 +109,7 @@ const CreateTaskGeekPage: NextPage = () => {
         onChange={handleInputChange}
       >
       </input>
-      <Link href="/faq#WhatIsACronSyntaxCronPattern"><a>Cron Syntax Help in FAQ</a></Link>
+      <Link prefetch={false} href="/faq#WhatIsACronSyntaxCronPattern"><a>Cron Syntax Help in FAQ</a></Link>
 
     </div>
     <div>
@@ -134,7 +134,7 @@ const CreateTaskGeekPage: NextPage = () => {
       <button data-btn-index="0" onClick={handleBtnClick} disabled={!taskDetail.cronPassed}>Create Now</button>
     </div>
     <div>
-      <Link href="/login"><a>Go Back to user center</a></Link>
+      <Link prefetch={false} href="/login"><a>Go Back to user center</a></Link>
     </div>
   </>);
 }

@@ -67,7 +67,7 @@ const TaskListSimpPage: NextPage = () => {
         return (<div style={{
           display: 'flex',
         }}>
-          <Link href={'/task/edit_simp?id=' + or._id}>
+          <Link prefetch={false} href={'/task/edit_simp?id=' + or._id}>
             <a className='btn'>{t(`Edit`)}</a>
           </Link>
           <button data-row-id={or._id} onClick={handleBtnDelete} style={{marginLeft: '10px'}}>{t(`Delete`)}</button>
@@ -81,14 +81,14 @@ const TaskListSimpPage: NextPage = () => {
     {headTitle}
     <main>
       <div>
-        <Link href="/login">
+        <Link prefetch={false} href="/login">
           <a>{t('Back to User Center')}</a>
         </Link>
         &nbsp;&nbsp;
         {
           (taskDetail?.taskList?.length && taskDetail?.taskList?.length < 3 ) ? (
             <>
-              <Link href={'/task/edit_simp'}>
+              <Link prefetch={false} href={'/task/edit_simp'}>
                 <a>{t(`Create a task in Simple Mode`)}</a>
               </Link>&nbsp;&nbsp;&nbsp;&nbsp;
             </>

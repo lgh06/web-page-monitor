@@ -239,7 +239,7 @@ const MemberRedeemPage: NextPage = () => {
           >
           </input>
           &nbsp;&nbsp;&nbsp;&nbsp;
-          <Link href="/faq#WhatIsACoupon"><a>{t(`Coupon Code Help in FAQ`)}</a></Link>
+          <Link prefetch={false} href="/faq#WhatIsACoupon"><a>{t(`Coupon Code Help in FAQ`)}</a></Link>
         </div>
         <div>
           <button data-btn-index="3" onClick={handleBtnClick} disabled={btnDisabled(3)}>{t('Redeem Now')}</button>

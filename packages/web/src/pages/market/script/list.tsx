@@ -94,7 +94,7 @@ const Market: NextPage = () => {
         return (<div style={{
           display: 'flex',
         }}>
-          <Link href={'/market/script/edit?id=' + or._id}>
+          <Link prefetch={false} href={'/market/script/edit?id=' + or._id}>
             <a className='btn'>{t(`Edit`)}</a>
           </Link>
           <button data-row-id={or._id} onClick={handleBtnDelete} style={{marginLeft: '10px'}}>{t(`Delete`)}</button>
@@ -120,7 +120,7 @@ const Market: NextPage = () => {
         return (<div style={{
           display: 'flex',
         }}>
-          <Link href={'/market/script/edit?id=' + or._id}>
+          <Link prefetch={false} href={'/market/script/edit?id=' + or._id}>
             <a className='btn'>{t(`View`)}</a>
           </Link>
         </div>
@@ -133,14 +133,14 @@ const Market: NextPage = () => {
     <main>
       {headTitle}
       <div>
-        <Link href="/task/edit_simp">
+        <Link prefetch={false} href="/task/edit_simp">
           <a>{t('Back to create task simple mode')}</a>
         </Link>
         &nbsp;&nbsp;
         {
           (scriptDetail.scriptList.length && scriptDetail.scriptList.length) < 3 ? (
             <>
-              <Link href={'/market/script/edit'}>
+              <Link prefetch={false} href={'/market/script/edit'}>
                 <a>{t(`Create a script`)}</a>
               </Link>&nbsp;&nbsp;&nbsp;&nbsp;
             </>

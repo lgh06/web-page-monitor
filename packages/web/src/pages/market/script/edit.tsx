@@ -152,7 +152,7 @@ const Market: NextPage = () => {
     <main>
       {headTitle}
       <div>
-        <Link href={ '/market/script/list'}>
+        <Link prefetch={false} href={ '/market/script/list'}>
           <a>{ t(`Go back to Market home`)}</a>
         </Link>
       </div>

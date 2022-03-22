@@ -15,7 +15,7 @@ const Back = () => {
   return (<div style={{
     marginTop: '.3rem',
   }}>
-        <Link href="/"><a {...cn('link')}>{t(`Go Back to home`)}</a></Link>
+        <Link prefetch={false} href="/"><a {...cn('link')}>{t(`Go Back to home`)}</a></Link>
     </div>)
 }
 
@@ -102,7 +102,7 @@ const LoginPage: NextPage = () => {
   }
 
   let res;
-  let backLink = <><div><Link href="/"><a {...cn('link')}>{t(`Go Back to home`)}</a></Link></div></>;
+  let backLink = <><div><Link prefetch={false} href="/"><a {...cn('link')}>{t(`Go Back to home`)}</a></Link></div></>;
 
   if (userInfo.logged) {
     res = (<main>
@@ -115,12 +115,12 @@ const LoginPage: NextPage = () => {
         <Link href='/task/edit_simp'><a {...cn('link')}> {t(`Create a task in Simple Mode`)} ({t(`Recommended`)})</a></Link>
       </div>
       <div>
-        <Link href='/task/list'><a {...cn('link')}> {t(`Task List`)}</a></Link>
+        <Link prefetch={false} href='/task/list'><a {...cn('link')}> {t(`Task List`)}</a></Link>
       </div><br/>
       <div>
         {t(`Points`)}: {userInfo.points}
         &nbsp;
-        <Link href="/member/redeem">
+        <Link prefetch={false} href="/member/redeem">
           <a>{t(`Top up`)}</a>
         </Link>
       </div>

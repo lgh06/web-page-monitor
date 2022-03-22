@@ -206,9 +206,9 @@ const TaskEditSimpPage: NextPage = () => {
       }
     `}</style>
     <div>
-      <Link href="/login"><a>{t('Go back to user center')}</a></Link>
+      <Link prefetch={false} href="/login"><a>{t('Go back to user center')}</a></Link>
       &nbsp;&nbsp;&nbsp;&nbsp;
-      <Link href="/market/script/list"><a>{t('Go to script market')}</a></Link>
+      <Link prefetch={false} href="/market/script/list"><a>{t('Go to script market')}</a></Link>
     </div>
     <br/>
     <div>
@@ -221,7 +221,7 @@ const TaskEditSimpPage: NextPage = () => {
         onChange={handleInputChange}
       >
       </input>
-        <Link href="/faq#WhatIsACronSyntaxCronPattern"><a>{t(`Cron Syntax Help in FAQ`)}</a></Link>
+        <Link prefetch={false} href="/faq#WhatIsACronSyntaxCronPattern"><a>{t(`Cron Syntax Help in FAQ`)}</a></Link>
     </div>
     <div>{t(`Choose an end time, from 10 minutes later to 7 days later`)}:<br />
       <input
@@ -290,7 +290,7 @@ const TaskEditSimpPage: NextPage = () => {
       {t(`Please input eraser script IDs`)}. &nbsp;
       {t(`One line one id, 3 erasers max`)}. &nbsp;
       {t(`You can find more erasers on Script Market`)} . &nbsp;
-      <Link href="/faq#WhatIsEraserScript"><a>{t('Eraser Script in FAQ')}</a></Link>
+      <Link prefetch={false} href="/faq#WhatIsEraserScript"><a>{t('Eraser Script in FAQ')}</a></Link>
        : <br/>
       <textarea data-input-index="8" value={taskDetail.extra.eraserArr.join('\n')} onChange={handleInputChange} name="erasers" id="erasers" cols={20} rows={3}></textarea>
     </div>

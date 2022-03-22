@@ -21,7 +21,7 @@ const AboutPage: NextPage = () => {
         <h1>About</h1>
         <h2> What Can this site do?</h2>
         <p>Monitor / detect a web page changes continuously, at least ten minutes&apos; intervals, <b>on cloud</b>.<br/> Send email alerts or phone alerts (under development) if a web page changes or a specified keyword appears.
-          <br/> See also <Link href="/faq"><a>FAQ</a></Link> page.
+          <br/> See also <Link prefetch={false} href="/faq"><a>FAQ</a></Link> page.
         </p>
         <h2>Give me the scenarios / use cases please ?</h2>
         <p>The application scenario is very wide. Theoretically supports detecting any publicly available web page. (Detection of web pages that require login to view is under development)
@@ -51,12 +51,12 @@ const AboutPage: NextPage = () => {
               <ol>
                 <li>Support setting CSS element selector to detect web changes only in specified areas to avoid false alerts</li>
                 <li>Supports using CSS element selectors again to remove unwanted elements and adapt to more complex pages within the above specified area.&nbsp;See also: &nbsp;
-                  <Link href="/faq#WhatIsEraserScript">
+                  <Link prefetch={false} href="/faq#WhatIsEraserScript">
                     <a>Eraser Script</a>
                   </Link>
                 </li>
                 <li>Support for using regular expressions to remove unwanted information or formatting results after the page content has been fetched (after above two steps).&nbsp;See also: &nbsp;
-                  <Link href="/faq#WhatIsEraserScript">
+                  <Link prefetch={false} href="/faq#WhatIsEraserScript">
                     <a>Eraser Script</a>
                   </Link>
                 </li>
@@ -80,7 +80,7 @@ const AboutPage: NextPage = () => {
         <h2> 这个网站能做什么? </h2>
         <p><b>云端</b>持续定时监控/检测一个网页的变化，间隔最小十分钟。 <br/> 如网页有变化或指定的关键词出现，
           便发送电子邮件提醒，或电话提醒（开发中）。
-          <br/> 另请参阅 <Link href="/faq"><a>常见问题</a></Link> 页面。
+          <br/> 另请参阅 <Link prefetch={false} href="/faq"><a>常见问题</a></Link> 页面。
         </p>
         <h2> 主要应用场景是什么? 举个例子？ </h2>
         <p>理论上支持检测任何公开的网页（检测需要登录后才能查看的网页，功能正在开发中）。应用场景非常广泛， 比如： 
@@ -111,12 +111,12 @@ const AboutPage: NextPage = () => {
               <ol>
                 <li>支持设置CSS元素选择器，仅检测指定区域的网页变动，避免误报</li>
                 <li>支持在上述指定区域内，再次使用CSS元素选择器，移除不需要的元素，适配更加复杂的页面。&nbsp;参见: &nbsp;
-                  <Link href="/faq#WhatIsEraserScript">
+                  <Link prefetch={false} href="/faq#WhatIsEraserScript">
                     <a>橡皮脚本</a>
                   </Link>
                 </li>
                 <li>支持在已获取页面内容(上述两步)之后，使用正则表达式，移除不需要的信息或格式化结果。&nbsp;参见: &nbsp;
-                  <Link href="/faq#WhatIsEraserScript">
+                  <Link prefetch={false} href="/faq#WhatIsEraserScript">
                     <a>橡皮脚本</a>
                   </Link>
                 </li>

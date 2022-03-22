@@ -26,30 +26,30 @@ const NavHeader: FunctionComponent<Props> = ({ test }) => {
       <label htmlFor="nav-button">{t(`Menu`)}</label>
       <ul>
         <li>
-          <Link href="/">
+          <Link prefetch={false} href="/">
           <a>{t(`Home`)}</a>
           </Link>
         </li>
         {
           userInfo.email ? (<>
             <li>
-              <Link href="/login"><a>{t(`User Center`)}</a></Link>
+              <Link prefetch={false} href="/login"><a>{t(`User Center`)}</a></Link>
             </li>
             <li>
-              <Link href="/task/list"><a>{t(`Task List`)}</a></Link>
+              <Link prefetch={false} href="/task/list"><a>{t(`Task List`)}</a></Link>
             </li>
             <li>
-              <Link href="/market/script/list"><a>{t(`Script Market`)}</a></Link>
+              <Link prefetch={false} href="/market/script/list"><a>{t(`Script Market`)}</a></Link>
             </li>
           </>) : null
         }
         <li>
-          <Link href="/faq">
+          <Link prefetch={false} href="/faq">
             <a>{t(`FAQ`)}</a>
           </Link>
         </li>
         <li>
-          <Link href="/about">
+          <Link prefetch={false} href="/about">
             <a>{t(`About`)}</a>
           </Link>
         </li>
