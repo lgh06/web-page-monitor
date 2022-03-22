@@ -2,4 +2,12 @@ div.about-page{
   p{
     font-size: 1.3rem;
   }
+  @media (max-width: 720px) {
+    p{
+      font-size: 1rem;
+    }
+  }
+  h1, h2, p, p > a{
+    word-break: break-word;
+  }
 }

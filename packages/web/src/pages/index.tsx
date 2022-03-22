@@ -48,7 +48,7 @@ const Home: NextPage = () => {
         </p> */}
 
         <div className={styles.grid}>
-          <Link href="/faq">
+          <Link href="/faq" locale="en">
             <a className={styles.card}>
               <h2>FAQ & Guide &rarr;</h2>
               <p>Frequently Asked Questions and Beginner Guide</p>
@@ -56,7 +56,7 @@ const Home: NextPage = () => {
           </Link>
 
 
-          <Link href="/faq">
+          <Link href="/faq" locale="zh">
             <a className={styles.card}>
               <h2>新手入门 &rarr;</h2>
               <p>常见问题及新手入门</p>
