@@ -135,8 +135,7 @@ image.onload = function () {
   document.body.appendChild(lrkScript);
 };
 image.onerror=function(){
-  image = null;
-  isS=false;var tct = document.createElement('script');tct.crossOrigin='anonymous';
+  image=null;isS=false;var tct = document.createElement('script');tct.crossOrigin='anonymous';
   tct.onload=function(){window.aegis=new Aegis({ id:'Ll387HjmVom9LP6Yv0',reportApiSpeed:true,reportAssetSpeed:true,spa:true,delay:10000})}
   tct.src="https://cdn-go.cn/aegis/aegis-sdk/latest/aegis.min.js";document.body.appendChild(tct);
 };
