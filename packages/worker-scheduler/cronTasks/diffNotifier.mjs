@@ -24,5 +24,25 @@ async function diffNotifier(prevDoc, doc, taskDetail, db) {
   cacheOnTask = await alertProviders[taskDetail.extra.alertProvider].alert({prevDoc, doc, taskDetail})
   return cacheOnTask;
 }
+/**
+ * send current task result and taskDetail to different alertProviders
+ * @param {*} taskDetail 
+ * @param {*} result 
+ * @param {Db} db 
+ */
+async function wordAppearNotifier(taskDetail, result, db) {
+  db = db || await getDB();
+  console.log('inside diffNotifier');
+  if(taskDetail.extra && taskDetail.extra.alertProvider){
+    // TODO
+  }else{
+    taskDetail.extra = taskDetail.extra || {};
+    taskDetail.extra.alertProvider = 'nodemailer';
+  }
 
-export { diffNotifier };
+  let cacheOnTask = {};
+  cacheOnTask = await alertProviders[taskDetail.extra.alertProvider].wordAlert({taskDetail, result})
+  return cacheOnTask;
+}
+
+export { diffNotifier, wordAppearNotifier };

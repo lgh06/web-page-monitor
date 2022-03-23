@@ -178,6 +178,10 @@ async function alert({prevDoc, doc, taskDetail}) {
   return cacheOnTask;
 }
 
+async function wordAlert({taskDetail, result}){
+
+}
+
 // TODO find a place to save one task's last notify time
 // give ability to save previous notify time
 
@@ -190,6 +194,7 @@ let nodemailer = {
   alertFormatter,
   alertSender,
   alert,
+  wordAlert,
 }
 
 export { nodemailer, nodemailer as default };

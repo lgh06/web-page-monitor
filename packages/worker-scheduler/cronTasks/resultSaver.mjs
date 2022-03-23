@@ -2,7 +2,7 @@ import * as amqp from 'amqplib';
 import hashFunc from 'crypto-js/md5.js';
 import { getDB, ObjectId } from '../lib/index.mjs';
 import { mongo } from "@webest/web-page-monitor-helper/node/index.mjs";
-import { singleTaskHistoryChecker } from './taskHistoryChecker.mjs';
+import { singleTaskHistoryChecker, singleTaskWordChecker } from './taskHistoryChecker.mjs';
 
 import { CONFIG } from "../CONFIG.mjs";
 
@@ -76,7 +76,12 @@ async function resultSaver(mqConn, mqChannel) {
           }).catch(e => console.error(e))
         }
         await mongo.insertDoc(db, 'taskHistory', oneTaskHistory);
-        await singleTaskHistoryChecker(taskDetail, db);
+        if(taskDetail && taskDetail.extra && String(taskDetail.extra.detectMode) === 2 && taskDetail.extra.detectWord){
+          // alert only when word shows up
+          await singleTaskWordChecker(taskDetail,result, db)
+        }else{
+          await singleTaskHistoryChecker(taskDetail, db);
+        }
       } catch (error) {
         console.log(error);
       }finally{

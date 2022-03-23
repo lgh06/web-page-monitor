@@ -1,5 +1,5 @@
 import { getDB, ObjectId } from "../lib/index.mjs"
-import { diffNotifier } from "./diffNotifier.mjs";
+import { diffNotifier, wordAppearNotifier } from "./diffNotifier.mjs";
 import { Db } from "mongodb";
 
 let collectionName = 'taskHistory';
@@ -57,6 +57,30 @@ async function singleTaskHistoryChecker (taskDetail, db){
   // db.collection('taskHistory').watch().on('change', async function (change) {})
 }
 /**
+ * @param {object} taskDetail 
+ * @param {object} result 
+ * @param {Db} db 
+ */
+async function singleTaskWordChecker (taskDetail, result, db){
+  db = db || await getDB();
+  let nowDate = new Date();
+  if(
+    taskDetail && taskDetail.extra && String(taskDetail.extra.detectMode) === 2 
+    && taskDetail.extra.detectWord
+    && String(result).includes(searchString)
+  ){
+    let nowCacheOnTask = {};
+    nowCacheOnTask = await wordAppearNotifier(arr[index-1], doc, taskDetail, db);
+    if(nowCacheOnTask && Object.keys(nowCacheOnTask).length){
+      await db.collection('task').updateOne({_id: new ObjectId(taskDetail._id)}, {
+        $set: {
+          cache: nowCacheOnTask,
+        }
+      });
+    }
+  }
+}
+/**
  * 
  * @param {Db} db 
  */
@@ -74,4 +98,4 @@ async function otherTaskHistoryChecker(db){
 
 // taskHistoryChecker();
 
-export { taskHistoryChecker, singleTaskHistoryChecker }
+export { taskHistoryChecker, singleTaskHistoryChecker, singleTaskWordChecker }
