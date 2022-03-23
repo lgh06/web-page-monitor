@@ -33,7 +33,7 @@ export function useHeadTitle(titleName = ""){
   const { t, router, locale } = useI18n();
   return (
     <Head>
-    <title>{ t(titleName) + '-' + t(`Web Site Page Changes Monitor`)}</title>
+    <title>{ t(titleName) + ' - ' + t(`Web Site Page Changes Monitor`)}</title>
     </Head>
   )
 }
