@@ -65,13 +65,13 @@ async function singleTaskWordChecker (taskDetail, result, db){
   db = db || await getDB();
   let nowDate = new Date();
   if(
-    taskDetail && taskDetail.extra && String(taskDetail.extra.detectMode) === 2 
+    taskDetail && taskDetail.extra && String(taskDetail.extra.detectMode) === '2'
     && taskDetail.extra.detectWord
-    && String(result).includes(searchString)
+    && String(result).includes(taskDetail.extra.detectWord)
   ){
     let nowCacheOnTask = {};
-    nowCacheOnTask = await wordAppearNotifier(arr[index-1], doc, taskDetail, db);
-    if(nowCacheOnTask && Object.keys(nowCacheOnTask).length){
+    nowCacheOnTask = await wordAppearNotifier(taskDetail, result, db);
+    if(nowCacheOnTask && Object.keys(nowCacheOnTask).length && taskDetail._id){
       await db.collection('task').updateOne({_id: new ObjectId(taskDetail._id)}, {
         $set: {
           cache: nowCacheOnTask,

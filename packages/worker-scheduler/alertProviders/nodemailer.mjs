@@ -15,8 +15,10 @@ if(CONFIG.useProdConfig){
 }
 const __dirname = (() => {let x = path.dirname(decodeURI(new URL(import.meta.url).pathname)); return path.resolve( (process.platform == "win32") ? x.substr(1) : x ); })();
 // load mjml basic html structure template
-let mjmlTpl = fs.readFileSync( path.resolve(__dirname, 'nodemailer-tpl-mjml.mjml'), 'utf8');
-let template = Handlebars.compile(mjmlTpl);
+let diffMjmlTpl = fs.readFileSync( path.resolve(__dirname, 'nodemailer-tpl-diff.mjml'), 'utf8');
+let diffMailTemplate = Handlebars.compile(diffMjmlTpl);
+let wordAppearMjmlTpl = fs.readFileSync( path.resolve(__dirname, 'nodemailer-tpl-word-appear.mjml'), 'utf8');
+let wordAppearMailTemplate = Handlebars.compile(wordAppearMjmlTpl);
 
 /**
  * 
@@ -52,16 +54,16 @@ async function alertFormatter({prevDoc, doc, taskDetail}) {
     抱歉，页面上的文本太长了，无法对比。请手动查看。`;
   }
 
-  let middleTpl = template({diffHTML, taskDetail, doc});
+  let middleTpl = diffMailTemplate({diffHTML, taskDetail, doc});
 
   let htmlDiffContent = mjml2html(middleTpl).html;
 
-  let result = {
+  let emailResult = {
     content: `The task ${taskDetail.extra.alias} has Changed, please go to web site monitor to view details.  
 任务${taskDetail.extra.alias}有变动，请去网页监控系统查看详细信息。`,
     htmlContent : `${htmlDiffContent}`,
   };
-  return result;
+  return emailResult;
 }
 
 async function alertSender({content, htmlContent, taskDetail, configIndex = 0}) {
@@ -178,8 +180,24 @@ async function alert({prevDoc, doc, taskDetail}) {
   return cacheOnTask;
 }
 
-async function wordAlert({taskDetail, result}){
+async function wordAppearAlertFormatter({taskDetail, result}) {
+  console.log('inside wordAppearAlertFormatter');
+  let middleTpl = wordAppearMailTemplate({diffHTML, taskDetail, doc});
 
+  let wordAppearHTML = mjml2html(middleTpl).html;
+
+  let emailResult = {
+    content: `The task ${taskDetail.extra.alias} has Changed, please go to web site monitor to view details.  
+任务${taskDetail.extra.alias}有变动，请去网页监控系统查看详细信息。`,
+    htmlContent : `${wordAppearHTML}`,
+  };
+  return emailResult;
+}
+
+async function wordAppearAlert({taskDetail, result}){
+  let { content, htmlContent} = await wordAppearAlertFormatter({prevDoc, doc, taskDetail});
+  // TODO see above alert and alertSender
+  // refact alert wordAppearAlert alertSender
 }
 
 // TODO find a place to save one task's last notify time
@@ -194,7 +212,7 @@ let nodemailer = {
   alertFormatter,
   alertSender,
   alert,
-  wordAlert,
+  wordAppearAlert,
 }
 
 export { nodemailer, nodemailer as default };

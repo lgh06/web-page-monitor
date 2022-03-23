@@ -32,7 +32,7 @@ async function diffNotifier(prevDoc, doc, taskDetail, db) {
  */
 async function wordAppearNotifier(taskDetail, result, db) {
   db = db || await getDB();
-  console.log('inside diffNotifier');
+  console.log('inside wordAppearNotifier');
   if(taskDetail.extra && taskDetail.extra.alertProvider){
     // TODO
   }else{
@@ -41,7 +41,7 @@ async function wordAppearNotifier(taskDetail, result, db) {
   }
 
   let cacheOnTask = {};
-  cacheOnTask = await alertProviders[taskDetail.extra.alertProvider].wordAlert({taskDetail, result})
+  cacheOnTask = await alertProviders[taskDetail.extra.alertProvider].wordAppearAlert({taskDetail, result})
   return cacheOnTask;
 }
 

@@ -1,0 +1,66 @@
+<mjml>
+  <mj-head>
+    <mj-style>
+      .diffresult{
+        white-space: pre-wrap;
+      }
+      del {
+        background-color: #ffb3b3;
+        text-decoration: line-through;
+      }
+      ins {
+        background-color: #ccffcb;
+        text-decoration: underline;
+      }
+    </mj-style>
+    <mj-style inline="inline">
+      .diffresult{
+        white-space: pre-wrap;
+      }
+      del {
+        background-color: #ffb3b3;
+        text-decoration: line-through;
+      }
+      ins {
+        background-color: #ccffcb;
+        text-decoration: underline;
+      }
+    </mj-style>
+  </mj-head>
+  <mj-body>
+    <mj-section background-color="#f0f0f0">
+      <mj-column>
+        <mj-text font-style="italic" font-size="20px" color="#626262">
+        Web Page Changes Alert 网页变更提醒
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section>
+      <mj-column>
+        <mj-text align="center" font-size="16px">
+        Task: {{taskDetail.extra.alias}} has changed, on: {{doc.finishTime}}.<br/>
+        任务: {{taskDetail.extra.alias}} 发生了变动, 在 {{doc.finishTime}} 。<br/> <br/>
+        Changes are listed below: <br/>
+        请看下方的变动对比： <br/>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section padding="0px 0px">
+      <mj-column>
+        <mj-text css-class="diffresult" align="justify" font-size="14px">
+          {{{wordAppearHTML}}}
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section padding="0px 0px">
+      <mj-column>
+        <mj-text font-size="12px">
+          You can go to the page which you created the task for more details. <br/>
+          您可以去创建此任务的页面查看更多详情。 <br/>
+          If you think this mail disturbed you, please go to our web site to unsubscribe this alert mail. <br/>
+          如果您认为此邮件打扰了您，请去网页取消此通知。 <br/>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
