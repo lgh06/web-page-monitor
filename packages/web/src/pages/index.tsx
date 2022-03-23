@@ -16,7 +16,7 @@ const Home: NextPage = () => {
       let queryString = "?";
       Object.keys(router.query).forEach(v => (queryString += `${v}=${router.query[v]}&`));
       queryString = queryString.substring(0, queryString.length - 1);
-      router.push('/login' + queryString);
+      router.replace('/login' + queryString);
     }
   }, [router.query])
 
