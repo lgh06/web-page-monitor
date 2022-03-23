@@ -125,26 +125,24 @@ export default function Layout({ children, statusCode }) {
           __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-PTKMFSF');`,
         }}/>
       <Script defer id="tct1"
-      strategy="afterInteractive"
-      dangerouslySetInnerHTML={{
-        __html: `var image = new Image();
-        image.onload = function(){
-          if(Math.random() >= 0.05) return;
-          var lrkScript = document.createElement('script');
-          lrkScript.crossOrigin = 'anonymous';
-          lrkScript.onload = function(){window.LogRocket && window.LogRocket.init('mvt1dk/webpagemonitor');}
-          lrkScript.src = "https://cdn.lr-in.com/LogRocket.min.js";
-          document.body.appendChild(lrkScript);
-        };
-        image.onerror = function(){
-          var tct = document.createElement('script');
-          tct.crossOrigin = 'anonymous';
-          tct.onload = function(){window.aegis = new Aegis({id: 'Ll387HjmVom9LP6Yv0',reportApiSpeed: true, reportAssetSpeed: true, spa: true, delay: 10000})}
-          tct.src = "https://cdn-go.cn/aegis/aegis-sdk/latest/aegis.min.js";
-          document.body.appendChild(tct); 
-        };
-        image.src = "https://www.google.com/favicon.ico";`,
-      }}/>
+      strategy="afterInteractive">
+      {`(function(){var image = new Image();var isS;
+image.onload = function () {
+  isS=true;if(Math.random()>=0.05) return;var lrkScript=document.createElement('script');
+  lrkScript.crossOrigin='anonymous';
+  lrkScript.onload=function(){window.LogRocket&&window.LogRocket.init('mvt1dk/webpagemonitor'); }
+  lrkScript.src = "https://cdn.lr-in.com/LogRocket.min.js";
+  document.body.appendChild(lrkScript);
+};
+image.onerror=function(){
+  isS=false;var tct = document.createElement('script');tct.crossOrigin='anonymous';
+  tct.onload=function(){window.aegis=new Aegis({ id:'Ll387HjmVom9LP6Yv0',reportApiSpeed:true,reportAssetSpeed:true,spa:true,delay:10000})}
+  tct.src="https://cdn-go.cn/aegis/aegis-sdk/latest/aegis.min.js";document.body.appendChild(tct);
+};
+image.src = "https://www.google.com/favicon.ico";
+setTimeout(function(){if(isS === undefined)image.onerror()},10000);
+})();`}
+      </Script>
       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PTKMFSF" height="0" width="0" style={{display:'none',visibility:'hidden'}}></iframe></noscript>
     </>
   )
