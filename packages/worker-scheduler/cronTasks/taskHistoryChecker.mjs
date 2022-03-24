@@ -14,6 +14,18 @@ async function taskHistoryChecker (db){
   // await errorChecker(db)
   // await changesChecker(db)
 }
+
+async function saveTaskCacheToDb(nowCacheOnTask,taskDetail, db){
+  db = db || await getDB();
+  if(nowCacheOnTask && Object.keys(nowCacheOnTask).length && taskDetail._id){
+    await db.collection('task').updateOne({_id: new ObjectId(taskDetail._id)}, {
+      $set: {
+        cache: nowCacheOnTask,
+      }
+    });
+  }
+}
+
 /**
  * @param {object} taskDetail 
  * @param {Db} db 
@@ -37,14 +49,8 @@ async function singleTaskHistoryChecker (taskDetail, db){
         if(doc.textHash !== arr[index-1].textHash){
           // TODO send alert
           nowCacheOnTask = await diffNotifier(arr[index-1], doc, taskDetail, db);
-          console.log('taskHistoryChecker cacheOnTask', nowCacheOnTask);
-          if(nowCacheOnTask && Object.keys(nowCacheOnTask).length){
-            await db.collection('task').updateOne({_id: new ObjectId(taskDetail._id)}, {
-              $set: {
-                cache: nowCacheOnTask,
-              }
-            });
-          }
+          console.log('singleTaskHistoryChecker cacheOnTask', nowCacheOnTask);
+          await saveTaskCacheToDb(nowCacheOnTask, taskDetail, db)
         }
         await db.collection(collectionName).findOneAndUpdate(filter, {
           $set: {
@@ -64,21 +70,11 @@ async function singleTaskHistoryChecker (taskDetail, db){
  */
 async function singleTaskWordChecker (taskDetail, uncuttedResult, oneTaskHistory , db){
   db = db || await getDB();
-  let nowDate = new Date();
-  if(
-    taskDetail && taskDetail.extra && String(taskDetail.extra.detectMode) === '2'
-    && taskDetail.extra.detectWord
-    && String(uncuttedResult).includes(taskDetail.extra.detectWord)
-  ){
+  if(String(uncuttedResult).includes(taskDetail.extra.detectWord)){
     let nowCacheOnTask = {};
     nowCacheOnTask = await wordAppearNotifier(taskDetail, uncuttedResult, oneTaskHistory, db);
-    if(nowCacheOnTask && Object.keys(nowCacheOnTask).length && taskDetail._id){
-      await db.collection('task').updateOne({_id: new ObjectId(taskDetail._id)}, {
-        $set: {
-          cache: nowCacheOnTask,
-        }
-      });
-    }
+    console.log('singleTaskWordChecker cacheOnTask', nowCacheOnTask);
+    await saveTaskCacheToDb(nowCacheOnTask, taskDetail, db)
   }
 }
 /**

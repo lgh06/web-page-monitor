@@ -132,7 +132,15 @@ async function alertSender({content, htmlContent, taskDetail, configIndex = 0}) 
 
 }
 
-async function alert({prevDoc, doc, taskDetail}) {
+async function _alertRetryAndDebounceMiddler({
+  prevDoc, 
+  doc, 
+  taskDetail, 
+  uncuttedResult, 
+  oneTaskHistory,
+  alertFormatterFunc,
+  alertSenderFunc,
+}){
   let now = Date.now();
   let alertDebounce = defaultAlertDebounce;
   if(taskDetail && taskDetail.extra &&  taskDetail.extra.alertDebounce){
@@ -145,7 +153,7 @@ async function alert({prevDoc, doc, taskDetail}) {
   }
   console.log('inside provider nodemailer alert');
   // let db = await getDB();
-  let { content, htmlContent} = await alertFormatter({prevDoc, doc, taskDetail});
+  let { content, htmlContent} = await alertFormatterFunc({prevDoc, doc, taskDetail, uncuttedResult, oneTaskHistory});
   if(!taskDetail.cache){
     taskDetail.cache = {};
   }
@@ -159,15 +167,15 @@ async function alert({prevDoc, doc, taskDetail}) {
       // if the time is less than the alertDebounce, do not send alert
       // return nothing (`{}`) as cacheOnTask, do not save to task table's cacheOnTask
     }else{
-      cacheOnTask = await alertSender({content, htmlContent, taskDetail});
+      cacheOnTask = await alertSenderFunc({content, htmlContent, taskDetail});
     }
   }else if(prevFailNum >= 1 && prevFailNum <= 3){
     // immediately
-    cacheOnTask = await alertSender({content, htmlContent, taskDetail, configIndex: 1});
+    cacheOnTask = await alertSenderFunc({content, htmlContent, taskDetail, configIndex: 1});
   }else if(prevFailNum >= 4 && prevFailNum <= 10){
     // use the minAlertDebounce
     if(now - prevTriedOn >= minAlertDebounce){
-      cacheOnTask = await alertSender({content, htmlContent, taskDetail});
+      cacheOnTask = await alertSenderFunc({content, htmlContent, taskDetail});
     }
   }else if(prevFailNum >= 11){
     cacheOnTask = {
@@ -176,8 +184,13 @@ async function alert({prevDoc, doc, taskDetail}) {
     // use some other notify ways
     console.error('mail send failed more than 10 times , task:', taskDetail)
   }
-
   return cacheOnTask;
+}
+
+async function alert({prevDoc, doc, taskDetail}) {
+  return _alertRetryAndDebounceMiddler({prevDoc, doc, taskDetail, 
+    alertFormatterFunc: alertFormatter,
+    alertSenderFunc: alertSender});
 }
 
 async function wordAppearAlertFormatter({taskDetail, uncuttedResult, oneTaskHistory}) {
@@ -196,9 +209,9 @@ async function wordAppearAlertFormatter({taskDetail, uncuttedResult, oneTaskHist
 }
 
 async function wordAppearAlert({taskDetail, uncuttedResult, oneTaskHistory}){
-  let { content, htmlContent} = await wordAppearAlertFormatter({taskDetail, uncuttedResult, oneTaskHistory});
-  // TODO see above alert and alertSender
-  // refact alert wordAppearAlert alertSender
+  return _alertRetryAndDebounceMiddler({taskDetail, uncuttedResult, oneTaskHistory, 
+    alertFormatterFunc: wordAppearAlertFormatter,
+    alertSenderFunc: alertSender});
 }
 
 // TODO find a place to save one task's last notify time
