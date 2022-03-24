@@ -138,6 +138,11 @@ const TaskEditSimpPage: NextPage = () => {
         }
       });
     }
+    if(index === '9'){
+      setTaskDetail(v =>{
+        v.extra.waitForSelector = String(inputElement.value);
+      });
+    }
   }
 
   async function handleBtnClick(ev: MouseEvent<HTMLButtonElement> ) {
@@ -268,32 +273,47 @@ const TaskEditSimpPage: NextPage = () => {
       >
       </input>
     </div>
-    <div>
-    {t(`Notify you when`)}: <br/>
-      <label htmlFor="detectMode1">
-        <input data-input-index="4" type="radio" id="detectMode1" checked={taskDetail.extra.detectMode === '1'} name="detectMode" onChange={handleInputChange} value="1" />
-        {t(`Page Changes`)}
-      </label> <br/>
-      <label htmlFor="detectMode2">
-        <input data-input-index="5" type="radio" id="detectMode2" checked={taskDetail.extra.detectMode === '2'} name="detectMode" onChange={handleInputChange} value="2" />
-        {t(`Word(s) Show up`)}
-      </label>
-      <input 
-      data-input-index="6" 
-      type="text" 
-      placeholder={t(`Please input some words, multiple words can be separated by commas`) + ':'}
-      value={taskDetail.extra.detectWord}
-      onChange={handleInputChange}
-      />
-    </div>
-    <div>
-      {t(`Please input eraser script IDs`)}. &nbsp;
-      {t(`One line one id, 3 erasers max`)}. &nbsp;
-      {t(`You can find more erasers on Script Market`)} . &nbsp;
-      <Link prefetch={false} href="/faq#WhatIsEraserScript"><a>{t('Eraser Script in FAQ')}</a></Link>
-       : <br/>
-      <textarea data-input-index="8" value={taskDetail.extra.eraserArr.join('\n')} onChange={handleInputChange} name="erasers" id="erasers" cols={20} rows={3}></textarea>
-    </div>
+    <details>
+      <summary>{t(`Advanced Options`)}</summary>
+      <div>
+        {t(`Notify you when`)}: <br/>
+        <label htmlFor="detectMode1">
+          <input data-input-index="4" type="radio" id="detectMode1" checked={taskDetail.extra.detectMode === '1'} name="detectMode" onChange={handleInputChange} value="1" />
+          {t(`Page Changes`)}
+        </label> <br/>
+        <label htmlFor="detectMode2">
+          <input data-input-index="5" type="radio" id="detectMode2" checked={taskDetail.extra.detectMode === '2'} name="detectMode" onChange={handleInputChange} value="2" />
+          {t(`Word(s) Show up`)}
+        </label>
+        <input 
+        data-input-index="6" 
+        type="text" 
+        placeholder={t(`Please input some words, multiple words can be separated by commas`) + ':'}
+        value={taskDetail.extra.detectWord}
+        onChange={handleInputChange}
+        />
+      </div>
+      <hr />
+      <div>
+      {t(`Please input waitForSelector`)}:<br/>
+        <input
+          placeholder="waitForSelector"
+          data-input-index="9"
+          value={taskDetail.extra.waitForSelector}
+          onChange={handleInputChange}
+        >
+        </input>
+      </div>
+      <hr />
+      <div>
+        {t(`Please input eraser script IDs`)}. &nbsp;
+        {t(`One line one id, 3 erasers max`)}. &nbsp;
+        {t(`You can find more erasers on Script Market`)} . &nbsp;
+        <Link prefetch={false} href="/faq#WhatIsEraserScript"><a>{t('Eraser Script in FAQ')}</a></Link>
+        : <br/>
+        <textarea data-input-index="8" value={taskDetail.extra.eraserArr.join('\n')} onChange={handleInputChange} name="erasers" id="erasers" cols={20} rows={3}></textarea>
+      </div>
+    </details>
     <div {...innerHTML(t('Note: One user can only create max 3 tasks, and lasts max 7 days per task.\
       Minimum interval between two tasks is 10 minutes.'))}>
     </div>

@@ -62,6 +62,8 @@ let trans = {
   "One line one id, 3 erasers max": "一行一个ID，最多3个橡皮脚本",
   "You can find more erasers on Script Market": "您可以在脚本市场上找到更多橡皮脚本",
   "Eraser Script in FAQ": "什么是橡皮脚本",
+  "Advanced Options": "高级选项",
+  "Please input waitForSelector": "请输入waitForSelector",
   "Please input some words, multiple words can be separated by commas": "请输入一些词语（文字）,多个词语之间可以用逗号分隔",
   "Note: Simple Mode is only suitable for monitor web pages,\
       not for txt, xml or other files without HTML structure.<br/>\
