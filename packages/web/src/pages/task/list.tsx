@@ -98,12 +98,10 @@ const TaskListSimpPage: NextPage = () => {
       <h3>
         {t(`Tasks created by you`)} :
       </h3>
-      <section className='list'>
-        <ScriptList
-          columns={meColumns}
-          data={taskDetail.taskList}
-        ></ScriptList>
-      </section>
+      <ScriptList
+        columns={meColumns}
+        data={taskDetail.taskList}
+      ></ScriptList>
     </main>
   </>);
 }

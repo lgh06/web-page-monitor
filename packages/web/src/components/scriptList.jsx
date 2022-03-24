@@ -1,12 +1,9 @@
 /* eslint-disable react/jsx-key */
 import { useTable } from "react-table";
-import styled from 'styled-components'
-import { useI18n } from '../helpers'
+import { useI18n, genClassNameAndString } from '../helpers'
+import styles from '../styles/modules/scriptList.module.scss'
 
-
-
-const Styles = styled.div``;
-
+const [cn, cs] = genClassNameAndString(styles);
 function ScriptList({columns, data}) {
   const { t } = useI18n();
   // console.log(data)
@@ -26,8 +23,8 @@ function ScriptList({columns, data}) {
   
   // Render the UI for your table
   return (
-    // <Styles>
-      <table {...getTableProps()}>
+    <section {...cn('script-list-wrap')}>
+      <table {...getTableProps()} {...cn('script-list')}>
         <thead>
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>
@@ -50,6 +47,7 @@ function ScriptList({columns, data}) {
           })}
         </tbody>
       </table>
+    </section>
     // </Styles>
   )
 }

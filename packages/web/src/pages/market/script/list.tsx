@@ -151,12 +151,10 @@ const Market: NextPage = () => {
       <h3>
         {t(`Scripts created by you`)} :
       </h3>
-      <section className='list'>
-        <ScriptList 
-          columns={ meColumns }  
-          data={scriptDetail.scriptList}
-        ></ScriptList>
-      </section>
+      <ScriptList 
+        columns={ meColumns }  
+        data={scriptDetail.scriptList}
+      ></ScriptList>
       <h3>
       {t(`Public Scripts`)} : 
       </h3>
@@ -174,12 +172,10 @@ const Market: NextPage = () => {
         />
         <button disabled={!(scriptDetail.searchKey && scriptDetail.searchValue)} onClick={handleBtnSearch}>{t(`Search a public script`)}</button>
       </div>
-      <section className='pub-list'>
-        <ScriptList 
-          columns={ publicColumns }  
-          data={scriptDetail.publicScriptList}
-        ></ScriptList>
-      </section>
+      <ScriptList 
+        columns={ publicColumns }  
+        data={scriptDetail.publicScriptList}
+      ></ScriptList>
     </main>
   );
 }

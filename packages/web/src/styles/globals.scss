@@ -42,5 +42,6 @@ a {
 }
 
 td, th{
-  word-break: break-all;
+  max-width: 30%;
+  word-break: break-word;
 }
