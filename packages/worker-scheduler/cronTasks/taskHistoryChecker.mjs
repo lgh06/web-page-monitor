@@ -35,10 +35,7 @@ async function singleTaskHistoryChecker (taskDetail, db){
   let nowDate = new Date();
   db.collection(collectionName).find({
     taskId: new ObjectId(taskDetail._id),
-    finishTime: {
-      $gte: new Date(nowDate.setHours(-24)), /** 24 hours taskHistory */
-    }
-  }).sort({finishTime: -1}).limit( 6 * 6 ).toArray().then(async docs => {
+  }).sort({finishTime: -1}).limit( 15 ).toArray().then(async docs => {
     if(docs && docs.length){
       docs.filter(doc => (doc.err === null && doc.textHash !== null))
           .reverse().forEach(async (doc, index, arr) => {
@@ -68,13 +65,20 @@ async function singleTaskHistoryChecker (taskDetail, db){
  * @param {object} oneTaskHistory 
  * @param {Db} db 
  */
-async function singleTaskWordChecker (taskDetail, uncuttedResult, oneTaskHistory , db){
+async function singleTaskWordChecker (taskDetail, uncuttedResult, oneTaskHistory , db, insertedId){
   db = db || await getDB();
   if(String(uncuttedResult).includes(taskDetail.extra.detectWord)){
     let nowCacheOnTask = {};
     nowCacheOnTask = await wordAppearNotifier(taskDetail, uncuttedResult, oneTaskHistory, db);
     console.log('singleTaskWordChecker cacheOnTask', nowCacheOnTask);
     await saveTaskCacheToDb(nowCacheOnTask, taskDetail, db)
+  }
+  if(insertedId){
+    await db.collection(collectionName).findOneAndUpdate({_id: new ObjectId(insertedId)}, {
+      $set: {
+        checked: 1,
+      }
+    });
   }
 }
 /**

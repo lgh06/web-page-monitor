@@ -207,7 +207,7 @@ async function wordAppearAlertFormatter({taskDetail, uncuttedResult, oneTaskHist
 任务${taskDetail.extra.alias}的关键词"${taskDetail.extra.detectWord}"出现，请去网页监控系统查看详细信息。`,
     htmlContent : `${wordAppearHTML}`,
   };
-  console.log('emailResult',emailResult)
+  // console.log('emailResult',emailResult)
   return emailResult;
 }
 
