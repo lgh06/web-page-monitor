@@ -22,6 +22,7 @@ let createTaskDetail = {
     alertProvider: '',
     alertDebounce: '',
     eraserArr: [],
+    waitForSelector: '',
   },
   // used on list
   taskList: [],

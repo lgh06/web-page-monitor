@@ -16,7 +16,7 @@ async function simpleModeTask({ taskDetail, page }){
     });
     await page.goto(pageURL,{waitUntil: 'networkidle2'});
   
-    await page.waitForSelector(cssSelector);
+    await page.waitForSelector(extra.waitForSelector || cssSelector);
     let matchedElement = await page.$(cssSelector);
     // TODO dynamic domEraser
     // TODO domEraser may delete the matchedElement
