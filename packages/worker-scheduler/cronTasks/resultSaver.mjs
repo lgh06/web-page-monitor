@@ -76,9 +76,9 @@ async function resultSaver(mqConn, mqChannel) {
           }).catch(e => console.error(e))
         }
         await mongo.insertDoc(db, 'taskHistory', oneTaskHistory);
-        if(taskDetail && taskDetail.extra && String(taskDetail.extra.detectMode) === 2 && taskDetail.extra.detectWord){
+        if(taskDetail && taskDetail.extra && String(taskDetail.extra.detectMode) === '2' && taskDetail.extra.detectWord){
           // alert only when word shows up
-          await singleTaskWordChecker(taskDetail,result, db)
+          await singleTaskWordChecker(taskDetail,result,oneTaskHistory, db)
         }else{
           await singleTaskHistoryChecker(taskDetail, db);
         }

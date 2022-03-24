@@ -180,22 +180,23 @@ async function alert({prevDoc, doc, taskDetail}) {
   return cacheOnTask;
 }
 
-async function wordAppearAlertFormatter({taskDetail, result}) {
+async function wordAppearAlertFormatter({taskDetail, uncuttedResult, oneTaskHistory}) {
   console.log('inside wordAppearAlertFormatter');
-  let middleTpl = wordAppearMailTemplate({diffHTML, taskDetail, doc});
+  let middleTpl = wordAppearMailTemplate({taskDetail, uncuttedResult, oneTaskHistory});
 
   let wordAppearHTML = mjml2html(middleTpl).html;
 
   let emailResult = {
-    content: `The task ${taskDetail.extra.alias} has Changed, please go to web site monitor to view details.  
-任务${taskDetail.extra.alias}有变动，请去网页监控系统查看详细信息。`,
+    content: `Word "${taskDetail.extra.detectWord}" appeared on task task ${taskDetail.extra.alias}, please go to web site monitor to view details.  
+任务${taskDetail.extra.alias}的关键词"${taskDetail.extra.detectWord}"出现，请去网页监控系统查看详细信息。`,
     htmlContent : `${wordAppearHTML}`,
   };
+  console.log('emailResult',emailResult)
   return emailResult;
 }
 
-async function wordAppearAlert({taskDetail, result}){
-  let { content, htmlContent} = await wordAppearAlertFormatter({prevDoc, doc, taskDetail});
+async function wordAppearAlert({taskDetail, uncuttedResult, oneTaskHistory}){
+  let { content, htmlContent} = await wordAppearAlertFormatter({taskDetail, uncuttedResult, oneTaskHistory});
   // TODO see above alert and alertSender
   // refact alert wordAppearAlert alertSender
 }

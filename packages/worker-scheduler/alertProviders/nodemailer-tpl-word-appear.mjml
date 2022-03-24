@@ -38,17 +38,8 @@
     <mj-section>
       <mj-column>
         <mj-text align="center" font-size="16px">
-        Task: {{taskDetail.extra.alias}} has changed, on: {{doc.finishTime}}.<br/>
-        任务: {{taskDetail.extra.alias}} 发生了变动, 在 {{doc.finishTime}} 。<br/> <br/>
-        Changes are listed below: <br/>
-        请看下方的变动对比： <br/>
-        </mj-text>
-      </mj-column>
-    </mj-section>
-    <mj-section padding="0px 0px">
-      <mj-column>
-        <mj-text css-class="diffresult" align="justify" font-size="14px">
-          {{{wordAppearHTML}}}
+        Word "{{taskDetail.extra.detectWord}}" appeared on task task {{taskDetail.extra.alias}}, please go to original web site to view details. <br/>
+        任务{{taskDetail.extra.alias}}的关键词"{{taskDetail.extra.detectWord}}出现，请去原网页查看详细信息。<br/> <br/>
         </mj-text>
       </mj-column>
     </mj-section>

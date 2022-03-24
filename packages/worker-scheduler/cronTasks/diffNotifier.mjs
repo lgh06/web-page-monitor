@@ -27,10 +27,11 @@ async function diffNotifier(prevDoc, doc, taskDetail, db) {
 /**
  * send current task result and taskDetail to different alertProviders
  * @param {*} taskDetail 
- * @param {*} result 
+ * @param {*} uncuttedResult 
+ * @param {*} oneTaskHistory 
  * @param {Db} db 
  */
-async function wordAppearNotifier(taskDetail, result, db) {
+async function wordAppearNotifier(taskDetail,uncuttedResult, oneTaskHistory, db) {
   db = db || await getDB();
   console.log('inside wordAppearNotifier');
   if(taskDetail.extra && taskDetail.extra.alertProvider){
@@ -41,7 +42,7 @@ async function wordAppearNotifier(taskDetail, result, db) {
   }
 
   let cacheOnTask = {};
-  cacheOnTask = await alertProviders[taskDetail.extra.alertProvider].wordAppearAlert({taskDetail, result})
+  cacheOnTask = await alertProviders[taskDetail.extra.alertProvider].wordAppearAlert({taskDetail, uncuttedResult, oneTaskHistory})
   return cacheOnTask;
 }
 

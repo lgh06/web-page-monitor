@@ -58,19 +58,20 @@ async function singleTaskHistoryChecker (taskDetail, db){
 }
 /**
  * @param {object} taskDetail 
- * @param {object} result 
+ * @param {string} uncuttedResult 
+ * @param {object} oneTaskHistory 
  * @param {Db} db 
  */
-async function singleTaskWordChecker (taskDetail, result, db){
+async function singleTaskWordChecker (taskDetail, uncuttedResult, oneTaskHistory , db){
   db = db || await getDB();
   let nowDate = new Date();
   if(
     taskDetail && taskDetail.extra && String(taskDetail.extra.detectMode) === '2'
     && taskDetail.extra.detectWord
-    && String(result).includes(taskDetail.extra.detectWord)
+    && String(uncuttedResult).includes(taskDetail.extra.detectWord)
   ){
     let nowCacheOnTask = {};
-    nowCacheOnTask = await wordAppearNotifier(taskDetail, result, db);
+    nowCacheOnTask = await wordAppearNotifier(taskDetail, uncuttedResult, oneTaskHistory, db);
     if(nowCacheOnTask && Object.keys(nowCacheOnTask).length && taskDetail._id){
       await db.collection('task').updateOne({_id: new ObjectId(taskDetail._id)}, {
         $set: {
