@@ -204,7 +204,7 @@ async function wordAppearAlertFormatter({taskDetail, uncuttedResult, oneTaskHist
 
   let emailResult = {
     content: `Word "${taskDetail.extra.detectWord}" appeared on task task ${taskDetail.extra.alias}, please go to web site monitor to view details.  
-任务${taskDetail.extra.alias}的关键词"${taskDetail.extra.detectWord}"出现，请去网页监控系统查看详细信息。`,
+任务${taskDetail.extra.alias}的关键词 "${taskDetail.extra.detectWord}" 出现，请去网页监控系统查看详细信息。`,
     htmlContent : `${wordAppearHTML}`,
   };
   // console.log('emailResult',emailResult)
