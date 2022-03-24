@@ -80,8 +80,8 @@ const Market: NextPage = () => {
 
   let meColumns = useMemo(() => [
     {
-      Header: t('alias'),
-      accessor: 'alias',
+      Header: 'ID',
+      accessor: '_id',
     },
     {
       Header: t('domains applied to'),

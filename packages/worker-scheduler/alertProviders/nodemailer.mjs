@@ -72,7 +72,7 @@ async function alertSender({content, htmlContent, taskDetail, configIndex = 0}) 
   // https://nodemailer.com/about/
   // https://nodemailer.com/app/
   let oneMailConfig;
-  if(Array.isArray(CONFIG.nodemailer)){
+  if(Array.isArray(CONFIG.nodemailer) && CONFIG.nodemailer[configIndex]){
     oneMailConfig = CONFIG.nodemailer[configIndex];
   }else{
     oneMailConfig = CONFIG.nodemailer;
@@ -194,6 +194,9 @@ async function alert({prevDoc, doc, taskDetail}) {
 }
 
 async function wordAppearAlertFormatter({taskDetail, uncuttedResult, oneTaskHistory}) {
+  // oneTaskHistory is similar with doc
+  // a doc is queried from db, is a mongodb document
+  // oneTaskHistory is an object returned from pptr
   console.log('inside wordAppearAlertFormatter');
   let middleTpl = wordAppearMailTemplate({taskDetail, uncuttedResult, oneTaskHistory});
 
@@ -223,8 +226,6 @@ async function wordAppearAlert({taskDetail, uncuttedResult, oneTaskHistory}){
 
 let nodemailer = {
   name: 'nodemailer',
-  alertFormatter,
-  alertSender,
   alert,
   wordAppearAlert,
 }
