@@ -82,6 +82,9 @@ let trans = {
   "注意：一个用户只能创建最多3个任务，每个任务最长持续七天。\
       两个任务之间的最小间隔为10分钟。",
   "Create Now": "立即创建",
+  "Success. you will be redirected to task list page.\n\
+Also, you can close our page, your task will keep running until ":"成功，将跳转到任务列表页面。\n\
+同时，您也可以关闭我们的页面，您的任务将会持续运行，直到",
   "Go back to user center": "返回用户中心",
   "Go to scripts market": "前往脚本市场",
   "Submit OK. You can close this page.": "提交成功，您可以关闭该页面。",
