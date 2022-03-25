@@ -24,7 +24,7 @@ This value already set in JS codes.
 // messages auto expires after 24 hours
 // for windows
 cd /d "C:\Program Files\RabbitMQ Server\rabbitmq_server-3.9.13\sbin"
-rabbitmqctl set_policy TTL ".*" "{""message-ttl"":86400000}" --apply-to queues
+rabbitmqctl set_policy TTL ".*" "{""message-ttl"":2160000}" --apply-to queues
 ```  
 > in a word, RabbitMQ do not have a default ttl / expire time set. you have to modify this.  
 
