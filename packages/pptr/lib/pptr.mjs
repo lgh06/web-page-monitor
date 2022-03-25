@@ -87,6 +87,7 @@ async function main() {
             consumeTime,
             finishTime: new Date(),
             taskDetail,
+            pptrId: CONFIG.pptrId || 1,
           }
           await sendResultToWorker(res, conn, sendResultToWorkerChannel)
         } catch (error) {

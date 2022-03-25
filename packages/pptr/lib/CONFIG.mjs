@@ -10,6 +10,7 @@ let CONFIG = {
   queue: '' || globalConfig.queue,
   queueBinding: '' || globalConfig.queueBinding,
   pptrToWorkerQueue: '' || globalConfig.pptrToWorkerQueue,
+  pptrId: 0 || globalConfig.pptrId,
 };
 
 export { CONFIG, CONFIG as default };

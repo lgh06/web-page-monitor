@@ -25,6 +25,7 @@ let globalConfigLocal = {
   pptrThreadNum: 2,
   pptrToWorkerQueue: 'testPptrHistoryQueue001',
   dynJSPath: `http://localhost:3002/api/script/`,
+  pptrId: -1, // -1 means dev, 0 means not set, real prod server set to 1,2,3,4,5... (number)
   // Nodemailer App config for local debug use
   nodemailer: {
     host: 'localhost',

@@ -32,7 +32,7 @@ async function resultSaver(mqConn, mqChannel) {
       // console.log(stringResponse);
       let response = JSON.parse(stringResponse);
 
-      let { result, err, consumeTime, finishTime, taskDetail } = response;
+      let { result, err, consumeTime, finishTime, taskDetail, pptrId = 1 } = response;
       if(typeof finishTime !== 'object') { // may be jsonfied string
         finishTime = new Date(finishTime)
       }
@@ -57,13 +57,14 @@ async function resultSaver(mqConn, mqChannel) {
       // console.log(hash)
       let oneTaskHistory = {
         // scheduledTime changes on task table, so we need store it on taskHistory
-        scheduledTime: taskDetail.nextExecuteTime,
-        consumeTime,
-        finishTime,
+        scheduledTime: taskDetail.nextExecuteTime, // timestamp
+        consumeTime, // timestamp
+        finishTime, // Date, mongodb TTL index field
         err: err,
         textHash: hash,
         textContent: cuttedResult || result,
         taskId: new ObjectId(taskDetail._id),
+        pptrId,
       }
       try {
         // await 
