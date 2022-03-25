@@ -8,7 +8,7 @@
     "postinstall": "npm i lerna@3.22.1 -g && npm run setpm2 && npm run init && git update-index --skip-worktree packages/helper/globalConfig.prod.mjs",
     "dev": "lerna bootstrap && lerna run dev --parallel --no-bail",
     "start": "lerna bootstrap && lerna run start --stream --concurrency 1 --no-bail",
-    "sp": "lerna run start --scope @webest/web-page-monitor-pptr",
+    "sp": "lerna bootstrap && lerna run start --scope @webest/web-page-monitor-pptr",
     "stop": "lerna run stop",
     "r": "lerna run build && pm2 reload all",
     "rw": "lerna run build --scope @webest/web-page-monitor-web && pm2 reload web",
