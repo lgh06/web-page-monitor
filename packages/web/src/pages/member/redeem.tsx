@@ -33,9 +33,13 @@ const MemberRedeemPage: NextPage = () => {
 
   useEffect(()=>{
     resetRedeemInfo()
-    // if(userInfo.email && typeof window !== 'undefined'){
-    //   window.navigator.clipboard.writeText(userInfo.email)
-    // }
+    try {
+      if(userInfo.email && typeof window !== 'undefined'){
+        window.navigator.clipboard.writeText(userInfo.email)
+      }
+    } catch (error) {
+      console.error(error);
+    }
   },[router]);
 
   function handleInputChange(ev: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
