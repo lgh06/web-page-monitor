@@ -96,7 +96,8 @@ Static HTML 3001 on production. (maybe, or just use Next.js )
 npm install && npm run dev  
 # or with pm2
 npm install && npm start
-
+# if you are linux root, use below command to install 
+# npm install --unsafe-perm
 
 ```  
 You need to quit manually because we used `pm2`  
