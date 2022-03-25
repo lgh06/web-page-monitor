@@ -39,7 +39,7 @@ async function delayedMQSend({delay = 300, taskDetail}, mqConn, mqChannel) {
   if(typeof taskDetail === 'object'){
     let stringTaskDetail = JSON.stringify(taskDetail);
     // https://github.com/amqp-node/amqplib/blob/gh-pages/channel_api.md#channel_publish
-    channel.publish(exchange, queueBinding, Buffer.from(stringTaskDetail), { headers, persistent : true, expiration : 86400000 });
+    channel.publish(exchange, queueBinding, Buffer.from(stringTaskDetail), { headers, persistent : true, expiration : 2160000 });
   }
 
 }

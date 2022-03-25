@@ -12,7 +12,7 @@ async function sendResultToWorker(res, mqConn, mqChannel) {
     let queue = CONFIG.pptrToWorkerQueue;
     let channel = mqChannel || await conn.createChannel();
   
-    await channel.assertQueue(queue, {durable: true,messageTtl: 86400000});
+    await channel.assertQueue(queue, {durable: true,messageTtl: 2160000});
     let stringRes = JSON.stringify(res);
     channel.sendToQueue(queue, Buffer.from(stringRes), { persistent: true });
   } catch (error) {

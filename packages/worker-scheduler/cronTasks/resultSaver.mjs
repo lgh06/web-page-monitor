@@ -20,10 +20,10 @@ async function resultSaver(mqConn, mqChannel) {
 
   await channel.assertQueue(queue, {
     durable: true,
-    messageTtl: 86400000,
+    messageTtl: 2160000,
   });
 
-  await channel.prefetch(5);
+  await channel.prefetch(5, true);
   await channel.consume(queue, async function (message) {
     // console.log(message)
     if (message !== null) {

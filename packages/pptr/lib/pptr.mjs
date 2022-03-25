@@ -20,11 +20,11 @@ async function main() {
   let sendResultToWorkerChannel = await conn.createChannel();
   // assertExchange in consumer can be deleted in fact
   await channel.assertExchange(exchange, 'x-delayed-message', { durable: true, arguments: { 'x-delayed-type': 'direct' } });
-  await channel.assertQueue(queue, { durable: true, messageTtl : 86400000 });
+  await channel.assertQueue(queue, { durable: true, messageTtl : 2160000 });
   await channel.bindQueue(queue, exchange, queueBinding);
 
   // TODO increase to 4 for production
-  await channel.prefetch(CONFIG.debug ? 1 : CONFIG.pptrThreadNum);
+  await channel.prefetch(CONFIG.debug ? 1 : CONFIG.pptrThreadNum, true);
   await channel.consume(queue, async function (message) {
     let taskDetail;
     let consumeTime = Date.now();
