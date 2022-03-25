@@ -27,7 +27,7 @@ const TaskEditSimpPage: NextPage = () => {
   // update input date when first entry
   async function firstInit() {
     resetTaskDetail();
-    if(router.query.id){
+    if(router.query.id){ // edit
       let script: any = [];
       // TODO pagination
       script = await fetchAPI(`/task?id=${router.query.id}`) 
@@ -41,16 +41,16 @@ const TaskEditSimpPage: NextPage = () => {
         v.endTime = endTimeDate.valueOf();
         v.endLocalMinuteString = CronTime.toLocalISOString(endTimeDate);
         v.startLocalMinuteString = CronTime.toLocalISOString(nowDate, 10);
-        v.endMaxLocalMinuteString = CronTime.toLocalISOString(nowDate, 7*60*24);
+        v.endMaxLocalMinuteString = CronTime.toLocalISOString(nowDate, 14*60*24);
 
       })
-    }else{
+    }else{ // create
       setTaskDetail(v => {
         v.mode = 'simp'; // this page for simp-le mode
         let nowDate = new Date();
         // TODO different type user, different end time
-        v.endLocalMinuteString = CronTime.toLocalISOString(nowDate, 7*60*24);
-        v.endMaxLocalMinuteString = CronTime.toLocalISOString(nowDate, 7*60*24);
+        v.endLocalMinuteString = CronTime.toLocalISOString(nowDate, 14*60*24);
+        v.endMaxLocalMinuteString = CronTime.toLocalISOString(nowDate, 14*60*24);
         v.endTime = new Date(v.endLocalMinuteString).valueOf()
         v.startLocalMinuteString = CronTime.toLocalISOString(nowDate, 10);
         v.extra.alias = (Math.floor(nowDate.valueOf())).toString(36).toUpperCase();
@@ -172,6 +172,8 @@ const TaskEditSimpPage: NextPage = () => {
         })
       }
       if(resp.ok || resp.acknowledged){
+        alert(t(`Success. You will be redirected to task list page.
+Also, you can close our page, your task will keep running until `) + taskDetail.endLocalMinuteString);
         router.push("/task/list");
       }else{
         alert(t(`Create Error: Network issue or exceed max task number`));
