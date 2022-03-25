@@ -148,8 +148,15 @@ const LoginPage: NextPage = () => {
   } else {
     res = (<main>
         {headTitle}
-        <a {...cn('link')} href={url} rel="nofollow noreferrer noopener">{t(`Login with Gitee.com OAuth`)}</a>
-        
+        <div>
+          <a {...cn('link')} href={url} rel="nofollow noreferrer noopener">{t(`Login with Gitee.com OAuth`)}</a>
+        </div>
+        <div> 
+        <br/>
+        {t('By click above login links, you agree to our')}
+          <Link prefetch={false} href="/faq#TermsOfService"><a>{t('Terms of Service')}</a></Link>
+        </div>
+        <br/>
         {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
         {/* <div>// TODO other OAuth login providers</div> */}
         <Back/>
