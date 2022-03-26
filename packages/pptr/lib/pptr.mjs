@@ -113,24 +113,24 @@ async function main() {
 
 }
 
-async function retryMain(){
-  console.log('inside retryMain()')
-  try {
-    main();
-  } catch (error) {
-    console.error(error)
-    await delay(30000);
-    retryMain();
-  }
-}
+// async function retryMain(){
+//   console.log('inside retryMain()')
+//   try {
+//     main();
+//   } catch (error) {
+//     console.error(error)
+//     await delay(30000);
+//     retryMain();
+//   }
+// }
 
 try {
   main();
 } catch (error) {
   console.error(error)
-  await delay(30000).then(()=>{
-    retryMain();
-  });
+  // await delay(30000).then(()=>{
+  //   retryMain();
+  // });
 }
 // https://github.com/puppeteer/puppeteer/issues/7902#issuecomment-1046020683
 process.on('uncaughtException', function (err) {
