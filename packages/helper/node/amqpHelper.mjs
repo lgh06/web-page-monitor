@@ -44,7 +44,7 @@ class amqpHelper {
     // returns Promise<connection>
     return innerConn;
   }
-  async connErrorHandler(err){
+  connErrorHandler(err){
     if(err && isFatalError(err)){
       this._DoSthWhenConnCloseOrError();
     }else{
@@ -52,7 +52,7 @@ class amqpHelper {
     }
   }
 
-  async connCloseHandler(){
+  connCloseHandler(){
     this._DoSthWhenConnCloseOrError()
   }
   async _DoSthWhenConnCloseOrError(){
@@ -65,6 +65,10 @@ class amqpHelper {
     }).catch(err => {
       this.connReady = false;
     });
+  }
+
+  delay(ms){
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
 }

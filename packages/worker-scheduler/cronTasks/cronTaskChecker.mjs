@@ -12,7 +12,7 @@ let timestampArrayFinderGenerator = (nowTimestamp) => (v) => {
 let objectIdDaysBefore = (days) => ObjectId.createFromTime( 
   parseInt( ( Date.now() - days * 24 * 60 * 60 * 1000 ) / 1000)
 );
-async function normalChecker(now, mqConn, mqChannel) {
+async function normalChecker(now, mqChannel) {
 
   now = now || Date.now(); // timestamp
 
@@ -22,64 +22,68 @@ async function normalChecker(now, mqConn, mqChannel) {
   let tableName = 'task';
 
   let finder = timestampArrayFinderGenerator(now);
-  return db.collection(tableName).aggregate([
-    {
-      $match: {
-        $and: [
-          {
-            nextExecuteTime: {
-              $gte: getNextStepMinuteTimestamp(now, 5, 1),
-              $lt: getNextStepMinuteTimestamp(now, 5, 2)
-            }
-          },
-          {
-            endTime: {
-              $gt: new Date(now) //  endTime in DB is a Date type
-            }
-          },
-        ]
-      }
-      // TODO pagination and be careful for memory leak. future.
-    },
-    {
-      $lookup:
+  let docs;
+  try {
+    docs = await db.collection(tableName).aggregate([
       {
-        from: "user",
-        localField: "userId",
-        foreignField: "_id",
-        as: "userInfo"
-      }
-    },
-
-  ])
-  .toArray().then(docs => {
+        $match: {
+          $and: [
+            {
+              nextExecuteTime: {
+                $gte: getNextStepMinuteTimestamp(now, 5, 1),
+                $lt: getNextStepMinuteTimestamp(now, 5, 2)
+              }
+            },
+            {
+              endTime: {
+                $gt: new Date(now) //  endTime in DB is a Date type
+              }
+            },
+          ]
+        }
+        // TODO pagination and be careful for memory leak. future.
+      },
+      {
+        $lookup:
+        {
+          from: "user",
+          localField: "userId",
+          foreignField: "_id",
+          as: "userInfo"
+        }
+      },
+  
+    ]).toArray();
+  } catch (error) {
+    console.error(error);
+  }
     // TODO
     // if we have same pageURL, then we should merge the 5 minutes' tasks to one pptr task.
     // also need create another data structure to let taskHistory save multiple records for one pptr task.
-    if (docs && docs.length) {
-      docs.forEach(async (doc) => {
-        if(doc.userInfo && doc.userInfo[0]){
-          // if one user not have enough points,
-          // then we should not execute this task.
-          if(doc.userInfo[0].points <=0){
-            return false;
-          }
+  if (docs && docs.length) {
+    for (let doc of docs) {
+      if(doc.userInfo && doc.userInfo[0]){
+        // if one user not have enough points,
+        // then we should not execute this task.
+        if(doc.userInfo[0].points <=0){
+          return false;
         }
-        // generate a random time to balance pptr's tasks
-        // we may reboot the server, on 59 minute 40second
-        let random15s = Math.floor(Math.random() * 15) * 1000;
-        await delayedMQSend({delay: doc.nextExecuteTime - now + random15s, taskDetail:{
-          ...doc,
-          userInfo: doc.userInfo[0]
-        }}, mqConn, mqChannel).catch(err => {console.error(err)});
-        db.collection(tableName).updateOne({ _id: doc._id }, {
-          '$set': {
-            nextExecuteTime: CronTime.getNextTimes(doc.cronSyntax, 5).find(finder)
-          }
-        }).catch(e => console.error(e))
-      });
+      }
+      // generate a random time to balance pptr's tasks
+      // we may reboot the server, on 59 minute 40second
+      let random15s = Math.floor(Math.random() * 15) * 1000;
+      await delayedMQSend({delay: doc.nextExecuteTime - now + random15s, taskDetail:{
+        ...doc,
+        userInfo: doc.userInfo[0]
+      }}, mqChannel).catch(err => {console.error(err)});
+      await db.collection(tableName).updateOne({ _id: doc._id }, {
+        '$set': {
+          nextExecuteTime: CronTime.getNextTimes(doc.cronSyntax, 5).find(finder)
+        }
+      }).catch(e => console.error(e))
     }
-  }).catch(e => console.error(e));
+    if(mqChannel) await mqChannel.close();
+  }
 }
 
 async function errorChecker(now) {

@@ -5,12 +5,11 @@ import { CONFIG } from "./CONFIG.mjs";
  * for worker 's later processing and save to MongoDB.
  */
 
-async function sendResultToWorker(res, mqConn, mqChannel) {
+async function sendResultToWorker(res, mqChannel) {
   // let {result, err} = res;
   try {
-    let conn = mqConn || await amqp.connect(CONFIG.mqConnString);
     let queue = CONFIG.pptrToWorkerQueue;
-    let channel = mqChannel || await conn.createChannel();
+    let channel = mqChannel;
   
     await channel.assertQueue(queue, {durable: true,messageTtl: 2160000});
     let stringRes = JSON.stringify(res);
