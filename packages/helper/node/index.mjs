@@ -134,3 +134,4 @@ let mongo = {
 export { mongo } 
 
 export * from './jwt.mjs';
+export * from './amqpHelper.mjs';
