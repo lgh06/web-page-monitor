@@ -11,11 +11,21 @@ const queue = CONFIG.queue;
 const queueBinding = CONFIG.queueBinding;
 let connString = CONFIG.mqConnString
 
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 async function main() {
   // TODO subscribe MQ
   // distinct different mode, then use different mjs to execute pptr
 
-  let conn = await amqp.connect(connString);
+  let conn;
+  try {
+    conn = await amqp.connect(connString);
+  } catch (error) {
+    await delay(10000);
+    console.error('inside pptr main() error')
+    conn = null;
+    return main();
+  }
   let channel = await conn.createChannel();
   let sendResultToWorkerChannel = await conn.createChannel();
   // assertExchange in consumer can be deleted in fact
@@ -103,10 +113,24 @@ async function main() {
 
 }
 
+async function retryMain(){
+  console.log('inside retryMain()')
+  try {
+    main();
+  } catch (error) {
+    console.error(error)
+    await delay(10000);
+    retryMain();
+  }
+}
+
 try {
   main();
 } catch (error) {
   console.error(error)
+  await delay(10000).then(()=>{
+    retryMain();
+  });
 }
 // https://github.com/puppeteer/puppeteer/issues/7902#issuecomment-1046020683
 process.on('uncaughtException', function (err) {

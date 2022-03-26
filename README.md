@@ -97,7 +97,9 @@ npm install && npm run dev
 # or with pm2
 npm install && npm start
 # if you are linux root, use below command to install 
-# npm install --unsafe-perm
+# adduser someusername
+# su -l someusername
+# npm i
 
 ```  
 You need to quit manually because we used `pm2`  
