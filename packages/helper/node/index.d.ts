@@ -19,6 +19,10 @@ export namespace jwt{
   }>;
 }
 
+declare module amqpHelper{
+  
+}
+
 // declare module '@webest/web-page-monitor-helper/mongo' {
 //   function upsertDoc(db: Db, collectionName: string, doc: Document): Promise<ModifyResult<Document>>;
 // }
