@@ -21,7 +21,7 @@ async function main() {
   try {
     conn = await amqp.connect(connString);
   } catch (error) {
-    await delay(10000);
+    await delay(30000);
     console.error('inside pptr main() error')
     conn = null;
     return main();
@@ -119,7 +119,7 @@ async function retryMain(){
     main();
   } catch (error) {
     console.error(error)
-    await delay(10000);
+    await delay(30000);
     retryMain();
   }
 }
@@ -128,7 +128,7 @@ try {
   main();
 } catch (error) {
   console.error(error)
-  await delay(10000).then(()=>{
+  await delay(30000).then(()=>{
     retryMain();
   });
 }
