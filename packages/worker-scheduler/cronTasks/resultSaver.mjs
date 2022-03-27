@@ -8,14 +8,14 @@ import { singleTaskHistoryChecker, singleTaskWordChecker } from './taskHistoryCh
 import { CONFIG } from "../CONFIG.mjs";
 
 let connString = CONFIG.mqConnString
-let amqpHelperInstance = new amqpHelper(connString);
+let amqpHelperInstance = new amqpHelper(connString, false); // let worker crash if amqp connection is broken
 
 // save pptr results which are got from MQ, 
 // to DB `taskHistory` table,
 // and detect diffs and send emails / phone calls
 async function resultSaver() {
   let db = await getDB();
-  if (!db) return;
+  // if (!db) return;
   let conn, channel;
   conn = await amqpHelperInstance.getConn();
   channel = await conn.createChannel();

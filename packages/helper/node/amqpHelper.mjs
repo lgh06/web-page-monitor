@@ -8,13 +8,15 @@ class amqpHelper {
   connPromise;
   conn;
   connReady = false;
-  constructor(url){
+  constructor(url, errorHandler = true){
     this.connString = url;
     this.connPromise = this.getConn(url);
     this.connPromise.then((connection) => {
       console.log('inside amqpHelper constructor then');
-      // connection.on('error', this.connErrorHandler.bind(this));
-      // connection.on('close', this.connCloseHandler.bind(this));
+      if(errorHandler){
+        connection.on('error', this.connErrorHandler.bind(this));
+        connection.on('close', this.connCloseHandler.bind(this));
+      }
     });
     return this;
   }
@@ -44,30 +46,30 @@ class amqpHelper {
     // returns Promise<connection>
     return innerConn;
   }
-  // connErrorHandler(err){
-  //   console.err('inside amqpHelper connErrorHandler', err);
-  //   if(err && isFatalError(err)){
-  //     this._DoSthWhenConnCloseOrError();      
-  //   }else{
+  connErrorHandler(err){
+    console.err('inside amqpHelper connErrorHandler', err);
+    if(err && isFatalError(err)){
+      this._DoSthWhenConnCloseOrError();      
+    }else{
 
-  //   }
-  // }
+    }
+  }
 
-  // connCloseHandler(){
-  //   console.error('inside amqpHelper connCloseHandler');
-  //   this._DoSthWhenConnCloseOrError()
-  // }
-  // async _DoSthWhenConnCloseOrError(){
-  //   this.connReady = false;
-  //   await delay(30000);
-  //   this.connPromise = this.getConn();
-  //   this.connPromise.then(connection => {
-  //     this.conn = connection;
-  //     this.connReady = true;
-  //   }).catch(err => {
-  //     this.connReady = false;
-  //   });
-  // }
+  connCloseHandler(){
+    console.error('inside amqpHelper connCloseHandler');
+    this._DoSthWhenConnCloseOrError()
+  }
+  async _DoSthWhenConnCloseOrError(){
+    this.connReady = false;
+    await delay(30000);
+    this.connPromise = this.getConn();
+    this.connPromise.then(connection => {
+      this.conn = connection;
+      this.connReady = true;
+    }).catch(err => {
+      this.connReady = false;
+    });
+  }
 
   delay(ms){
     return new Promise((resolve) => setTimeout(resolve, ms));

@@ -6,10 +6,10 @@ import { amqpHelper } from '@webest/web-page-monitor-helper/node/index.mjs';
 import { CONFIG } from "../CONFIG.mjs";
 
 let connString = CONFIG.mqConnString
-let amqpHelperInstance = new amqpHelper(connString);
+let amqpHelperInstance = new amqpHelper(connString, true);
 
 // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-function taskIntervalExecuter() {
+function taskExecuter() {
   console.log('workerScheduler start on:', new Date());
 
   // the worker for cron jobs
@@ -51,4 +51,4 @@ function taskIntervalExecuter() {
   
 }
 
-export { taskIntervalExecuter , taskIntervalExecuter as default}
+export { taskExecuter , taskExecuter as default}

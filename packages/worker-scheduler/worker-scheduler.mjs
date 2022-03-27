@@ -1,8 +1,8 @@
 
-import { taskIntervalExecuter } from "./cronTasks/taskIntervalExecuter.mjs";
+import { taskExecuter } from "./cronTasks/taskExecuter.mjs";
 import { pointsMonthlyExecuter } from "./memberPoints/pointsMonthlyExecuter.mjs";
 
-taskIntervalExecuter();
+taskExecuter();
 pointsMonthlyExecuter();
 
 // process.on('uncaughtException', function (err) {

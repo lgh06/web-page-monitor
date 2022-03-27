@@ -11,7 +11,7 @@ const queue = CONFIG.queue;
 const queueBinding = CONFIG.queueBinding;
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-let amqpHelperInstance = new amqpHelper(CONFIG.mqConnString);
+let amqpHelperInstance = new amqpHelper(CONFIG.mqConnString, false); // let pptr crash if amqp connection is broken
 
 async function main() {
   // TODO subscribe MQ
