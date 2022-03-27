@@ -8,12 +8,14 @@ class amqpHelper {
   connPromise;
   conn;
   connReady = false;
+  errorHandler = true;
   constructor(url, errorHandler = true){
     this.connString = url;
     this.connPromise = this.getConn(url);
+    this.errorHandler = errorHandler;
     this.connPromise.then((connection) => {
       console.log('inside amqpHelper constructor then');
-      if(errorHandler){
+      if(this.errorHandler){
         connection.on('error', this.connErrorHandler.bind(this));
         connection.on('close', this.connCloseHandler.bind(this));
       }
@@ -37,9 +39,13 @@ class amqpHelper {
       innerConn = await amqp.connect(url);
       this.conn = innerConn;
       this.connReady = true;
+      if(this.errorHandler){
+        innerConn.on('error', this.connErrorHandler.bind(this));
+        innerConn.on('close', this.connCloseHandler.bind(this));
+      }
     } catch (error) {
       this.connReady = false;
-      console.error(error)
+      console.error('inside amqpHelper getConn error', error)
       await delay(30000);
       innerConn = await this.getConn();
     }
@@ -61,12 +67,14 @@ class amqpHelper {
   }
   async _DoSthWhenConnCloseOrError(){
     this.connReady = false;
+    this.conn = null;
     await delay(30000);
     this.connPromise = this.getConn();
     this.connPromise.then(connection => {
       this.conn = connection;
       this.connReady = true;
     }).catch(err => {
+      this.conn = null;
       this.connReady = false;
     });
   }

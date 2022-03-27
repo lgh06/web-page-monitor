@@ -30,6 +30,11 @@ function taskExecuter() {
         // this channel will be closed on normalChecker end
         let conn, channel;
         conn = await amqpHelperInstance.getConn();
+        // HOLD ON
+        // Here may be memory leak, if too many connections are waiting
+        // for amqp connection, and amqp connection is broken.
+        // inside setInterval, do not hang up if no conn, just return.
+        // if(!conn) return;
         channel = await conn.createChannel();
         await normalChecker(now, channel);
       }

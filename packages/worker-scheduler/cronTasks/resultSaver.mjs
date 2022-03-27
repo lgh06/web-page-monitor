@@ -8,7 +8,7 @@ import { singleTaskHistoryChecker, singleTaskWordChecker } from './taskHistoryCh
 import { CONFIG } from "../CONFIG.mjs";
 
 let connString = CONFIG.mqConnString
-let amqpHelperInstance = new amqpHelper(connString, false); // let worker crash if amqp connection is broken
+let amqpHelperInstance = new amqpHelper(connString);
 
 // save pptr results which are got from MQ, 
 // to DB `taskHistory` table,
@@ -16,9 +16,20 @@ let amqpHelperInstance = new amqpHelper(connString, false); // let worker crash 
 async function resultSaver() {
   let db = await getDB();
   // if (!db) return;
-  let conn, channel;
+  let conn, channel, connClosed = false;
   conn = await amqpHelperInstance.getConn();
   channel = await conn.createChannel();
+  if(conn){
+    conn.on('close', ()=>{
+      connClosed = true;
+      console.log('conn closed');
+      resultSaver();
+      conn.off('close');
+      db = null;
+      channel = null;
+      conn = null;
+    })
+  }
   let queue = CONFIG.pptrToWorkerQueue;
 
   await channel.assertQueue(queue, {
@@ -29,6 +40,10 @@ async function resultSaver() {
   await channel.prefetch(5, true);
   await channel.consume(queue, async function (message) {
     // console.log(message)
+    if(connClosed){
+      console.log('conn closed, skip this message');
+      return;
+    }
     if (message !== null) {
       let stringResponse = message.content.toString();
       // console.log('inside worker resultSaver');
