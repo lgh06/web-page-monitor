@@ -137,3 +137,7 @@ see [LICENSE.md](./LICENSE.md)
 > https://www.wolai.com/ahuan/xvh7PRocdkApx5p9rTmrDc  
 > https://github.com/lgh06/web-page-monitor/projects/1  
 
+> Data flow chart  
+> ![Data flow chart](https://alyjbedhbo.cdn.bspapp.com/ALYJBEDHBO-1f8d8dcb-ff67-4778-8209-da5ceecdd68f/91104d1f-c14f-48af-8276-35acc5b488d7.svg)
+
+
