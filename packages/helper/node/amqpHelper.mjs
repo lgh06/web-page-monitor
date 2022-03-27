@@ -13,8 +13,8 @@ class amqpHelper {
     this.connPromise = this.getConn(url);
     this.connPromise.then((connection) => {
       console.log('inside amqpHelper constructor then');
-      connection.on('error', this.connErrorHandler.bind(this));
-      connection.on('close', this.connCloseHandler.bind(this));
+      // connection.on('error', this.connErrorHandler.bind(this));
+      // connection.on('close', this.connCloseHandler.bind(this));
     });
     return this;
   }
@@ -37,35 +37,37 @@ class amqpHelper {
       this.connReady = true;
     } catch (error) {
       this.connReady = false;
-      console.log(error)
+      console.error(error)
       await delay(30000);
       innerConn = await this.getConn();
     }
     // returns Promise<connection>
     return innerConn;
   }
-  connErrorHandler(err){
-    if(err && isFatalError(err)){
-      this._DoSthWhenConnCloseOrError();
-    }else{
+  // connErrorHandler(err){
+  //   console.err('inside amqpHelper connErrorHandler', err);
+  //   if(err && isFatalError(err)){
+  //     this._DoSthWhenConnCloseOrError();      
+  //   }else{
 
-    }
-  }
+  //   }
+  // }
 
-  connCloseHandler(){
-    this._DoSthWhenConnCloseOrError()
-  }
-  async _DoSthWhenConnCloseOrError(){
-    this.connReady = false;
-    await delay(30000);
-    this.connPromise = this.getConn();
-    this.connPromise.then(connection => {
-      this.conn = connection;
-      this.connReady = true;
-    }).catch(err => {
-      this.connReady = false;
-    });
-  }
+  // connCloseHandler(){
+  //   console.error('inside amqpHelper connCloseHandler');
+  //   this._DoSthWhenConnCloseOrError()
+  // }
+  // async _DoSthWhenConnCloseOrError(){
+  //   this.connReady = false;
+  //   await delay(30000);
+  //   this.connPromise = this.getConn();
+  //   this.connPromise.then(connection => {
+  //     this.conn = connection;
+  //     this.connReady = true;
+  //   }).catch(err => {
+  //     this.connReady = false;
+  //   });
+  // }
 
   delay(ms){
     return new Promise((resolve) => setTimeout(resolve, ms));
