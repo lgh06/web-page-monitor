@@ -29,7 +29,7 @@ global.mongodb = global.mongodb || {};
 async function getClient(): Promise<MongoClient>{
   if (!global.mongodb.client) {
     global.mongodb.client = new MongoClient(MONGODB_URI,{
-      serverSelectionTimeoutMS: 300000, // 300s
+      serverSelectionTimeoutMS: 100000, // 100s
       connectTimeoutMS: 12000, // 12s
     });
   }

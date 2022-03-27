@@ -30,7 +30,7 @@ async function getClient(){
     // https://mongodb.github.io/node-mongodb-native/4.3/interfaces/MongoClientOptions.html#serverSelectionTimeoutMS
     // https://docs.mongodb.com/drivers/node/v4.3/fundamentals/connection/#std-label-connection-options
     global.mongodb.client = new MongoClient(MONGODB_URI,{
-      serverSelectionTimeoutMS: 300000, // 300s
+      serverSelectionTimeoutMS: 100000, // 100s
       connectTimeoutMS: 12000, // 12s
     });
   }
