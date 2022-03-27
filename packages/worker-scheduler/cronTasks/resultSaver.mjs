@@ -14,8 +14,6 @@ let amqpHelperInstance = new amqpHelper(connString);
 // to DB `taskHistory` table,
 // and detect diffs and send emails / phone calls
 async function resultSaver() {
-  let db = await getDB();
-  // if (!db) return;
   let conn, channel, connClosed = false;
   conn = await amqpHelperInstance.getConn();
   channel = await conn.createChannel();
@@ -85,6 +83,10 @@ async function resultSaver() {
         pptrId,
       }
       try {
+        let db = await getDB();
+        if (!db) { 
+          return;
+        }
         // await 
         // minus points of one user
         if(taskDetail && taskDetail.userInfo && taskDetail.userInfo._id && taskDetail.userInfo.points) {
