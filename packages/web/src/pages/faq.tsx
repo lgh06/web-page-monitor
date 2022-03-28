@@ -56,6 +56,17 @@ const FaqPage: NextPage = () => {
           <br/> See also <Link prefetch={false} href="/about"><a>About</a></Link> page.
         </p>
         <h2 id="WhatIsACronSyntaxCronPattern"> What Is A Cron Syntax / Cron Pattern ?</h2>
+        <p>
+          Cron Pattern example： <code>0 20 9,18 * * *</code> (contains: number, comma, *, space) <br />
+          From left to right: seconds, minutes, hours, days, months and weeks, so the meaning is: execute every day, on 9:20:00, 18:20:00 (i.e. twice a day).<br />
+          In general, write * for week, month and day, 0 for seconds, and just modify the hours and minutes.<br />
+          More examples：
+          <ul>
+            <li>Execute at 13:30:40 and 20:30:40 every day: <code>40 30 13,20 * * *</code> ( 2 times a day, about 60 times a month, completely free of charge)</li>
+            <li>Execute at 8:00:00, 13:00:00 and 21:00:00 every day:<code>0 0 8,13,21 * * *</code> ( 3 times a day, about 90 times a month)</li>
+            <li>Execute at every hour&apos;s 10 minutes and 0 seconds, 45 minutes and 0 seconds. <code>0 10,45 * * * *</code> (2 times a hour, 48 times per day, about 1440 times per month)</li>
+          </ul>
+        </p>
         <p>We used <code>node-cron</code> inside to parse cron patterns / syntax, go to  &nbsp;
           <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/kelektiv/node-cron/blob/master/README.md#available-cron-patterns">https://github.com/kelektiv/node-cron/blob/master/README.md#available-cron-patterns</a>
           &nbsp; for some clues.  (// Add more explanations here)
@@ -152,10 +163,21 @@ const FaqPage: NextPage = () => {
           <br/> 另请参阅 <Link prefetch={false} href="/about"><a>关于</a></Link> 页面。
         </p>
         <h2 id="WhatIsACronSyntaxCronPattern"> 什么是Cron定时任务表达式？</h2>
+        <p>
+          Cron表达式举例： <code>0 20 9,18 * * *</code>（含有：数字，英文半角逗号，英文半角*，空格）<br />
+          从左到右依次代表： 秒 分 时 日 月 星期， 所以含义为： 每天的9点20分0秒、18点20分0秒执行（即每天两次）。<br />
+          一般情况下，星期、月、日写*，秒写0，修改时、分即可。<br />
+          更多例子：
+          <ul>
+            <li>每天的13点30分40秒、20点30分40秒执行： <code>40 30 13,20 * * *</code> （每天执行2次，每月约60次，完全免费）</li>
+            <li>每天的8点、13点、21点执行（都在0分0秒）：<code>0 0 8,13,21 * * *</code> （每天执行3次，每月约90次）</li>
+            <li>每小时的10分0秒、45分0秒执行： <code>0 10,45 * * * *</code> （每小时执行2次，每天48次，每月约1440次）</li>
+          </ul>
+        </p>
         <p>我们使用内置的 <code>node-cron</code> 来解析Cron定时任务表达式  &nbsp; 你可以去
           <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/kelektiv/node-cron/blob/master/README.md#available-cron-patterns">https://github.com/kelektiv/node-cron/blob/master/README.md#available-cron-patterns</a>
           &nbsp; 查看更多信息。
-          </p>
+        </p>
           <p>与此同时, 不支持输入 <code>/</code> 在Cron表达式里, 因为我们在分布式的多个全球服务器上运行任务。
           全球服务器中运行，很难同步所有的时间，所以请不要使用 <code>* * */4 * * *</code>(每四小时执行一次) 这样的Cron表达式。
           <br/>
