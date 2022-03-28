@@ -93,6 +93,8 @@ async function simpleMode(taskDetail) {
   let prodLauchOption = {
     // TODO read limit from MQ from worker from DB.
     limit: 7,
+    // https://github.com/puppeteer/puppeteer/issues/1175
+    args: ['--disable-dev-shm-usage'],
   }
   let usedLauchOption = CONFIG.debug ? debugLaunchOption : prodLauchOption
 
