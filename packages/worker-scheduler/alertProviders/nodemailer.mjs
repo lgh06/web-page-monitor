@@ -10,7 +10,7 @@ import * as Diff from 'diff';
 let defaultAlertDebounce = 1000 * 60 * 3; // dev 3 minutes
 let minAlertDebounce = 1000 * 60 * 2 // dev 2 minutes
 if(CONFIG.useProdConfig){
-  defaultAlertDebounce = 1000 * 60 * 60 * 6; // 6 hours
+  defaultAlertDebounce = 1000 * 60 * 60 * 6; // 4 hours
   minAlertDebounce = 1000 * 60 * 60 * 1 // 1 hour
 }
 const __dirname = (() => {let x = path.dirname(decodeURI(new URL(import.meta.url).pathname)); return path.resolve( (process.platform == "win32") ? x.substr(1) : x ); })();
