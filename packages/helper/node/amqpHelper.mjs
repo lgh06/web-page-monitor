@@ -29,7 +29,7 @@ class amqpHelper {
    * @returns {Promise<amqp.Connection>}
    */
   async getConn(url){
-    console.log('inside amqpHelper getConn');
+    // console.log('inside amqpHelper getConn');
     if(this.connReady === true && this.conn){
       return this.conn;
     }
@@ -45,7 +45,7 @@ class amqpHelper {
       }
     } catch (error) {
       this.connReady = false;
-      console.error('inside amqpHelper getConn error', error)
+      // console.error('inside amqpHelper getConn error', error)
       await delay(30000);
       innerConn = await this.getConn();
     }
