@@ -14,7 +14,7 @@ class amqpHelper {
     this.connPromise = this.getConn(url);
     this.errorHandler = errorHandler;
     this.connPromise.then((connection) => {
-      console.log('inside amqpHelper constructor then');
+      // console.log('inside amqpHelper constructor then');
       if(this.errorHandler){
         connection.on('error', this.connErrorHandler.bind(this));
         connection.on('close', this.connCloseHandler.bind(this));
