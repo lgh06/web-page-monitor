@@ -37,7 +37,7 @@ function Footer() {
         }
       });
     }else{ // jwtToken is null or empty
-      if( ! ['/login', '/faq', '/', '', '/about'].includes(router.pathname) ){
+      if( ! ['/login', '/faq', '/', '', '/about', '/login_firebase'].includes(router.pathname) ){
         alert(t('You need to login first.'));
         logOut({setUserInfo, router});
         router.push('/login');

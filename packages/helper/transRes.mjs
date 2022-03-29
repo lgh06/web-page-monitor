@@ -31,6 +31,8 @@ let trans = {
   "Log Out": "退出登录",
   "Welcome": "欢迎",
   "Login with Gitee.com OAuth": "使用Gitee.com OAuth登录",
+  "Login with Github (through Firebase)": "使用Github(通过Firebase)登录",
+  "Login with Google (through Firebase)": "使用Google(通过Firebase)登录",
   "Points": "点数",
   "Next Add Points Time" : "下次增加点数时间",
   "Top up": "充值",

@@ -151,6 +151,16 @@ const LoginPage: NextPage = () => {
         <div>
           <a {...cn('link')} href={url} rel="nofollow noreferrer noopener">{t(`Login with Gitee.com OAuth`)}</a>
         </div>
+        <div>
+          <Link prefetch={false} href="/login_firebase?provider=google">
+            <a {...cn('link')}>{t(`Login with Google (through Firebase)`)}</a>
+          </Link>
+        </div>
+        <div>
+          <Link prefetch={false} href="/login_firebase?provider=github">
+            <a {...cn('link')}>{t(`Login with Github (through Firebase)`)}</a>
+          </Link>
+        </div>
         <div> 
         <br/>
         {t('By click above login links, you agree to our')}

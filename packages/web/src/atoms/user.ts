@@ -14,6 +14,8 @@ let userInfo = {
   // only used in frontend
   points: 80,
   nextAddPointsTime: Date.now() + 3600 * 1000 * 24 * 31,
+  // only used in frontend firebase oauth
+  processingOauth: false,
 }
 
 export const userInfoAtom = atomWithStorage('userInfo',userInfo);
