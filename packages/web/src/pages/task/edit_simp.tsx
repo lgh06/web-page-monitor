@@ -230,7 +230,7 @@ Also, you can close our page, your task will keep running until `) + taskDetail.
       </input>
         <Link prefetch={false} href="/faq#WhatIsACronSyntaxCronPattern"><a>{t(`Cron Syntax Help in FAQ`)}</a></Link>
     </div>
-    <div>{t(`Choose an end time, from 10 minutes later to 7 days later`)}:<br />
+    <div>{t(`Choose an end time, from 10 minutes later to 14 days later`)}:<br />
       <input
         value={taskDetail.endLocalMinuteString}
         data-input-index="1"

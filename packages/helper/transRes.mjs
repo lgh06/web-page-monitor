@@ -49,7 +49,7 @@ let trans = {
   "Please input a URL start with https:// or http://": "请输入以https://或http://开头的网址",
   "URL check passed. ": "URL检查通过",
   "Recommended": "推荐",
-  "Choose an end time, from 10 minutes later to 7 days later": "选择一个结束时间，从10分钟后到7天（最晚）",
+  "Choose an end time, from 10 minutes later to 14 days later": "选择一个结束时间，从10分钟后到14天（最晚）",
   "Please Input a cron syntax" : "请输入Cron定时任务表达式",
   "Cron syntax check passed.": "Cron定时任务表达式检查通过",
   "Between every jobs, need >= 10 minutes, please check.": "每个任务间隔时间，需要大于等于10分钟，请检查。",
