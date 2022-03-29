@@ -139,7 +139,7 @@ image.onerror=function(){
   tct.onload=function(){window.aegis=new Aegis({ id:'Ll387HjmVom9LP6Yv0',reportApiSpeed:true,reportAssetSpeed:true,spa:true,delay:10000})}
   tct.src="https://cdn-go.cn/aegis/aegis-sdk/latest/aegis.min.js";document.body.appendChild(tct);
 };
-image.src = "https://www.google.com/favicon.ico";
+image.src = "https://www.google.com/favicon.ico" + "?_=" + Date.now();
 setTimeout(function(){if(isS === undefined)image.src=''},3000);
 })();`}
       </Script>
