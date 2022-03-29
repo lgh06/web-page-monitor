@@ -140,7 +140,7 @@ image.onerror=function(){
   tct.src="https://cdn-go.cn/aegis/aegis-sdk/latest/aegis.min.js";document.body.appendChild(tct);
 };
 image.src = "https://www.google.com/favicon.ico";
-setTimeout(function(){if(isS === undefined)image.src=''},5000);
+setTimeout(function(){if(isS === undefined)image.src=''},3000);
 })();`}
       </Script>
       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PTKMFSF" height="0" width="0" style={{display:'none',visibility:'hidden'}}></iframe></noscript>
