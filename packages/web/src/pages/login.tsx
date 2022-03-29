@@ -30,6 +30,7 @@ const LoginPage: NextPage = () => {
   const [userInfo, setUserInfo] = useImmerAtom(userInfoAtom);
   
   const [giteeRedirectUri, setGiteeRedirectUri] = useState('');
+  const [showFirebaseLogin, setShowFirebaseLogin] = useState(false);
   const [url, setUrl] = useState('');
 
   let headTitle = useHeadTitle(userInfo.logged ? 'User Center' : 'Login');
@@ -79,6 +80,23 @@ const LoginPage: NextPage = () => {
     }
 
   }, [router, url, giteeRedirectUri]);
+
+  useEffect(() =>{
+    // show firebase login or not
+    (function(){var image = new Image();var isS;
+      image.onload = function () {
+        isS=true;
+        setShowFirebaseLogin(true);
+      };
+      image.onerror=function(){
+        isS=false;
+        setShowFirebaseLogin(false);
+      };
+      image.src = "https://www.google.com/favicon.ico" + `?t=${Date.now()}`;
+      setTimeout(function(){if(isS === undefined)image.src=''},3000);
+      })();
+
+  },[]);
 
   let fetchUserPoints = async () =>{
     let resp = await fetchAPI(`/user/info?id=${userInfo._id}`)
@@ -150,7 +168,23 @@ const LoginPage: NextPage = () => {
         {headTitle}
         <div>
           <a {...cn('link')} href={url} rel="nofollow noreferrer noopener">{t(`Login with Gitee.com OAuth`)}</a>
-        </div>
+        </div> <br />
+        {
+          showFirebaseLogin &&
+          <div>
+            <Link prefetch={false} href="/login_firebase?provider=google">
+              <a {...cn('link')}>{t(`Login with Google (through Firebase)`)}</a>
+            </Link>
+          </div>
+        }
+        {
+          showFirebaseLogin &&
+          <div>
+            <Link prefetch={false} href="/login_firebase?provider=github">
+              <a {...cn('link')}>{t(`Login with Github (through Firebase)`)}</a>
+            </Link>
+          </div>
+        }
         <div> 
         <br/>
         {t('By click above login links, you agree to our')}

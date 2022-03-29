@@ -22,6 +22,7 @@
     "@types/styled-components": "^5.1.22",
     "@webest/web-page-monitor-esm-loader": "*",
     "@webest/web-page-monitor-helper": "*",
+    "firebase": "^9.6.10",
     "fs-extra": "^10.0.1",
     "i18next": "~21.6.11",
     "immer": "~9.0.12",
