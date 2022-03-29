@@ -150,7 +150,7 @@ const LoginPage: NextPage = () => {
         {headTitle}
         <div>
           <a {...cn('link')} href={url} rel="nofollow noreferrer noopener">{t(`Login with Gitee.com OAuth`)}</a>
-        </div>
+        </div> <br />
         <div>
           <Link prefetch={false} href="/login_firebase?provider=google">
             <a {...cn('link')}>{t(`Login with Google (through Firebase)`)}</a>

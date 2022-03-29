@@ -13,7 +13,7 @@ async function _userPostHandler(
   res: NextApiResponse
 ) {
   // TODO enhancement
-  const { email, emailState, oauthProvider } = reqObj;
+  const { email, emailState = null, oauthProvider } = reqObj;
   const filter = { email };
   const newDoc = {email, emailState, oauthProvider};
 
