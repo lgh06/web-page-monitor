@@ -1,0 +1,28 @@
+.faq-page{
+  p{
+    font-size: 1.3rem;
+  }
+  @media (max-width: 720px) {
+    p{
+      font-size: 1rem;
+    }
+  }
+  a{
+    cursor: pointer;
+  }
+  h1, h2, p, p > a{
+    word-break: break-word;
+  }
+  p > a{
+    margin-left: 0;
+  }
+  .can-select{
+    user-select: text;
+  }
+  .no-select{
+    user-select: none;
+  }
+  code{
+    user-select: all;
+  }
+}
