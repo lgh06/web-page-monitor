@@ -2,7 +2,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { NextPage } from "next/types";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { clickGoBack, useHeadTitle, useI18n } from "../helpers";
+import { clickGoBack, genClassNameAndString, useHeadTitle, useI18n } from "../helpers";
+import styles from "../styles/modules/faq.module.scss";
+
+let [cn] = genClassNameAndString(styles);
 
 const FaqPage: NextPage = () => {
   let router = useRouter();
@@ -18,25 +21,8 @@ const FaqPage: NextPage = () => {
       setHighlight('')
     }
   })
-  return (<>
-    <style jsx>{`
-      p{
-        font-size: 1.3rem;
-      }
-      @media (max-width: 720px) {
-        p{
-          font-size: 1rem;
-        }
-      }
-      a{
-        cursor: pointer;
-      }
-      h1, h2, p, p > a{
-        word-break: break-word;
-      }
-      p > a{
-        margin-left: 0;
-      }
+  return (< main {...cn('faq-page')}>
+    <style>{`
       .highlight ${hash}{
         background-color: lightpink;
       }
@@ -56,7 +42,7 @@ const FaqPage: NextPage = () => {
           <br/> See also <Link prefetch={false} href="/about"><a>About</a></Link> page.
         </p>
         <h2 id="WhatIsACronSyntaxCronPattern"> What Is A Cron Syntax / Cron Pattern ?</h2>
-        <p>
+        <p {...cn('no-select')}>
           Cron Pattern example： <code>0 20 9,18 * * *</code> (contains: number, comma, *, space) <br />
           From left to right: seconds, minutes, hours, days, months and weeks, so the meaning is: execute every day, on 9:20:00, 18:20:00 (i.e. twice a day).<br />
           In general, write * for week, month and day, 0 for seconds, and just modify the hours and minutes.<br />
@@ -67,11 +53,11 @@ const FaqPage: NextPage = () => {
             <li>Execute at every hour&apos;s 10 minutes and 0 seconds, 45 minutes and 0 seconds. <code>0 10,45 * * * *</code> (2 times a hour, 48 times per day, about 1440 times per month)</li>
           </ul>
         </p>
-        <p>We used <code>node-cron</code> inside to parse cron patterns / syntax, go to  &nbsp;
+        <p {...cn('no-select')}>We used <code>node-cron</code> inside to parse cron patterns / syntax, go to  &nbsp;
           <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/kelektiv/node-cron/blob/master/README.md#available-cron-patterns">https://github.com/kelektiv/node-cron/blob/master/README.md#available-cron-patterns</a>
           &nbsp; for some clues.  (// Add more explanations here)
           </p>
-          <p>Also, we do not support <code>/</code> showing in cron syntax, because we run tasks in distributed / decentralized
+          <p {...cn('no-select')}>Also, we do not support <code>/</code> showing in cron syntax, because we run tasks in distributed / decentralized
           global servers, it is hard to sync all of their times, so please DO NOT use syntax like <code>* * */4 * * *</code>
           (execute every 4 hours), <br/>
           however, you CAN point out exact numbers seperated with a comma<code>,</code>  , like 
@@ -163,7 +149,7 @@ const FaqPage: NextPage = () => {
           <br/> 另请参阅 <Link prefetch={false} href="/about"><a>关于</a></Link> 页面。
         </p>
         <h2 id="WhatIsACronSyntaxCronPattern"> 什么是Cron定时任务表达式？</h2>
-        <p>
+        <p {...cn('no-select')}>
           Cron表达式举例： <code>0 20 9,18 * * *</code>（含有：数字，英文半角逗号，英文半角*，空格）<br />
           从左到右依次代表： 秒 分 时 日 月 星期， 所以含义为： 每天的9点20分0秒、18点20分0秒执行（即每天两次）。<br />
           一般情况下，星期、月、日写*，秒写0，修改时、分即可。<br />
@@ -174,11 +160,11 @@ const FaqPage: NextPage = () => {
             <li>每小时的10分0秒、45分0秒执行： <code>0 10,45 * * * *</code> （每小时执行2次，每天48次，每月约1440次）</li>
           </ul>
         </p>
-        <p>我们使用内置的 <code>node-cron</code> 来解析Cron定时任务表达式  &nbsp; 你可以去
+        <p {...cn('no-select')}>我们使用内置的 <code>node-cron</code> 来解析Cron定时任务表达式  &nbsp; 你可以去
           <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/kelektiv/node-cron/blob/master/README.md#available-cron-patterns">https://github.com/kelektiv/node-cron/blob/master/README.md#available-cron-patterns</a>
           &nbsp; 查看更多信息。
         </p>
-          <p>与此同时, 不支持输入 <code>/</code> 在Cron表达式里, 因为我们在分布式的多个全球服务器上运行任务。
+          <p {...cn('no-select')}>与此同时, 不支持输入 <code>/</code> 在Cron表达式里, 因为我们在分布式的多个全球服务器上运行任务。
           全球服务器中运行，很难同步所有的时间，所以请不要使用 <code>* * */4 * * *</code>(每四小时执行一次) 这样的Cron表达式。
           <br/>
           你可以输入用 <code>,</code> 隔开的多个数字, 比如 
@@ -256,7 +242,7 @@ const FaqPage: NextPage = () => {
       {/* @ts-ignore */}
       <a onClick={clickGoBack(router)}>Go back</a>
     </div>
-  </>);
+  </main>);
 }
 
 export default FaqPage;
