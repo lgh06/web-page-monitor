@@ -67,9 +67,12 @@ async function singleTaskHistoryChecker (taskDetail, db){
  */
 async function singleTaskWordChecker (taskDetail, uncuttedResult, oneTaskHistory , db, insertedId){
   db = db || await getDB();
-  if(String(uncuttedResult).includes(taskDetail.extra.detectWord)){
+  let matchedWord = String(taskDetail.extra.detectWord).split(',').find(word => {
+    return String(uncuttedResult).includes(word);
+  });
+  if(matchedWord){
     let nowCacheOnTask = {};
-    nowCacheOnTask = await wordAppearNotifier(taskDetail, uncuttedResult, oneTaskHistory, db);
+    nowCacheOnTask = await wordAppearNotifier(matchedWord, taskDetail, uncuttedResult, oneTaskHistory, db);
     console.log('singleTaskWordChecker cacheOnTask', nowCacheOnTask);
     await saveTaskCacheToDb(nowCacheOnTask, taskDetail, db)
   }

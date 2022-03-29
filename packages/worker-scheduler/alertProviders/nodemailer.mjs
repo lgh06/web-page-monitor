@@ -136,6 +136,7 @@ async function _alertRetryAndDebounceMiddler({
   prevDoc, 
   doc, 
   taskDetail, 
+  matchedWord,
   uncuttedResult, 
   oneTaskHistory,
   alertFormatterFunc,
@@ -153,7 +154,7 @@ async function _alertRetryAndDebounceMiddler({
   }
   console.log('inside provider nodemailer alert');
   // let db = await getDB();
-  let { content, htmlContent} = await alertFormatterFunc({prevDoc, doc, taskDetail, uncuttedResult, oneTaskHistory});
+  let { content, htmlContent} = await alertFormatterFunc({prevDoc, doc, taskDetail, matchedWord, uncuttedResult, oneTaskHistory});
   if(!taskDetail.cache){
     taskDetail.cache = {};
   }
@@ -193,26 +194,26 @@ async function alert({prevDoc, doc, taskDetail}) {
     alertSenderFunc: alertSender});
 }
 
-async function wordAppearAlertFormatter({taskDetail, uncuttedResult, oneTaskHistory}) {
+async function wordAppearAlertFormatter({matchedWord, taskDetail, uncuttedResult, oneTaskHistory}) {
   // oneTaskHistory is similar with doc
   // a doc is queried from db, is a mongodb document
   // oneTaskHistory is an object returned from pptr
   console.log('inside wordAppearAlertFormatter');
-  let middleTpl = wordAppearMailTemplate({taskDetail, uncuttedResult, oneTaskHistory});
+  let middleTpl = wordAppearMailTemplate({matchedWord, taskDetail, uncuttedResult, oneTaskHistory});
 
   let wordAppearHTML = mjml2html(middleTpl).html;
 
   let emailResult = {
-    content: `Word "${taskDetail.extra.detectWord}" appeared on task task ${taskDetail.extra.alias}, please go to web site monitor to view details.  
-任务${taskDetail.extra.alias}的关键词 "${taskDetail.extra.detectWord}" 出现，请去网页监控系统查看详细信息。`,
+    content: `Word "${matchedWord}" appeared on task task ${taskDetail.extra.alias}, please go to web site monitor to view details.  
+任务${taskDetail.extra.alias}的关键词 "${matchedWord}" 出现，请去网页监控系统查看详细信息。`,
     htmlContent : `${wordAppearHTML}`,
   };
   // console.log('emailResult',emailResult)
   return emailResult;
 }
 
-async function wordAppearAlert({taskDetail, uncuttedResult, oneTaskHistory}){
-  return _alertRetryAndDebounceMiddler({taskDetail, uncuttedResult, oneTaskHistory, 
+async function wordAppearAlert({matchedWord, taskDetail, uncuttedResult, oneTaskHistory}){
+  return _alertRetryAndDebounceMiddler({matchedWord, taskDetail, uncuttedResult, oneTaskHistory, 
     alertFormatterFunc: wordAppearAlertFormatter,
     alertSenderFunc: alertSender});
 }
