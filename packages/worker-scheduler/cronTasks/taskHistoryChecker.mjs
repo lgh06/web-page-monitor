@@ -67,7 +67,7 @@ async function singleTaskHistoryChecker (taskDetail, db){
  */
 async function singleTaskWordChecker (taskDetail, uncuttedResult, oneTaskHistory , db, insertedId){
   db = db || await getDB();
-  let matchedWord = String(taskDetail.extra.detectWord).split(',').find(word => {
+  let matchedWord = String(taskDetail.extra.detectWord).split(/,|，|;|；| /).find(word => {
     return String(uncuttedResult).includes(word);
   });
   if(matchedWord){
