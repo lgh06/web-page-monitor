@@ -49,7 +49,7 @@ const TaskEditSimpPage: NextPage = () => {
         v.mode = 'simp'; // this page for simp-le mode
         let nowDate = new Date();
         // TODO different type user, different end time
-        v.endLocalMinuteString = CronTime.toLocalISOString(nowDate, 14*60*24);
+        v.endLocalMinuteString = CronTime.toLocalISOString(nowDate, 7*60*24);
         v.endMaxLocalMinuteString = CronTime.toLocalISOString(nowDate, 14*60*24);
         v.endTime = new Date(v.endLocalMinuteString).valueOf()
         v.startLocalMinuteString = CronTime.toLocalISOString(nowDate, 10);
