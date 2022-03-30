@@ -64,6 +64,12 @@ const FaqPage: NextPage = () => {
           <code>* * 0,4,8,12,16,20 * * *</code>(execute on every day&apos;s 0,4,6,8,12,16 and 20 o&apos;clock.) ,  
           that syntax / pattern works also every 4 hours in fact, it is better for our global servers to arrange our tasks. 
           </p>
+        <h2 id="WhatIsCssSelector"> What Is CSS selector ?</h2>
+        <p>
+          CSS selector is a CSS style selector, it is a string that describes a group of HTML elements.  <br />
+          You can use it to select a group of HTML elements.  <br />
+          A tutorial located at <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/lgh06/web-page-monitor/wiki/FAQ%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98---CSS%E9%80%89%E6%8B%A9%E5%99%A8-CSS-Selector" >here</a>.
+        </p>
         <h2 id="WhatIsEraserScript"> What Is a Eraser Script ?</h2>
         <p>As there are many advertisements and elements you do not care about, 
           One eraser script provides a way to remove no-use DOM elements and results.   <br/>
@@ -171,6 +177,11 @@ const FaqPage: NextPage = () => {
           <code>* * 0,4,8,12,16,20 * * *</code>(每天的 0,4,6,8,12,16和20点执行) ,  
           上述表达式实际上也是每4个小时工作一次，用这样的表达式可以让全球的服务器更好地安排任务。
           </p>
+        <h2 id="WhatIsCssSelector"> 什么是 CSS选择器 ?</h2>
+        <p>
+          你可以用CSS选择器来选择你需要的页面上的某一些元素。<br />
+          如何找到某个网页区域的CSS选择器，教程 <a target="_blank" rel="noopener noreferrer nofollow" href="https://hu6l178pr6.feishu.cn/docs/doccnMLm3EDjWjJXHk3V9LKG63f" >在这里</a>.
+        </p>
         <h2 id="WhatIsEraserScript">什么是橡皮脚本 ?</h2>
         <p>考虑到有许多广告和你不关心的元素， 
           一个橡皮擦脚本提供了一个删除无用DOM元素和结果的方法。  <br/>

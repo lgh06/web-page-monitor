@@ -27,6 +27,7 @@ let trans = {
   "https://github.com/lgh06/web-page-monitor":"https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git",
   // Below is on login page
   "Create a task in Simple Mode": "创建简单模式任务",
+  "Create task": "创建任务",
   "Go Back to home": "返回首页",
   "Log Out": "退出登录",
   "Welcome": "欢迎",
@@ -56,7 +57,8 @@ let trans = {
   "Cron syntax check passed.": "Cron定时任务表达式检查通过",
   "Between every jobs, need >= 10 minutes, please check.": "每个任务间隔时间，需要大于等于10分钟，请检查。",
   "Error: Please check the cron syntax": "错误：请检查Cron定时任务表达式",
-  "Cron Syntax Help in FAQ": "什么是Cron定时任务表达式",
+  "Cron Syntax Help in FAQ": "什么是Cron定时任务表达式？",
+  "CSS Selector Help in FAQ": "什么是CSS选择器？",
   "Please input a CSS selector, if you do not know what that is, keep it as default \"body\"": `请输入CSS选择器，如果不知道填什么，请使用默认值body`,
   "Please input an alias name of this task, or keep it as default": "为该任务起个名字，或者保持默认值",
   "Notify you when": "通知您，当",

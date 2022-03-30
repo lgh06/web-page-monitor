@@ -211,6 +211,11 @@ Also, you can close our page, your task will keep running until `) + taskDetail.
       div > input + a {
         margin-left: 3em;
       }
+      @media (max-width: 768px) {
+        div > input + a {
+          margin-left: 1.2em;
+        }
+      }
     `}</style>
     <div>
       <Link prefetch={false} href="/login"><a>{t('Go back to user center')}</a></Link>
@@ -263,6 +268,7 @@ Also, you can close our page, your task will keep running until `) + taskDetail.
       >
 
       </input>
+      <Link prefetch={false} href="/faq#WhatIsCssSelector"><a>{t(`CSS Selector Help in FAQ`)}</a></Link>
     </div>
     <div>
     {t(`Please input an alias name of this task, or keep it as default`)}:<br/>

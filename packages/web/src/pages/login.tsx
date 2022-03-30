@@ -129,11 +129,14 @@ const LoginPage: NextPage = () => {
       <div>
         {t(`Welcome`)}, {userInfo.email} 
       </div>
-      <div>
+      {/* <div>
         <Link href='/task/edit_simp'><a {...cn('link')}> {t(`Create a task in Simple Mode`)} ({t(`Recommended`)})</a></Link>
+      </div> */}
+      <div>
+        <Link href='/task/edit_simp'><a {...cn('link')} style={{zoom: 1.1}}> {t(`Create task`)}</a></Link>
       </div>
       <div>
-        <Link prefetch={false} href='/task/list'><a {...cn('link')}> {t(`Task List`)}</a></Link>
+        <Link prefetch={false} href='/task/list'><a {...cn('link')} style={{zoom: 1.1}}> {t(`Task List`)}</a></Link>
       </div><br/>
       <div>
         {t(`Points`)}: {userInfo.points}
