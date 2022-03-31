@@ -9,7 +9,7 @@ import { userInfoAtom } from '../atoms'
 import { useImmerAtom } from 'jotai/immer'
 
 const Home: NextPage = () => {
-  let { t, router } = useI18n();
+  let { t, router, locale } = useI18n();
   const [userInfo, setUserInfo] = useImmerAtom(userInfoAtom);
   useEffect(() =>{
     if(router.query && router.query.code){
@@ -81,6 +81,31 @@ const Home: NextPage = () => {
             </p>
           </a> */}
         </div>
+        {
+          locale === 'zh' &&
+            <div className={styles.video}>
+              <video 
+                playsInline
+                preload="meta"
+                controls
+                src="https://alyjbedhbo.cdn.bspapp.com/ALYJBEDHBO-1f8d8dcb-ff67-4778-8209-da5ceecdd68f/9a6ee97a-49ce-4bbb-9d09-35caaa22df87.mp4"
+                onError={(e) =>{
+                  // @ts-ignore
+                  if(String(e.target.src).includes('cdn.bcebos.com')){
+                    // @ts-ignore
+                    e.target.src = '';
+                  }else{
+                    // @ts-ignore
+                    e.target.src = "https://wpmt.cdn.bcebos.com/webpagemonitor-web/intro-video/intro-cn-20220331-v2.mp4"
+                  }
+                }}
+                onAbort={(e) =>{
+                  console.log(e)
+                  console.log(this)
+                }}
+              ></video>
+            </div>
+        }
       </main>
 
     </div>
