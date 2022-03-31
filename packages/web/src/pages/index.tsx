@@ -82,9 +82,9 @@ const Home: NextPage = () => {
             </p>
           </a> */}
         </div>
+        <div className={styles.video}>
         {
           locale === 'zh' &&
-            <div className={styles.video}>
               <video 
                 playsInline
                 preload="meta"
@@ -100,13 +100,28 @@ const Home: NextPage = () => {
                     videoElement.current.src = "https://wpmt.cdn.bcebos.com/webpagemonitor-web/intro-video/intro-cn-20220331-v2.mp4"
                   }
                 }}
-                onAbort={(e) =>{
-                  console.log(e)
-                  console.log(this)
-                }}
               ></video>
-            </div>
         }
+        {
+          locale === 'en' &&
+          <video 
+            playsInline
+            preload="meta"
+            controls
+            ref={videoElement}
+            poster="images/poster-intro-en-v2.jpg"
+            src="https://alyjbedhbo.cdn.bspapp.com/ALYJBEDHBO-1f8d8dcb-ff67-4778-8209-da5ceecdd68f/7e24ccd2-a650-4f67-b4cd-aa3ed6ef68c9.mp4"
+            onError={(e) =>{
+              if(videoElement.current.src === '') return;
+              if(String(videoElement.current.src).includes('cdn.bcebos.com')){
+                return;
+              }else{
+                videoElement.current.src = "https://wpmt.cdn.bcebos.com/webpagemonitor-web/intro-video/intro-en-20220331-v2.mp4"
+              }
+            }}
+        ></video>
+        }
+        </div>
       </main>
 
     </div>
