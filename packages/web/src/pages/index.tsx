@@ -4,13 +4,14 @@ import Head from 'next/head'
 import styles from '../styles/modules/Home.module.scss'
 import Link from 'next/link'
 import { innerHTML, useHeadTitle, useI18n } from '../helpers'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { userInfoAtom } from '../atoms'
 import { useImmerAtom } from 'jotai/immer'
 
 const Home: NextPage = () => {
   let { t, router, locale } = useI18n();
   const [userInfo, setUserInfo] = useImmerAtom(userInfoAtom);
+  const videoElement = useRef<HTMLVideoElement>(null);
   useEffect(() =>{
     if(router.query && router.query.code){
       let queryString = "?";
@@ -88,15 +89,15 @@ const Home: NextPage = () => {
                 playsInline
                 preload="meta"
                 controls
+                ref={videoElement}
+                poster="images/poster-intro-cn-v2.jpg"
                 src="https://alyjbedhbo.cdn.bspapp.com/ALYJBEDHBO-1f8d8dcb-ff67-4778-8209-da5ceecdd68f/9a6ee97a-49ce-4bbb-9d09-35caaa22df87.mp4"
                 onError={(e) =>{
-                  // @ts-ignore
-                  if(String(e.target.src).includes('cdn.bcebos.com')){
-                    // @ts-ignore
-                    e.target.src = '';
+                  if(videoElement.current.src === '') return;
+                  if(String(videoElement.current.src).includes('cdn.bcebos.com')){
+                    return;
                   }else{
-                    // @ts-ignore
-                    e.target.src = "https://wpmt.cdn.bcebos.com/webpagemonitor-web/intro-video/intro-cn-20220331-v2.mp4"
+                    videoElement.current.src = "https://wpmt.cdn.bcebos.com/webpagemonitor-web/intro-video/intro-cn-20220331-v2.mp4"
                   }
                 }}
                 onAbort={(e) =>{
