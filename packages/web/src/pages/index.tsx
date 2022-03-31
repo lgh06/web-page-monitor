@@ -84,7 +84,7 @@ const Home: NextPage = () => {
         </div>
         <div className={styles.video}>
         {
-          locale === 'zh' &&
+          locale === 'zh' && !userInfo.email &&
               <video 
                 playsInline
                 preload="meta"
@@ -103,14 +103,14 @@ const Home: NextPage = () => {
               ></video>
         }
         {
-          locale === 'en' &&
+          locale === 'en' && !userInfo.email &&
           <video 
             playsInline
             preload="meta"
             controls
             ref={videoElement}
             poster="images/poster-intro-en-v2.jpg"
-            src="https://alyjbedhbo.cdn.bspapp.com/ALYJBEDHBO-1f8d8dcb-ff67-4778-8209-da5ceecdd68f/7e24ccd2-a650-4f67-b4cd-aa3ed6ef68c9.mp4"
+            src="https://mellifluous-rabanadas-640a15.netlify.app/assets/intro-en-20220331-v2.mp4"
             onError={(e) =>{
               if(videoElement.current.src === '') return;
               if(String(videoElement.current.src).includes('cdn.bcebos.com')){
