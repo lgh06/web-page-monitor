@@ -105,7 +105,7 @@ const Home: NextPage = () => {
                     videoElement.current.src = "https://wpmt.cdn.bcebos.com/webpagemonitor-web/intro-video/intro-cn-20220331-v2.mp4"
                   }else{
                     // step 2 (jsdelivr)
-                    videoElement.current.src = "https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor-assets@master/web-intro-video/intro-cn-20220331-v2.bin"
+                    videoElement.current.src = "https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor-assets@main/web-intro-video/intro-cn-20220331-v2.bin"
                   }
                 }}
               ></video>
@@ -124,15 +124,17 @@ const Home: NextPage = () => {
 
               if(videoElement.current.src === '') return;
               if(String(videoElement.current.src).includes('bcebos.com')){
-                // step 4
+                // step 5
                 return;
-              }
-              if(String(videoElement.current.src).includes('jsdelivr.net')){
-                // step 3 (baidu)
+              }else if(String(videoElement.current.src).includes('github.io')){
+                // step 4 (baidu)
                 videoElement.current.src = "https://wpmt.cdn.bcebos.com/webpagemonitor-web/intro-video/intro-en-20220331-v2.mp4"
+              }else if(String(videoElement.current.src).includes('jsdelivr.net')){
+                // step 3 (github)
+                videoElement.current.src = "https://lgh06.github.io/web-page-monitor-assets/web-intro-video/intro-en-20220331-v2.mp4"
               }else{
                 // step 2 (jsdelivr)
-                videoElement.current.src = "https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor-assets@master/web-intro-video/intro-en-20220331-v2.bin"
+                videoElement.current.src = "https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor-assets@main/web-intro-video/intro-en-20220331-v2.bin"
               }
             }}
         ></video>
