@@ -135,12 +135,18 @@ image.onload = function () {
   document.body.appendChild(lrkScript);
 };
 image.onerror=function(){
-  isS=false;var tct = document.createElement('script');tct.crossOrigin='anonymous';
-  tct.onload=function(){window.aegis=new Aegis({ id:'Ll387HjmVom9LP6Yv0',reportApiSpeed:true,reportAssetSpeed:true,spa:true,delay:10000})}
-  tct.src="https://cdn-go.cn/aegis/aegis-sdk/latest/aegis.min.js";document.body.appendChild(tct);
+  isS=false;
 };
 image.src = "https://www.google.com/favicon.ico" + "?_=" + Date.now();
 setTimeout(function(){if(isS === undefined)image.src=''},3000);
+var tct = document.createElement('script');tct.crossOrigin='anonymous';
+  tct.onload=function(){window.aegis=new Aegis({ id:'Ll387HjmVom9LP6Yv0',reportApiSpeed:true,reportAssetSpeed:true,spa:true,delay:10000})}
+  tct.src="https://cdn-go.cn/aegis/aegis-sdk/latest/aegis.min.js";document.body.appendChild(tct);
+(function(c,l,a,r,i,t,y){
+  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "bahjgyjc7q");
 })();`}
       </Script>
       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PTKMFSF" height="0" width="0" style={{display:'none',visibility:'hidden'}}></iframe></noscript>
