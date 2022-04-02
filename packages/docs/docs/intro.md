@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Web Page Monitor Intro
 
 Let's discover **Docusaurus in less than 5 minutes**.
 

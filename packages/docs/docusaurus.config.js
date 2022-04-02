@@ -25,6 +25,8 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          breadcrumbs: false,
+          // sidebarCollapsed: false,
         },
         // blog: {
           // showReadingTime: true,
@@ -34,6 +36,7 @@ const config = {
         // },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
+          // autoCollapseSidebarCategories: false,
         },
       }),
     ],
@@ -67,10 +70,10 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'Links',
             items: [
               {
-                label: 'Tutorial',
+                label: 'Docs',
                 to: '/docs/intro',
               },
             ],
