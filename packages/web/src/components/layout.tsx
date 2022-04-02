@@ -80,13 +80,19 @@ function Footer() {
          */}
         <Link
           prefetch={false}
-          href={process.env.NEXT_PUBLIC_export_lang ? '/' : ""}
+          href={{
+            pathname: process.env.NEXT_PUBLIC_export_lang ? '/' : "",
+            query: { ...router.query },
+          }}
           locale={process.env.NEXT_PUBLIC_export_lang ? false : "zh"}>
           <a onClick={() => switchLanguage('zh')}>简体中文</a>
         </Link>
         <Link
           prefetch={false}
-          href={process.env.NEXT_PUBLIC_export_lang ? '/' : ""}
+          href={{
+            pathname: process.env.NEXT_PUBLIC_export_lang ? '/' : "",
+            query: { ...router.query },
+          }}
           locale={process.env.NEXT_PUBLIC_export_lang ? false : "en"}>
           <a onClick={() => switchLanguage('en')}>English</a>
         </Link>
