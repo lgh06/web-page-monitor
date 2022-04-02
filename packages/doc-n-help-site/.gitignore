@@ -3,6 +3,7 @@
 
 # Production
 /build
+/webpagemonitor_doc_site
 
 # Generated files
 .docusaurus

@@ -6,10 +6,11 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
-  url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/',
+  title: 'Web Page Monitor 网页变动检测',
+  tagline: 'Web Site Page Changes Monitor,Cloud watch web updates.网站网页页面更新变更监控提醒，云端监控网页变动更新',
+  url: 'https://webpagemonitor.net',
+  baseUrl: '/webpagemonitor_doc_site/',
+  trailingSlash: false,
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
@@ -27,7 +28,10 @@ const config = {
           // editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
           breadcrumbs: false,
           // sidebarCollapsed: false,
+          routeBasePath:'/',
+          showLastUpdateTime: true,
         },
+        blog: false,
         // blog: {
           // showReadingTime: true,
           // Please change this to your repo.
@@ -46,7 +50,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Web Page Monitor Docs',
+        title: 'Web Page Monitor',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
@@ -54,7 +58,7 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'home',
+            docId: 'index',
             position: 'left',
             label: 'Docs',
           },
@@ -74,7 +78,7 @@ const config = {
             items: [
               {
                 label: 'Docs',
-                to: '/docs/intro',
+                to: '/',
               },
             ],
           },
