@@ -132,20 +132,7 @@ export default function Layout({ children, statusCode }) {
         }}/>
       <Script defer id="tct1"
       strategy="afterInteractive">
-      {`(function(){var image = new Image();var isS;
-image.onload = function () {
-  isS=true;if(Math.random()>=0.05) return;var lrkScript=document.createElement('script');
-  lrkScript.crossOrigin='anonymous';
-  lrkScript.onload=function(){window.LogRocket&&window.LogRocket.init('mvt1dk/webpagemonitor'); }
-  lrkScript.src = "https://cdn.lr-in.com/LogRocket.min.js";
-  document.body.appendChild(lrkScript);
-};
-image.onerror=function(){
-  isS=false;
-};
-image.src = "https://www.google.com/favicon.ico" + "?_=" + Date.now();
-setTimeout(function(){if(isS === undefined)image.src=''},3000);
-var tct = document.createElement('script');tct.crossOrigin='anonymous';
+      {`(function(){var tct = document.createElement('script');tct.crossOrigin='anonymous';
   tct.onload=function(){window.aegis=new Aegis({ id:'Ll387HjmVom9LP6Yv0',reportApiSpeed:true,reportAssetSpeed:true,spa:true,delay:10000})}
   tct.src="https://cdn-go.cn/aegis/aegis-sdk/latest/aegis.min.js";document.body.appendChild(tct);
 (function(c,l,a,r,i,t,y){
