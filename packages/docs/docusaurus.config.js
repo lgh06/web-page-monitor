@@ -107,6 +107,7 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      hideableSidebar: true,
     }),
 };
 
