@@ -10,7 +10,7 @@ const config = {
   tagline: 'Web Site Page Changes Monitor,Cloud watch web updates.网站网页页面更新变更监控提醒，云端监控网页变动更新',
   url: 'https://webpagemonitor.net',
   baseUrl: '/webpagemonitor_doc_site/',
-  trailingSlash: false,
+  // trailingSlash: false,
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
