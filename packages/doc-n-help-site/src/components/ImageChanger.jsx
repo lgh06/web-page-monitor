@@ -59,7 +59,7 @@ function ImageChanger(props){
       }
     }
 
-  },[url]);
+  },[]);
 
   useEffect(()=>{
     setIsSuccess(undefined);
