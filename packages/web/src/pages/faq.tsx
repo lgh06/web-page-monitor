@@ -68,7 +68,7 @@ const FaqPage: NextPage = () => {
         <p>
           CSS selector is a CSS style selector, it is a string that describes a group of HTML elements.  <br />
           You can use it to select a group of HTML elements.  <br />
-          A tutorial located at <a target="_blank" rel="noopener noreferrer nofollow" href="https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/docs-en/FAQ/How%20to%20find%20CSS%20selector/index.html" >here</a>.
+          A tutorial located at <a target="_blank" rel="noopener noreferrer" href="https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/docs-en/FAQ/How%20to%20find%20CSS%20selector/index.html" >here</a>.
         </p>
         <h2 id="WhatIsEraserScript"> What Is a Eraser Script ?</h2>
         <p>As there are many advertisements and elements you do not care about, 
@@ -180,7 +180,7 @@ const FaqPage: NextPage = () => {
         <h2 id="WhatIsCssSelector"> 什么是 CSS选择器 ?</h2>
         <p>
           你可以用CSS选择器来选择你需要的页面上的某一些元素。<br />
-          如何找到某个网页区域的CSS选择器，教程 <a target="_blank" rel="noopener noreferrer nofollow" href="https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/docs-zh/FAQ/How%20to%20find%20CSS%20selector/index.html" >在这里</a>.
+          如何找到某个网页区域的CSS选择器，教程 <a target="_blank" rel="noopener noreferrer" href="https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/docs-zh/FAQ/How%20to%20find%20CSS%20selector/index.html" >在这里</a>.
         </p>
         <h2 id="WhatIsEraserScript">什么是橡皮脚本 ?</h2>
         <p>考虑到有许多广告和你不关心的元素， 
