@@ -10,7 +10,6 @@ function ImageChanger(props){
     'https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site', 
   ];
   const [prefixIndex, setPrefixIndex] = useState(0);
-  const [isSuccess, setIsSuccess] = useState(undefined);
   const imgRef = useRef(null);
   useEffect(()=>{
     console.log(config)
@@ -29,11 +28,12 @@ function ImageChanger(props){
         console.log('url', innerUrl)
       }else{
         if(imgRef.current){
+          let isSuccess;
           imgRef.current.onload = function(e){
-            setIsSuccess(true);
+            isSuccess = true;
           }
           imgRef.current.onerror = function(e){
-            setIsSuccess(false);
+            isSuccess = false;
             console.log('inside onerror', imgRef.current.src, url)
             if(String(imgRef.current.src).includes(prefixArr[0]) || String(url).includes(prefixArr[0]) || prefixIndex === 0){
               setPrefixIndex(1);
@@ -45,6 +45,7 @@ function ImageChanger(props){
               // when prefixArr have more elements, we can add more else if here
             }
           };
+          setTimeout(function(){if(isSuccess === undefined)imgRef.current.src=''},3000);
         }
         if(String(imgRef.current && imgRef.current.src).includes('https://')){
           return;
@@ -60,11 +61,6 @@ function ImageChanger(props){
     }
 
   },[]);
-
-  useEffect(()=>{
-    setIsSuccess(undefined);
-    setTimeout(function(){if(isSuccess === undefined)imgRef.current.src=''},3000);
-  }, url);
 
   return <img 
     ref={imgRef}
