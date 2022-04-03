@@ -62,6 +62,7 @@ function ImageChanger(props){
   },[]);
 
   useEffect(()=>{
+    setIsSuccess(undefined);
     setTimeout(function(){if(isSuccess === undefined)imgRef.current.src=''},3000);
   }, url);
 
