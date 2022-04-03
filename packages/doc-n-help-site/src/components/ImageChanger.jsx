@@ -6,6 +6,7 @@ function ImageChanger(props){
   const [url, setUrl] = useState(null);
   let prefixArr = [
     'https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor@main/packages/doc-n-help-site/static',
+    'https://wpmt.cdn.bcebos.com/webpagemonitor_doc_site',
     'https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site', 
   ];
   const [prefixIndex, setPrefixIndex] = useState(0);
@@ -37,11 +38,14 @@ function ImageChanger(props){
             if(String(imgRef.current.src).includes(prefixArr[0]) || String(url).includes(prefixArr[0]) || prefixIndex === 0){
               setPrefixIndex(1);
               setUrl(prefixArr[1] + src);
+            }else if(String(imgRef.current.src).includes(prefixArr[1]) || String(url).includes(prefixArr[1]) || prefixIndex === 1){
+              setPrefixIndex(2);
+              setUrl(prefixArr[2] + src);
             }else{
               // when prefixArr have more elements, we can add more else if here
             }
           };
-          setTimeout(function(){if(isSuccess === undefined)imgRef.current.src=''},5000);
+          setTimeout(function(){if(isSuccess === undefined)imgRef.current.src=''},3000);
         }
         if(String(imgRef.current && imgRef.current.src).includes('https://')){
           return;
