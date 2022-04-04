@@ -12,6 +12,7 @@
     "stop": "lerna run stop",
     "r": "lerna run build && pm2 reload all",
     "rw": "lerna run build --scope @webest/web-page-monitor-web && pm2 reload web",
+    "builddoc": "lerna run build --scope @webest/web-page-monitor-doc-site",
     "static": "lerna run static"
   }
 }
