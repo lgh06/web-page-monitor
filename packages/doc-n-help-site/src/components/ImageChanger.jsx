@@ -52,7 +52,8 @@ function ImageChanger(props){
             }else if(String(prevSrc).includes(prefixArr[1])){
               imgRef.current.src = null;
               setPrefixIndex(2);
-              setUrl(prefixArr[2] + src);
+              // baidu webp image optimization
+              setUrl(prefixArr[2] + src + '?x-bce-process=style/st1');
             }else if(String(prevSrc).includes(prefixArr[2])){
               imgRef.current.src = null;
               setPrefixIndex(3);
