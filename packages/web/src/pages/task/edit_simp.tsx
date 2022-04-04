@@ -322,7 +322,7 @@ Also, you can close our page, your task will keep running until `) + taskDetail.
         <textarea data-input-index="8" value={taskDetail.extra.eraserArr.join('\n')} onChange={handleInputChange} name="erasers" id="erasers" cols={20} rows={3}></textarea>
       </div>
     </details>
-    <div {...innerHTML(t('Note: One user can only create max 3 tasks, and lasts max 7 days per task.\
+    <div {...innerHTML(t('Note: One user can only create max 3 tasks, and lasts max 14 days per task.\
       Minimum interval between two tasks is 10 minutes.'))}>
     </div>
     <div {...innerHTML(t('Note: Simple Mode is only suitable for monitor web pages,\

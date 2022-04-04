@@ -83,9 +83,9 @@ let trans = {
       the first repeated task within 15 minutes will be ignored.":
   "注意：我们需要15分钟分配任务到不同的服务器。<br/>\
       在15分钟内的第一个重复任务将被忽略。",
-  "Note: One user can only create max 3 tasks, and lasts max 7 days per task.\
+  "Note: One user can only create max 3 tasks, and lasts max 14 days per task.\
       Minimum interval between two tasks is 10 minutes.":
-  "注意：一个用户只能创建最多3个任务，每个任务最长持续七天。\
+  "注意：一个用户只能创建最多3个任务，每个任务最长持续14天。\
       两个任务之间的最小间隔为10分钟。",
   "Create Now": "立即创建",
   "Success. you will be redirected to task list page.\n\

@@ -180,7 +180,7 @@ const MemberRedeemPage: NextPage = () => {
           <button data-btn-index="1" onClick={handleBtnClick} disabled={btnDisabled(1)}>{t(`Check Payment Status`)}</button>  
         </div>
         <div>
-          <img {...cn('qr')} src="/images/wxmini.jpg" alt="minishop qr code" title="minishop qr code" />
+          <img {...cn('qr')} src="/images/wxmini.jpg" loading="lazy" alt="minishop qr code" title="minishop qr code" />
         </div>
         <div>
           {t(`Notice: `)} <br/>
