@@ -1,24 +1,87 @@
 ---
 sidebar_position: 1
-title: Home 首页
+title: 首页 Home
 ---
 
-# Web Page Monitor Doc 网页变动检测文档
+# 网页变动检测文档 Web Page Monitor Doc
 
 
-## URL 访问地址
+## 访问地址 / URL
 <a href="https://monit.or.passby.me/zh">内地访问地址1</a>  
 <br/>
 <a href="https://monit.or.yanqiankeji.com/zh">内地访问地址2</a>  
 <br/>
 <a href="https://www.webpagemonitor.net/">Link for Global Users</a>  
 
-## Source Code 源码地址  
+## 源码地址 / Source Code 
 <a href="https://github.com/lgh06/web-page-monitor">Github</a>  
 <br/>
 <a href="https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git">Coding （适合内地）</a>  
 <br/>
 
-<!-- import { ImageChanger } from "../src/components/ImageChanger"
 
-<ImageChanger src="/img/faq-how-to-find-css-selector/3-zh.png" /> -->
+
+import { useRef } from "react";
+
+export const ZhVideo = () => {
+  const videoElement = useRef(null);
+  return (<video 
+    playsInline
+    preload="meta"
+    style={{maxWidth: '100%'}}
+    controls
+    ref={videoElement}
+    poster="https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor-assets@main/web-intro-video/poster-intro-cn-v2.jpg"
+    src="https://alyjbedhbo.cdn.bspapp.com/ALYJBEDHBO-1f8d8dcb-ff67-4778-8209-da5ceecdd68f/9a6ee97a-49ce-4bbb-9d09-35caaa22df87.mp4"
+    onError={(e) => {
+      if(videoElement.current.src === '') return;
+      if(String(videoElement.current.src).includes('bcebos.com')){
+        // step 4
+        return;
+      }
+      if(String(videoElement.current.src).includes('jsdelivr.net')){
+        // step 3 (baidu)
+        videoElement.current.src = "https://wpmt.cdn.bcebos.com/webpagemonitor-web/intro-video/intro-cn-20220331-v2.mp4"
+      }else{
+        // step 2 (jsdelivr)
+        videoElement.current.src = "https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor-assets@main/web-intro-video/intro-cn-20220331-v2.bin"
+      }
+    }}
+  ></video>)
+};
+
+export const EnVideo = () => {
+  const videoElement = useRef(null);
+  return (<video 
+    playsInline
+    preload="meta"
+    style={{maxWidth: '100%'}}
+    controls
+    ref={videoElement}
+    poster="https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor-assets@main/web-intro-video/poster-intro-en-v2.jpg"
+    src="https://mellifluous-rabanadas-640a15.netlify.app/assets/intro-en-20220331-v2.mp4"
+    onError={(e) =>{
+      // step 1 load from src (nelify)
+      if(videoElement.current.src === '') return;
+      if(String(videoElement.current.src).includes('bcebos.com')){
+        // step 5
+        return;
+      }else if(String(videoElement.current.src).includes('github.io')){
+        // step 4 (baidu)
+        videoElement.current.src = "https://wpmt.cdn.bcebos.com/webpagemonitor-web/intro-video/intro-en-20220331-v2.mp4"
+      }else if(String(videoElement.current.src).includes('jsdelivr.net')){
+        // step 3 (github)
+        videoElement.current.src = "https://lgh06.github.io/web-page-monitor-assets/web-intro-video/intro-en-20220331-v2.mp4"
+      }else{
+        // step 2 (jsdelivr)
+        videoElement.current.src = "https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor-assets@main/web-intro-video/intro-en-20220331-v2.bin"
+      }
+    }}
+  ></video>);
+};
+
+## 介绍视频
+<ZhVideo></ZhVideo>
+
+## Intro Video
+<EnVideo></EnVideo>
