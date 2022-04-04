@@ -41,7 +41,11 @@ const TaskEditSimpPage: NextPage = () => {
         v.endTime = endTimeDate.valueOf();
         v.endLocalMinuteString = CronTime.toLocalISOString(endTimeDate);
         v.startLocalMinuteString = CronTime.toLocalISOString(nowDate, 10);
-        v.endMaxLocalMinuteString = CronTime.toLocalISOString(nowDate, 14*60*24);
+        if(userInfo.points > 80){
+          v.endMaxLocalMinuteString = CronTime.toLocalISOString(nowDate, 30*60*24);
+        }else{
+          v.endMaxLocalMinuteString = CronTime.toLocalISOString(nowDate, 14*60*24);
+        }
 
       })
     }else{ // create
@@ -50,7 +54,11 @@ const TaskEditSimpPage: NextPage = () => {
         let nowDate = new Date();
         // TODO different type user, different end time
         v.endLocalMinuteString = CronTime.toLocalISOString(nowDate, 7*60*24);
-        v.endMaxLocalMinuteString = CronTime.toLocalISOString(nowDate, 14*60*24);
+        if(userInfo.points > 80){
+          v.endMaxLocalMinuteString = CronTime.toLocalISOString(nowDate, 30*60*24);
+        }else{
+          v.endMaxLocalMinuteString = CronTime.toLocalISOString(nowDate, 14*60*24);
+        }
         v.endTime = new Date(v.endLocalMinuteString).valueOf()
         v.startLocalMinuteString = CronTime.toLocalISOString(nowDate, 10);
         v.extra.alias = (Math.floor(nowDate.valueOf())).toString(36).toUpperCase();
@@ -322,7 +330,7 @@ Also, you can close our page, your task will keep running until `) + taskDetail.
         <textarea data-input-index="8" value={taskDetail.extra.eraserArr.join('\n')} onChange={handleInputChange} name="erasers" id="erasers" cols={20} rows={3}></textarea>
       </div>
     </details>
-    <div {...innerHTML(t('Note: One user can only create max 3 tasks, and lasts max 14 days per task.\
+    <div {...innerHTML(t('Note: One user can only create max 3 tasks, and lasts max 14 days (30 days if your points > 80) per task.\
       Minimum interval between two tasks is 10 minutes.'))}>
     </div>
     <div {...innerHTML(t('Note: Simple Mode is only suitable for monitor web pages,\
