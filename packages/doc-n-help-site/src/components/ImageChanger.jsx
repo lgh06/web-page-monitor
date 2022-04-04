@@ -44,6 +44,7 @@ function ImageChanger(props){
             setIsSuccess(false);
             let prevSrc = imgRef.current.src;
             console.log('inside onerror', imgRef.current.src)
+            // Modify below if you have more CDN servers
             if(String(prevSrc).includes(prefixArr[0])){
               imgRef.current.src = null;
               setPrefixIndex(1);
