@@ -10,12 +10,18 @@ function ImageChanger(props){
     'https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site', 
   ];
   const [prefixIndex, setPrefixIndex] = useState(0);
+  const [isSuccess, _setIsSuccess] = useState(undefined);
+  const isSuccessRef = React.useRef(isSuccess);
+  const setIsSuccess = (data) => {
+    isSuccessRef.current = data;
+    _setIsSuccess(data);
+  };
+
   const imgRef = useRef(null);
   useEffect(()=>{
-    console.log(config)
     if(typeof window !== 'undefined'){
       let isLocal = window.location.href.indexOf('localhost') > -1;
-      if(isLocal){
+      if(!isLocal){
         let innerUrl = src;
         if(config.baseUrl){
           if(config.baseUrl.length >=2 && config.baseUrl[config.baseUrl.length - 1] === '/'){
@@ -28,24 +34,27 @@ function ImageChanger(props){
         console.log('url', innerUrl)
       }else{
         if(imgRef.current){
-          let isSuccess;
           imgRef.current.onload = function(e){
-            isSuccess = true;
+            console.log('inside onload', e);
+            setIsSuccess(true);
           }
           imgRef.current.onerror = function(e){
-            isSuccess = false;
-            console.log('inside onerror', imgRef.current.src, url)
-            if(String(imgRef.current.src).includes(prefixArr[0]) || String(url).includes(prefixArr[0]) || prefixIndex === 0){
+            // we cannot get updated React state here, so we use a ref
+            setIsSuccess(false);
+            let prevSrc = imgRef.current.src;
+            console.log('inside onerror', imgRef.current.src)
+            if(String(prevSrc).includes(prefixArr[0])){
+              imgRef.current.src = null;
               setPrefixIndex(1);
               setUrl(prefixArr[1] + src);
-            }else if(String(imgRef.current.src).includes(prefixArr[1]) || String(url).includes(prefixArr[1]) || prefixIndex === 1){
+            }else if(String(prevSrc).includes(prefixArr[1])){
+              imgRef.current.src = null;
               setPrefixIndex(2);
               setUrl(prefixArr[2] + src);
             }else{
               // when prefixArr have more elements, we can add more else if here
             }
           };
-          setTimeout(function(){if(isSuccess === undefined)imgRef.current.src=''},3000);
         }
         if(String(imgRef.current && imgRef.current.src).includes('https://')){
           return;
@@ -61,6 +70,18 @@ function ImageChanger(props){
     }
 
   },[]);
+
+  useEffect(()=>{
+    console.log('url in a useEffect', url)
+    if(url === '' || url === null) return false;
+    if(typeof window !== 'undefined' 
+        && imgRef && imgRef.current 
+        && (imgRef.current.src === '' || imgRef.current.src === null  || imgRef.current.src === window.location.href)){
+      return false;
+    }
+    setIsSuccess(undefined);
+    setTimeout(function(){if(isSuccessRef.current === undefined)imgRef.current.onerror()},5000);
+  }, [url]);
 
   return <img 
     ref={imgRef}
