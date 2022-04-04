@@ -22,7 +22,7 @@ function ImageChanger(props){
   useEffect(()=>{
     if(typeof window !== 'undefined'){
       let isLocal = window.location.href.indexOf('localhost') > -1;
-      if(!isLocal){
+      if(isLocal){
         let innerUrl = src;
         if(config.baseUrl){
           if(config.baseUrl.length >=2 && config.baseUrl[config.baseUrl.length - 1] === '/'){
