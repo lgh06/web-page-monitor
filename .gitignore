@@ -9,3 +9,4 @@ packages/helper/globalConfig.prod.mjs.bak
 packages/helper/priv.mjs
 packages/helper/privPKCS8.pk8
 packages/helper/pub.mjs
+packages/vendor-scripts-n-configs/baidu/
