@@ -25,9 +25,9 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          // editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          editUrl: 'https://github.com/lgh06/web-page-monitor/tree/main/packages/doc-n-help-site/',
           breadcrumbs: false,
-          // sidebarCollapsed: false,
+          sidebarCollapsed: false,
           routeBasePath:'/',
           showLastUpdateTime: true,
         },
