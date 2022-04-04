@@ -6,6 +6,7 @@ function ImageChanger(props){
   const [url, setUrl] = useState(null);
   let prefixArr = [
     'https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor@main/packages/doc-n-help-site/static',
+    'https://lgh06.github.io/web-page-monitor/packages/doc-n-help-site/static',
     'https://wpmt.cdn.bcebos.com/webpagemonitor_doc_site',
     'https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site', 
   ];
@@ -51,6 +52,10 @@ function ImageChanger(props){
               imgRef.current.src = null;
               setPrefixIndex(2);
               setUrl(prefixArr[2] + src);
+            }else if(String(prevSrc).includes(prefixArr[2])){
+              imgRef.current.src = null;
+              setPrefixIndex(3);
+              setUrl(prefixArr[3] + src);
             }else{
               // when prefixArr have more elements, we can add more else if here
             }
