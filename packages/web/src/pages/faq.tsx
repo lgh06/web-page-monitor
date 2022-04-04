@@ -68,7 +68,7 @@ const FaqPage: NextPage = () => {
         <p>
           CSS selector is a CSS style selector, it is a string that describes a group of HTML elements.  <br />
           You can use it to select a group of HTML elements.  <br />
-          A tutorial located at <a target="_blank" rel="noopener noreferrer" href="https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/docs-en/FAQ/How%20to%20find%20CSS%20selector/index.html" >here</a>.
+          A tutorial located at <a target="_blank" rel="noopener noreferrer" href="https://webpagemonitor.net/webpagemonitor_doc_site/docs-en/FAQ/How%20to%20find%20CSS%20selector/index.html" >here</a>.
         </p>
         <h2 id="WhatIsEraserScript"> What Is a Eraser Script ?</h2>
         <p>As there are many advertisements and elements you do not care about, 
@@ -102,7 +102,7 @@ const FaqPage: NextPage = () => {
         </p>
         <h2 id="TermsOfService"> {t('Terms of Service')} </h2>
         <p>
-          Please see our <a href={t(`https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/docs-en/others/TOS/#TermsOfService`)} target="_blank" rel="noopener noreferrer">doc site</a>
+          Please see our <a href={t(`https://webpagemonitor.net/webpagemonitor_doc_site/docs-en/others/TOS/#TermsOfService`)} target="_blank" rel="noopener noreferrer">doc site</a>
         </p>
 
         </> : null
@@ -179,7 +179,7 @@ const FaqPage: NextPage = () => {
         </p>
         <h2 id="TermsOfService"> {t('Terms of Service')} </h2>
         <p>
-          请参阅 <a href={t(`https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/docs-en/others/TOS/#TermsOfService`)} target="_blank" rel="noopener noreferrer">文档页面</a>
+          请参阅 <a href={t(`https://webpagemonitor.net/webpagemonitor_doc_site/docs-en/others/TOS/#TermsOfService`)} target="_blank" rel="noopener noreferrer">文档页面</a>
         </p>
         </> : null
       }

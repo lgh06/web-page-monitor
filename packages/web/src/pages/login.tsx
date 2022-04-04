@@ -191,7 +191,7 @@ const LoginPage: NextPage = () => {
         <div> 
         <br/>
         {t('By click above login links, you agree to our')}&nbsp;
-          <Link prefetch={false} href={t(`https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/docs-en/others/TOS/#TermsOfService`)}><a>{t('Terms of Service')}</a></Link>
+          <a href={t(`https://webpagemonitor.net/webpagemonitor_doc_site/docs-en/others/TOS/#TermsOfService`)} target="_blank" rel='noopener noreferrer'>{t('Terms of Service')}</a>
         </div>
         <br/>
         {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}

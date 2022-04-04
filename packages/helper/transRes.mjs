@@ -31,7 +31,7 @@ let trans = {
   "Go Back to home": "返回首页",
   "Log Out": "退出登录",
   "Welcome": "欢迎",
-  "https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/docs-en/others/TOS/#TermsOfService": "https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/docs-zh/others/TOS/#TermsOfService",
+  "https://webpagemonitor.net/webpagemonitor_doc_site/docs-en/others/TOS/#TermsOfService": "https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/docs-zh/others/TOS/#TermsOfService",
   "Login with Gitee.com OAuth": "使用Gitee.com OAuth登录",
   "Login with Github (through Firebase)": "使用Github(通过Firebase)登录",
   "Login with Google (through Firebase)": "使用Google(通过Firebase)登录",
