@@ -104,6 +104,10 @@ const FaqPage: NextPage = () => {
         <p>
           Please see our <a href={t(`https://webpagemonitor.net/webpagemonitor_doc_site/docs-en/others/TOS/#TermsOfService`)} target="_blank" rel="noopener noreferrer">doc site</a>
         </p>
+        <h2 id="PrivacyPolicy"> Privacy Policy </h2>
+        <p>
+        Please see our <a href={t(`https://webpagemonitor.net/webpagemonitor_doc_site/docs-en/others/PP/#PrivacyPolicy`)} target="_blank" rel="noopener noreferrer">doc site</a>
+        </p>
 
         </> : null
       }
@@ -180,6 +184,10 @@ const FaqPage: NextPage = () => {
         <h2 id="TermsOfService"> {t('Terms of Service')} </h2>
         <p>
           请参阅 <a href={t(`https://webpagemonitor.net/webpagemonitor_doc_site/docs-en/others/TOS/#TermsOfService`)} target="_blank" rel="noopener noreferrer">文档页面</a>
+        </p>
+        <h2 id="PrivacyPolicy"> 隐私政策 </h2>
+        <p>
+          请参阅 <a href={t(`https://webpagemonitor.net/webpagemonitor_doc_site/docs-en/others/PP/#PrivacyPolicy`)} target="_blank" rel="noopener noreferrer">文档页面</a>
         </p>
         </> : null
       }
