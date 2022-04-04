@@ -30,6 +30,7 @@ const config = {
           sidebarCollapsed: false,
           routeBasePath:'/',
           showLastUpdateTime: true,
+          showLastUpdateAuthor: true,
         },
         blog: false,
         // blog: {
