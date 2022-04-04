@@ -102,44 +102,9 @@ const FaqPage: NextPage = () => {
         </p>
         <h2 id="TermsOfService"> {t('Terms of Service')} </h2>
         <p>
-          When you use the Service, you agree to abide by the Terms of Service. Please be sure to carefully read and fully understand the content of each clause, especially the clauses that exclude or limit liability.<br />
-          If you do not agree to the TOS, or if you do not accurately understand the TOS in its entirety, please do not proceed with subsequent operations. <br />
-
-          <h3>I. Services</h3>
-          The services provided by this platform include but are not limited to：<br />
-          Provide webpage change alert service, including but not limited to webpage content change alert, keyword appearance alert, etc.<br />
-
-          <h3>II. Laws and regulations</h3>
-          As the platform is <b>not</b> aware of the laws and regulations of each country and <b>whether</b> the links you enter are allowed to be crawled regularly, 
-          you need to ensure that you comply with the laws and regulations of your country and mainland China, 
-          as well as the user agreement of the provider of the monitored pages.<br />
-          All timed monitor actions on this platform are submitted by the individual or organization to which the user account belongs, 
-          and all monitor tasks on this website <b>shall be</b> considered as the actions of the individual or organization of the user.
-          The platform does not provide any specific scripts in advance for detecting specific web pages, 
-          and the platform <b>does not</b> assume joint and several responsibility for violations and misconducts by individual users or organizations.<br />
-          If an individual user or organization has violated the law or any misconduct, the platform reserves the right to immediately stop the service, transfer the illegal account data to the public security authorities, and delete the account without refund or prior notice.
-          
-          <h3 id="RefundPolicy">III. Refund policy.</h3>
-          Since the platform provides free points to accounts every month for you to pre-experience and test the effectiveness of the service, <b>no</b> refunds are allowed after you top up or redeem points.<br />
-
-          <h3>IV. Service availability</h3>
-          The platform guarantees monthly availability &gt;= 95%, i.e. monthly downtime is no more than 36 hours.<br />
-          When the main URL of this service is temporarily unavailable, an alternate URL will be released through the official account. When both the main URL and the alternate URL are unavailable, it will be considered as down.<br />
-          If the downtime in the previous month or the current month is longer than the above guarantee, users <b>who have paid in the previous month or the current month</b> can ask us to compensate you for the number of hours *3 that the downtime in the previous month or the current month exceeds 36 hours.<br />
-          It is important to note that the above guarantees do not represent a guarantee of success for each web page detection or notification alert delivery.<br />
-          The platform has used a combination of Amazon Cloud and AliCloud email delivery services to maximize email delivery rates.<br />
-          Since the success of each web page detection depends on the configuration of the specific options and various factors, the platform <b>cannot</b> guarantee the success of each/every detection task, please use free points in advance to confirm that the platform can detect specific web pages.  <br />
-          And since some web pages may have a live detection mechanism, the success of this task does not mean that the next task will be successful, so please try to reduce the detection frequency.<br />
-
-          <h3>V. Special Reminder</h3>
-          <b>Do not</b> apply the services of the platform to important and special occasions, the services of the platform are limited to daily scenarios, and the platform is <b>not</b> responsible for any direct/indirect losses of any kind caused by the use of the services.<br />
-          <br />
-          In case of inconsistency between the English version of the Terms of Service and the Chinese version of the Terms of Service, 
-          the Chinese version of the Terms of Service shall prevail.
-          <br />
-          If you have any other questions, please contact us by logging in and checking the contact information on the recharge page.
-          
+          Please see our <a href={t(`https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/docs-en/others/TOS/#TermsOfService`)} target="_blank" rel="noopener noreferrer">doc site</a>
         </p>
+
         </> : null
       }
       {
@@ -214,39 +179,7 @@ const FaqPage: NextPage = () => {
         </p>
         <h2 id="TermsOfService"> {t('Terms of Service')} </h2>
         <p>
-          当您使用本服务时，您同意遵守本服务条款，请您务必审慎阅读、充分理解各条款内容，特别是免除或者限制责任的条款。<br />
-          如果您不同意本服务条款，或者无法准确理解本服务条款的全部内容，请您不要进行后续操作。 <br />
-
-          <h3>一、服务内容</h3>
-          本平台提供的服务内容包括但不限于：<br />
-          提供网页变动提醒服务，包括但不限于网页内容变动提醒、关键词出现提醒等。<br />
-
-          <h3>二、法律法规</h3>
-          由于本平台<b>无法</b>获知各个国家的法律法规以及您输入的网页链接<b>是否</b>允许定时爬取，
-          您本人需要确保您遵守您所在国家与中国大陆的法律法规，同时需要遵守所检测网页的提供方的用户协议。<br />
-          本平台上的所有定时检测行为均由用户账号所属的个人或组织提交，本网站上的所有检测任务<b>均应</b>视为用户个人或组织的行为，
-          本平台并<b>不</b>预先提供任何特定的脚本供检测特定的网页，本平台<b>不承担</b>因用户个人或组织的违法违规与不当行为的连带责任。<br />
-          如果用户个人或组织出现了违法违规或任何不当行为，本平台保留立即停止服务、将违法违规的账号数据移交公安机关、并删除账号、且不退款也不预先通知的权利。
-          
-          <h3 id="RefundPolicy">三、退款政策</h3>
-          由于本平台每月都会为账号提供免费的点数，供您预先体验与测试服务的有效性，因此在您充值或兑换点数后，<b>不</b>允许退款。<br />
-
-          <h3>四、服务可用性</h3>
-          本平台保证每月可用性&gt;=95%, 即每月宕机时间不大于36小时。<br />
-          当本服务的主网址暂时不可用时，会通过官方账号发布备用的网址，当主网址与备用网址均不可用时，才视为宕机。<br />
-          若上月或当月宕机时长大于上述保证，上月或当月有<b>付费</b>行为的用户可要求我们以上月或当月宕机超过36小时的小时数*3来补偿您的点数。<br />
-          需要注意的是，以上保证不代表对每个网页检测是否成功或通知提醒是否发送成功的保证。<br />
-          本平台已综合使用亚马逊云与阿里云的邮件发送服务来尽可能提升邮件送达率。<br />
-          由于每个网页检测是否成功取决于具体选项的配置以及多方面因素，本平台<b>不能</b>保证每个/每次检测任务都能够成功，请预先使用免费点数来确认本平台可以检测特定网页。  <br />
-          且由于某些网页可能有真人检测机制，本次任务的检测成功不代表下次任务也能成功，因此请尽量降低检测频率。<br />
-
-          <h3>五、特别提醒</h3>
-          <b>不要</b>把本平台的服务应用于重要、特别场合，本平台的服务仅限日常场景，本平台<b>不</b>对任何使用本服务造成的各种直接/间接损失负责。<br />
-          <br />
-
-          如果英语版本的服务条款与中文版本的服务条款不一致，以中文版本的服务条款为准。<br />
-          如果您还有其他疑问，请登录后查看充值页面的联系方式，来联系我们。
-          
+          请参阅 <a href={t(`https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/docs-en/others/TOS/#TermsOfService`)} target="_blank" rel="noopener noreferrer">文档页面</a>
         </p>
         </> : null
       }
