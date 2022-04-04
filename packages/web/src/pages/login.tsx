@@ -192,6 +192,8 @@ const LoginPage: NextPage = () => {
         <br/>
         {t('By click above login links, you agree to our')}&nbsp;
           <a href={t(`https://webpagemonitor.net/webpagemonitor_doc_site/docs-en/others/TOS/#TermsOfService`)} target="_blank" rel='noopener noreferrer'>{t('Terms of Service')}</a>
+          &nbsp;{t('and')}&nbsp;
+          <a href={t(`https://webpagemonitor.net/webpagemonitor_doc_site/docs-en/others/PP/#PrivacyPolicy`)} target="_blank" rel='noopener noreferrer'>{t('Privacy Policy')}</a>
         </div>
         <br/>
         {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
