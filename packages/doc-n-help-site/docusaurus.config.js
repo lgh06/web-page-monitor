@@ -122,7 +122,7 @@ var config = {
     // 'https://docusaurus.io/script.js',
     // Object format.
     {
-      src: baseUrl + '/js/wpmt_doc_global_analyze.js',
+      src: baseUrl + 'js/wpmt_doc_global_analyze.js',
       async: true,
     },
   ],
