@@ -9,11 +9,13 @@ function ImageChanger(props){
   let prefixArr = [
     'https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor@main/packages/doc-n-help-site/static',
     'https://lgh06.github.io/web-page-monitor/packages/doc-n-help-site/static',
+    // cloudflare pages, static html build output, need npm script to update
     'https://docs.webpagemonitor.net',
+    // baidu cloud storage, static html build output
     'https://wpmt.cdn.bcebos.com/webpagemonitor_doc_site',
+    // tencent cloud storage , static html build output
     'https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site', 
   ];
-  const [prefixIndex, setPrefixIndex] = useState(0);
   const [isSuccess, _setIsSuccess] = useState(undefined);
   const isSuccessRef = React.useRef(isSuccess);
   const setIsSuccess = (data) => {
@@ -28,7 +30,7 @@ function ImageChanger(props){
       let notChangePathDomainArr = [
         '.pages.dev',
       ];
-      if(isLocal || notChangePathDomainArr.find(v => window.location.href.indexOf(v) > -1)){
+      if(  (isLocal || notChangePathDomainArr.find(v => window.location.href.indexOf(v) > -1)) ){
         let innerUrl = src;
         if(baseUrl){
           if(baseUrl.length >=2 && baseUrl[baseUrl.length - 1] === '/'){
@@ -50,33 +52,30 @@ function ImageChanger(props){
             setIsSuccess(false);
             let prevSrc = imgRef.current.src;
             console.log('inside onerror', imgRef.current.src)
-            // Modify below if you have more CDN servers
-            if(String(prevSrc).includes(prefixArr[0])){
-              imgRef.current.src = null;
-              setPrefixIndex(1);
-              setUrl(prefixArr[1] + src);
-            }else if(String(prevSrc).includes(prefixArr[1])){
-              imgRef.current.src = null;
-              setPrefixIndex(2);
-              setUrl(prefixArr[2] + src);
-            }else if(String(prevSrc).includes(prefixArr[2])){
-              imgRef.current.src = null;
-              setPrefixIndex(3);
-              // baidu webp image optimization
-              setUrl(prefixArr[3] + src + '?x-bce-process=style/st1');
-            }else if(String(prevSrc).includes(prefixArr[3])){
-              imgRef.current.src = null;
-              setPrefixIndex(4);
-              setUrl(prefixArr[4] + src);
-            }else{
-              // when prefixArr have more elements, we can add more else if here
-            }
+
+            let alreadyMatched = false;
+            prefixArr.forEach((v, i) => {
+              if(alreadyMatched) return;
+              if(i === prefixArr.length - 1){
+                // no more src url
+                return;
+              }
+              if( String(prevSrc).includes(new URL(v).hostname) ){
+                alreadyMatched = true;
+                imgRef.current.src = null;
+                if(prefixArr[i + 1].includes('bcebos.com')){
+                  setUrl(prefixArr[i + 1] + src + '?x-bce-process=style/st1');
+                }else{
+                  setUrl(prefixArr[i + 1] + src);
+                }
+              }
+            });
           };
         }
         if(String(imgRef.current && imgRef.current.src).includes('https://')){
           return;
         }
-        let innerUrl = prefixArr[prefixIndex] + src;
+        let innerUrl = prefixArr[0] + src;
         setUrl(innerUrl);
       }
       return () =>{
@@ -97,7 +96,7 @@ function ImageChanger(props){
       return false;
     }
     setIsSuccess(undefined);
-    setTimeout(function(){if(isSuccessRef.current === undefined)imgRef.current.onerror()},5000);
+    setTimeout(function(){if(isSuccessRef.current === undefined)imgRef.current.onerror()},800);
   }, [url]);
 
   return <img 
