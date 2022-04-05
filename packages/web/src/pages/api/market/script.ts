@@ -44,7 +44,7 @@ async function scriptPostHandler(
     table.createIndex({ domainArr: 1 });
     table.createIndex({ userId: 1 });
     table.createIndex({ alias: 1 });
-    table.createIndex({ private: 1 });
+    // table.createIndex({ private: 1 });
   }
 
   let userScriptCount = await db.collection(collectionName).countDocuments({
@@ -52,6 +52,9 @@ async function scriptPostHandler(
   });
   if( (!_id && userScriptCount >= 3) || (_id && userScriptCount >= 6)){
     return res.status(400).json({ err: 'user script count is over 3' })
+  }
+  if( String(value).match(/require|import|fetch/g) ){
+    return res.status(400).json({ err: 'cannot contain "require" / "import" / "fetch" inside eraser script.' })
   }
 
   // TODO one user can only have max 3 scripts
