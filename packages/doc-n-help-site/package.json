@@ -8,7 +8,7 @@
     "dev": "docusaurus start --port 3004",
     "build": "docusaurus build --out-dir webpagemonitor_doc_site",
     "buildcfpage": "docusaurus build",
-    "triggercfpagebuild": "curl -X POST \"https://api.cloudflare.com/client/v4/pages/webhooks/deploy_hooks/7b62a0d9-5492-43d4-920c-9a3710519319\" ",
+    "triggercf": "curl -X POST \"https://api.cloudflare.com/client/v4/pages/webhooks/deploy_hooks/7b62a0d9-5492-43d4-920c-9a3710519319\" ",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
