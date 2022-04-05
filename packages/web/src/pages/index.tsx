@@ -93,20 +93,25 @@ const Home: NextPage = () => {
                 poster="images/poster-intro-cn-v2.jpg"
                 src="https://alyjbedhbo.cdn.bspapp.com/ALYJBEDHBO-1f8d8dcb-ff67-4778-8209-da5ceecdd68f/9a6ee97a-49ce-4bbb-9d09-35caaa22df87.mp4"
                 onError={(e) =>{
-                  // step 1 load from src (aliyun miniapp cloud)
-
                   if(videoElement.current.src === '') return;
-                  if(String(videoElement.current.src).includes('bcebos.com')){
-                    // step 4
-                    return;
-                  }
-                  if(String(videoElement.current.src).includes('jsdelivr.net')){
-                    // step 3 (baidu)
-                    videoElement.current.src = "https://wpmt.cdn.bcebos.com/webpagemonitor-web/intro-video/intro-cn-20220331-v2.mp4"
-                  }else{
-                    // step 2 (jsdelivr)
-                    videoElement.current.src = "https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor-assets@main/web-intro-video/intro-cn-20220331-v2.bin"
-                  }
+                  let srcArr = [
+                    'https://alyjbedhbo.cdn.bspapp.com/ALYJBEDHBO-1f8d8dcb-ff67-4778-8209-da5ceecdd68f/9a6ee97a-49ce-4bbb-9d09-35caaa22df87.mp4',
+                    'https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor-assets@main/web-intro-video/intro-cn-20220331-v2.bin',
+                    'https://assets.webpagemonitor.net/web-intro-video/intro-cn-20220331-v2.mp4',
+                    'https://wpmt.cdn.bcebos.com/webpagemonitor-web/intro-video/intro-cn-20220331-v2.mp4',
+                  ]
+                  let alreadyMatched = false;
+                  srcArr.forEach((v,i) =>{
+                    if(alreadyMatched) return;
+                    if(i === srcArr.length - 1){
+                      // no more src url
+                      return;
+                    }
+                    if( String(videoElement.current.src).includes(new URL(v).hostname) ){
+                      alreadyMatched = true;
+                      videoElement.current.src = srcArr[i+1];
+                    }
+                  });
                 }}
               ></video>
         }
@@ -118,27 +123,28 @@ const Home: NextPage = () => {
             controls
             ref={videoElement}
             poster="images/poster-intro-en-v2.jpg"
-            src="https://mellifluous-rabanadas-640a15.netlify.app/assets/intro-en-20220331-v2.mp4"
+            src="https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor-assets@main/web-intro-video/intro-en-20220331-v2.bin"
             onError={(e) =>{
-              // step 1 load from src (nelify)
-
               if(videoElement.current.src === '') return;
-              if(String(videoElement.current.src).includes('bcebos.com')){
-                // step 6
-                return;
-              }else if(String(videoElement.current.src).includes('assets.webpagemonitor.net')){
-                // step 5 (baidu)
-                videoElement.current.src = "https://wpmt.cdn.bcebos.com/webpagemonitor-web/intro-video/intro-en-20220331-v2.mp4"
-              }else if(String(videoElement.current.src).includes('github.io')){
-                // step 4 (cloudflare)
-                videoElement.current.src = "https://assets.webpagemonitor.net/web-intro-video/intro-en-20220331-v2.mp4"
-              }else if(String(videoElement.current.src).includes('jsdelivr.net')){
-                // step 3 (github)
-                videoElement.current.src = "https://lgh06.github.io/web-page-monitor-assets/web-intro-video/intro-en-20220331-v2.mp4"
-              }else{
-                // step 2 (jsdelivr)
-                videoElement.current.src = "https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor-assets@main/web-intro-video/intro-en-20220331-v2.bin"
-              }
+              let srcArr = [
+                'https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor-assets@main/web-intro-video/intro-en-20220331-v2.bin',
+                'https://assets.webpagemonitor.net/web-intro-video/intro-en-20220331-v2.mp4',
+                'https://mellifluous-rabanadas-640a15.netlify.app/assets/intro-en-20220331-v2.mp4',
+                'https://lgh06.github.io/web-page-monitor-assets/web-intro-video/intro-en-20220331-v2.mp4',
+                'https://wpmt.cdn.bcebos.com/webpagemonitor-web/intro-video/intro-en-20220331-v2.mp4',
+              ]
+              let alreadyMatched = false;
+              srcArr.forEach((v,i) =>{
+                if(alreadyMatched) return;
+                if(i === srcArr.length - 1){
+                  // no more src url
+                  return;
+                }
+                if( String(videoElement.current.src).includes(new URL(v).hostname) ){
+                  alreadyMatched = true;
+                  videoElement.current.src = srcArr[i+1];
+                }
+              });
             }}
         ></video>
         }
