@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import useBaseUrl from '@docusaurus/useBaseUrl';
 function ImageChanger(props){
-  const { src, title, alt } = props;
+  const { src, title, alt, style } = props;
   console.log('src', src);
   let baseUrl = useBaseUrl('/');
   console.log(baseUrl);
@@ -104,6 +104,7 @@ function ImageChanger(props){
     src={url}
     title={title}
     alt={alt}
+    style={{...style, display: 'block', maxWidth: '100%', maxHeight: '100%'}}
     loading="lazy"
   ></img>
 

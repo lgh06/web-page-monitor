@@ -39,3 +39,10 @@
 [data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
 }
+
+/* fix doc main area width too small */
+@media (min-width: 1920px) {
+  .container > .row > .col.docItemCol_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocItem-styles-module:only-of-type{
+    max-width: 95% !important;
+  }
+}
