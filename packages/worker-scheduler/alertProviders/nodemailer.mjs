@@ -83,6 +83,7 @@ async function alertSender({content, htmlContent, taskDetail, configIndex = 0}) 
     port: oneMailConfig.port,
     secure: oneMailConfig.secure, // true for 465, false for other ports
     auth: oneMailConfig.auth,
+    pool: true,
   });
 
   // send mail with defined transport object
