@@ -9,6 +9,7 @@ function ImageChanger(props){
   let prefixArr = [
     'https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor@main/packages/doc-n-help-site/static',
     'https://lgh06.github.io/web-page-monitor/packages/doc-n-help-site/static',
+    'https://docs.webpagemonitor.net',
     'https://wpmt.cdn.bcebos.com/webpagemonitor_doc_site',
     'https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site', 
   ];
@@ -26,7 +27,6 @@ function ImageChanger(props){
       let isLocal = window.location.href.indexOf('localhost') > -1;
       let notChangePathDomainArr = [
         '.pages.dev',
-        'docs.webpagemonitor.net',
       ];
       if(isLocal || notChangePathDomainArr.find(v => window.location.href.indexOf(v) > -1)){
         let innerUrl = src;
@@ -58,12 +58,16 @@ function ImageChanger(props){
             }else if(String(prevSrc).includes(prefixArr[1])){
               imgRef.current.src = null;
               setPrefixIndex(2);
-              // baidu webp image optimization
-              setUrl(prefixArr[2] + src + '?x-bce-process=style/st1');
+              setUrl(prefixArr[2] + src);
             }else if(String(prevSrc).includes(prefixArr[2])){
               imgRef.current.src = null;
               setPrefixIndex(3);
-              setUrl(prefixArr[3] + src);
+              // baidu webp image optimization
+              setUrl(prefixArr[3] + src + '?x-bce-process=style/st1');
+            }else if(String(prevSrc).includes(prefixArr[3])){
+              imgRef.current.src = null;
+              setPrefixIndex(4);
+              setUrl(prefixArr[4] + src);
             }else{
               // when prefixArr have more elements, we can add more else if here
             }
