@@ -25,7 +25,8 @@ function ImageChanger(props){
     if(typeof window !== 'undefined'){
       let isLocal = window.location.href.indexOf('localhost') > -1;
       let notChangePathDomainArr = [
-        '.pages.dev'
+        '.pages.dev',
+        'docs.webpagemonitor.net',
       ];
       if(isLocal || notChangePathDomainArr.find(v => window.location.href.indexOf(v) > -1)){
         let innerUrl = src;
