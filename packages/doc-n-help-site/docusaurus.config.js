@@ -29,7 +29,7 @@ var config = {
           // Please change this to your repo.
           editUrl: 'https://github.com/lgh06/web-page-monitor/tree/main/packages/doc-n-help-site/',
           breadcrumbs: false,
-          sidebarCollapsed: false,
+          sidebarCollapsed: true,
           routeBasePath:'/',
           showLastUpdateTime: true,
           showLastUpdateAuthor: true,
