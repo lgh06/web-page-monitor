@@ -30,7 +30,7 @@ function ImageChanger(props){
       let notChangePathDomainArr = [
         '.pages.dev',
       ];
-      if(!  (isLocal || notChangePathDomainArr.find(v => window.location.href.indexOf(v) > -1)) ){
+      if( (isLocal || notChangePathDomainArr.find(v => window.location.href.indexOf(v) > -1)) ){
         let innerUrl = src;
         if(baseUrl){
           if(baseUrl.length >=2 && baseUrl[baseUrl.length - 1] === '/'){
