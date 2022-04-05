@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import config from '../../docusaurus.config';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 function ImageChanger(props){
   const { src, title, alt } = props;
   console.log('src', src);
+  let baseUrl = useBaseUrl('/');
+  console.log(baseUrl);
   const [url, setUrl] = useState(null);
   let prefixArr = [
     'https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor@main/packages/doc-n-help-site/static',
@@ -27,9 +29,9 @@ function ImageChanger(props){
       ];
       if(isLocal || notChangePathDomainArr.find(v => window.location.href.indexOf(v) > -1)){
         let innerUrl = src;
-        if(config.baseUrl){
-          if(config.baseUrl.length >=2 && config.baseUrl[config.baseUrl.length - 1] === '/'){
-            innerUrl = config.baseUrl.substring(0, config.baseUrl.length - 1) + src;
+        if(baseUrl){
+          if(baseUrl.length >=2 && baseUrl[baseUrl.length - 1] === '/'){
+            innerUrl = baseUrl.substring(0, baseUrl.length - 1) + src;
           }else{
           }
         }else{
