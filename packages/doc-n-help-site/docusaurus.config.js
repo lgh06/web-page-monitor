@@ -5,7 +5,7 @@ const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
-const config = {
+var config = {
   title: 'Web Page Monitor 网页变动检测',
   tagline: 'Web Site Page Changes Monitor,Cloud watch web updates.网站网页页面更新变更监控提醒，云端监控网页变动更新',
   url: 'https://webpagemonitor.net',
@@ -114,6 +114,16 @@ const config = {
       },
       hideableSidebar: true,
     }),
+
+  scripts: [
+    // String format.
+    // 'https://docusaurus.io/script.js',
+    // Object format.
+    {
+      src: config.baseUrl + '/js/wpmt_doc_global_analyze.js',
+      async: true,
+    },
+  ],
 };
 
 module.exports = config;

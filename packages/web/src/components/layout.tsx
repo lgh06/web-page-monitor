@@ -132,7 +132,7 @@ export default function Layout({ children, statusCode }) {
         }}/>
       <Script defer id="tct1"
       strategy="afterInteractive">
-      {`(function(){var tct = document.createElement('script');tct.crossOrigin='anonymous';
+      {`(function(){var tct = document.createElement('script');tct.crossOrigin='anonymous';tct.async = true;
   tct.onload=function(){window.aegis=new Aegis({ id:'Ll387HjmVom9LP6Yv0',reportApiSpeed:true,reportAssetSpeed:true,spa:true,delay:10000})}
   tct.src="https://cdn-go.cn/aegis/aegis-sdk/latest/aegis.min.js";document.body.appendChild(tct);
 (function(c,l,a,r,i,t,y){
