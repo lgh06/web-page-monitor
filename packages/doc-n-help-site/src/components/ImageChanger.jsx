@@ -30,7 +30,7 @@ function ImageChanger(props){
       let notChangePathDomainArr = [
         '.pages.dev',
       ];
-      if(  (isLocal || notChangePathDomainArr.find(v => window.location.href.indexOf(v) > -1)) ){
+      if(!  (isLocal || notChangePathDomainArr.find(v => window.location.href.indexOf(v) > -1)) ){
         let innerUrl = src;
         if(baseUrl){
           if(baseUrl.length >=2 && baseUrl[baseUrl.length - 1] === '/'){
@@ -96,7 +96,7 @@ function ImageChanger(props){
       return false;
     }
     setIsSuccess(undefined);
-    setTimeout(function(){if(isSuccessRef.current === undefined)imgRef.current.onerror()},800);
+    setTimeout(function(){if(isSuccessRef.current === undefined)imgRef.current.onerror()},5000);
   }, [url]);
 
   return <img 
@@ -105,7 +105,7 @@ function ImageChanger(props){
     title={title}
     alt={alt}
     style={{...style, display: 'block', maxWidth: '100%', maxHeight: '100%'}}
-    loading="lazy"
+    // loading="lazy"
   ></img>
 
 }
