@@ -124,11 +124,14 @@ const Home: NextPage = () => {
 
               if(videoElement.current.src === '') return;
               if(String(videoElement.current.src).includes('bcebos.com')){
-                // step 5
+                // step 6
                 return;
-              }else if(String(videoElement.current.src).includes('github.io')){
-                // step 4 (baidu)
+              }else if(String(videoElement.current.src).includes('assets.webpagemonitor.net')){
+                // step 5 (baidu)
                 videoElement.current.src = "https://wpmt.cdn.bcebos.com/webpagemonitor-web/intro-video/intro-en-20220331-v2.mp4"
+              }else if(String(videoElement.current.src).includes('github.io')){
+                // step 4 (cloudflare)
+                videoElement.current.src = "https://assets.webpagemonitor.net/web-intro-video/intro-en-20220331-v2.mp4"
               }else if(String(videoElement.current.src).includes('jsdelivr.net')){
                 // step 3 (github)
                 videoElement.current.src = "https://lgh06.github.io/web-page-monitor-assets/web-intro-video/intro-en-20220331-v2.mp4"
