@@ -72,6 +72,7 @@
     }else if(String([...docSite.global, ...webSite.global]).includes(window.location.hostname)){
       nowSiteArea = 'global';
     }
+    // debug use
     // nowSite = docSite; nowSiteArea = 'cn';
     if (!nowSite || !nowSiteArea) return;
 
@@ -86,23 +87,23 @@
     }else{
       return;
     }
-    var hintText = '';
+    var hintText = `<style>
+@keyframes hint_animation {
+  0%{background-position:10% 0%}
+  50%{background-position:91% 100%}
+  100%{background-position:10% 0%}
+}</style>`;
     if (speakChinese) {
       // this user can speak chinese
-      hintText = `您正在浏览的是${nowSiteArea === 'cn' ? '中国' : '全球'}站点，建议切换到
-    <a href="${toUrl}" >${nowSiteArea === 'cn' ? '全球' : '中国'}站点</a>
-    ，获得更好体验。
-    <style>
-    @keyframes hint_animation {
-      0%{background-position:10% 0%}
-      50%{background-position:91% 100%}
-      100%{background-position:10% 0%}
-    }
-    </style>
-    `;
+      hintText += `您正在浏览的是${nowSiteArea === 'cn' ? '中国' : '全球'}站点，建议切换到
+      <a href="${toUrl}" >${nowSiteArea === 'cn' ? '全球' : '中国'}站点</a>
+      ，获得更好体验。
+      `;
     } else {
       // this user can not speak chinese
-      hintText = `You are visiting ${nowSiteArea === 'cn' ? 'China' : 'Global'} site, you can switch to ${nowSiteArea === 'cn' ? 'Global' : 'China'} site for better experience.`;
+      hintText += `You are visiting ${nowSiteArea === 'cn' ? 'China' : 'Global'} site, you can switch to 
+      <a href="${toUrl}" >${nowSiteArea === 'cn' ? 'Global' : 'China'} site</a> 
+      for better experience.`;
     }
     var hintTextElement = document.createElement('div');
     hintTextElement.className = 'wpmt-doc-global-analyze-hint-text';
@@ -111,6 +112,7 @@
 background-image: linear-gradient(140deg, #a9b7eb 0%, #fda2a2 50%, #d1f318 75%);
 background-size: 200% 200%;
 animation: hint_animation 5s ease infinite;`;
+    // console.log(inChina, speakChinese, timeZoneName, timeZoneHourUTCOffset, language, languageList, nowSite, nowSiteArea, toUrl, hintText);
     let ele = document.querySelector('#__docusaurus') || document.querySelector('#__next');
     if (ele) {
       ele.insertAdjacentElement('beforebegin', hintTextElement);

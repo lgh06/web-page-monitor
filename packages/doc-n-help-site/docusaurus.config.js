@@ -126,7 +126,7 @@ var config = {
       async: true,
     },
     {
-      src: baseUrl + 'js/switch_hint.js?1',
+      src: baseUrl + 'js/switch_hint.js?2',
       async: true,
     },
   ],
