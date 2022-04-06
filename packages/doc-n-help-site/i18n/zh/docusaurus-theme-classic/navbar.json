@@ -1,0 +1,14 @@
+{
+  "title": {
+    "message": "Web Page Monitor",
+    "description": "The title in the navbar"
+  },
+  "item.label.Docs": {
+    "message": "中文文档",
+    "description": "Navbar item with label Docs"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  }
+}

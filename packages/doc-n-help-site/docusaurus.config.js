@@ -16,8 +16,13 @@ var config = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'lgh06', // Usually your GitHub org/user name.
+  projectName: 'web-page-monitor', // Usually your repo name.
+
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'zh'],
+  },
 
   presets: [
     [
@@ -28,8 +33,8 @@ var config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl: 'https://github.com/lgh06/web-page-monitor/tree/main/packages/doc-n-help-site/',
-          breadcrumbs: false,
-          sidebarCollapsed: true,
+          breadcrumbs: true,
+          // sidebarCollapsed: true,
           routeBasePath:'/',
           showLastUpdateTime: true,
           showLastUpdateAuthor: true,
@@ -66,6 +71,16 @@ var config = {
             label: 'Docs',
           },
           // {to: '/blog', label: 'Blog', position: 'left'},
+          {
+            type: 'localeDropdown',
+            position: 'right',
+            dropdownItemsAfter: [
+              {
+                href: 'https://github.com/lgh06/web-page-monitor/issues/3526',
+                label: 'Help Us Translate',
+              },
+            ],
+          },
           {
             href: 'https://github.com/lgh06/web-page-monitor',
             label: 'GitHub',

@@ -1,0 +1,99 @@
+---
+sidebar_position: 1
+title: 首页
+---
+
+# 网页变动检测文档 Web Page Monitor Doc
+
+
+## 访问地址 / URL
+<a href="https://monit.or.passby.me/zh">内地访问地址1</a>  
+<br/>
+<a href="https://monit.or.yanqiankeji.com/zh">内地访问地址2</a>  
+<br/>
+<a href="https://www.webpagemonitor.net/">Link for Global Users</a>  
+
+## 源码地址 / Source Code 
+<a href="https://github.com/lgh06/web-page-monitor">Github</a>  
+<br/>
+<a href="https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git">Coding （适合内地）</a>  
+<br/>
+
+
+
+import { useRef } from "react";
+
+export const ZhVideo = () => {
+  const videoElement = useRef(null);
+  return (<video 
+    playsInline
+    preload="meta"
+    style={{width: '100%', backgroundColor: '#110777'}}
+    controls
+    ref={videoElement}
+    poster="https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor-assets@main/web-intro-video/poster-intro-cn-v2.jpg"
+    src="https://alyjbedhbo.cdn.bspapp.com/ALYJBEDHBO-1f8d8dcb-ff67-4778-8209-da5ceecdd68f/9a6ee97a-49ce-4bbb-9d09-35caaa22df87.mp4"
+    onError={(e) =>{
+      if(videoElement.current.src === '') return;
+      let srcArr = [
+        'https://alyjbedhbo.cdn.bspapp.com/ALYJBEDHBO-1f8d8dcb-ff67-4778-8209-da5ceecdd68f/9a6ee97a-49ce-4bbb-9d09-35caaa22df87.mp4',
+        'https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor-assets@main/web-intro-video/intro-cn-20220331-v2.bin',
+        'https://assets.webpagemonitor.net/web-intro-video/intro-cn-20220331-v2.mp4',
+        'https://wpmt.cdn.bcebos.com/webpagemonitor-web/intro-video/intro-cn-20220331-v2.mp4',
+      ]
+      let alreadyMatched = false;
+      srcArr.forEach((v,i) =>{
+        if(alreadyMatched) return;
+        if(i === srcArr.length - 1){
+          // no more src url
+          return;
+        }
+        if( String(videoElement.current.src).includes(new URL(v).hostname) ){
+          alreadyMatched = true;
+          videoElement.current.src = srcArr[i+1];
+        }
+      });
+    }}
+  ></video>)
+};
+
+export const EnVideo = () => {
+  const videoElement = useRef(null);
+  return (<video 
+    playsInline
+    preload="meta"
+    style={{width: '100%', backgroundColor: '#110777'}}
+    controls
+    ref={videoElement}
+    poster="https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor-assets@main/web-intro-video/poster-intro-en-v2.jpg"
+    src="https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor-assets@main/web-intro-video/intro-en-20220331-v2.bin"
+    onError={(e) =>{
+      if(videoElement.current.src === '') return;
+      let srcArr = [
+        'https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor-assets@main/web-intro-video/intro-en-20220331-v2.bin',
+        'https://assets.webpagemonitor.net/web-intro-video/intro-en-20220331-v2.mp4',
+        'https://mellifluous-rabanadas-640a15.netlify.app/assets/intro-en-20220331-v2.mp4',
+        'https://lgh06.github.io/web-page-monitor-assets/web-intro-video/intro-en-20220331-v2.mp4',
+        'https://wpmt.cdn.bcebos.com/webpagemonitor-web/intro-video/intro-en-20220331-v2.mp4',
+      ]
+      let alreadyMatched = false;
+      srcArr.forEach((v,i) =>{
+        if(alreadyMatched) return;
+        if(i === srcArr.length - 1){
+          // no more src url
+          return;
+        }
+        if( String(videoElement.current.src).includes(new URL(v).hostname) ){
+          alreadyMatched = true;
+          videoElement.current.src = srcArr[i+1];
+        }
+      });
+    }}
+  ></video>);
+};
+
+## 介绍视频
+<ZhVideo></ZhVideo>
+
+## Intro Video
+<EnVideo></EnVideo>
