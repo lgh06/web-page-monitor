@@ -125,6 +125,10 @@ var config = {
       src: baseUrl + 'js/wpmt_doc_global_analyze.js',
       async: true,
     },
+    {
+      src: baseUrl + 'js/switch_hint.js?1',
+      async: true,
+    },
   ],
 };
 
