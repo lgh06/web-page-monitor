@@ -67,9 +67,9 @@
     }
     if(!nowSite) return;
 
-    if(String([...docSite.cn, ...webSite.cn]).find(v => String(window.location.href).includes(v))){
+    if([...docSite.cn, ...webSite.cn].find(v => String(window.location.href).includes(v))){
       nowSiteArea = 'cn';
-    }else if(String([...docSite.global, ...webSite.global]).find(v => String(window.location.href).includes(v))){
+    }else if([...docSite.global, ...webSite.global].find(v => String(window.location.href).includes(v))){
       nowSiteArea = 'global';
     }
     // debug use
