@@ -13,7 +13,7 @@ var config = {
   url: 'https://webpagemonitor.net',
   baseUrl: baseUrl,
   trailingSlash: true,
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'favicon.ico',
   organizationName: 'lgh06', // Usually your GitHub org/user name.
