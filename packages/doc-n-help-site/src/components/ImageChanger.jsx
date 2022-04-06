@@ -1,5 +1,27 @@
 import React, { useEffect, useRef, useState } from "react";
 import useBaseUrl from '@docusaurus/useBaseUrl';
+
+import {useColorMode} from '@docusaurus/theme-common';
+import BasicZoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
+
+// copy from https://github.com/facebook/docusaurus/blob/v2.0.0-beta.18/website/src/components/Zoom/index.tsx
+function Zoom({
+  children,
+}){
+  const {colorMode} = useColorMode();
+  return (
+    <BasicZoom
+      overlayBgColorEnd={
+        colorMode === 'dark'
+          ? 'rgba(0, 0, 0, 0.95)'
+          : 'rgba(255, 255, 255, 0.95)'
+      }>
+      {children}
+    </BasicZoom>
+  );
+}
+
 function ImageChanger(props){
   const { src, title, alt, style } = props;
   console.log('src', src);
@@ -99,15 +121,18 @@ function ImageChanger(props){
     setTimeout(function(){if(isSuccessRef.current === undefined)imgRef.current.onerror()},5000);
   }, [url]);
 
-  return <img 
-    ref={imgRef}
-    src={url}
-    title={title}
-    alt={alt}
-    style={{...style, display: 'block', maxWidth: '100%', maxHeight: '100%'}}
-    // loading="lazy"
-  ></img>
-
+  return <div>
+    <Zoom>
+      <img 
+      ref={imgRef}
+      src={url}
+      title={title}
+      alt={alt}
+      style={{...style, display: 'block', maxWidth: '100%', maxHeight: '100%'}}
+      // loading="lazy"
+      ></img>
+    </Zoom>
+  </div>
 }
 
 export { ImageChanger, ImageChanger as default };
