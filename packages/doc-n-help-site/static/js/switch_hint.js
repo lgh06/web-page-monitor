@@ -24,7 +24,7 @@
     }
     var timeZoneOffset = new Date().getTimezoneOffset();
     var timeZoneHourUTCOffset = timeZoneOffset / -60;
-    if (timeZoneHourUTCOffset === 8 && (String(timeZoneName).match(/Shanghai|Macau|Hong_Kong|Urumqi|Beijing|Harbin|Chongqing|/i) || timeZoneName === undefined)) {
+    if (timeZoneHourUTCOffset === 8 && (String(timeZoneName).match(/Shanghai|Macau|Hong_Kong|Urumqi|Beijing|Harbin|Chongqing/i) || timeZoneName === undefined)) {
       // this user maybe in China
       inChina = true;
     }
