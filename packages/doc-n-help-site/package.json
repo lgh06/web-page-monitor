@@ -6,7 +6,7 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start --port 3004",
     "dev": "docusaurus start --port 3004",
-    "build": "docusaurus build --out-dir webpagemonitor_doc_site",
+    "build": "docusaurus build --out-dir webpagemonitor_doc_site && rm -rf ./webpagemonitor_doc_site/zh/img && rm -rf ./webpagemonitor_doc_site/zh/js",
     "buildcfpage": "docusaurus build",
     "triggercf": "curl -X POST \"https://api.cloudflare.com/client/v4/pages/webhooks/deploy_hooks/7b62a0d9-5492-43d4-920c-9a3710519319\" ",
     "swizzle": "docusaurus swizzle",

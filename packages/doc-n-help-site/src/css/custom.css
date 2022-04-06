@@ -46,3 +46,10 @@
     max-width: 95% !important;
   }
 }
+
+/* make h1 title smaller on mobile */
+@media screen and (max-width: 768px) {
+  .markdown h1:first-child {
+    --ifm-h1-font-size: 2.35rem;
+  }
+}
