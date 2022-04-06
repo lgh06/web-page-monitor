@@ -55,7 +55,7 @@
     }
 
     var webSite = {
-      cn: ['http://monit.or.passby.me/', 'https://monit.or.yanqiankeji.com/',],
+      cn: ['https://monit.or.passby.me/', 'https://monit.or.yanqiankeji.com/',],
       global: ['https://www.webpagemonitor.net/', 'https://webpagemonitor.net/'],
     }
 
