@@ -118,6 +118,8 @@ animation: hint_animation 5s ease infinite;`;
       ele.insertAdjacentElement('beforebegin', hintTextElement);
     }
 
+    window.history.scrollRestoration = "manual";
+
   }
   ready(bbb);
 })();
