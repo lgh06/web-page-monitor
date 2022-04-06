@@ -56,20 +56,20 @@
 
     var webSite = {
       cn: ['http://monit.or.passby.me/', 'https://monit.or.yanqiankeji.com/',],
-      global: ['https://www.webpagemonitor.net/'],
+      global: ['https://www.webpagemonitor.net/', 'https://webpagemonitor.net/'],
     }
 
     var nowSite, nowSiteArea;
-    if(JSON.stringify(docSite).includes(window.location.hostname)){
+    if([...docSite.cn, ...docSite.global].find(v => String(window.location.href).includes(v))) {
       nowSite = docSite;
-    }else if(JSON.stringify(webSite).includes(window.location.hostname)){
+    }else if([...webSite.cn, ...webSite.global].find(v => String(window.location.href).includes(v))){
       nowSite = webSite;
     }
     if(!nowSite) return;
 
-    if(String([...docSite.cn, ...webSite.cn]).includes(window.location.hostname)){
+    if(String([...docSite.cn, ...webSite.cn]).find(v => String(window.location.href).includes(v))){
       nowSiteArea = 'cn';
-    }else if(String([...docSite.global, ...webSite.global]).includes(window.location.hostname)){
+    }else if(String([...docSite.global, ...webSite.global]).find(v => String(window.location.href).includes(v))){
       nowSiteArea = 'global';
     }
     // debug use

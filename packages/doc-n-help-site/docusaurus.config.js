@@ -126,7 +126,7 @@ var config = {
       async: true,
     },
     {
-      src: baseUrl + 'js/switch_hint.js?2',
+      src: baseUrl + 'js/switch_hint.js?' + Math.floor(Date.now() / 1000 / 3600 / 1.5),
       async: true,
     },
   ],
