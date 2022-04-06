@@ -32,7 +32,12 @@ var config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/lgh06/web-page-monitor/tree/main/packages/doc-n-help-site/',
+          editUrl: ({locale, docPath}) => {
+            if (locale !== 'en') {
+              return `https://github.com/lgh06/web-page-monitor/tree/main/packages/doc-n-help-site/i18n/zh/docusaurus-plugin-content-docs/current/${docPath}`;
+            }
+            return `https://github.com/lgh06/web-page-monitor/tree/main/packages/doc-n-help-site/docs/${docPath}`;
+          },
           breadcrumbs: true,
           // sidebarCollapsed: true,
           routeBasePath:'/',
