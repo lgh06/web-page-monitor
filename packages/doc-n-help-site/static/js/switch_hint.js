@@ -20,6 +20,7 @@
     try {
       timeZoneName = Intl.DateTimeFormat().resolvedOptions().timeZone;
     } catch (error) {
+      console.error(error);
     }
     var timeZoneOffset = new Date().getTimezoneOffset();
     var timeZoneHourUTCOffset = timeZoneOffset / -60;
@@ -33,6 +34,7 @@
     try {
       language = (navigator.languages && navigator.languages[0]) || navigator.language || navigator.userLanguage;
     } catch (error) {
+      console.error(error)
     }
     var languageList;
     try {
@@ -112,7 +114,7 @@
 background-image: linear-gradient(140deg, #a9b7eb 0%, #fda2a2 50%, #d1f318 75%);
 background-size: 200% 200%;
 animation: hint_animation 5s ease infinite;`;
-    // console.log(inChina, speakChinese, timeZoneName, timeZoneHourUTCOffset, language, languageList, nowSite, nowSiteArea, toUrl, hintText);
+    console.log(inChina, speakChinese, timeZoneName, timeZoneHourUTCOffset, language, languageList, nowSite, nowSiteArea, toUrl, hintText);
     let ele = document.querySelector('#__docusaurus') || document.querySelector('#__next');
     if (ele) {
       ele.insertAdjacentElement('beforebegin', hintTextElement);
