@@ -89,6 +89,9 @@
     }else{
       return;
     }
+    if(speakChinese){
+      toUrl += 'zh/';
+    }
     var hintText = `<style>
 @keyframes hint_animation {
   0%{background-position:10% 0%}
