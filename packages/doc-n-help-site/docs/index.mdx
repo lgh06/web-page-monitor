@@ -5,23 +5,58 @@ title: Home
 
 # Web Page Monitor Doc
 
+中文文档地址<a href="./zh/">点击这里</a> 
 
 ## URL
-<a href="https://monit.or.passby.me/zh">chinese mainland link 1</a>  
-<br/>
-<a href="https://monit.or.yanqiankeji.com/zh">chinese manland link 2</a>  
-<br/>
 <a href="https://www.webpagemonitor.net/">Link for Global Users</a>  
+<br/>
+<a href="https://monit.or.passby.me/zh">Chinese mainland link 1</a>  
+<br/>
+<a href="https://monit.or.yanqiankeji.com/zh">Chinese mainland link 2</a>  
 
 ## Source Code 
 <a href="https://github.com/lgh06/web-page-monitor">Github</a>  
 <br/>
-<a href="https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git">Coding （for chinese mainland）</a>  
+<a href="https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git">Coding </a>  
 <br/>
 
 
 
 import { useRef } from "react";
+
+export const ZhVideo = () => {
+  const videoElement = useRef(null);
+  return (<video 
+    playsInline
+    preload="meta"
+    style={{width: '100%', backgroundColor: '#110777'}}
+    controls
+    ref={videoElement}
+    poster="https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor-assets@main/web-intro-video/poster-intro-cn-v2.jpg"
+    src="https://alyjbedhbo.cdn.bspapp.com/ALYJBEDHBO-1f8d8dcb-ff67-4778-8209-da5ceecdd68f/9a6ee97a-49ce-4bbb-9d09-35caaa22df87.mp4"
+    onError={(e) =>{
+      if(videoElement.current.src === '') return;
+      let srcArr = [
+        'https://alyjbedhbo.cdn.bspapp.com/ALYJBEDHBO-1f8d8dcb-ff67-4778-8209-da5ceecdd68f/9a6ee97a-49ce-4bbb-9d09-35caaa22df87.mp4',
+        'https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor-assets@main/web-intro-video/intro-cn-20220331-v2.bin',
+        'https://assets.webpagemonitor.net/web-intro-video/intro-cn-20220331-v2.mp4',
+        'https://wpmt.cdn.bcebos.com/webpagemonitor-web/intro-video/intro-cn-20220331-v2.mp4',
+      ]
+      let alreadyMatched = false;
+      srcArr.forEach((v,i) =>{
+        if(alreadyMatched) return;
+        if(i === srcArr.length - 1){
+          // no more src url
+          return;
+        }
+        if( String(videoElement.current.src).includes(new URL(v).hostname) ){
+          alreadyMatched = true;
+          videoElement.current.src = srcArr[i+1];
+        }
+      });
+    }}
+  ></video>)
+};
 
 export const EnVideo = () => {
   const videoElement = useRef(null);
@@ -57,6 +92,9 @@ export const EnVideo = () => {
     }}
   ></video>);
 };
-
 ## Intro Video
 <EnVideo></EnVideo>
+
+## 介绍视频
+<ZhVideo></ZhVideo>
+
