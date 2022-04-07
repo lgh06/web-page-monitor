@@ -34,6 +34,7 @@ let trans = {
   "https://docs.webpagemonitor.net/others/TOS/#TermsOfService": "https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/zh/others/TOS/#TermsOfService",
   "https://docs.webpagemonitor.net/others/PP/#PrivacyPolicy": "https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/zh/others/PP/#PrivacyPolicy",
   "Login with Gitee.com OAuth": "使用Gitee.com OAuth登录",
+  "Login with Email": "使用邮箱登录",
   "Login with Github (through Firebase)": "使用Github(通过Firebase)登录",
   "Login with Google (through Firebase)": "使用Google(通过Firebase)登录",
   "Points": "点数",

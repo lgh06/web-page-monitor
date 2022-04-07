@@ -31,6 +31,7 @@ const LoginPage: NextPage = () => {
   
   const [giteeRedirectUri, setGiteeRedirectUri] = useState('');
   const [showFirebaseLogin, setShowFirebaseLogin] = useState(false);
+  const [showCloudBaseLogin, setShowCloudBaseLogin] = useState(false);
   const [url, setUrl] = useState('');
 
   let headTitle = useHeadTitle(userInfo.logged ? 'User Center' : 'Login');
@@ -87,10 +88,12 @@ const LoginPage: NextPage = () => {
       image.onload = function () {
         isS=true;
         setShowFirebaseLogin(true);
+        setShowCloudBaseLogin(false);
       };
       image.onerror=function(){
         isS=false;
         setShowFirebaseLogin(false);
+        setShowCloudBaseLogin(true);
       };
       image.src = "https://www.google.com/favicon.ico" + `?t=${Date.now()}`;
       setTimeout(function(){if(isS === undefined)image.src=''},3000);
@@ -184,6 +187,14 @@ const LoginPage: NextPage = () => {
         <div>
           <a {...cn('link')} href={url} rel="nofollow noreferrer noopener">{t(`Login with Gitee.com OAuth`)}</a>
         </div> <br />
+        {
+          showCloudBaseLogin &&
+          <div>
+            <Link prefetch={false} href="/login_cloudbase?provider=cloudbase">
+              <a {...cn('link')}>{t(`Login with Email`)}</a>
+            </Link>
+          </div>
+        }
         {
           showFirebaseLogin &&
           <div>
