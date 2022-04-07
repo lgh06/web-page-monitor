@@ -15,7 +15,7 @@ const Back = () => {
   return (<div style={{
     marginTop: '.3rem',
   }}>
-        <Link prefetch={false} href="/"><a {...cn('link')}>{t(`Go Back to home`)}</a></Link>
+        <Link prefetch={false} href="/"><a >{t(`Go Back to home`)}</a></Link>
     </div>)
 }
 
@@ -120,7 +120,7 @@ const LoginPage: NextPage = () => {
   }
 
   let res;
-  let backLink = <><div><Link prefetch={false} href="/"><a {...cn('link')}>{t(`Go Back to home`)}</a></Link></div></>;
+  let backLink = <><div><Link prefetch={false} href="/"><a >{t(`Go Back to home`)}</a></Link></div></>;
 
   if (userInfo.logged) {
     res = (<main>
@@ -130,13 +130,13 @@ const LoginPage: NextPage = () => {
         {t(`Welcome`)}, {userInfo.email} 
       </div>
       {/* <div>
-        <Link href='/task/edit_simp'><a {...cn('link')}> {t(`Create a task in Simple Mode`)} ({t(`Recommended`)})</a></Link>
+        <Link href='/task/edit_simp'><a > {t(`Create a task in Simple Mode`)} ({t(`Recommended`)})</a></Link>
       </div> */}
       <div>
-        <Link href='/task/edit_simp'><a {...cn('link')} style={{zoom: 1.1}}> {t(`Create task`)}</a></Link>
+        <Link href='/task/edit_simp'><a  style={{zoom: 1.1}}> {t(`Create task`)}</a></Link>
       </div>
       <div>
-        <Link prefetch={false} href='/task/list'><a {...cn('link')} style={{zoom: 1.1}}> {t(`Task List`)}</a></Link>
+        <Link prefetch={false} href='/task/list'><a  style={{zoom: 1.1}}> {t(`Task List`)}</a></Link>
       </div><br/>
       <div>
         {t(`Points`)}: {userInfo.points}
@@ -145,33 +145,33 @@ const LoginPage: NextPage = () => {
           <a>{t(`Top up`)}</a>
         </Link>
       </div>
-      <div {...cn('smFont')}>
+      <div>
         {t(`Every time one cron task's check will consume 1 point.`)}
         {/* {t(`Points consumed for different tasks may vary, in the future.`)} */}
       </div><br/>
-      <div {...cn('smFont')}>
+      <div>
         {t(`Next Add Points Time`)}: {new Date(userInfo.nextAddPointsTime).toLocaleString()}
       </div>
-      <div {...cn('smFont')}>
+      <div>
         {t(`If your points below 80, then it will be reset to 80 on `)} {t(`Next Add Points Time`)}
       </div><br/>
       {
-        locale === 'en' && (<div {...cn('smFont')}>
+        locale === 'en' && (<div>
           You can find more details of free quota, price and limits at  &nbsp;
           <a href="https://docs.webpagemonitor.net/FAQ/free_quota_and_price/" target="_blank" rel="noopener noreferrer">here</a><br/><br/>
         </div>)
       }
       {
-        locale === 'zh' && (<div {...cn('smFont')}>
+        locale === 'zh' && (<div>
           关于免费点数、价格与使用限制， 参见：&nbsp;
           <a href="https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/zh/FAQ/free_quota_and_price/" target="_blank" rel="noopener noreferrer">这里</a><br/><br/>
         </div>)
       }
       {/* <div>
-        <Link href='/create_task_geek'><a {...cn('link')}>create a task in Geek Mode (Code Mode)</a></Link>
+        <Link href='/create_task_geek'><a >create a task in Geek Mode (Code Mode)</a></Link>
       </div> */}
       {/* <div>
-        <Link href='/faq#WhatIsSimpleMode'><a {...cn('link')}>see FAQ for Simple Mode / Geek Mode helps </a></Link>
+        <Link href='/faq#WhatIsSimpleMode'><a >see FAQ for Simple Mode / Geek Mode helps </a></Link>
       </div> */}
       <div>
         <button onClick={() => logOut({setUserInfo, router})}>{t(`Log Out`)}</button>
@@ -182,13 +182,13 @@ const LoginPage: NextPage = () => {
     res = (<main>
         {headTitle}
         <div>
-          <a {...cn('link')} href={url} rel="nofollow noreferrer noopener">{t(`Login with Gitee.com OAuth`)}</a>
+          <a  href={url} rel="nofollow noreferrer noopener">{t(`Login with Gitee.com OAuth`)}</a>
         </div> <br />
         {
           showFirebaseLogin &&
           <div>
             <Link prefetch={false} href="/login_firebase?provider=google">
-              <a {...cn('link')}>{t(`Login with Google (through Firebase)`)}</a>
+              <a >{t(`Login with Google (through Firebase)`)}</a>
             </Link>
           </div>
         }
@@ -196,11 +196,11 @@ const LoginPage: NextPage = () => {
           showFirebaseLogin &&
           <div>
             <Link prefetch={false} href="/login_firebase?provider=github">
-              <a {...cn('link')}>{t(`Login with Github (through Firebase)`)}</a>
+              <a >{t(`Login with Github (through Firebase)`)}</a>
             </Link>
           </div>
         }
-        <div {...cn('smFont')}> 
+        <div style={{fontSize: '.8em'}}> 
         <br/>
         {t('By click above login links, you agree to our')}&nbsp;
           <a href={t(`https://docs.webpagemonitor.net/others/TOS/#TermsOfService`)} target="_blank" rel='noopener noreferrer'>{t('Terms of Service')}</a>
@@ -209,13 +209,13 @@ const LoginPage: NextPage = () => {
         </div>
         <br/>
         {
-          locale === 'en' && (<div {...cn('smFont')}>
+          locale === 'en' && (<div style={{fontSize: '.85em'}}>
             Cannot login? See our docs &nbsp;
             <a href="https://docs.webpagemonitor.net/FAQ/reg_n_login/" target="_blank" rel="noopener noreferrer">here</a><br/><br/>
           </div>)
         }
         {
-          locale === 'zh' && (<div {...cn('smFont')}>
+          locale === 'zh' && (<div style={{fontSize: '.85em'}}>
             无法登录？ 查看 &nbsp;
             <a href="https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/zh/FAQ/reg_n_login/" target="_blank" rel="noopener noreferrer">帮助文档</a><br/><br/>
           </div>)
