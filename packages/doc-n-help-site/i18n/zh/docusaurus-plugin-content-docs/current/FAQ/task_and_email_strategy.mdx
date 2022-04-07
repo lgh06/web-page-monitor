@@ -1,0 +1,25 @@
+---
+title: "任务执行/邮件发送策略"
+sidebar_position: 2
+---
+
+import ImageChanger from "@site/src/components/ImageChanger";
+
+## 定时检测任务执行策略 {#task-execution-strategy}
+
+### 定时检测任务的间隔  
+定时检测任务的最小间隔为10分钟。  
+当不符合以上条件时，创建任务页面会给出提示，同时“创建任务”按钮变灰，无法点击。  
+
+> 如图所示：  <ImageChanger src="/img/faq/task_and_email_strategy/1-zh.png" />  
+  
+  <br />
+同时， 因为我们需要15分钟来分配任务到不同的服务器，因此在15分钟内的第一个定时检测任务将被忽略。  
+
+### 定时检测任务的截止时间
+点数小于等于80的用户，创建的任务的截止时间最晚为7天后。  
+点数大于80的用户，创建的任务的截止时间最晚为30天后。  
+
+
+## 邮件发送策略 {#email-send-strategy}
+33
