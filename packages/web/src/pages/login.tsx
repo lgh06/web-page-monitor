@@ -145,24 +145,24 @@ const LoginPage: NextPage = () => {
           <a>{t(`Top up`)}</a>
         </Link>
       </div>
-      <div>
+      <div {...cn('smFont')}>
         {t(`Every time one cron task's check will consume 1 point.`)}
         {/* {t(`Points consumed for different tasks may vary, in the future.`)} */}
       </div><br/>
-      <div>
+      <div {...cn('smFont')}>
         {t(`Next Add Points Time`)}: {new Date(userInfo.nextAddPointsTime).toLocaleString()}
       </div>
-      <div>
+      <div {...cn('smFont')}>
         {t(`If your points below 80, then it will be reset to 80 on `)} {t(`Next Add Points Time`)}
       </div><br/>
       {
-        locale === 'en' && (<div>
+        locale === 'en' && (<div {...cn('smFont')}>
           You can find more details of free quota, price and limits at  &nbsp;
           <a href="https://docs.webpagemonitor.net/FAQ/free_quota_and_price/" target="_blank" rel="noopener noreferrer">here</a><br/><br/>
         </div>)
       }
       {
-        locale === 'zh' && (<div>
+        locale === 'zh' && (<div {...cn('smFont')}>
           关于免费点数、价格与使用限制， 参见：&nbsp;
           <a href="https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/zh/FAQ/free_quota_and_price/" target="_blank" rel="noopener noreferrer">这里</a><br/><br/>
         </div>)
@@ -200,7 +200,7 @@ const LoginPage: NextPage = () => {
             </Link>
           </div>
         }
-        <div style={{fontSize: '.8em'}}> 
+        <div {...cn('smFont')}> 
         <br/>
         {t('By click above login links, you agree to our')}&nbsp;
           <a href={t(`https://docs.webpagemonitor.net/others/TOS/#TermsOfService`)} target="_blank" rel='noopener noreferrer'>{t('Terms of Service')}</a>
@@ -209,13 +209,13 @@ const LoginPage: NextPage = () => {
         </div>
         <br/>
         {
-          locale === 'en' && (<div style={{fontSize: '.85em'}}>
+          locale === 'en' && (<div {...cn('smFont')}>
             Cannot login? See our docs &nbsp;
             <a href="https://docs.webpagemonitor.net/FAQ/reg_n_login/" target="_blank" rel="noopener noreferrer">here</a><br/><br/>
           </div>)
         }
         {
-          locale === 'zh' && (<div style={{fontSize: '.85em'}}>
+          locale === 'zh' && (<div {...cn('smFont')}>
             无法登录？ 查看 &nbsp;
             <a href="https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/zh/FAQ/reg_n_login/" target="_blank" rel="noopener noreferrer">帮助文档</a><br/><br/>
           </div>)
