@@ -100,7 +100,7 @@
 }</style>`;
     if (speakChinese) {
       // this user can speak chinese
-      hintText += `您正在浏览的是${nowSiteArea === 'cn' ? '中国' : '全球'}站点，建议切换到
+      hintText += `您正在浏览的是${nowSiteArea === 'cn' ? '中国' : '全球'}站点，可以切换到
       <a href="${toUrl}" >${nowSiteArea === 'cn' ? '全球' : '中国'}站点</a>
       ，获得更好体验。
       `;
@@ -123,7 +123,7 @@ animation: hint_animation 5s ease infinite;`;
       ele.insertAdjacentElement('beforebegin', hintTextElement);
     }
 
-    window.history.scrollRestoration = "manual";
+    // window.history.scrollRestoration = "manual";
 
   }
   ready(bbb);
