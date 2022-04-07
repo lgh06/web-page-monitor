@@ -148,7 +148,7 @@ async function _alertRetryAndDebounceMiddler({
   if(taskDetail && taskDetail.extra &&  taskDetail.extra.alertDebounce){
     alertDebounce = parseInt(taskDetail.extra.alertDebounce, 10);
   }
-  // defaultAlertDebounce is 6 hours.
+  // defaultAlertDebounce is 4 hours.
   // min alertDebounce is 1 hour.
   if( Number.isNaN(alertDebounce) || alertDebounce < minAlertDebounce){
     alertDebounce = defaultAlertDebounce;

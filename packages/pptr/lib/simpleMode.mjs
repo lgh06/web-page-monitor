@@ -97,7 +97,7 @@ async function simpleMode(taskDetail) {
     // TODO read limit from MQ from worker from DB.
     limit: 7,
   }
-  let usedLauchOption = CONFIG.debug ? debugLaunchOption : Object.assign({}, debugLaunchOption, prodLauchOption);
+  let usedLauchOption = CONFIG.debug ? debugLaunchOption : prodLauchOption;
 
   let browser, p1;
   try {
