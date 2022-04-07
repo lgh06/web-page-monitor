@@ -180,6 +180,7 @@ async function _alertRetryAndDebounceMiddler({
       cacheOnTask = await alertSenderFunc({content, htmlContent, taskDetail});
     }
   }else if(prevFailNum >= 11){
+    await alertSenderFunc({content, htmlContent, taskDetail});
     cacheOnTask = {
       failNum: 0,
     }; // reset cacheOnTask

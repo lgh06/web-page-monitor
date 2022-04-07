@@ -3,7 +3,37 @@ title: "Task execute / Email send strategy"
 sidebar_position: 2
 ---
 
-## 任务执行策略 {#product-url2}
-22
-# Email sending
-33
+import ImageChanger from "@site/src/components/ImageChanger";
+
+## Task execution strategy {#task-execution-strategy}
+
+### Min intervals between tasks  
+The minimum interval for timed detection tasks is 10 minutes.  
+When the above conditions are not met, the Create Task page will give a prompt and the Create Task button will be grayed out and cannot be clicked.  
+> a screen capture：  <ImageChanger src="/img/faq/task_and_email_strategy/1-en.png" />  
+  
+  <br />
+Also, since we need 15 minutes to assign tasks to different servers, the first timed detection task within 15 minutes will be ignored.  
+
+### End time for cron (repeated) task's checks
+For users with less than or equal to 80 points, the deadline for created tasks is at the latest 7 days later.  
+For users with more than 80 points, the deadline for created tasks is 30 days later at the latest.  
+
+
+## Email send strategy {#email-send-strategy}  
+If there are multiple changes to the page within a four-hour period, an attempt will only be made to send an alert email on the first change within the four-hour period.
+
+:::tip
+1. For a web page change, we will try to send an email reminder (if there is already a change reminder email for the same task within four hours, we will not try to send it).  
+If the reminder email fails to be sent, no further emails will be attempted for this web change, but the next time a change is detected, an alternative email delivery service will be used to attempt to send the reminder email immediately
+(Not limited to one email in four hours).  
+
+2. If the previous **4** web page change email alerts failed to be sent, only one alert email will be attempted within one hour for the next task.  
+(To prevent some high-frequency detection tasks from sending frequent emails due to temporary downtime of the mail server, and has no effect on low-frequency detection tasks with intervals greater than one hour)  
+
+3. If the previous **11 times** email alerts for web changes are sent failed, reset the number of failed tasks. (then return to the logic in step 1)  
+
+:::  
+
+> The source code is available [here](https://github.com/lgh06/web-page-monitor/blob/0.0.5/packages/worker-scheduler/alertProviders/nodemailer.mjs#L164).
+Feel free to submit issues if you have better suggestions.
