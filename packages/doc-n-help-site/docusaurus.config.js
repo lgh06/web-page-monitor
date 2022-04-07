@@ -79,16 +79,16 @@ var config = {
           {
             type: 'localeDropdown',
             position: 'right',
-            dropdownItemsAfter: [
-              {
-                href: 'https://github.com/lgh06/web-page-monitor/issues/3526',
-                label: 'Help Us Translate',
-              },
-            ],
+            // dropdownItemsAfter: [
+            //   {
+            //     href: 'https://github.com/lgh06/web-page-monitor/issues/3526',
+            //     label: 'Help Us Translate',
+            //   },
+            // ],
           },
           {
-            href: 'https://github.com/lgh06/web-page-monitor',
-            label: 'GitHub',
+            href: 'https://webpagemonitor.net',
+            label: 'Product Home',
             position: 'right',
           },
         ],
@@ -99,6 +99,10 @@ var config = {
           {
             title: 'Links',
             items: [
+              {
+                label: 'Product Home',
+                to: 'https://webpagemonitor.net',
+              },
               {
                 label: 'Docs',
                 to: '/',

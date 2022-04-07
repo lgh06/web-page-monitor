@@ -7,8 +7,8 @@
     "message": "中文文档",
     "description": "Navbar item with label Docs"
   },
-  "item.label.GitHub": {
-    "message": "GitHub",
+  "item.label.Product Home": {
+    "message": "产品首页",
     "description": "Navbar item with label GitHub"
   }
 }
