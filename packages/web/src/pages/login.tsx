@@ -146,15 +146,27 @@ const LoginPage: NextPage = () => {
         </Link>
       </div>
       <div>
+        {t(`Every time one cron task's check will consume 1 point.`)}
+        {/* {t(`Points consumed for different tasks may vary, in the future.`)} */}
+      </div><br/>
+      <div>
         {t(`Next Add Points Time`)}: {new Date(userInfo.nextAddPointsTime).toLocaleString()}
       </div>
       <div>
         {t(`If your points below 80, then it will be reset to 80 on `)} {t(`Next Add Points Time`)}
-      </div>
-      <div>
-        {t(`Every time one cron task's check will consume 1 point.`)}
-        {t(`Points consumed for different tasks may vary, in the future.`)}
       </div><br/>
+      {
+        locale === 'en' && (<div>
+          You can find more details of free quota, price and limits at  &nbsp;
+          <a href="https://docs.webpagemonitor.net/FAQ/free_quota_and_price/" target="_blank" rel="noopener noreferrer">here</a><br/><br/>
+        </div>)
+      }
+      {
+        locale === 'zh' && (<div>
+          关于免费点数、价格与使用限制， 参见：&nbsp;
+          <a href="https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/zh/FAQ/free_quota_and_price/" target="_blank" rel="noopener noreferrer">这里</a><br/><br/>
+        </div>)
+      }
       {/* <div>
         <Link href='/create_task_geek'><a {...cn('link')}>create a task in Geek Mode (Code Mode)</a></Link>
       </div> */}

@@ -154,6 +154,18 @@ const MemberRedeemPage: NextPage = () => {
   return (
     <main {...cn('redeem')}>
       {headTitle}
+      {
+        locale === 'en' && (<div>
+          You can find more details of free quota, price and limits at  &nbsp;
+          <a href="https://docs.webpagemonitor.net/FAQ/free_quota_and_price/" target="_blank" rel="noopener noreferrer">here</a><br/><br/>
+        </div>)
+      }
+      {
+        locale === 'zh' && (<div>
+          关于免费点数、价格与使用限制， 参见：&nbsp;
+          <a href="https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/zh/FAQ/free_quota_and_price/" target="_blank" rel="noopener noreferrer">这里</a><br/><br/>
+        </div>)
+      }
       <details open={locale === 'zh'? true : null}>
         <summary>{t(`Add points through WeChat Mini Shop`)}</summary>
         <div>
@@ -229,11 +241,6 @@ const MemberRedeemPage: NextPage = () => {
       </details>
       <details open={locale === 'en'? true : null}>
         <summary>{t(`Add points through a coupon code`)}</summary>
-        <div>
-          {t(`This payment method is recommended for people outside mainland China.`)} <br/>
-          1 US dollar = 500 points <br/>
-
-        </div>
         <div>
           {t(redeemInfo.couponMsg)}:<br/>
           <input
