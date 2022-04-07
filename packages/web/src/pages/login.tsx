@@ -200,7 +200,7 @@ const LoginPage: NextPage = () => {
             </Link>
           </div>
         }
-        <div> 
+        <div style={{fontSize: '.8em'}}> 
         <br/>
         {t('By click above login links, you agree to our')}&nbsp;
           <a href={t(`https://docs.webpagemonitor.net/others/TOS/#TermsOfService`)} target="_blank" rel='noopener noreferrer'>{t('Terms of Service')}</a>
@@ -208,8 +208,18 @@ const LoginPage: NextPage = () => {
           <a href={t(`https://docs.webpagemonitor.net/others/PP/#PrivacyPolicy`)} target="_blank" rel='noopener noreferrer'>{t('Privacy Policy')}</a>
         </div>
         <br/>
-        {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
-        {/* <div>// TODO other OAuth login providers</div> */}
+        {
+          locale === 'en' && (<div style={{fontSize: '.85em'}}>
+            Cannot login? See our docs &nbsp;
+            <a href="https://docs.webpagemonitor.net/FAQ/reg_n_login/" target="_blank" rel="noopener noreferrer">here</a><br/><br/>
+          </div>)
+        }
+        {
+          locale === 'zh' && (<div style={{fontSize: '.85em'}}>
+            无法登录？ 查看 &nbsp;
+            <a href="https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/zh/FAQ/reg_n_login/" target="_blank" rel="noopener noreferrer">帮助文档</a><br/><br/>
+          </div>)
+        }<br/><br/>
         <Back/>
       </main>
     )
