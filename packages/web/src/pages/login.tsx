@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { NextPage } from 'next'
 import React, { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router'
@@ -8,7 +9,6 @@ import { userInfoAtom } from '../atoms';
 import { useAPI, useI18n, fetchAPI, genClassNameAndString, logOut, useHeadTitle } from '../helpers';
 import Link from 'next/link';
 import styles from '../styles/modules/login.module.scss';
-
 
 const Back = () => {
   let { t } = useI18n();
@@ -114,11 +114,6 @@ const LoginPage: NextPage = () => {
     }
   },[userInfo.logged]);
 
-
-  const linkStyle = {
-    textDecoration: "underline"
-  }
-
   let res;
   let backLink = <><div><Link prefetch={false} href="/"><a {...cn('link')}>{t(`Go Back to home`)}</a></Link></div></>;
 
@@ -132,11 +127,11 @@ const LoginPage: NextPage = () => {
       {/* <div>
         <Link href='/task/edit_simp'><a {...cn('link')}> {t(`Create a task in Simple Mode`)} ({t(`Recommended`)})</a></Link>
       </div> */}
-      <div>
-        <Link href='/task/edit_simp'><a {...cn('link')} style={{zoom: 1.1}}> {t(`Create task`)}</a></Link>
+      <div style={{zoom: 1.1}}>
+        <Link href='/task/edit_simp'><a> {t(`Create task`)}</a></Link>
       </div>
-      <div>
-        <Link prefetch={false} href='/task/list'><a {...cn('link')} style={{zoom: 1.1}}> {t(`Task List`)}</a></Link>
+      <div style={{zoom: 1.1}}>
+        <Link prefetch={false} href='/task/list'><a> {t(`Task List`)}</a></Link>
       </div><br/>
       <div>
         {t(`Points`)}: {userInfo.points}
@@ -149,24 +144,30 @@ const LoginPage: NextPage = () => {
         {t(`Every time one cron task's check will consume 1 point.`)}
         {/* {t(`Points consumed for different tasks may vary, in the future.`)} */}
       </div><br/>
-      <div>
-        {t(`Next Add Points Time`)}: {new Date(userInfo.nextAddPointsTime).toLocaleString()}
-      </div>
-      <div>
-        {t(`If your points below 80, then it will be reset to 80 on `)} {t(`Next Add Points Time`)}
-      </div><br/>
-      {
-        locale === 'en' && (<div>
-          You can find more details of free quota, price and limits at  &nbsp;
-          <a href="https://docs.webpagemonitor.net/FAQ/free_quota_and_price/" target="_blank" rel="noopener noreferrer">here</a><br/><br/>
-        </div>)
-      }
-      {
-        locale === 'zh' && (<div>
-          关于免费点数、价格与使用限制， 参见：&nbsp;
-          <a href="https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/zh/FAQ/free_quota_and_price/" target="_blank" rel="noopener noreferrer">这里</a><br/><br/>
-        </div>)
-      }
+      <custom-hint-two class={cs('smFont')}>
+        <div>
+          {t(`Next Add Points Time`)}: {new Date(userInfo.nextAddPointsTime).toLocaleString()}
+        </div>
+        <div>
+          {t(`If your points below 80, then it will be reset to 80 on `)} {t(`Next Add Points Time`)}
+        </div><br/>
+        {
+          locale === 'en' && (<div>
+            You can find more details of free quota, price and limits at  &nbsp;
+            <Link prefetch={false} href="https://docs.webpagemonitor.net/FAQ/free_quota_and_price/">
+              <a target="_blank" rel="noopener noreferrer">here</a>
+            </Link><br/><br/>
+          </div>)
+        }
+        {
+          locale === 'zh' && (<div>
+            关于免费点数、价格与使用限制， 参见：&nbsp;
+            <Link prefetch={false} href="https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/zh/FAQ/free_quota_and_price/">
+              <a target="_blank" rel="noopener noreferrer">这里</a>
+            </Link><br/><br/>
+          </div>)
+        }
+      </custom-hint-two>
       {/* <div>
         <Link href='/create_task_geek'><a {...cn('link')}>create a task in Geek Mode (Code Mode)</a></Link>
       </div> */}
@@ -200,14 +201,26 @@ const LoginPage: NextPage = () => {
             </Link>
           </div>
         }
-        <div> 
         <br/>
+        <custom-hint class={cs('smFont')}> 
         {t('By click above login links, you agree to our')}&nbsp;
           <a href={t(`https://docs.webpagemonitor.net/others/TOS/#TermsOfService`)} target="_blank" rel='noopener noreferrer'>{t('Terms of Service')}</a>
           &nbsp;{t('and')}&nbsp;
           <a href={t(`https://docs.webpagemonitor.net/others/PP/#PrivacyPolicy`)} target="_blank" rel='noopener noreferrer'>{t('Privacy Policy')}</a>
-        </div>
+        </custom-hint>
         <br/>
+        {
+          locale === 'en' && (<custom-hint class={cs('smFont')}>
+            Cannot login? See our docs &nbsp;
+            <a href="https://docs.webpagemonitor.net/FAQ/reg_n_login/" target="_blank" rel="noopener noreferrer">here</a><br/><br/>
+          </custom-hint>)
+        }
+        {
+          locale === 'zh' && (<custom-hint class={cs('smFont')}>
+            无法登录？ 查看 &nbsp;
+            <a href="https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/zh/FAQ/reg_n_login/" target="_blank" rel="noopener noreferrer">帮助文档</a><br/><br/>
+          </custom-hint>)
+        }<br/><br/>
         {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
         {/* <div>// TODO other OAuth login providers</div> */}
         <Back/>
