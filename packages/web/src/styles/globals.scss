@@ -53,8 +53,8 @@ span.look-here{
 }
 @keyframes lookHereAnim {
   0% {transform: rotate(0deg) scale(1);}
-  25% {transform: rotate(2deg) scale(1.1);}
+  25% {transform: rotate(1deg) scale(1.06);}
   50% {transform: rotate(0deg) scale(1);}
-  75% {transform: rotate(-2deg) scale(0.9);}
+  75% {transform: rotate(-1deg) scale(0.94);}
   100% {transform: rotate(0deg) scale(1);}
 }

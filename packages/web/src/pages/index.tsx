@@ -36,7 +36,7 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>
           { userInfo.email ? (<>
             {t(`Welcome`)}, {userInfo.email} <br/>
-            <Link href="/login"><a>{t('Go to User Center')}</a></Link>
+            <span className='look-here'><Link href="/login"><a>{t('Go to User Center')}</a></Link></span>
           </>):(<>
             <span {...innerHTML(t('Welcome to Web Page Monitor'))}></span> <span style={{zoom: .45}}>alpha</span> <br/>
             {t('Please')} <span className='look-here'><Link href="/login"><a >{t('Login')}</a></Link></span>
