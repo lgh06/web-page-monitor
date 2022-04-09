@@ -45,3 +45,16 @@ td, th{
   max-width: 30%;
   word-break: break-word;
 }
+
+
+span.look-here{
+  display: inline-block;
+  animation: lookHereAnim linear .95s infinite;
+}
+@keyframes lookHereAnim {
+  0% {transform: rotate(0deg) scale(1);}
+  25% {transform: rotate(2deg) scale(1.1);}
+  50% {transform: rotate(0deg) scale(1);}
+  75% {transform: rotate(-2deg) scale(0.9);}
+  100% {transform: rotate(0deg) scale(1);}
+}
