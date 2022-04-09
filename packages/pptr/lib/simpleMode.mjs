@@ -9,11 +9,11 @@ async function simpleModeTask({ taskDetail, page }){
     let {pageURL, cssSelector, extra} = taskDetail;
     // const context = await browser.createIncognitoBrowserContext();
     // const page = await context.newPage();
-    await page.setViewport({
-      width: 1920,
-      height: 1080,
-      deviceScaleFactor: 1,
-    });
+    // await page.setViewport({
+    //   width: 1920,
+    //   height: 1080,
+    //   deviceScaleFactor: 1,
+    // });
     await page.goto(pageURL,{waitUntil: 'networkidle2'});
   
     await page.waitForSelector(extra.waitForSelector || cssSelector);
@@ -92,8 +92,22 @@ async function simpleMode(taskDetail) {
 
   let prodLauchOption = {
     // https://github.com/puppeteer/puppeteer/issues/1175
-    args: ['--disable-dev-shm-usage'],
+    args: [
+      '--disable-dev-shm-usage',
+      '--disable-infobars',
+      '--window-size=1440,810',
+      '--window-position=0,0',
+      '--ignore-certificate-errors',
+      '--disable-extensions',
+      '--no-first-run',
+      '--disable-notifications',
+    ],
     headless: true,
+    ignoreHTTPSErrors: true,
+    defaultViewport: {
+      width: 1440,
+      height: 810,
+    },
     // TODO read limit from MQ from worker from DB.
     limit: 7,
   }
