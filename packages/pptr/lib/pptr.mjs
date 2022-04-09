@@ -34,7 +34,7 @@ async function main() {
     // console.log(message)
     if (message !== null) {
       let stringTaskDetail = message.content.toString();
-      console.log('consume time', new Date(consumeTime))
+      console.log('pptr recieived a msg')
       try {
         taskDetail = JSON.parse(stringTaskDetail);
       } catch (error) {

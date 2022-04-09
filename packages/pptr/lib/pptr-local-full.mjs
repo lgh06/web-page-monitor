@@ -39,11 +39,11 @@ async function pptr() {
     new Promise((_, reject) => setTimeout(() => reject(('pptr script timeout')), usedLauchOption.limit * 1000))
   ]).then(async (value) => {
     await browser.close();
-    console.log('browser closed after script quit ok')
+    console.log('browser closed, script quit ok')
   }, async (reason)=>{
     if(reason === 'pptr script timeout'){
       await browser.close();
-      console.log('browser closed after exceed time limit')
+      console.log('browser closed, exceed time limit')
     }
   }).finally(()=>{
     let endTime = Date.now()
