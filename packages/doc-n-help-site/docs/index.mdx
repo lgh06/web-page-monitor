@@ -13,43 +13,12 @@ title: Home
 <a href="https://monit.or.passby.me/zh">Mainland China link 1</a>  
 <br/>
 <a href="https://monit.or.yanqiankeji.com/zh">Mainland China link 2</a>  
+<br/>
+
+> Ask and answer group:  <a href="https://discord.gg/6FMz5Km9hw">Link</a>
 
 
 import { useRef } from "react";
-
-export const ZhVideo = () => {
-  const videoElement = useRef(null);
-  return (<video 
-    playsInline
-    preload="meta"
-    style={{width: '100%', backgroundColor: '#110777'}}
-    controls
-    ref={videoElement}
-    poster="https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor-assets@main/web-intro-video/poster-intro-cn-v2.jpg"
-    src="https://alyjbedhbo.cdn.bspapp.com/ALYJBEDHBO-1f8d8dcb-ff67-4778-8209-da5ceecdd68f/9a6ee97a-49ce-4bbb-9d09-35caaa22df87.mp4"
-    onError={(e) =>{
-      if(videoElement.current.src === '') return;
-      let srcArr = [
-        'https://alyjbedhbo.cdn.bspapp.com/ALYJBEDHBO-1f8d8dcb-ff67-4778-8209-da5ceecdd68f/9a6ee97a-49ce-4bbb-9d09-35caaa22df87.mp4',
-        'https://cdn.jsdelivr.net/gh/lgh06/web-page-monitor-assets@main/web-intro-video/intro-cn-20220331-v2.bin',
-        'https://assets.webpagemonitor.net/web-intro-video/intro-cn-20220331-v2.mp4',
-        'https://wpmt.cdn.bcebos.com/webpagemonitor-web/intro-video/intro-cn-20220331-v2.mp4',
-      ]
-      let alreadyMatched = false;
-      srcArr.forEach((v,i) =>{
-        if(alreadyMatched) return;
-        if(i === srcArr.length - 1){
-          // no more src url
-          return;
-        }
-        if( String(videoElement.current.src).includes(new URL(v).hostname) ){
-          alreadyMatched = true;
-          videoElement.current.src = srcArr[i+1];
-        }
-      });
-    }}
-  ></video>)
-};
 
 export const EnVideo = () => {
   const videoElement = useRef(null);
@@ -88,9 +57,6 @@ export const EnVideo = () => {
 
 ## Intro Video
 <EnVideo></EnVideo>
-
-## 介绍视频
-<ZhVideo></ZhVideo>  
 
 
 ## Source Code 
