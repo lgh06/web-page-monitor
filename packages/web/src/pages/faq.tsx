@@ -108,6 +108,10 @@ const FaqPage: NextPage = () => {
         <p>
         Please see our <a href={t(`https://docs.webpagemonitor.net/others/PP/#PrivacyPolicy`)} target="_blank" rel="noopener noreferrer">doc site</a>
         </p>
+        <h2 id="DocSite"> Doc Site </h2>
+        <p>
+        Other info, see our doc site: <a href='https://docs.webpagemonitor.net/' target="_blank" rel="noopener noreferrer">doc site</a>
+        </p>
 
         </> : null
       }
@@ -188,6 +192,10 @@ const FaqPage: NextPage = () => {
         <h2 id="PrivacyPolicy"> 隐私政策 </h2>
         <p>
           请参阅 <a href={t(`https://docs.webpagemonitor.net/others/PP/#PrivacyPolicy`)} target="_blank" rel="noopener noreferrer">文档页面</a>
+        </p>
+        <h2 id="DocSite">文档站点</h2>
+        <p>
+        其它信息，请参阅文档站点: <a href='https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/zh/' target="_blank" rel="noopener noreferrer">链接</a>
         </p>
         </> : null
       }
