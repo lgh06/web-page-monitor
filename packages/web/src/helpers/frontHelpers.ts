@@ -86,7 +86,20 @@ export function mergeToTarget(source, target, func?) {
 export function arrayToCsv(array = []){
   let headers = Object.keys(array[0]).join(',') + '\r\n';
   let arrResult = array.map((row = {}) => {
-    let inner = Array.from(Object.values(row)).join(',')  // comma-separated
+
+    let inner = Object.values(row).map(cellValue => {
+      if(typeof cellValue === 'object'){
+        let stringified;
+        try {
+          stringified = JSON.stringify(cellValue);
+        } catch (error) {
+          stringified = '';
+        }
+        return stringified;
+      }else{
+        return cellValue;
+      }
+    }).join(',')  // comma-separated
     console.log('inner', inner);
     return inner;
   }).join('\r\n');
