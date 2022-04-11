@@ -101,7 +101,10 @@ export function arrayToCsv(array){
 
   // Create a link to download it
   var pom = document.createElement('a');
-  pom.href = url;
   pom.setAttribute('download', filename);
-  pom.click();
+  pom.href = url;
+  document.body.appendChild(pom)
+  pom.click()
+  URL.revokeObjectURL(pom.href)
+  document.body.removeChild(pom)
 }
