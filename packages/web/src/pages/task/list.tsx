@@ -58,9 +58,12 @@ const TaskListSimpPage: NextPage = () => {
     if(!confirmed){
       return;
     }
-    let resp = await fetchAPI(`/task/export?taskId=${rowId}`, null , 'GET')
-    
-    downloadBlob(arrayToCsv(resp), 'export.csv', 'text/csv;charset=utf-8;')
+    try {
+      let resp = await fetchAPI(`/task/export?taskId=${rowId}`, null , 'GET')
+      downloadBlob(arrayToCsv(resp), 'export.csv', 'text/csv;charset=utf-8;')
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   useEffect(() => {

@@ -84,7 +84,8 @@ export function mergeToTarget(source, target, func?) {
  * Convert a 2D array into a CSV string
  */
 export function arrayToCsv(array){
-  return "\ufeff" + array.map(row =>
+  let headers = Object.keys(array[0]).join(',') + '\r\n';
+  return "\ufeff" + headers + array.map(row =>
     Object.values(row)
       .join(',')  // comma-separated
   ).join('\r\n');  // rows starting on new lines
