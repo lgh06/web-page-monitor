@@ -103,8 +103,10 @@ export function arrayToCsv(array){
   var pom = document.createElement('a');
   pom.setAttribute('download', filename);
   pom.href = url;
-  document.body.appendChild(pom)
-  pom.click()
-  URL.revokeObjectURL(pom.href)
-  document.body.removeChild(pom)
+  document.body.appendChild(pom);
+  pom.click();
+  setTimeout(()=>{
+    URL.revokeObjectURL(pom.href);
+    document.body.removeChild(pom);
+  }, 5000);
 }

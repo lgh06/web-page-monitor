@@ -60,7 +60,7 @@ const TaskListSimpPage: NextPage = () => {
     }
     try {
       let resp = await fetchAPI(`/task/export?taskId=${rowId}`, null , 'GET')
-      downloadBlob(arrayToCsv(resp), 'export.csv', 'text/csv;charset=utf-8;')
+      downloadBlob(arrayToCsv(resp), `export-${new Date()}.csv`, 'text/csv;charset=utf-8;')
     } catch (error) {
       console.error(error)
     }
