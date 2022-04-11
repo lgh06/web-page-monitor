@@ -4,7 +4,7 @@ import { useImmerAtom } from 'jotai/immer';
 import { useResetAtom } from 'jotai/utils'
 import { createTaskDetailAtom, monacoEditorAtom, userInfoAtom } from '../../atoms';
 import { CronTime } from '@webest/web-page-monitor-helper';
-import { fetchAPI, useI18n, innerHTML, useHeadTitle } from "../../helpers/index";
+import { fetchAPI, useI18n, innerHTML, useHeadTitle, arrayToCsv, downloadBlob } from "../../helpers/index";
 import Link from "next/link";
 import { ScriptList } from "../../components/scriptList";
 import { useRouter } from "next/router";
@@ -52,15 +52,15 @@ const TaskListSimpPage: NextPage = () => {
     let element = ev.target;
     let rowId = (element as any).dataset.rowId;
     let confirmed = confirm(t('You can only export recent 1000 checks of one task') + ', \n'
-    + t('And export once per hour per task ') + '. \n'
+    + t('And export once per hour per task') + '. \n'
     + t('Are you sure to export history of this task') + '?'
     );
     if(!confirmed){
       return;
     }
     let resp = await fetchAPI(`/task/export?taskId=${rowId}`, null , 'GET')
-    console.log(resp);
-    return false;
+    
+    downloadBlob(arrayToCsv(resp), 'export.csv', 'text/csv;charset=utf-8;')
   }
 
   useEffect(() => {

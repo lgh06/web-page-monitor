@@ -25,7 +25,7 @@ export function useAPI(endPoint: string, postedObject: undefined | object = unde
   return { data, loading };
 }
 
-export async function fetchAPI(endPoint: string, postedObject: undefined | object = undefined, method?: string, noJSONParse = false) {
+export async function fetchAPI(endPoint: string, postedObject: undefined | object = undefined, method?: string, noJSONParse: string|boolean = false) {
   let headers = {};
   if(typeof postedObject === 'object' ){
     headers['Content-Type'] = 'application/json';
@@ -75,6 +75,8 @@ export async function fetchAPI(endPoint: string, postedObject: undefined | objec
   let res;
   if(noJSONParse === true){
     res = await resp.then(r => r.text());
+  }else if(noJSONParse === 'original'){
+    res = resp;
   }else{
     res = await resp.then(r => r.text()).then(r => {
       // console.log(r)

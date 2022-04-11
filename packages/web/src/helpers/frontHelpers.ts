@@ -78,3 +78,29 @@ export function mergeToTarget(source, target, func?) {
   }
   return target;
 }
+
+/** 
+ * https://stackoverflow.com/a/68146412/5332156
+ * Convert a 2D array into a CSV string
+ */
+export function arrayToCsv(array){
+  return "\ufeff" + array.map(row =>
+    Object.values(row)
+      .join(',')  // comma-separated
+  ).join('\r\n');  // rows starting on new lines
+}
+
+/** Download contents as a file
+ * Source: https://stackoverflow.com/questions/14964035/how-to-export-javascript-array-info-to-csv-on-client-side
+ */
+ export function downloadBlob(content, filename, contentType) {
+  // Create a blob
+  var blob = new Blob([content], { type: contentType });
+  var url = URL.createObjectURL(blob);
+
+  // Create a link to download it
+  var pom = document.createElement('a');
+  pom.href = url;
+  pom.setAttribute('download', filename);
+  pom.click();
+}

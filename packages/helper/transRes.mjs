@@ -52,6 +52,10 @@ let trans = {
   "If your points below 80, then it will be reset to 80 on ": "如果您的点数低于80，则会重置到80，在",
   "Every time one cron task's check will consume 1 point.": "每次定时任务的检查都会消耗1点。",
   "Points consumed for different tasks may vary, in the future.": "在未来，不同任务消耗的点数可能会有所不同。",
+  "You can only export recent 1000 checks of one task": "您只能导出一个任务最近1000次检查的数据",
+  "And export once per hour per task": "并且每小时每任务仅能导出一次",
+  "Are you sure to export history of this task": "您确定要导出这个任务的历史数据吗",
+  "Export": "导出",
   // Below is on create task page
   "Please input a URL start with https:// or http://": "请输入以https://或http://开头的网址",
   "URL check passed. ": "URL检查通过",
