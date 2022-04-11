@@ -85,9 +85,11 @@ export function mergeToTarget(source, target, func?) {
  */
 export function arrayToCsv(array = []){
   let headers = Object.keys(array[0]).join(',') + '\r\n';
-  let arrResult = array.map(row => {
-    Array.from(Object.values(row)).join(',')  // comma-separated
+  let arrResult = array.map((row = {}) => {
+    return Array.from(Object.values(row)).join(',')  // comma-separated
   }).join('\r\n');
+
+  console.log(headers, arrResult);
   
   return "\ufeff" + headers + arrResult; // rows starting on new lines
 }
