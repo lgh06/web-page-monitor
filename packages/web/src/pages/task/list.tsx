@@ -59,8 +59,13 @@ const TaskListSimpPage: NextPage = () => {
       return;
     }
     try {
-      let resp = await fetchAPI(`/task/export?taskId=${rowId}`, null , 'GET')
-      downloadBlob(arrayToCsv(resp), `export-${Date.now()}.csv`, 'text/csv;charset=utf-8;')
+      let resp = await fetchAPI(`/task/export?taskId=${rowId}`, null , 'GET');
+      console.log(resp)
+      if(resp && Array.isArray(resp) && resp.length && resp.length > 0){
+        downloadBlob(arrayToCsv(resp), `export-${Date.now()}.csv`, 'text/csv;charset=utf-8;')
+      }else{
+        alert(t('No data to export, please try again 1 hour later'));
+      }
     } catch (error) {
       console.error(error)
     }

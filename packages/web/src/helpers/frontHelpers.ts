@@ -83,12 +83,13 @@ export function mergeToTarget(source, target, func?) {
  * https://stackoverflow.com/a/68146412/5332156
  * Convert a 2D array into a CSV string
  */
-export function arrayToCsv(array){
+export function arrayToCsv(array = []){
   let headers = Object.keys(array[0]).join(',') + '\r\n';
-  return "\ufeff" + headers + array.map(row =>
-    Object.values(row)
-      .join(',')  // comma-separated
-  ).join('\r\n');  // rows starting on new lines
+  let arrResult = array.map(row => {
+    Array.from(Object.values(row)).join(',')  // comma-separated
+  }).join('\r\n');
+  
+  return "\ufeff" + headers + arrResult; // rows starting on new lines
 }
 
 /** Download contents as a file
