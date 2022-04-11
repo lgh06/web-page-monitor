@@ -69,7 +69,7 @@ export async function fetchAPI(endPoint: string, postedObject: undefined | objec
       method: (method ? String(method).toUpperCase() : null) || (postedObject ? 'POST' : 'GET'),
       headers: headers,
       redirect: 'follow',
-      body: typeof postedObject === 'object' ? JSON.stringify(postedObject) : null
+      body: (typeof postedObject === 'object' && postedObject !== null ) ? JSON.stringify(postedObject) : null
     });
   }
   let res;

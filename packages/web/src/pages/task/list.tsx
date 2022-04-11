@@ -47,6 +47,22 @@ const TaskListSimpPage: NextPage = () => {
     return false;
   }
 
+  async function handleBtnExport(ev: MouseEvent<HTMLButtonElement>) {
+    ev.preventDefault();
+    let element = ev.target;
+    let rowId = (element as any).dataset.rowId;
+    let confirmed = confirm(t('You can only export recent 1000 checks of one task') + ', \n'
+    + t('And export once per hour per task ') + '. \n'
+    + t('Are you sure to export history of this task') + '?'
+    );
+    if(!confirmed){
+      return;
+    }
+    let resp = await fetchAPI(`/task/export?taskId=${rowId}`, null , 'GET')
+    console.log(resp);
+    return false;
+  }
+
   useEffect(() => {
     firstInit();
   }, [router.query]);
@@ -70,7 +86,12 @@ const TaskListSimpPage: NextPage = () => {
           <Link prefetch={false} href={'/task/edit_simp?id=' + or._id}>
             <a className='btn'>{t(`Edit`)}</a>
           </Link>
-          <button data-row-id={or._id} onClick={handleBtnDelete} style={{marginLeft: '10px'}}>{t(`Delete`)}</button>
+          <button data-row-id={or._id} onClick={handleBtnDelete} style={{marginLeft: '10px'}}>
+            {t(`Delete`)}
+          </button>
+          <button data-row-id={or._id} onClick={handleBtnExport} style={{marginLeft: '10px'}}>
+            {t(`Export`)}
+          </button>
         </div>
         )
       }
