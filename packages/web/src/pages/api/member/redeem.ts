@@ -47,7 +47,10 @@ async function memberRedeemHandler(
     let couponFilter = {
       couponId: jwtResult.payload.couponId,
     }
-    await mongo.upsertDoc(db, collectionName, couponFilter, jwtResult.payload)
+    await mongo.upsertDoc(db, collectionName, couponFilter, {
+      ...jwtResult.payload,
+      userId
+    });
 
     res.json({addedPoints: jwtResult.payload.points})
 
