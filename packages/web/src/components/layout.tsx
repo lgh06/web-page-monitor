@@ -142,7 +142,7 @@ export default function Layout({ children, statusCode }) {
 })(window, document, "clarity", "script", "bahjgyjc7q");
 })();`}
       </Script>
-      <Script defer id="switch_hint_js" src={'https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/js/switch_hint.js?'+ Math.floor(Date.now() / 1000 / 3600 / 24 / 7)}></Script>
+      <Script defer id="switch_hint_js" src={'https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/js/switch_hint.js?'+ Math.floor(Date.now() / 1000 / 3600 / 2)}></Script>
       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PTKMFSF" height="0" width="0" style={{display:'none',visibility:'hidden'}}></iframe></noscript>
     </>
   )
