@@ -10,7 +10,7 @@ let trans = {
   "Your session has expired, please login again.":"你的登录状态过期，请重新登录。",
   "You need to login first.":"需要登录",
   "Web Site Page Changes Monitor":"网站网页页面更新变动监控提醒",
-  "Web Site Page Changes Monitor,Cloud watch web updates,with custom scripts":"网站网页页面更新变更监控提醒，云端监控网页变动更新",
+  "Web Site Page Changes Monitor,Cloud watch web updates,with custom scripts":"网站网页页面更新变更监控提醒，云端检测网页变动更新",
   // Below is on home page
   "Welcome to Web Page Monitor": "欢迎使用<br/>网页变动检测通知<br/>系统",
   "Web Page Monitor": "网页变动通知系统",
@@ -33,6 +33,8 @@ let trans = {
   "Welcome": "欢迎",
   "https://docs.webpagemonitor.net/others/TOS/#TermsOfService": "https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/zh/others/TOS/#TermsOfService",
   "https://docs.webpagemonitor.net/others/PP/#PrivacyPolicy": "https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/zh/others/PP/#PrivacyPolicy",
+  "https://docs.webpagemonitor.net/": "https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/zh/",
+  "https://docs.webpagemonitor.net/FAQ/": "https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/zh/FAQ/",
   "Login with Gitee.com OAuth": "使用Gitee.com OAuth登录",
   "Login with Github (through Firebase)": "使用Github(通过Firebase)登录",
   "Login with Google (through Firebase)": "使用Google(通过Firebase)登录",
@@ -59,7 +61,7 @@ let trans = {
   "No data to export, please try again 1 hour later": "没有数据可以导出，请1小时后再试",
   // Below is on create task page
   "Please input a URL start with https:// or http://": "请输入以https://或http://开头的网址",
-  "URL check passed. ": "URL检查通过",
+  "URL check passed.": "URL检查通过",
   "Recommended": "推荐",
   "Choose an end time, from 10 minutes later to 14 days later": "选择一个结束时间，从10分钟后到14天（最晚）",
   "Please Input a cron syntax" : "请输入Cron定时任务表达式",
@@ -68,6 +70,10 @@ let trans = {
   "Error: Please check the cron syntax": "错误：请检查Cron定时任务表达式",
   "Cron Syntax Help in FAQ": "什么是Cron定时任务表达式？",
   "CSS Selector Help in FAQ": "什么是CSS选择器？",
+  "Task alias name": "任务别名",
+  "Please input a valid URL": "请输入有效的URL",
+  "CSS Selector": "CSS选择器",
+  "More helps see here": "更多帮助请查看这里",
   "Please input a CSS selector, if you do not know what that is, keep it as default \"body\"": `请输入CSS选择器，如果不知道填什么，请使用默认值body`,
   "Please input an alias name of this task, or keep it as default": "为该任务起个名字，或者保持默认值",
   "Notify you when": "通知您，当",
@@ -80,17 +86,17 @@ let trans = {
   "Advanced Options": "高级选项",
   "Please input waitForSelector": "请输入waitForSelector",
   "Please input some words, multiple words can be separated by commas": "请输入一些词语（文字）,多个词语之间可以用逗号分隔",
-  "Note: Simple Mode is only suitable for monitor web pages,\
-      not for txt, xml or other files without HTML structure.<br/>\
+  "Notice: Simple Mode is only suitable for monitor <b>public web pages</b>,\
+      <b>not for</b> txt, xml or other files without HTML structure.<br/>\
       Our Geek Mode will be coming soon, for more advanced features.":
-  "注意：简单模式仅适用于监控网页，\
-      不适用于txt,xml或其他没有HTML结构的文件。<br/>\
+  "注意：简单模式仅适用于检测<b>公开</b>网页，\
+      <b>不适用</b>于txt,xml或其他没有HTML结构的文件。<br/>\
       我们的极客(高级)模式将很快开放，将有更多的高级功能等待您发掘。",
-  "Note: We need 15 minutes to distribute our tasks to different servers. <br/>\
+  "Notice: We need 15 minutes to distribute our tasks to different servers. <br/>\
       the first repeated task within 15 minutes will be ignored.":
   "注意：我们需要15分钟分配任务到不同的服务器。<br/>\
       在15分钟内的第一个重复任务将被忽略。",
-  "Note: One user can only create max 3 tasks, and lasts max 7 days (30 days if your points > 80) per task.\
+  "Notice: One user can only create max 3 tasks, and lasts max 7 days (30 days if your points > 80) per task.\
       Minimum interval between two tasks is 10 minutes.":
   "注意：一个用户只能创建最多3个任务，每个任务最长持续7天（若点数大于80，则可持续30天）。\
       两个任务之间的最小间隔为10分钟。",

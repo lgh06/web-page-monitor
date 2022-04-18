@@ -11,11 +11,11 @@ Github source code : [Link](https://github.com/lgh06/web-page-monitor)
 
 > Chinese / 简体中文 
 
-网站网页页面更新变更监控提醒，云端监控网页变动更新。 
+网站网页页面更新变更监控提醒，云端检测网页变动更新。 
 进行中。  
 ~~由用户在浏览器中预先输入的JS，操作puppeteer的行为。~~  以后再实现  
 ~~还未最小化可用。~~    
-体验地址:  [网页变动监控](https://monit.or.passby.me/)  
+体验地址:  [网页变动检测](https://monit.or.passby.me/)  
 在Coding.net上的代码镜像: [浏览链接](https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git) （需要登录Coding才能查看） / 
 [git clone链接](https://e.coding.net/lgh06/web-page-monitor/web-page-monitor.git)  
 

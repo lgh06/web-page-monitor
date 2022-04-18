@@ -60,7 +60,7 @@ async function alertFormatter({prevDoc, doc, taskDetail}) {
 
   let emailResult = {
     content: `The task ${taskDetail.extra.alias} has Changed, please go to web site monitor to view details.  
-任务${taskDetail.extra.alias}有变动，请去网页监控系统查看详细信息。`,
+任务${taskDetail.extra.alias}有变动，请去网页变动检测系统查看详细信息。`,
     htmlContent : `${htmlDiffContent}`,
   };
   return emailResult;
@@ -207,7 +207,7 @@ async function wordAppearAlertFormatter({matchedWord, taskDetail, uncuttedResult
 
   let emailResult = {
     content: `Word "${matchedWord}" appeared on task task ${taskDetail.extra.alias}, please go to web site monitor to view details.  
-任务${taskDetail.extra.alias}的关键词 "${matchedWord}" 出现，请去网页监控系统查看详细信息。`,
+任务${taskDetail.extra.alias}的关键词 "${matchedWord}" 出现，请去网页变动检测系统查看详细信息。`,
     htmlContent : `${wordAppearHTML}`,
   };
   // console.log('emailResult',emailResult)

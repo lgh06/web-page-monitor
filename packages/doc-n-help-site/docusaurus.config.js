@@ -9,7 +9,7 @@ var baseUrl = process.env.DOCU_BASE_URL || '/webpagemonitor_doc_site/';
 /** @type {import('@docusaurus/types').Config} */
 var config = {
   title: 'Web Page Monitor 网页变动检测',
-  tagline: 'Web Site Page Changes Monitor,Cloud watch web updates.网站网页页面更新变更监控提醒，云端监控网页变动更新',
+  tagline: 'Web Site Page Changes Monitor,Cloud watch web updates.网站网页页面更新变更监控提醒，云端检测网页变动更新',
   url: 'https://webpagemonitor.net',
   baseUrl: baseUrl,
   trailingSlash: true,

@@ -109,12 +109,12 @@ const TaskEditSimpPage: NextPage = () => {
       if (passed) {
         setTaskDetail(v => {
           v.pageURLPassed = true;
-          v.pageURLMsg = 'URL check passed. ';
+          v.pageURLMsg = t('URL check passed.');
         })
       } else {
         setTaskDetail(v => {
           v.pageURLPassed = false;
-          v.pageURLMsg = 'Please input a valid URL';
+          v.pageURLMsg = t('Please input a valid URL');
         })
       }
     }
@@ -269,7 +269,7 @@ Also, you can close our page, your task will keep running until `) + taskDetail.
     <div>
       {t(`Please input a CSS selector, if you do not know what that is, keep it as default "body"`)}:<br/>
       <input
-        placeholder="CSS selector"
+        placeholder={t("CSS Selector")}
         data-input-index="3"
         value={taskDetail.cssSelector}
         onChange={handleInputChange}
@@ -281,7 +281,7 @@ Also, you can close our page, your task will keep running until `) + taskDetail.
     <div>
     {t(`Please input an alias name of this task, or keep it as default`)}:<br/>
       <input
-        placeholder="task alias name"
+        placeholder={t(`Task alias name`)}
         data-input-index="7"
         value={taskDetail.extra.alias}
         onChange={handleInputChange}
@@ -330,16 +330,20 @@ Also, you can close our page, your task will keep running until `) + taskDetail.
         <textarea data-input-index="8" value={taskDetail.extra.eraserArr.join('\n')} onChange={handleInputChange} name="erasers" id="erasers" cols={20} rows={3}></textarea>
       </div>
     </details>
-    <div {...innerHTML(t('Note: One user can only create max 3 tasks, and lasts max 7 days (30 days if your points > 80) per task.\
+    <div {...innerHTML(t('Notice: One user can only create max 3 tasks, and lasts max 7 days (30 days if your points > 80) per task.\
       Minimum interval between two tasks is 10 minutes.'))}>
     </div>
-    <div {...innerHTML(t('Note: Simple Mode is only suitable for monitor web pages,\
-      not for txt, xml or other files without HTML structure.<br/>\
+    <div {...innerHTML(t('Notice: Simple Mode is only suitable for monitor <b>public web pages</b>,\
+      <b>not for</b> txt, xml or other files without HTML structure.<br/>\
       Our Geek Mode will be coming soon, for more advanced features.'))}>
     </div>
-    <div {...innerHTML(t('Note: We need 15 minutes to distribute our tasks to different servers. <br/>\
+    <div {...innerHTML(t('Notice: We need 15 minutes to distribute our tasks to different servers. <br/>\
       the first repeated task within 15 minutes will be ignored.'))}>
     </div>
+    <div style={{zoom: 0.85}}>
+      <a target="_blank" rel="noopener noreferrer" href={t("https://docs.webpagemonitor.net/FAQ/")} >{t(`More helps see here`)}</a>
+    </div>
+    <br />
     <div>
       <button data-btn-index="0" onClick={handleBtnClick} disabled={btnDisabled()}>{router.query.id ? t(`Update`) : t('Create Now')}</button>
     </div>
