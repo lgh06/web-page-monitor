@@ -128,7 +128,7 @@ function ImageChanger(props){
       src={url}
       title={title}
       alt={alt}
-      style={{...style, display: 'block', maxWidth: '100%', maxHeight: '35vh', margin: '.5rem auto'}}
+      style={{ display: 'block', maxWidth: '100%', maxHeight: '40vh', margin: '.5rem auto', ...style}}
       // loading="lazy"
       ></img>
     </Zoom>

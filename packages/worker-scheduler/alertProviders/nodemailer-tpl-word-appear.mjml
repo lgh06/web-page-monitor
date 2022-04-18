@@ -38,7 +38,7 @@
     <mj-section>
       <mj-column>
         <mj-text align="center" font-size="16px">
-        Word "{{matchedWord}}" appeared on task task {{taskDetail.extra.alias}}, please go to original web site to view details. <br/>
+        Word "{{matchedWord}}" appeared on task: {{taskDetail.extra.alias}}, please go to original web site to view details. <br/>
         任务{{taskDetail.extra.alias}}的关键词 "{{matchedWord}}" 出现，请去原网页查看详细信息。<br/> <br/>
         </mj-text>
       </mj-column>
