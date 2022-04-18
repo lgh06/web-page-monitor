@@ -7,7 +7,7 @@ let trans = {
   // below is global nav
   "About":"关于",
   // Below is global login alert
-  "Your session has expired, please login again.":"你的登录状态过期，请重新登录。",
+  "Your session has expired, please login again.":"您的登录状态过期，请重新登录。",
   "You need to login first.":"需要登录",
   "Web Site Page Changes Monitor":"网站网页页面更新变动监控提醒",
   "Web Site Page Changes Monitor,Cloud watch web updates,with custom scripts":"网站网页页面更新变更监控提醒，云端检测网页变动更新",
@@ -42,7 +42,7 @@ let trans = {
   "Next Add Points Time" : "下次增加点数时间",
   "Top up": "充值",
   "No email returned from gitee, please ensure your email address is already binded to gitee and verified and allowed us read.":
-    "无法获取email地址，请确认你的Gitee.com账号已绑定邮箱地址，已验证，并且允许我们读取。",
+    "无法获取email地址，请确认您的Gitee.com账号已绑定邮箱地址，已验证，并且允许我们读取。",
   "By click above login links, you agree to our": "点击上面的登录链接，即表示同意我们的",
   "Terms of Service": "服务条款",
   "and": "和",

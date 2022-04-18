@@ -66,13 +66,13 @@ Please modify inner paths by yourself if you changed default install path or ser
 - [RabbitMQ 延时消息插件](https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/releases) / [如何安装与开启](packages/vendor-scripts-n-configs/README.md)  
 > 注意：Windows安装Erlang、RabbitMQ时，安装路径不要有中文和奇怪符号，否则会安装失败  
 
-> 注意：如果你用其他操作系统, 自己安装好RabbitMQ.  
+> 注意：如果您用其他操作系统, 自己安装好RabbitMQ.  
 
 - MongoDB (5.0)  
 - Node.JS (16)  
 
-> 注意：生产环境，你要确保pm2在你的系统中会自动启动。[文档链接](https://github.com/pm2-hive/pm2-hive.github.io/blob/330f518065e2e6b9e8befc7beddd1b076d6c2adf/docs/features/startup.md#windows-startup-script)  
-> 注意：生产环境，你要确保MongoDB和RabbitMQ在你的系统中会自动启动。  
+> 注意：生产环境，您要确保pm2在您的系统中会自动启动。[文档链接](https://github.com/pm2-hive/pm2-hive.github.io/blob/330f518065e2e6b9e8befc7beddd1b076d6c2adf/docs/features/startup.md#windows-startup-script)  
+> 注意：生产环境，您要确保MongoDB和RabbitMQ在您的系统中会自动启动。  
 > 注意：生产环境，~~socket.io~~RabbitMQ 和 web 和 MongoDB 所在服务器应该有固定公网IP。  
 > 注意：开发环境，可以把所有子包都部署在同一服务器上，有访问公网的权限即可，不必有公网IP.  
 
