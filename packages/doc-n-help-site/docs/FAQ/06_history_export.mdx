@@ -1,0 +1,33 @@
+---
+title: "Task History Export"
+---
+import ImageChanger from "@site/src/components/ImageChanger";
+
+You can export a task's history checks as a CSV file, which is useful for debugging and auditing.  
+You can only export recent 1000 checks of one task, and export once per hour per task.  
+
+You'd better use Chrome browser to export history and download the CSV file, other browsers may not support this feature.  
+
+## CSV fields (columns) explanation  
+
+_id: this check's id stored in database.  
+scheduledTime: The time when this check was scheduled. It is a timestamp in milliseconds.  
+consumeTime: The time when this check was consumed. It is a timestamp in milliseconds.  
+**finishTime**: The time when this check was finished. It is a UTC Date. (Time Zone: UTC+0)  
+**err**: error info from our task executer.  
+textHash: The hash of the text of the web page's area.  
+**textContent**: The text of the web page's area. (If it is longer than 2000 characters, it will be truncated.)  
+taskId: The task (this check belongs to) id.  
+
+the last field: whether checked by our task scheduler.  
+
+:::tip
+Care about **finishTime**, it is a UTC Date. (Time Zone: UTC+0).  
+Care about **err**, it will show some reasons if one task failed.  
+Care about **textContent**, check if this content is the right text you want to monitor. (You can use CSS Selector to select the area / text you care about)  
+:::
+
+
+
+
+
