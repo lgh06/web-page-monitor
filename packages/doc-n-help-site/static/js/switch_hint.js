@@ -69,6 +69,17 @@
     }
     if(!nowSite) return;
 
+    var useYanqian = false;
+    try {
+      let yqParam = new URL(window.location.href).searchParams.get('yq');
+      if(yqParam !== null){
+        useYanqian = true;
+      }
+      if(useYanqian){
+        webSite.cn.reverse();
+      }
+    } catch (error) {}
+
     if([...docSite.cn, ...webSite.cn].find(v => String(window.location.href).includes(v))){
       nowSiteArea = 'cn';
     }else if([...docSite.global, ...webSite.global].find(v => String(window.location.href).includes(v))){
