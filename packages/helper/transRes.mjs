@@ -59,6 +59,8 @@ let trans = {
   "Are you sure to export history of this task": "您确定要导出这个任务的历史数据吗",
   "Export": "导出",
   "No data to export, please try again 1 hour later": "没有数据可以导出，请1小时后再试",
+  "Notice: Export history may only works on Chrome browser.": 
+    "注意：请在电脑版Chrome浏览器中导出历史数据，手机上或电脑上的其它浏览器可能无法导出。",
   // Below is on create task page
   "Please input a URL start with https:// or http://": "请输入以https://或http://开头的网址",
   "URL check passed.": "URL检查通过",

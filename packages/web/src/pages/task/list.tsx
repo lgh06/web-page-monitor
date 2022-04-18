@@ -53,7 +53,8 @@ const TaskListSimpPage: NextPage = () => {
     let rowId = (element as any).dataset.rowId;
     let confirmed = confirm(t('You can only export recent 1000 checks of one task') + ', \n'
     + t('And export once per hour per task') + '. \n'
-    + t('Are you sure to export history of this task') + '?'
+    + t('Are you sure to export history of this task') + '?' + '\n'
+    + t(`Notice: Export history may only works on Chrome browser.`) + '\n'
     );
     if(!confirmed){
       return;
@@ -131,6 +132,9 @@ const TaskListSimpPage: NextPage = () => {
         columns={meColumns}
         data={taskDetail.taskList}
       ></ScriptList>
+      <div style={{zoom: 0.85}}>
+        {t(`Notice: Export history may only works on Chrome browser.`)}
+      </div>
     </main>
   </>);
 }
