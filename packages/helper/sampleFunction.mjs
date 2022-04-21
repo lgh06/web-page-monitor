@@ -80,3 +80,9 @@ export function replace(result) {
 
 export const urlRegExpArr = ['m.weibo.cn']
 `;
+
+export const sampleFunctionCreateCustomTask1 = `
+// cron syntax
+export const cronSyntax = '0 0,10,20,30,40,50 * * * *';
+
+`;

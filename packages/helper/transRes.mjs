@@ -3,6 +3,7 @@ let trans = {
   "Home Page":"首页",
   "Edit Script":"编辑脚本",
   "Edit Task":"编辑任务",
+  "Edit Custom Task": "编辑自定义任务",
   "Redeem":"充值点数",
   // below is global nav
   "About":"关于",
@@ -27,6 +28,7 @@ let trans = {
   "https://github.com/lgh06/web-page-monitor":"https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git",
   // Below is on login page
   "Create a task in Simple Mode": "创建简单模式任务",
+  "Create a task in Custom Mode": "创建自定义模式任务",
   "Create task": "创建任务",
   "Go Back to home": "返回首页",
   "Log Out": "退出登录",

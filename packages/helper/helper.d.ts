@@ -41,6 +41,7 @@ export let sampleFunctionCreateTask = '';
 export let sampleFunctionCreateScript1 = '';
 export let sampleFunctionCreateScript2 = '';
 export let sampleFunctionCreateScript3 = '';
+export let sampleFunctionCreateCustomTask1 = '';
 
 export module globalConfig {
   mongodbURI: string;
