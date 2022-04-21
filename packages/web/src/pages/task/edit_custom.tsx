@@ -10,6 +10,8 @@ import { fetchAPI, useI18n, innerHTML, mergeToTarget, useHeadTitle } from "../..
 import Link from "next/link";
 
 import dynamic from 'next/dynamic'
+import { ESMLoader } from "@webest/web-page-monitor-esm-loader"
+
 const MonacoEditor = dynamic(
   () => import('../../components/monacoEditor'),
   { ssr: false }
@@ -56,44 +58,30 @@ const TaskEditCustomPage: NextPage = () => {
     }
   }
 
+  // auth script inputs and post to server
   async function handleBtnClick(ev: MouseEvent<HTMLButtonElement> ) {
     ev.preventDefault()
     setTaskDetail(v => {
       v.submitting = true;
     });
-    console.log(taskDetail._id)
+    console.log(taskDetail._id, editorValue.value)
     // console.log(userInfo)
     let userId = userInfo._id;
-    // return;
-    let resp;
-    try {
-      if(router.query.id && taskDetail._id && router.query.id === taskDetail._id){
-        // edit an existing task
-        resp = await fetchAPI('/task', {
-          taskDetail
-        })
-      }else{
-        // create a new task
-        resp = await fetchAPI('/task', {
-          taskDetail: {
-            userId,
-            ...taskDetail,
-            mode: 'simp', // this page is simp mode.
-          }
-        })
-      }
-      if(resp.ok || resp.acknowledged){
-        alert(t(`Success. You will be redirected to task list page.
-Also, you can close our page, your task will keep running until `) + taskDetail.endLocalMinuteString);
-        router.push("/task/list");
-      }else{
-        alert(t(`Create Error: Network issue or exceed max task number`));
-      }
-    } catch (error) {
-      alert(t(`Create Error: ${error.message}`));
+    if(!editorValue.value){
+      alert(t('Please modify the example code!'));
+      setTaskDetail(v =>{
+        v.submitting = false;
+      })
+      return
     }
-    console.log(resp);
-    // return true;
+    let customScriptModule;
+    try {
+      customScriptModule = await ESMLoader(editorValue.value);
+    } catch (error) {
+      alert(t('Please check the script!'));
+      return;
+    }
+    console.log(customScriptModule, customScriptModule.exec)
 
   }
 
@@ -105,8 +93,7 @@ Also, you can close our page, your task will keep running until `) + taskDetail.
 
   function btnDisabled(){
     return !(
-      taskDetail.cronPassed 
-      && taskDetail.submitting === false
+      taskDetail.submitting === false 
     );
   }
   
@@ -129,7 +116,8 @@ Also, you can close our page, your task will keep running until `) + taskDetail.
     </div>
     <div>
       <MonacoEditor 
-            defaultValue={editorValue.createCustomTaskDefaultValue}
+            defaultValue={editorValue.value || editorValue.createCustomTaskDefaultValue}
+            value={editorValue.value || editorValue.createCustomTaskDefaultValue}
         ></MonacoEditor>
     </div>
     <br/>
