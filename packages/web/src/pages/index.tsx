@@ -53,7 +53,7 @@ const Home: NextPage = () => {
           locale === 'zh' && <>
               <h3>云端检测网页指定区域的文字变化, 发送Email通知</h3>
               <h3>公开网页，均可检测，免插件免挂机</h3>
-              <h3>每月免费80次检测, 公开源码, 可以自己部署</h3>
+              <h3>每月免费80次检测. 公开源码, 支持自己部署</h3>
               <h3>基于Next.js, MongoDB, RabbitMQ, puppeteer，高负载可扩展</h3>
             </>
         }

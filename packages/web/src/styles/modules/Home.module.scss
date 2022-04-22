@@ -4,7 +4,11 @@
   // @media screen and (max-width: 768px) {
   //   height: auto;
   // }
-  padding: 4rem 0;
+  padding: 2rem 0;
+  margin-top: 0;  
+  @media screen and (max-width: 768px) {
+    padding: .5rem 0;  
+  }
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -70,6 +74,9 @@
   margin: 3vh 0;
   font-family: Georgia, 'Times New Roman', Times, serif;
   color: rgb(0, 0, 50);
+  @media screen and (max-width: 840px) {
+    zoom: .8
+  }
   h3{
     margin: .3em 0;
     &:nth-of-type(3){
@@ -79,7 +86,10 @@
       zoom:.8
     }
     &:nth-of-type(4){
-      zoom:.6
+      zoom:.6;
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
     }
   }
 }
