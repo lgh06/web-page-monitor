@@ -6,6 +6,11 @@ import ImageChanger from "@site/src/components/ImageChanger";
 
 ## Task execution strategy {#task-execution-strategy}
 
+### End time for cron (repeated) task's checks
+For users with less than or equal to 80 points, the max end time for created tasks is <b>7 days</b> later.  
+For users with more than 80 points, the max end time for created tasks is <b>30 days</b> later.  
+The default value of end time input field is <b>7 days</b> later.
+
 ### Min intervals between tasks  
 The minimum interval for timed detection tasks is 10 minutes.  
 When the above conditions are not met, the Create Task page will give a prompt and the Create Task button will be grayed out and cannot be clicked.  
@@ -14,9 +19,13 @@ When the above conditions are not met, the Create Task page will give a prompt a
   <br />
 Also, since we need 15 minutes to assign tasks to different servers, the first timed detection task within 15 minutes will be ignored.  
 
-### End time for cron (repeated) task's checks
-For users with less than or equal to 80 points, the deadline for created tasks is at the latest 7 days later.  
-For users with more than 80 points, the deadline for created tasks is 30 days later at the latest.  
+
+### Time limit for a single detection task  
+The time limit for a single detection task is <b>7 seconds</b>.  
+For mostly detection tasks, 7 seconds is a reasonable limit and is perfectly adequate.  
+If we cannot get the web area's text after that time, an error message is reported as `pptr script timeout`.  
+You can see the task's err message in the exported csv file on task list page.  
+If multiple tasks are all time out, please check our contact information in the top-up page for help.  
 
 
 ## Email send strategy {#email-send-strategy}  
