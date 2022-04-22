@@ -88,8 +88,9 @@ export const cronSyntax = '0 0,10,20,30,40,50 * * * *';
 // endTime REQUIRED , timestamp , miliseconds
 export const endTime = Date.now() + 1000 * 60 * 60 * 24 * 7;
 
-// a function to execute a task
+// the function to execute a task.
 export function exec({browser}){
+  console.log('exec a task');
 
 }
 

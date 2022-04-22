@@ -81,6 +81,15 @@ const TaskEditCustomPage: NextPage = () => {
       alert(t('Please check the script!'));
       return;
     }
+    if(customScriptModule 
+        && customScriptModule.cronSyntax 
+        && customScriptModule.endTime
+        && customScriptModule.exec
+      ){
+        customScriptModule.exec({})
+    }else{
+      alert(t('Please check the script!'));
+    }
     console.log(customScriptModule, customScriptModule.exec)
 
   }
