@@ -3,6 +3,8 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { getDB, middlewares, ObjectId, NextApiRequestWithUserInfo } from '../../lib';
 import { CronTime } from '@webest/web-page-monitor-helper';
 import { mongo } from '@webest/web-page-monitor-helper/node';
+import { ESMLoader } from "@webest/web-page-monitor-esm-loader"
+
 
 
 const collectionName = 'task';
@@ -21,8 +23,39 @@ async function _postHandler(
     mode,
     extra,
     _id,
+    customScript,
   } = req.body.taskDetail;
   userId = req.userInfo._id || userId;
+
+
+  let customScriptCheckPassed = false;
+  if (mode === 'custom') {
+    // customScript length check
+    if(!customScript || String(customScript).length > 1000 ){
+      return res.status(400).json({ err: 'please check input value.' });
+    }
+    // customScript safe check
+    if( String(customScript).match(/require|import|fetch/g) ){
+      return res.status(400).json({ err: 'cannot contain "require" / "import" / "fetch" inside custom script.' })
+    }
+    console.log('task js log')
+    // parse that custom script to one js module
+    let customScriptModule;
+    try {
+      customScriptModule = await ESMLoader(customScript);
+    } catch (error) {
+      return res.status(400).json({ err: 'please check input value.' });
+    }
+    if(customScriptModule 
+        && customScriptModule.cronSyntax 
+        && customScriptModule.endTime
+        && customScriptModule.exec
+      ){
+        cronSyntax = customScriptModule.cronSyntax;
+        endTime = customScriptModule.endTime;
+        customScriptCheckPassed = true;
+    }
+  }
 
   // endTime in DB is a Date type
   // need convert timestamp int to Date type
@@ -62,10 +95,21 @@ async function _postHandler(
   if(typeof userId === 'string'){
     userId = new ObjectId(userId);
   }
-  const newDoc = {
-    userId, cronSyntax, endTime, cssSelector, pageURL, mode, nextExecuteTime,
-    extra,
-  };
+  let newDoc;
+  if(mode === 'simp'){
+    newDoc = {
+      userId, cronSyntax, endTime, cssSelector, pageURL, mode, nextExecuteTime,
+      extra,
+    };
+  }else if (mode === 'custom') {
+    if(!customScriptCheckPassed || !passed){
+      return res.status(400).json({ err: 'please check input value.' })
+    }
+    newDoc = {
+      userId, cronSyntax, endTime, mode, nextExecuteTime, customScript,
+      extra, // extra inside have task alias, keep that for now.
+    }
+  }
 
   let filter = {
     _id: new ObjectId(_id),

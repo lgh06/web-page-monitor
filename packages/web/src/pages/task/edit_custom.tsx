@@ -45,14 +45,12 @@ const TaskEditCustomPage: NextPage = () => {
       setOneTaskDetail(mergeToTarget(taskDetail,oneTask, mergeTaskValueFunc));
       console.log(oneTask._id, oneTask)
       setTaskDetail(v => {
-
-
-
       })
     }else{ // create
       setTaskDetail(v => {
         v.mode = 'custom'; // this page for custom mode
         let nowDate = new Date();
+        v.extra.detectMode = ""
 
       })
     }
@@ -85,12 +83,43 @@ const TaskEditCustomPage: NextPage = () => {
         && customScriptModule.cronSyntax 
         && customScriptModule.endTime
         && customScriptModule.exec
+        && Number.isInteger(customScriptModule.endTime)
+        && customScriptModule.endTime < Date.now() + 3600 * 1000 * 24 * 30
       ){
-        customScriptModule.exec({})
+        // customScriptModule.exec({})
     }else{
       alert(t('Please check the script!'));
+      return;
     }
-    console.log(customScriptModule, customScriptModule.exec)
+    // return;
+    let resp;
+    try {
+      if(router.query.id && taskDetail._id && router.query.id === taskDetail._id){
+        // edit an existing task
+        resp = await fetchAPI('/task', {
+          taskDetail
+        })
+      }else{
+        // create a new task
+        resp = await fetchAPI('/task', {
+          taskDetail: {
+            userId,
+            customScript: editorValue.value,
+            ...taskDetail,
+            mode: 'custom', // this page is custom mode.
+          }
+        })
+      }
+      if(resp.ok || resp.acknowledged){
+        alert(t(`Success. You will be redirected to task list page.
+Also, you can close our page, your task will keep running until `) + CronTime.toLocalISOString(customScriptModule.endTime));
+        router.push("/task/list");
+      }else{
+        alert(t(`Create Error: Network issue or exceed max task number`));
+      }
+    } catch (error) {
+      alert(t(`Create Error: ${error.message}`));
+    }
 
   }
 
