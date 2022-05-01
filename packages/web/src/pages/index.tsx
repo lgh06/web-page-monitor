@@ -48,6 +48,24 @@ const Home: NextPage = () => {
           <code className={styles.code}>pages/index.tsx</code>
         </p> */}
 
+        <div className={styles.introText}>
+        {
+          locale === 'zh' && <>
+              <h3>云端检测网页指定区域的文字变化, 发送Email通知</h3>
+              <h3>公开网页，均可检测，免插件免挂机</h3>
+              <h3>每月免费80次检测. 公开源码, 支持自己部署</h3>
+              <h3>基于Next.js, MongoDB, RabbitMQ, puppeteer，高负载可扩展</h3>
+            </>
+        }
+        {
+          locale === 'en' && <>
+              <h3>Monitor web page area&apos;s text changes, on cloud, then send Email alert.</h3>
+              <h3>Public pages all detectable, no extensions, no always open PC</h3>
+              <h3>Free 80 checks per month, open-source, self-host</h3>
+              <h3>Based on Next.js, MongoDB, RabbitMQ, Puppeteer, scalable</h3>
+            </>
+        }
+        </div>
         <div className={styles.grid}>
           <Link prefetch={false} href="/faq" locale="en">
             <a className={styles.card}>

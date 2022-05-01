@@ -50,8 +50,8 @@ async function scriptPostHandler(
   let userScriptCount = await db.collection(collectionName).countDocuments({
     userId,
   });
-  if( (!_id && userScriptCount >= 3) || (_id && userScriptCount >= 6)){
-    return res.status(400).json({ err: 'user script count is over 3' })
+  if( (!_id && userScriptCount >= 5) || (_id && userScriptCount >= 7)){
+    return res.status(400).json({ err: 'user script count is over 5' })
   }
   if( String(value).match(/require|import|fetch/g) ){
     return res.status(400).json({ err: 'cannot contain "require" / "import" / "fetch" inside eraser script.' })
