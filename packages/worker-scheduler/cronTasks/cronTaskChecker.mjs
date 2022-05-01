@@ -52,6 +52,12 @@ async function normalChecker(now, mqChannel) {
           as: "userInfo"
         }
       },
+      {
+        $project: 
+        {
+          customScript: -1,
+        }
+      }
   
     ]).toArray();
   } catch (error) {
