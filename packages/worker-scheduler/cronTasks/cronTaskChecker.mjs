@@ -55,7 +55,7 @@ async function normalChecker(now, mqChannel) {
       {
         $project: 
         {
-          customScript: -1,
+          customScript: 0,
         }
       }
   
@@ -80,13 +80,14 @@ async function normalChecker(now, mqChannel) {
       let random15s = Math.floor(Math.random() * 15) * 1000;
       // console.log('before delayedMQSend', doc)
       // TODO field delay: need change if wait mq conn too long
+      console.log(doc)
       await delayedMQSend({delay: doc.nextExecuteTime - now + random15s, taskDetail:{
         ...doc,
         userInfo: doc.userInfo[0]
       }}, mqChannel).catch(err => {console.error(err)});
       await db.collection(tableName).updateOne({ _id: doc._id }, {
         '$set': {
-          nextExecuteTime: CronTime.getNextTimes(doc.cronSyntax, 5).find(finder)
+          nextExecuteTime: CronTime.getNextTimes(doc.cronSyntax, 20).find(finder)
         }
       }).catch(e => console.error(e))
     }
@@ -117,8 +118,8 @@ async function errorChecker(now) {
       $match: {
         $and: [
           {
-            nextExecuteTime: {
-              $lt: getNextStepMinuteTimestamp(now, 5, 1)
+            nextExecuteTime: { 
+              $not : {  $gte: getNextStepMinuteTimestamp(now, 5, 1)  }
             }
           },
           {
@@ -136,7 +137,7 @@ async function errorChecker(now) {
       docs.forEach(doc => {
         db.collection(tableName).updateOne({ _id: doc._id }, {
           '$set': {
-            nextExecuteTime: CronTime.getNextTimes(doc.cronSyntax, 5).find(finder)
+            nextExecuteTime: CronTime.getNextTimes(doc.cronSyntax, 20).find(finder)
           }
         }).catch(e => console.error(e))
       });
