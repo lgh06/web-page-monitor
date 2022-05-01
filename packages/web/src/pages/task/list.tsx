@@ -83,7 +83,14 @@ const TaskListSimpPage: NextPage = () => {
     },
     {
       Header: t('URL'),
-      accessor: 'pageURL',
+      id: 'pageURL',
+      Cell: ({ row: {original: or} }) => {
+        return (
+          <>
+            { or.pageURL ? or.pageURL : ( or.mode === 'custom' ? t('Custom Task Script') : '') }
+          </>
+        )
+      }
     },
     {
       Header: t('Edit / Delete'),
@@ -92,15 +99,19 @@ const TaskListSimpPage: NextPage = () => {
         return (<div style={{
           display: 'flex',
         }}>
-          <Link prefetch={false} href={'/task/edit_simp?id=' + or._id}>
+          <Link prefetch={false} href={( or.mode === 'simp' ? '/task/edit_simp?id=' : '/task/edit_custom?id=') + or._id}>
             <a className='btn'>{t(`Edit`)}</a>
           </Link>
           <button data-row-id={or._id} onClick={handleBtnDelete} style={{marginLeft: '10px'}}>
             {t(`Delete`)}
           </button>
-          <button data-row-id={or._id} onClick={handleBtnExport} style={{marginLeft: '10px'}}>
-            {t(`Export`)}
-          </button>
+          {
+            or.mode === 'simp' ? (
+              <button data-row-id={or._id} onClick={handleBtnExport} style={{marginLeft: '10px'}}>
+                {t(`Export`)}
+              </button>
+            ) : null
+          }
         </div>
         )
       }

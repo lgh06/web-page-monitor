@@ -53,6 +53,7 @@ let trans = {
   "Back to User Center": "返回用户中心",
   "Tasks created by you": "您创建的任务",
   "URL": "URL网址",
+  "Custom Task Script": "自定义任务脚本",
   "If your points below 80, then it will be reset to 80 on ": "如果您的点数低于80，则会重置到80，在",
   "Every time one cron task's check will consume 1 point.": "每次定时任务的检查都会消耗1点。",
   "Points consumed for different tasks may vary, in the future.": "在未来，不同任务消耗的点数可能会有所不同。",
@@ -112,6 +113,8 @@ Also, you can close our page, your task will keep running until ":"成功，将�
   "Go to scripts market": "前往脚本市场",
   "Submit OK. You can close this page.": "提交成功，您可以关闭该页面。",
   "Create Error: Network issue or exceed max task number": "创建失败：网络问题或超过最大任务数量",
+  // below is on create custom task page
+  "Please check the script!": "请检查脚本是否有错误！",
   // below is on script market page
   "Script Market": "脚本市场",
   "No Data": "没有数据",

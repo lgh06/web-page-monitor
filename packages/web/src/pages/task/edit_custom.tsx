@@ -46,6 +46,9 @@ const TaskEditCustomPage: NextPage = () => {
       console.log(oneTask._id, oneTask)
       setTaskDetail(v => {
       })
+      setEditorValue(v =>{
+        v.value = oneTask.customScript
+      })
     }else{ // create
       setTaskDetail(v => {
         v.mode = 'custom'; // this page for custom mode
@@ -76,7 +79,11 @@ const TaskEditCustomPage: NextPage = () => {
     try {
       customScriptModule = await ESMLoader(editorValue.value);
     } catch (error) {
+      console.log(error)
       alert(t('Please check the script!'));
+      setTaskDetail(v =>{
+        v.submitting = false;
+      })
       return;
     }
     if(customScriptModule 
@@ -86,6 +93,7 @@ const TaskEditCustomPage: NextPage = () => {
         && Number.isInteger(customScriptModule.endTime)
         && customScriptModule.endTime < Date.now() + 3600 * 1000 * 24 * 30
       ){
+        console.log(customScriptModule);
         // customScriptModule.exec({})
     }else{
       alert(t('Please check the script!'));
@@ -96,16 +104,21 @@ const TaskEditCustomPage: NextPage = () => {
     try {
       if(router.query.id && taskDetail._id && router.query.id === taskDetail._id){
         // edit an existing task
+        console.log('edit an existing task')
         resp = await fetchAPI('/task', {
-          taskDetail
+          taskDetail: {
+            ...taskDetail,
+            customScript: editorValue.value,
+          },
+
         })
       }else{
         // create a new task
         resp = await fetchAPI('/task', {
           taskDetail: {
+            ...taskDetail,
             userId,
             customScript: editorValue.value,
-            ...taskDetail,
             mode: 'custom', // this page is custom mode.
           }
         })
