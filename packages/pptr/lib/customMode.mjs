@@ -16,7 +16,7 @@ async function customModeTask({ taskDetail, page }){
 
     return execResult;
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     // TODO here is not so right
     return 'pptr customModeTask error';
   }
