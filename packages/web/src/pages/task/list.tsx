@@ -102,15 +102,17 @@ const TaskListSimpPage: NextPage = () => {
           <Link prefetch={false} href={( or.mode === 'simp' ? '/task/edit_simp?id=' : '/task/edit_custom?id=') + or._id}>
             <a className='btn'>{t(`Edit`)}</a>
           </Link>
-          <button data-row-id={or._id} onClick={handleBtnDelete} style={{marginLeft: '10px'}}>
+        <button data-row-id={or._id} onClick={handleBtnDelete} style={{marginLeft: '10px'}}>
             {t(`Delete`)}
           </button>
           {
-            or.mode === 'simp' ? (
+            // or.mode === 'simp' ? 
+            (
               <button data-row-id={or._id} onClick={handleBtnExport} style={{marginLeft: '10px'}}>
                 {t(`Export`)}
               </button>
-            ) : null
+            ) 
+            // : null
           }
         </div>
         )

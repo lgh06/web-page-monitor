@@ -81,9 +81,7 @@ const TaskEditCustomPage: NextPage = () => {
     } catch (error) {
       console.log(error)
       alert(t('Please check the script!'));
-      setTaskDetail(v =>{
-        v.submitting = false;
-      })
+      setTaskDetail(v =>{v.submitting = false;})
       return;
     }
     if(customScriptModule 
@@ -97,6 +95,7 @@ const TaskEditCustomPage: NextPage = () => {
         // customScriptModule.exec({})
     }else{
       alert(t('Please check the script!'));
+      setTaskDetail(v =>{v.submitting = false;})
       return;
     }
     // return;
@@ -133,6 +132,7 @@ Also, you can close our page, your task will keep running until `) + CronTime.to
     } catch (error) {
       alert(t(`Create Error: ${error.message}`));
     }
+    setTaskDetail(v =>{v.submitting = false;})
 
   }
 
