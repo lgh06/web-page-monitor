@@ -3,12 +3,16 @@
 import { CONFIG } from "./CONFIG.mjs";
 import puppeteer from 'puppeteer';
 import { ESMImport } from "@webest/web-page-monitor-esm-loader"
+// alias fetch to nodeFetch, so won't conflict with browser fetch
+import nodeFetch from "node-fetch";
 
+// this is a custom task executer.  
+// task is fetch and imported from http url
 async function customModeTask({ taskDetail, page }){
   try {
 
     let customScriptModule = await ESMImport(`${CONFIG.customScriptPath}${taskDetail._id}.js`);
-    let execResult = await customScriptModule.exec({taskDetail, page});
+    let execResult = await customScriptModule.exec({taskDetail, page, nodeFetch});
 
     return execResult;
   } catch (error) {
@@ -18,6 +22,7 @@ async function customModeTask({ taskDetail, page }){
   }
 };
 
+// this is a wrapper to limit single task's execute time
 async function customMode({taskDetail}) {
   // debug use.
   let debugLaunchOption = {

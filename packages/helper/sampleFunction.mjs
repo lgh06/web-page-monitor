@@ -89,8 +89,8 @@ export const cronSyntax = '0 0,10,20,30,40,50 * * * *';
 export const endTime = Date.now() + 1000 * 60 * 60 * 24 * 7;
 
 // the function to execute a task.
-export async function exec({taskDetail, page}){
-  console.log('exec a task');
+export async function exec({taskDetail, page, nodeFetch}){
+  console.log('exec a example task in custom mode: ', Date.now());
 
 }
 
