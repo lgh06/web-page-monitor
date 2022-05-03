@@ -80,7 +80,7 @@ async function normalChecker(now, mqChannel) {
       let random15s = Math.floor(Math.random() * 15) * 1000;
       // console.log('before delayedMQSend', doc)
       // TODO field delay: need change if wait mq conn too long
-      console.log(doc)
+      // console.log(doc)
       await delayedMQSend({delay: doc.nextExecuteTime - now + random15s, taskDetail:{
         ...doc,
         userInfo: doc.userInfo[0]
