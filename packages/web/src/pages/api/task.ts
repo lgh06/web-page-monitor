@@ -35,8 +35,8 @@ async function _postHandler(
       return res.status(400).json({ err: 'please check input value.' });
     }
     // customScript safe check
-    if( String(customScript).match(/require|import|fetch/g) ){
-      return res.status(400).json({ err: 'cannot contain "require" / "import" / "fetch" inside custom script.' })
+    if( String(customScript).match(/require|import|fetch|global|process/g) ){
+      return res.status(400).json({ err: 'cannot contain "require" / "import" / "fetch" / "global" / "process" inside custom script.' })
     }
     console.log('task js log')
     // parse that custom script to one js module

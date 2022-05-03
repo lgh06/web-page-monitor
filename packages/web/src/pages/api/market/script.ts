@@ -53,8 +53,8 @@ async function scriptPostHandler(
   if( (!_id && userScriptCount >= 5) || (_id && userScriptCount >= 7)){
     return res.status(400).json({ err: 'user script count is over 5' })
   }
-  if( String(value).match(/require|import|fetch/g) ){
-    return res.status(400).json({ err: 'cannot contain "require" / "import" / "fetch" inside eraser script.' })
+  if( String(value).match(/require|import|fetch|global|process/g) ){
+    return res.status(400).json({ err: 'cannot contain "require" / "import" / "fetch" / "global" / "process" inside eraser script.' })
   }
 
   // TODO one user can only have max 3 scripts
