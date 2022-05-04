@@ -12,6 +12,7 @@ async function customModeTask({ taskDetail, page }){
   try {
 
     let customScriptModule = await ESMImport(`${CONFIG.customScriptPath}${taskDetail._id}.js`);
+    console.log(customScriptModule.exec, customScriptModule.exec.toString())
     let execResult = await customScriptModule.exec({taskDetail, page, nodeFetch});
 
     return execResult;
