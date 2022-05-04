@@ -1,26 +1,28 @@
 import vm from 'vm';
 
-async function runFnInVm(){
+async function runFuncInVm(paramObj){
+  // console.log('inside runFuncInVm', paramObj)
+  let { taskDetail, page, nodeFetch, fnString = "" } = paramObj;
   const TIMEOUT = 1000 * 1.5;
   let timr = null;
   
   
-  let fnString = `
-async function exec(){
-  console.log('exec a example task in custom mode: ', Date.now());
-  return DDate.now()
-}
-
-exec();
-  `;
+  if(String(fnString).includes('exec')){
+    fnString += `;
+    exec();`
+  }else{
+    return 'Error: exec function not found, at vm';
+  }
   
   
-  const result = await new Promise(
-    (resolve, reject) => {
+  const result = await new Promise((resolve, reject) => {
       const sandbox = {
         setInterval,
         setTimeout,
         console,
+        taskDetail,
+        page,
+        nodeFetch
         // ctx: this.ctx,
       };
   
@@ -31,16 +33,16 @@ exec();
   
         vm.createContext(sandbox);
         const data = vm.runInContext(fnString, sandbox, {
-          // filename: id,
+          filename: taskDetail._id || Date.now().toString(36),
           timeout: TIMEOUT,
         });
-  
+        // data is a promise
+        // console.log('inside vm_func_runner, data:', data);
         resolve(data);
       } catch (error) {
         reject(error);
       }
-    },
-  ).catch(err => {
+    }).catch(err => {
     return err instanceof Error ? err : new Error(err.stack);
   });
   
@@ -49,22 +51,14 @@ exec();
     clearTimeout(timr);
     timr = null;
   }
-  
-  let resBody = {};
-  
+
   if (result instanceof Error) {
-    console.log('[ERROR]', result);
-  
-    resBody = {
-      error: result.toString
-        ? result.toString().replace(/Error: Error: /g, 'Error: ')
-        : result,
-    };
+    // console.error('[ERROR]', result);
+    throw new Error(result);
   } else {
-    console.log('[Response]', result);
-  
-    resBody = result;
+    // console.log('[result]', result);
+    return result;
   }
 }
 
-runFnInVm();
+export { runFuncInVm }

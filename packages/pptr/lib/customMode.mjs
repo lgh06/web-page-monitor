@@ -5,6 +5,7 @@ import puppeteer from 'puppeteer';
 import { ESMImport } from "@webest/web-page-monitor-esm-loader"
 // alias fetch to nodeFetch, so won't conflict with browser fetch
 import nodeFetch from "node-fetch";
+import { runFuncInVm } from "./vm_func_runner.mjs"
 
 // this is a custom task executer.  
 // task is fetch and imported from http url
@@ -12,12 +13,18 @@ async function customModeTask({ taskDetail, page }){
   try {
 
     let customScriptModule = await ESMImport(`${CONFIG.customScriptPath}${taskDetail._id}.js`);
-    console.log(customScriptModule.exec, customScriptModule.exec.toString())
-    let execResult = await customScriptModule.exec({taskDetail, page, nodeFetch});
-
+    // console.log(customScriptModule.exec, customScriptModule.exec.toString())
+    let fnString;
+    if(customScriptModule.exec){
+      fnString = customScriptModule.exec.toString()
+    }else{
+      return 'Error: exec func not found, at customMode'
+    }
+    // let execResult = await customScriptModule.exec({taskDetail, page, nodeFetch, fnString});
+    let execResult = runFuncInVm({taskDetail, page, nodeFetch, fnString});
     return execResult;
   } catch (error) {
-    // console.error(error);
+    console.error(error);
     // TODO here is not so right
     return 'pptr customModeTask error';
   }
@@ -81,6 +88,8 @@ async function customMode({taskDetail}) {
       await browser.close();
       console.log('browser closed, exceed time limit')
     }
+    // vm_func_runner [ERROR] will throw to here
+    // console.log('inside customMode Promise.race then inject, reason:', reason)
     return [null, reason];
   }).catch(async function (err) {
     await browser.close();
@@ -88,7 +97,7 @@ async function customMode({taskDetail}) {
     return [null, err];
   }).finally(async function(){
     await browser.close();
-    console.log(new Date())
+    // console.log(new Date())
   });
 }
 

@@ -82,6 +82,8 @@ export const urlRegExpArr = ['m.weibo.cn']
 `;
 
 export const sampleFunctionCreateCustomTask1 = `
+// taskDetail, page, nodeFetch is available in current function context
+
 // cron syntax REQUIRED
 export const cronSyntax = '0 0,10,20,30,40,50 * * * *';
 
@@ -89,9 +91,12 @@ export const cronSyntax = '0 0,10,20,30,40,50 * * * *';
 export const endTime = Date.now() + 1000 * 60 * 60 * 24 * 7;
 
 // the function to execute a task.
-export async function exec({taskDetail, page, nodeFetch}){
+export async function exec(){
   console.log('exec a example task in custom mode: ', Date.now());
-
+  console.log('task id:', taskDetail._id);
+  let url = 'https://www.baidu.com';
+  let result = await nodeFetch(url).then(r => r.text())
+  return result;
 }
 
 `;
