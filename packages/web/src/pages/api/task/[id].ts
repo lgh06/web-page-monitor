@@ -19,7 +19,7 @@ async function _handler(
   if(doc){
     if(doc && doc.mode === 'custom' && doc.customScript){
       return res.setHeader('Content-Type', 'text/javascript;charset=UTF-8')
-        .setHeader("Cache-Control", "max-age=3600").status(200).send(doc.customScript)
+        .setHeader("Cache-Control", "max-age=900").status(200).send(doc.customScript)
     }else{
       return res.status(400).json({err: "task type mismatch"})
     }
