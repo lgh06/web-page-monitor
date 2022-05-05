@@ -68,11 +68,17 @@ const TaskEditCustomPage: NextPage = () => {
     console.log(taskDetail._id, editorValue.value)
     // console.log(userInfo)
     let userId = userInfo._id;
+    let preCheckErrorInfo = null;
     if(!editorValue.value){
-      alert(t('Please modify the example code!'));
+      preCheckErrorInfo = 'Please modify the example code!';
+    }else if(String(editorValue.value).length > 5000){
+      preCheckErrorInfo = 'Custom script chars cannot > 5000';
+    }
+    if(preCheckErrorInfo){
       setTaskDetail(v =>{
         v.submitting = false;
-      })
+      });
+      alert(t(preCheckErrorInfo));
       return
     }
     let customScriptModule;

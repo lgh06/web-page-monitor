@@ -129,7 +129,7 @@ const TaskListSimpPage: NextPage = () => {
         </Link>
         &nbsp;&nbsp;
         {
-          (taskDetail?.taskList?.length && taskDetail?.taskList?.length < 3 ) ? (
+          (taskDetail?.taskList?.length && taskDetail?.taskList?.length < 5 ) ? (
             <>
               <Link prefetch={false} href={'/task/edit_simp'}>
                 <a>{t(`Create a task in Simple Mode`)}</a>

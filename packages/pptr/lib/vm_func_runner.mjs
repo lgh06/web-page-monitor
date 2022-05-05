@@ -3,7 +3,7 @@ import vm from 'vm';
 async function runFuncInVm(paramObj){
   // console.log('inside runFuncInVm', paramObj)
   let { taskDetail, page, nodeFetch, fnString = "" } = paramObj;
-  const TIMEOUT = 1000 * 1.5;
+  const TIMEOUT = 1000 * 7;
   let timr = null;
   
   

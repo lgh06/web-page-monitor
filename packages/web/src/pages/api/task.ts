@@ -31,8 +31,8 @@ async function _postHandler(
   let customScriptCheckPassed = false;
   if (mode === 'custom') {
     // customScript length check
-    if(!customScript || String(customScript).length > 1000 ){
-      return res.status(400).json({ err: 'please check input value.' });
+    if(!customScript || String(customScript).length > 5000 ){
+      return res.status(400).json({ err: 'please check input value and script length.' });
     }
     // customScript safe check
     if( String(customScript).match(/require|import|fetch|global|process/g) ){

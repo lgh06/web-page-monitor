@@ -115,6 +115,7 @@ Also, you can close our page, your task will keep running until ":"成功，将�
   "Create Error: Network issue or exceed max task number": "创建失败：网络问题或超过最大任务数量",
   // below is on create custom task page
   "Please check the script!": "请检查脚本是否有错误！",
+  "Custom script chars cannot > 5000": "自定义脚本字符数不能超过5000",
   // below is on script market page
   "Script Market": "脚本市场",
   "No Data": "没有数据",
