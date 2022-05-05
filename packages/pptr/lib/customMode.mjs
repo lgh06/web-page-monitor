@@ -21,6 +21,8 @@ async function customModeTask({ taskDetail, page }){
       return 'Error: exec func not found, at customMode'
     }
     // let execResult = await customScriptModule.exec({taskDetail, page, nodeFetch, fnString});
+    // use vm to limit custom mode script's total time
+    // vm is not safe
     let execResult = runFuncInVm({taskDetail, page, nodeFetch, fnString});
     return execResult;
   } catch (error) {
@@ -76,6 +78,7 @@ async function customMode({taskDetail}) {
 
 
   // close puppeteer browser after a timeout
+  // use Promise.race to close puppeteer, to prevent puppeteer not closed and memory leak
   return Promise.race([
     p1,
     new Promise((_, reject) => setTimeout(() => reject(('pptr script timeout')), usedLauchOption.limit * 1000))
