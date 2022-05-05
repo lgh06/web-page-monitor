@@ -8,6 +8,7 @@ import { fetchAPI, useI18n, innerHTML, useHeadTitle, arrayToCsv, downloadBlob } 
 import Link from "next/link";
 import { ScriptList } from "../../components/scriptList";
 import { useRouter } from "next/router";
+import styles from "../../styles/modules/taskList.module.scss";
 
 
 const TaskListSimpPage: NextPage = () => {
@@ -127,12 +128,15 @@ const TaskListSimpPage: NextPage = () => {
         <Link prefetch={false} href="/login">
           <a>{t('Back to User Center')}</a>
         </Link>
-        &nbsp;&nbsp;
+        &nbsp;&nbsp;<br className={styles.navBr1}/>
         {
           (taskDetail?.taskList?.length && taskDetail?.taskList?.length < 5 ) ? (
             <>
               <Link prefetch={false} href={'/task/edit_simp'}>
                 <a>{t(`Create a task in Simple Mode`)}</a>
+              </Link>&nbsp;&nbsp;&nbsp;&nbsp;
+              <br className={styles.navBr2}/><Link prefetch={false} href={'/task/edit_custom'}>
+                <a>{t(`Create a task in Custom Mode`)}</a>
               </Link>&nbsp;&nbsp;&nbsp;&nbsp;
             </>
           ) : null
