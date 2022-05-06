@@ -4,4 +4,70 @@ title: "Custom (code) mode task"
 import ImageChanger from "@site/src/components/ImageChanger";  
 
 By using custom mode, you can create a task by writing a piece of Node.js code.  
+For example, you can use `node-fetch` to fetch files without html structure, such as txt, json, xml, rss, css, etc.  
+Also, you can use `node-fetch` to add header, set cookies, and fetch resources that require login.  
+In addition, you can use code to manipulate puppeteer's `page` object, call custom page.evaluate, page.click, and other methods.
+Easily simulate clicks, simulate input, set localStorage, etc.
+
+
+The code snippet is as follows:
+
+```javascript
+// cron syntax REQUIRED
+export const cronSyntax = '0 0,10,20,30,40,50 * * * *';
+
+// endTime REQUIRED , timestamp , miliseconds
+export const endTime = Date.now() + 1000 * 60 * 60 * 24 * 7;
+
+// the function to execute a custom mode task. REQUIRED
+// taskDetail, page, nodeFetch is available inside below exec() function context
+// ignore the editor's hints, YES you can use taskDetail, page, nodeFetch
+// taskDetail is an object contains some info about current task
+// page is puppeteer's page
+// see FAQ and https://docs.webpagemonitor.net for details.
+export async function exec(){
+  let url = 'https://www.baidu.com';
+  let result = await nodeFetch(url).then(r => r.text())
+  return result;
+}
+```
+
+As shown above, you can use Node.js code to create a task with the following rules.  
+
+You must define and export a variable named `cronSyntax`, (string type), which is a cron expression that specifies the time at which the task will be executed each time it is repeated.  
+You must define and export a variable named `endTime`, (integer type), which specifies the timestamp of the end of the task (in milliseconds, length thirteen).  
+You must define and export a function named `exec`, (async), which executes the specific task logic and returns the result obtained each time.  
+
+You can use the following predefined variables within the exec() function to call some third-party modules when writing custom codes of the task.
+- Use the `taskDetail` variable to get the details of the current task. taskDetail contains the following main fields.    
+
+> ```
+>{
+  _id: "626f6513351d62f9fd567dfb",
+  userId: "5e9f8f8f8f8f8f8f8f8f8f8f",
+  extra:{
+    alias: "task alias name",
+  }
+}
+> ```
+
+- Use the `nodeFetch` variable to call npm's node-fetch module.  
+> See [the documentation for node-fetch](https://www.npmjs.com/package/node-fetch).  
+> The current version of node-fetch used is 3.2
+- Use the `page` variable to call the puppeteer's page object.
+> See the [official puppeteer documentation](https://github.com/puppeteer/puppeteer/blob/v13.0.1/docs/api.md#class-page)  
+> The current version of puppeteer is 13.0.1  
+
+The result of return statement in the exec() function is automatically saved to the database, and an email alert will be sent if the result is changed.  
+(Other alerts like keywords appear alert, is under development.)  
+
+:::tip
+- Note that the `nodeFetch`, `page`, and `taskDetail` variables can only be used within the function exec().  
+- The `require`, `import`, `fetch`, `global`, and `process` keywords cannot be used within the entire code snippet.  
+- The maximum length of one code snippet is limited to 5000 chars.  
+- Each code snippet is limited to **7 seconds**. If the result is not returned after 7 seconds, the result will be saved as null.  
+- Please **return** the obtained string text result within the function exec(), otherwise, there will be no change alert email.  
+- You can export the csv file of the current task on the **task list** page to see if the textContent field and the result returned by the exec() function are the results you expect.  
+- You don't need to care about the creation and closing of the puppeteer browser instance, just call the methods related to `page`.
+:::
 
