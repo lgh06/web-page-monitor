@@ -17,8 +17,8 @@ async function runFuncInVm(paramObj){
   
   const result = await new Promise((resolve, reject) => {
       const sandbox = {
-        setInterval,
-        setTimeout,
+        // setInterval,
+        // setTimeout,
         console,
         taskDetail,
         page,
