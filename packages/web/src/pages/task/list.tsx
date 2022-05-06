@@ -53,7 +53,7 @@ const TaskListSimpPage: NextPage = () => {
     let element = ev.target;
     let rowId = (element as any).dataset.rowId;
     let confirmed = confirm(t('You can only export recent 1000 checks of one task') + ', \n'
-    + t('And export once per hour per task') + '. \n'
+    + t('And export once per 15 minutes per task') + '. \n'
     + t('Are you sure to export history of this task') + '?' + '\n'
     + t(`Notice: Export history may only works on Chrome browser.`) + '\n'
     );

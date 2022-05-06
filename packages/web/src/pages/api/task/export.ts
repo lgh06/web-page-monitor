@@ -45,7 +45,7 @@ async function _getHandler(
   })
 
   p.then(doc => {
-      return res.setHeader("Cache-Control", "max-age=3600").status(200).json(doc)
+      return res.setHeader("Cache-Control", "max-age=900").status(200).json(doc)
     }).catch((e) => {
       return res.status(500).json({ err: e });
     });
