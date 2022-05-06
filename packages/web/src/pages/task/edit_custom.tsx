@@ -133,7 +133,7 @@ const TaskEditCustomPage: NextPage = () => {
 Also, you can close our page, your task will keep running until `) + CronTime.toLocalISOString(customScriptModule.endTime));
         router.push("/task/list");
       }else{
-        alert(t(`Create Error: Network issue or exceed max task number`));
+        alert(t(`Create Error: Network issue or exceed max task number`) + '\n' + (resp && resp.err ? resp.err : ''));
       }
     } catch (error) {
       alert(t(`Create Error: ${error.message}`));
