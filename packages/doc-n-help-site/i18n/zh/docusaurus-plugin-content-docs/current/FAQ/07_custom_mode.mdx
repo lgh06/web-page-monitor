@@ -6,6 +6,12 @@ import ImageChanger from "@site/src/components/ImageChanger";
 
 使用自定义(代码)模式，您可以使用一段Node.js代码来创建一个任务。  
 
+例如，你可以使用node-fetch来抓取没有html结构的文件，如txt, json, xml, rss, css等。  
+同时，你还可以利用node-fetch来添加header，设置cookie，去请求一些需要登录才能访问的资源。  
+同时，支持您使用代码来操作puppeteer的`page`对象，调用自定义的page.evaluate、page.click等等方法，
+轻松模拟点击、模拟输入，设置localStorage等。
+
+
 代码片段如下：
 
 ```javascript

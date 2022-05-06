@@ -178,18 +178,14 @@ Also, you can close our page, your task will keep running until `) + CronTime.to
         ></MonacoEditor>
     </div>
     <br/>
-    <div {...innerHTML(t('Notice: One user can only create max 3 tasks, and lasts max 7 days (30 days if your points > 80) per task.\
+    <div {...innerHTML(t('Notice: One user can create max 5 tasks, and lasts max <b>7 days</b> (<b>30 days</b> if your points > 80) per task.\
       Minimum interval between two tasks is 10 minutes.'))}>
-    </div>
-    <div {...innerHTML(t('Notice: Simple Mode is only suitable for monitor <b>public web pages</b>,\
-      <b>not for</b> txt, xml or other files without HTML structure.<br/>\
-      Our Geek Mode will be coming soon, for more advanced features.'))}>
     </div>
     <div {...innerHTML(t('Notice: We need 15 minutes to distribute our tasks to different servers. <br/>\
       the first repeated task within 15 minutes will be ignored.'))}>
     </div>
     <div style={{zoom: 0.85}}>
-      <a target="_blank" rel="noopener noreferrer" href={t("https://docs.webpagemonitor.net/FAQ/")} >{t(`More helps see here`)}</a>
+      <a target="_blank" rel="noopener noreferrer" href={t("https://docs.webpagemonitor.net/FAQ/") + 'custom_mode/'} >{t(`More helps see here`)}</a>
     </div>
     <br />
     <div>
