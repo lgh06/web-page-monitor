@@ -92,11 +92,11 @@ let trans = {
   "Please input waitForSelector": "请输入waitForSelector",
   "Please input some words, multiple words can be separated by commas": "请输入一些词语（文字）,多个词语之间可以用逗号分隔",
   "Notice: Simple Mode is only suitable for monitor <b>public web pages</b>,\
-      <b>not for</b> txt, xml or other files without HTML structure.<br/>\
-      Our Geek Mode will be coming soon, for more advanced features.":
-  "注意：简单模式仅适用于检测<b>公开</b>网页，\
-      <b>不适用</b>于txt,xml或其他没有HTML结构的文件。<br/>\
-      我们的极客(高级)模式将很快开放，将有更多的高级功能等待您发掘。",
+      <b>not for</b> txt, xml or other files without HTML structure; <b>not for</b> pages need login.<br/>\
+      Please:":
+  "注意：简单模式仅适用于检测<b>公开且无需登录</b>的网页，\
+      <b>不适用</b>于txt,xml或其他没有HTML结构的文件，<b>不适用</b>于需要登陆的网页。<br/>\
+      若为上述情况，请：",
   "Notice: We need 15 minutes to distribute our tasks to different servers. <br/>\
       the first repeated task within 15 minutes will be ignored.":
   "注意：我们需要15分钟分配任务到不同的服务器。<br/>\

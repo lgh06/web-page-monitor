@@ -333,10 +333,15 @@ Also, you can close our page, your task will keep running until `) + taskDetail.
     <div {...innerHTML(t('Notice: One user can create max 5 tasks, and lasts max <b>7 days</b> (<b>30 days</b> if your points > 80) per task.\
       Minimum interval between two tasks is 10 minutes.'))}>
     </div>
-    <div {...innerHTML(t('Notice: Simple Mode is only suitable for monitor <b>public web pages</b>,\
-      <b>not for</b> txt, xml or other files without HTML structure.<br/>\
-      Our Geek Mode will be coming soon, for more advanced features.'))}>
+    {
+  router && router.query.id ? null :  <div>
+    <span {...innerHTML(t('Notice: Simple Mode is only suitable for monitor <b>public web pages</b>,\
+      <b>not for</b> txt, xml or other files without HTML structure; <b>not for</b> pages need login.<br/>\
+      Please:'))}>
+    </span>
+    <Link prefetch={false} href="/task/edit_custom"><a>{t('Create a task in Custom Mode')}</a></Link>
     </div>
+    }
     <div {...innerHTML(t('Notice: We need 15 minutes to distribute our tasks to different servers. <br/>\
       the first repeated task within 15 minutes will be ignored.'))}>
     </div>

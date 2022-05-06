@@ -125,7 +125,7 @@ const LoginPage: NextPage = () => {
         {t(`Welcome`)}, {userInfo.email} 
       </div>
       <div style={{zoom: 1.1}}>
-        <Link href='/task/edit_simp'><a> {t(`Create task`)} ({t(`Recommended`)})</a></Link>
+        <Link href='/task/edit_simp'><a> {t(`Create a task in Simple Mode`)} ({t(`Recommended`)})</a></Link>
       </div>
       <div style={{zoom: 1.1}}>
         <Link prefetch={false} href='/task/list'><a> {t(`Task List`)}</a></Link>
