@@ -6,9 +6,9 @@ import ImageChanger from "@site/src/components/ImageChanger";
 
 使用自定义(代码)模式，您可以使用一段Node.js代码来创建一个任务。  
 
-例如，你可以使用node-fetch来抓取没有html结构的文件，如txt, json, xml, rss, css等。  
-同时，你还可以利用node-fetch来添加header，设置cookie，去请求一些需要登录才能访问的资源。  
-同时，支持您使用代码来操作puppeteer的`page`对象，调用自定义的page.evaluate、page.click等等方法，
+例如，您可以使用`node-fetch`来抓取没有html结构的文件，如txt, json, xml, rss, css等。  
+同时，您还可以利用`node-fetch`来添加header，设置cookie，去请求一些需要登录才能访问的资源。  
+此外，您使用代码来操作puppeteer的`page`对象，调用自定义的page.evaluate、page.click等等方法，
 轻松模拟点击、模拟输入，设置localStorage等。
 
 
@@ -28,8 +28,6 @@ export const endTime = Date.now() + 1000 * 60 * 60 * 24 * 7;
 // page is puppeteer's page
 // see FAQ and https://docs.webpagemonitor.net for details.
 export async function exec(){
-  console.log('exec a example task in custom mode: ', Date.now());
-  console.log('task id:', taskDetail._id);
   let url = 'https://www.baidu.com';
   let result = await nodeFetch(url).then(r => r.text())
   return result;

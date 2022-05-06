@@ -97,8 +97,6 @@ export const endTime = Date.now() + 1000 * 60 * 60 * 24 * 7;
 // nodeFetch is just 'node-fEtch'
 // see FAQ and https://docs.webpagemonitor.net for details.
 export async function exec(){
-  console.log('exec a example task in custom mode: ', Date.now());
-  console.log('task id:', taskDetail._id);
   let url = 'https://www.baidu.com';
   let result = await nodeFetch(url).then(r => r.text())
   return result;
