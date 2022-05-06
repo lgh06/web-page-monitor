@@ -6,7 +6,7 @@ Cloud watch & monitor web page's changes and updates.
 Work in Progress.  
 ~~Puppeteer will be controlled by user defined JS, texted / inputted in browser.~~ Will do this in future.    
 ~~Not released a minimal version yet.~~  
-Online Cloud Service: [Web Page Monitor](https://webpagemonitor.net/)  
+Online Cloud Service: [Web Page Monitor](https://www.webpagemonitor.net/)  
 Github source code : [Link](https://github.com/lgh06/web-page-monitor)  
 
 > Chinese / 简体中文 

@@ -53,7 +53,7 @@
 
     var docSite = {
       cn: ['https://a-1251786267.file.myqcloud.com/webpagemonitor_doc_site/', 'https://wpmt.cdn.bcebos.com/webpagemonitor_doc_site/'],
-      global: ['https://docs.webpagemonitor.net/', 'https://webpagemonitor.net/webpagemonitor_doc_site/'],
+      global: ['https://docs.webpagemonitor.net/', 'https://www.webpagemonitor.net/webpagemonitor_doc_site/'],
     }
 
     var webSite = {

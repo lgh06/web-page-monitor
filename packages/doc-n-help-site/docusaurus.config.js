@@ -10,7 +10,7 @@ var baseUrl = process.env.DOCU_BASE_URL || '/webpagemonitor_doc_site/';
 var config = {
   title: 'Web Page Monitor 网页变动检测',
   tagline: 'Web Site Page Changes Monitor,Cloud watch web updates.网站网页页面更新变更监控提醒，云端检测网页变动更新',
-  url: 'https://webpagemonitor.net',
+  url: 'https://www.webpagemonitor.net',
   baseUrl: baseUrl,
   trailingSlash: true,
   onBrokenLinks: 'warn',
@@ -87,7 +87,7 @@ var config = {
             // ],
           },
           {
-            href: 'https://webpagemonitor.net',
+            href: 'https://www.webpagemonitor.net',
             label: 'Product Home',
             position: 'right',
           },
@@ -101,7 +101,7 @@ var config = {
             items: [
               {
                 label: 'Product Home',
-                to: 'https://webpagemonitor.net',
+                to: 'https://www.webpagemonitor.net',
               },
               {
                 label: 'Docs',
