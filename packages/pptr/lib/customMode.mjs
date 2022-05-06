@@ -24,7 +24,7 @@ async function customModeTask({ taskDetail, page }){
     // use vm to limit custom mode script's total time
     // vm is not safe
     let execResult = runFuncInVm({taskDetail, page, nodeFetch, fnString});
-    return execResult;
+    return String(execResult);
   } catch (error) {
     console.error(error);
     // TODO here is not so right
