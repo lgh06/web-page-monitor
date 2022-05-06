@@ -96,6 +96,14 @@ export function arrayToCsv(array = []){
           stringified = '';
         }
         return stringified;
+      }else if (String(cellValue).match(/\,|\"/)){
+        /**
+         * https://stackoverflow.com/questions/4617935/is-there-a-way-to-include-commas-in-csv-columns-without-breaking-the-formatting
+         * https://www.cnblogs.com/xiaomiganfan/p/4073454.html
+         * https://blog.csdn.net/ylq1045/article/details/115906779
+         * esacpe comma and quote in csv cell value
+         */
+        return String(cellValue).split('"').map(v => `"${v}"`).join('').replaceAll(`,`, `"",""`)
       }else{
         return cellValue;
       }

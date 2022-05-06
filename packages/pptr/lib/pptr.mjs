@@ -1,4 +1,5 @@
 import { simpleMode } from "./simpleMode.mjs";
+import { customMode } from "./customMode.mjs";
 import { sendResultToWorker } from "./sendResultToWorker.mjs";
 import * as amqp from 'amqplib';
 import { CONFIG } from "./CONFIG.mjs";
@@ -95,6 +96,24 @@ async function main() {
           await sendResultToWorker(res, sendResultToWorkerChannel)
         } catch (error) {
           console.error('sendResultToWorker error',error);
+        } finally {
+          channel.ack(message)
+        }
+      }else if (taskDetail.mode === 'custom'){
+        try {
+          let [result, err] = await customMode({taskDetail});
+          console.log('inside pptr after await customMode({})')
+          let res = {
+            result,
+            err,
+            consumeTime,
+            finishTime: new Date(),
+            taskDetail,
+            pptrId: CONFIG.pptrId || 1,
+          }
+          await sendResultToWorker(res, sendResultToWorkerChannel)
+        } catch (error) {
+          console.error('customMode sendResultToWorker error',error);
         } finally {
           channel.ack(message)
         }

@@ -66,7 +66,7 @@ const MonacoEditor: NextPage<Props> = ({defaultValue, value}) => {
   }, [monaco]);
 
   return (
-    <div style={{ backgroundColor: '#eee' }}>
+    <div style={{ backgroundColor: '#eee', overflow: "hidden", height: '500px', }}>
       <Editor
         height="500px"
         defaultLanguage="typescript"

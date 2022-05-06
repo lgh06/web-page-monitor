@@ -1,0 +1,72 @@
+---
+title: "自定义(代码)模式的任务"
+---
+import ImageChanger from "@site/src/components/ImageChanger";  
+
+
+使用自定义(代码)模式，您可以使用一段Node.js代码来创建一个任务。  
+
+例如，您可以使用`node-fetch`来抓取没有html结构的文件，如txt, json, xml, rss, css等。  
+同时，您还可以利用`node-fetch`来添加header，设置cookie，去请求一些需要登录才能访问的资源。  
+此外，您使用代码来操作puppeteer的`page`对象，调用自定义的page.evaluate、page.click等等方法，
+轻松模拟点击、模拟输入，设置localStorage等。
+
+
+代码片段如下：
+
+```javascript
+// cron syntax REQUIRED
+export const cronSyntax = '0 0,10,20,30,40,50 * * * *';
+
+// endTime REQUIRED , timestamp , miliseconds
+export const endTime = Date.now() + 1000 * 60 * 60 * 24 * 7;
+
+// the function to execute a custom mode task. REQUIRED
+// taskDetail, page, nodeFetch is available inside below exec() function context
+// ignore the editor's hints, YES you can use taskDetail, page, nodeFetch
+// taskDetail is an object contains some info about current task
+// page is puppeteer's page
+// see FAQ and https://docs.webpagemonitor.net for details.
+export async function exec(){
+  let url = 'https://www.baidu.com';
+  let result = await nodeFetch(url).then(r => r.text())
+  return result;
+}
+```
+
+如上所示，您可以使用Node.js代码来创建一个任务，规则如下：  
+
+您必须定义并export一个名为`cronSyntax`的变量，(字符串类型)，它是一个cron表达式，指定了任务每次重复执行的时间。  
+您必须定义并export一个名为`endTime`的变量，(整数类型)，它指定了任务结束的时间戳(毫秒，长度为十三位)。  
+您必须定义并export一个名为`exec`的函数，(async类型)，它执行具体的任务逻辑，并将每次获得的结果return。  
+
+您可以在exec()函数内,使用以下预先定义好的变量，在检测任务执行时，来调用一些第三方模块，或者获取当前任务的详情信息：  
+- 使用`taskDetail`变量，获取当前任务的详情信息。taskDetail包含的主要字段如下：    
+> ```
+>{
+  _id: "626f6513351d62f9fd567dfb",
+  userId: "5e9f8f8f8f8f8f8f8f8f8f8f",
+  extra:{
+    alias: "task alias name",
+  }
+}
+> ```
+- 使用`nodeFetch`变量，来调用npm的node-fetch模块。  
+> 请参考[node-fetch的文档](https://www.npmjs.com/package/node-fetch)。  
+> 目前使用的node-fetch版本为3.2
+- 使用`page`变量，来调用puppeteer的page对象。
+> 请参考[puppeteer官方文档](https://github.com/puppeteer/puppeteer/blob/v13.0.1/docs/api.md#class-page)  
+> 目前使用的puppeteer版本为13.0.1  
+
+exec()函数内return的结果会被自动保存到数据库中，如果结果发生了变化，便会发送email提醒。  
+(暂仅支持结果的变动提醒。其它的关键词出现提醒，正在开发中。)  
+
+:::tip
+- 注意，只能在函数exec()内使用`nodeFetch`、`page`、`taskDetail`变量。  
+- 在整个代码片段内，不能使用`require`、`import`、`fetch`、`global`、`process`关键字。  
+- 每个代码片段的最大长度限制为5000个字符串。  
+- 每个代码片段执行时间限制为 **7秒钟** 。如果超过7秒钟仍未return结果，则结果将会被保存为null。  
+- 请在函数exec()内 **return** 获得的字符串文本结果，否则，不会有变动提醒邮件。  
+- 您可以在 **任务列表**页面，导出当前任务的csv文件，查看textContent字段与exec()函数return的结果，是否是您期望的结果。  
+- 您无需关心puppeteer browser实例的创建与关闭，只需调用page相关的方法即可。后续看情况再决定是否提供browser变量供使用
+:::

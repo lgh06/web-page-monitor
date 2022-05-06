@@ -19,6 +19,7 @@
     "@webest/web-page-monitor-helper": "*",
     "amqplib": "^0.8.0",
     "mqtt": "^4.3.4",
+    "node-fetch": "^3.2.4",
     "puppeteer": "=13.0.1",
     "socket.io-client": "^4.4.1"
   },

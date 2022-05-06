@@ -97,11 +97,13 @@ async function resultSaver() {
           }).catch(e => console.error(e))
         }
         let {insertedId} = await mongo.insertDoc(db, 'taskHistory', oneTaskHistory);
-        if(taskDetail && taskDetail.extra && String(taskDetail.extra.detectMode) === '2' && taskDetail.extra.detectWord){
-          // alert only when word shows up
-          await singleTaskWordChecker(taskDetail,result,oneTaskHistory, db, insertedId)
-        }else{
-          await singleTaskHistoryChecker(taskDetail, db);
+        if(taskDetail && taskDetail.mode /* && taskDetail.mode === 'simp'*/){
+          if(taskDetail && taskDetail.extra && String(taskDetail.extra.detectMode) === '2' && taskDetail.extra.detectWord){
+            // alert only when word shows up
+            await singleTaskWordChecker(taskDetail,result,oneTaskHistory, db, insertedId)
+          }else{
+            await singleTaskHistoryChecker(taskDetail, db);
+          }
         }
       } catch (error) {
         console.log(error);

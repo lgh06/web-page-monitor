@@ -46,7 +46,7 @@ async function singleTaskHistoryChecker (taskDetail, db){
         if(doc.textHash !== arr[index-1].textHash){
           // TODO send alert
           nowCacheOnTask = await diffNotifier(arr[index-1], doc, taskDetail, db);
-          console.log('singleTaskHistoryChecker cacheOnTask', nowCacheOnTask);
+          // console.log('singleTaskHistoryChecker cacheOnTask', nowCacheOnTask);
           await saveTaskCacheToDb(nowCacheOnTask, taskDetail, db)
         }
         await db.collection(collectionName).findOneAndUpdate(filter, {

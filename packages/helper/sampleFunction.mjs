@@ -80,3 +80,26 @@ export function replace(result) {
 
 export const urlRegExpArr = ['m.weibo.cn']
 `;
+
+export const sampleFunctionCreateCustomTask1 = `
+
+// cron syntax REQUIRED
+export const cronSyntax = '0 0,10,20,30,40,50 * * * *';
+
+// endTime REQUIRED , timestamp , miliseconds
+export const endTime = Date.now() + 1000 * 60 * 60 * 24 * 7;
+
+// the function to execute a custom mode task. REQUIRED
+// taskDetail, page, nodeFetch is available inside below exec() function context
+// ignore the editor's hints, YES you can use taskDetail, page, nodeFetch
+// taskDetail is an object contains some info about current task
+// page is puppeteer's page
+// nodeFetch is just 'node-fEtch'
+// see FAQ and https://docs.webpagemonitor.net for details.
+export async function exec(){
+  let url = 'https://www.baidu.com';
+  let result = await nodeFetch(url).then(r => r.text())
+  return result;
+}
+
+`;

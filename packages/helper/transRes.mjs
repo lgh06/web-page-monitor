@@ -3,6 +3,7 @@ let trans = {
   "Home Page":"首页",
   "Edit Script":"编辑脚本",
   "Edit Task":"编辑任务",
+  "Edit Custom Task": "编辑自定义任务",
   "Redeem":"充值点数",
   // below is global nav
   "About":"关于",
@@ -27,6 +28,7 @@ let trans = {
   "https://github.com/lgh06/web-page-monitor":"https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git",
   // Below is on login page
   "Create a task in Simple Mode": "创建简单模式任务",
+  "Create a task in Custom Mode": "创建自定义模式任务",
   "Create task": "创建任务",
   "Go Back to home": "返回首页",
   "Log Out": "退出登录",
@@ -51,11 +53,12 @@ let trans = {
   "Back to User Center": "返回用户中心",
   "Tasks created by you": "您创建的任务",
   "URL": "URL网址",
+  "Custom Task Script": "自定义任务脚本",
   "If your points below 80, then it will be reset to 80 on ": "如果您的点数低于80，则会重置到80，在",
   "Every time one cron task's check will consume 1 point.": "每次定时任务的检查都会消耗1点。",
   "Points consumed for different tasks may vary, in the future.": "在未来，不同任务消耗的点数可能会有所不同。",
   "You can only export recent 1000 checks of one task": "您只能导出一个任务最近1000次检查的数据",
-  "And export once per hour per task": "并且每小时每任务仅能导出一次",
+  "And export once per 15 minutes per task": "并且每小时每任务仅能导出一次",
   "Are you sure to export history of this task": "您确定要导出这个任务的历史数据吗",
   "Export": "导出",
   "No data to export, please try again 1 hour later": "没有数据可以导出，请1小时后再试",
@@ -110,6 +113,9 @@ Also, you can close our page, your task will keep running until ":"成功，将�
   "Go to scripts market": "前往脚本市场",
   "Submit OK. You can close this page.": "提交成功，您可以关闭该页面。",
   "Create Error: Network issue or exceed max task number": "创建失败：网络问题或超过最大任务数量",
+  // below is on create custom task page
+  "Please check the script!": "请检查脚本是否有错误！",
+  "Custom script chars cannot > 5000": "自定义脚本字符数不能超过5000",
   // below is on script market page
   "Script Market": "脚本市场",
   "No Data": "没有数据",
