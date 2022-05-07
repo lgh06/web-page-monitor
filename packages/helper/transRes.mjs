@@ -58,10 +58,10 @@ let trans = {
   "Every time one cron task's check will consume 1 point.": "每次定时任务的检查都会消耗1点。",
   "Points consumed for different tasks may vary, in the future.": "在未来，不同任务消耗的点数可能会有所不同。",
   "You can only export recent 1000 checks of one task": "您只能导出一个任务最近1000次检查的数据",
-  "And export once per 15 minutes per task": "并且每小时每任务仅能导出一次",
+  "And export once per 15 minutes per task": "并且每15分钟每任务仅能导出一次",
   "Are you sure to export history of this task": "您确定要导出这个任务的历史数据吗",
   "Export": "导出",
-  "No data to export, please try again 1 hour later": "没有数据可以导出，请1小时后再试",
+  "No data to export, please try again 15 minutes later": "没有数据可以导出，请15分钟后再试",
   "Notice: Export history may only works on Chrome browser.": 
     "注意：请在电脑版Chrome浏览器中导出历史数据，手机上或电脑上的其它浏览器可能无法导出。",
   // Below is on create task page

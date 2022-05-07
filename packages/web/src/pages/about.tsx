@@ -60,7 +60,7 @@ const AboutPage: NextPage = () => {
                     <a>Eraser Script</a>
                   </Link>
                 </li>
-                <li>Email alerts for the same task are sent up to once every 6 hours by default.(The ability to customize the frequency of email notifications is under development)</li>
+                <li>Email alerts for the same task are sent up to once every 4 hours by default.(The ability to customize the frequency of email notifications is under development)</li>
                 <li>Use Amazon AWS and AliCloud email delivery services to improve email delivery rates and avoid mails going to spam.</li>
               </ol>
             </li>
@@ -120,7 +120,7 @@ const AboutPage: NextPage = () => {
                     <a>橡皮脚本</a>
                   </Link>
                 </li>
-                <li>同一任务的邮件提醒，默认每6小时最多发送一次。（自定义邮件通知频率的功能正在开发中）</li>
+                <li>同一任务的邮件提醒，默认每4小时最多发送一次。（自定义邮件通知频率的功能正在开发中）</li>
                 <li>使用亚马逊AWS和阿里云的邮件发送服务，提升邮件送达率，避免垃圾邮件误报。</li>
               </ol>
             </li>
