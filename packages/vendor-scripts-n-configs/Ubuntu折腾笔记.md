@@ -21,7 +21,7 @@ wget -qO- https://cdn.jsdelivr.net/gh/nvm-sh/nvm@0.39.1/install.sh | bash
 ```  
 然后再安装指定版本的NodeJS, nrm:  
 ```bash
-NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node nvm install 16  
+NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node nvm install 16  
 nvm use 16
 nvm alias default 16
 npm i nrm -g --registry=https://registry.npmmirror.com
