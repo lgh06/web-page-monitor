@@ -2,42 +2,44 @@
 > 英语 / English  
 
 Web Site Page Changes Monitor.  
-Cloud watch & monitor web page's changes and updates.
-Work in Progress.  
-~~Puppeteer will be controlled by user defined JS, texted / inputted in browser.~~ Will do this in future.    
-~~Not released a minimal version yet.~~  
+Cloud watch & monitor web page's changes and updates.  
+Cloud or self-hosted, visualping.io and Distill alternative.  
+Crontab syntax supported.  
+Custom Node.js code snippet supported, `node-fetch` and `puppeteer` are builtin.
+
+
+Alpha version released:  
 Online Cloud Service: [Web Page Monitor](https://www.webpagemonitor.net/)  
 Github source code : [Link](https://github.com/lgh06/web-page-monitor)  
 
 > Chinese / 简体中文 
 
-网站网页页面更新变更监控提醒，云端检测网页变动更新。 
-进行中。  
-~~由用户在浏览器中预先输入的JS，操作puppeteer的行为。~~  以后再实现  
-~~还未最小化可用。~~    
-体验地址:  [网页变动检测](https://monit.or.passby.me/)  
-在Coding.net上的代码镜像: [浏览链接](https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git) （需要登录Coding才能查看） / 
-[git clone链接](https://e.coding.net/lgh06/web-page-monitor/web-page-monitor.git)  
+网站网页页面更新变更监控提醒，云端检测网页变动更新。  
+云端 或 自部署， visualping / Distill 的替代品。  
+支持crontab定义任务执行时间。  
+支持自定义Node.js代码片段，可用`node-fetch`、`puppeteer`。
 
-## Intro (English)  
-- `web` is the website, for end users to use. created by Next.js. Connected to MongoDB. **NO CONNECT** ~~socket.io~~RabbitMQ for now.  
-- `pptr` is the puppeteer, connect ~~socket.io~~RabbitMQ.  
-- ~~`socketio` is the data communication center. Connected with pptr and worker-scheduler.~~ use RabbitMQ  
-- `worker-scheduler` connect to MongoDB and ~~socket.io~~RabbitMQ   
+抢先体验版已发布:  
+体验地址:  [网页变动检测](https://monit.or.passby.me/)  
+源码: [Github](https://github.com/lgh06/web-page-monitor) 、[Coding](https://lgh06.coding.net/public/web-page-monitor/web-page-monitor/git) 
+
+## Packages Intro (English)  
+- `web` is the website, for end users to use. created by Next.js. Connected to MongoDB. 
+- `pptr` is the puppeteer, connect RabbitMQ.  
+- `worker-scheduler` connect to MongoDB and RabbitMQ   
 - `esm-loader` NodeJS import(esm).then(..) from user defined js ( http URL ) .  
 
 
-## 介绍  
-- `web` 最终用户使用的网站界面, 连接MongoDB, **暂不**连接~~socket.io~~RabbitMQ  
-- `pptr` puppeteer执行程序, 连接~~socket.io~~RabbitMQ    
-- ~~`socketio` 信息中转站, 被pptr和worker-scheduler连接~~ 使用RabbitMQ  
-- `worker-scheduler` 调度/分发控制器, 连接~~socket.io~~RabbitMQ与MongoDB  
+## 主要子包介绍  
+- `web` 最终用户使用的网站界面, 连接MongoDB
+- `pptr` puppeteer执行程序, 连接RabbitMQ    
+- `worker-scheduler` 调度/分发控制器, 连接RabbitMQ与MongoDB  
 - `esm-loader` NodeJS import(esm).then(..) from remote js ( http URL ) .  
 
 ## Requirements / Dependencies
 
 - Erlang / OTP (23.2+), required by RabbitMQ  [link](https://github.com/erlang/otp/releases)   
-- RabbitMQ (3.9+) [link](https://github.com/rabbitmq/rabbitmq-server/releases) , ~~and Web MQTT plugin enabled [how to enable web-mqtt](packages/vendor-scripts-n-configs/README.md)~~  
+- RabbitMQ (3.9+) [link](https://github.com/rabbitmq/rabbitmq-server/releases)
 - [RabbitMQ Delayed Message Plugin](https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/releases) / [install help](packages/vendor-scripts-n-configs/README.md)  
 
 > Notice: if you are on windows, above two softwares' install path should only use ASCII compatible charactors.  
@@ -49,7 +51,7 @@ Github source code : [Link](https://github.com/lgh06/web-page-monitor)
 
 > Notice: For production, you should ensure your `pm2` auto start after your OS boot. [link](https://github.com/pm2-hive/pm2-hive.github.io/blob/330f518065e2e6b9e8befc7beddd1b076d6c2adf/docs/features/startup.md#windows-startup-script)  
 > Notice: For production, you should ensure your `MongoB` and `RabbitMQ` auto start after your OS boot.  
-> Notice: For production, ~~socket.io~~RabbitMQ and web and MongoDB's server should have a permanent public Internet IP address.  
+> Notice: For production, RabbitMQ and web and MongoDB's server should have a permanent public Internet IP address.  
 > Notice: For local development, you can install all of sub-packages on one machine, the machine should have Internet access.  
 
 > Windows installers mirror for China users:  
@@ -62,7 +64,7 @@ Please modify inner paths by yourself if you changed default install path or ser
 ## 要求与依赖  
 
 - Erlang / OTP (版本23.2+), 因为RabbitMQ依赖此语言[link](https://github.com/erlang/otp/releases)  
-- RabbitMQ （版本3.9+）[link](https://github.com/rabbitmq/rabbitmq-server/releases) , ~~并开启自带Web MQTT plugin [如何开启web-mqtt](packages/vendor-scripts-n-configs/README.md)~~   
+- RabbitMQ （版本3.9+）[link](https://github.com/rabbitmq/rabbitmq-server/releases)    
 - [RabbitMQ 延时消息插件](https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/releases) / [如何安装与开启](packages/vendor-scripts-n-configs/README.md)  
 > 注意：Windows安装Erlang、RabbitMQ时，安装路径不要有中文和奇怪符号，否则会安装失败  
 
@@ -73,7 +75,7 @@ Please modify inner paths by yourself if you changed default install path or ser
 
 > 注意：生产环境，您要确保pm2在您的系统中会自动启动。[文档链接](https://github.com/pm2-hive/pm2-hive.github.io/blob/330f518065e2e6b9e8befc7beddd1b076d6c2adf/docs/features/startup.md#windows-startup-script)  
 > 注意：生产环境，您要确保MongoDB和RabbitMQ在您的系统中会自动启动。  
-> 注意：生产环境，~~socket.io~~RabbitMQ 和 web 和 MongoDB 所在服务器应该有固定公网IP。  
+> 注意：生产环境，RabbitMQ 和 web 和 MongoDB 所在服务器应该有固定公网IP。  
 > 注意：开发环境，可以把所有子包都部署在同一服务器上，有访问公网的权限即可，不必有公网IP.  
 
 > Windows 各种安装包镜像:  
@@ -84,10 +86,8 @@ Please modify inner paths by yourself if you changed default install path or ser
 如果安装时修改了默认的路径或服务名，可以打开对应的文件，修改里面的路径。  
 
 
-## ports (for dev)
-Next.js 3002 ( will be on 80 / 443 in production, someday)  
-Static HTML 3001 on production. (maybe, or just use Next.js )  
-~~socket.io server 3003~~ 
+## ports
+Next.js 3002
 
 ## Run and Stop in Local / 本地，跑起来与停止  
 ```bash  
