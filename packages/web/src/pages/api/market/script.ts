@@ -53,7 +53,7 @@ async function scriptPostHandler(
   if( (!_id && userScriptCount >= 5) || (_id && userScriptCount >= 7)){
     return res.status(400).json({ err: 'user script count is over 5' })
   }
-  if( String(value).match(/require|import|fetch|global|process/g) ){
+  if( String(value).match(/require\(\S+\)|import.+from.+|fetch\(\S+\)|global|process/g) ){
     return res.status(400).json({ err: 'cannot contain "require" / "import" / "fetch" / "global" / "process" inside eraser script.' })
   }
 
