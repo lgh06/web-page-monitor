@@ -96,6 +96,7 @@ const TaskListSimpPage: NextPage = () => {
     {
       Header: t('Running status'),
       id: 'runningStatus',
+      width: 200,
       Cell: ({ row: {original: or} }) => {
         let status;
         let endDate;
