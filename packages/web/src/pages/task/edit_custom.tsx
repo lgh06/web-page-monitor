@@ -175,9 +175,11 @@ Also, you can close our page, your task will keep running until `) + CronTime.to
       router && router.query.id && taskDetail._id ? <>
       <div style={{margin: `.5em auto`}}>
         {t(`Current Task created at:`)} &nbsp; {new Date(parseInt(taskDetail._id.substr(0,8), 16) * 1000).toLocaleString()}
-        &nbsp;&nbsp; {t(`Running status`)}: { t(getTaskExpireStatusAndColor(taskDetail).status) }
+        &nbsp;&nbsp;   {t(`Task expires on`)}: { new Date(taskDetail.endTime).toLocaleString() }
+      </div>
+      <div style={{margin: `.5em auto`}}> 
+        {t(`Running status`)}: { t(getTaskExpireStatusAndColor(taskDetail).status) }
         &nbsp;&nbsp;   {t(`Task alias`)}: { taskDetail.extra.alias }
-
       </div>
       </> : null
     }

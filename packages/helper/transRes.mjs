@@ -123,6 +123,7 @@ Also, you can close our page, your task will keep running until ":"成功，将�
   "Please check the script!": "请检查脚本是否有错误！",
   "Custom script chars cannot > 5000": "自定义脚本字符数不能超过5000",
   "Task alias": "任务别名",
+  "Task expires on": "任务过期日期",
   // below is on script market page
   "Script Market": "脚本市场",
   "No Data": "没有数据",
