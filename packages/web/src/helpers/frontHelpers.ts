@@ -139,7 +139,7 @@ export function arrayToCsv(array = []){
 
 export function getTaskExpireStatusAndColor(taskMeta){
   let endDate;
-  let status;
+  let status = "";
   let color;
   let now = Date.now();
   if(taskMeta.endTime){

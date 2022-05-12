@@ -6,7 +6,7 @@ import { useResetAtom, RESET } from 'jotai/utils'
 
 import { createTaskDetailAtom, monacoEditorAtom, userInfoAtom } from '../../atoms';
 import { CronTime } from '@webest/web-page-monitor-helper';
-import { fetchAPI, useI18n, innerHTML, mergeToTarget, useHeadTitle } from "../../helpers/index";
+import { fetchAPI, useI18n, innerHTML, mergeToTarget, useHeadTitle, getTaskExpireStatusAndColor } from "../../helpers/index";
 import Link from "next/link";
 
 
@@ -231,6 +231,15 @@ Also, you can close our page, your task will keep running until `) + taskDetail.
       <Link prefetch={false} href="/market/script/list"><a>{t('Go to script market')}</a></Link>
     </div>
     <br/>
+    {
+      router && router.query.id && taskDetail._id ? <>
+      <div style={{margin: `.5em auto`}}>
+        {t(`Current Task created at:`)} &nbsp; {new Date(parseInt(taskDetail._id.substr(0,8), 16) * 1000).toLocaleString()}
+        &nbsp;&nbsp; 
+        {t(`Running status`)}: { t(getTaskExpireStatusAndColor(taskDetail).status) }
+      </div>
+      </> : null
+    }
     <div>
       {/* input cron syntax <br /> */}
       {t(taskDetail.cronMsg)}:<br/>

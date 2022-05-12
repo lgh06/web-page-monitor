@@ -92,6 +92,7 @@ let trans = {
   "One line one id, 3 erasers max": "一行一个ID，最多3个橡皮脚本",
   "You can find more erasers on Script Market": "您可以在脚本市场上找到更多橡皮脚本",
   "Eraser Script in FAQ": "什么是橡皮脚本",
+  "Current Task created at:": "当前任务创建日期：",
   "Advanced Options": "高级选项",
   "Please input waitForSelector": "请输入waitForSelector",
   "Please input some words, multiple words can be separated by commas": "请输入一些词语（文字）,多个词语之间可以用逗号分隔",
@@ -121,6 +122,7 @@ Also, you can close our page, your task will keep running until ":"成功，将�
   // below is on create custom task page
   "Please check the script!": "请检查脚本是否有错误！",
   "Custom script chars cannot > 5000": "自定义脚本字符数不能超过5000",
+  "Task alias": "任务别名",
   // below is on script market page
   "Script Market": "脚本市场",
   "No Data": "没有数据",
