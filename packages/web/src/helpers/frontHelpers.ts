@@ -136,3 +136,24 @@ export function arrayToCsv(array = []){
     document.body.removeChild(pom);
   }, 5000);
 }
+
+export function getTaskExpireStatusAndColor(taskMeta){
+  let endDate;
+  let status;
+  let color;
+  let now = Date.now();
+  if(taskMeta.endTime){
+    endDate = new Date(taskMeta.endTime).valueOf();
+  }
+  if(now > endDate){
+    status = 'Expired';
+    color = 'red';
+  }else if (now + 1000 * 3600 * 24 > endDate){
+    status = 'Expiring soon';
+    color = 'yellow';
+  }else{
+    status = 'Running';
+    color = 'green';
+  }
+  return {status, color};
+}
