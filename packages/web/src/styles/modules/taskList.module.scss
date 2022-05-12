@@ -8,3 +8,16 @@ br.navBr2{
     display: none;
   }
 }
+
+.statusIcon{
+  font-size: 1.5em;
+  &red{
+    color: red;
+  }
+  &green{
+    color: #00ff00;
+  }
+  &yellow{
+    color: yellow;
+  }
+}

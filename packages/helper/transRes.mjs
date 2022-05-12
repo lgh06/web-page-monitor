@@ -64,6 +64,10 @@ let trans = {
   "No data to export, please try again 15 minutes later": "没有数据可以导出，请15分钟后再试",
   "Notice: Export history may only works on Chrome browser.": 
     "注意：请在电脑版Chrome浏览器中导出历史数据，手机上或电脑上的其它浏览器可能无法导出。",
+  "Expired":"已过期",
+  "Expiring soon":"即将过期",
+  "Running":"运行中",
+  "Running status":"运行状态",
   // Below is on create task page
   "Please input a URL start with https:// or http://": "请输入以https://或http://开头的网址",
   "URL check passed.": "URL检查通过",

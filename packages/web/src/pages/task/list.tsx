@@ -4,13 +4,13 @@ import { useImmerAtom } from 'jotai/immer';
 import { useResetAtom } from 'jotai/utils'
 import { createTaskDetailAtom, monacoEditorAtom, userInfoAtom } from '../../atoms';
 import { CronTime } from '@webest/web-page-monitor-helper';
-import { fetchAPI, useI18n, innerHTML, useHeadTitle, arrayToCsv, downloadBlob } from "../../helpers/index";
+import { fetchAPI, useI18n, innerHTML, useHeadTitle, arrayToCsv, downloadBlob, genClassNameAndString } from "../../helpers/index";
 import Link from "next/link";
 import { ScriptList } from "../../components/scriptList";
 import { useRouter } from "next/router";
 import styles from "../../styles/modules/taskList.module.scss";
 
-
+const [cn, cs] = genClassNameAndString(styles);
 const TaskListSimpPage: NextPage = () => {
 
   const [taskDetail, setTaskDetail] = useImmerAtom(createTaskDetailAtom);
@@ -89,6 +89,35 @@ const TaskListSimpPage: NextPage = () => {
         return (
           <>
             { or.pageURL ? or.pageURL : ( or.mode === 'custom' ? t('Custom Task Script') : '') }
+          </>
+        )
+      }
+    },
+    {
+      Header: t('Running status'),
+      id: 'runningStatus',
+      Cell: ({ row: {original: or} }) => {
+        let status;
+        let endDate;
+        let color;
+        let now = Date.now();
+        if(or.endTime){
+          endDate = new Date(or.endTime).valueOf();
+        }
+        if(now > endDate){
+          status = t('Expired');
+          color = 'red';
+        }else if (now + 1000 * 3600 * 24 > endDate){
+          status = t('Expiring soon');
+          color = 'yellow';
+        }else{
+          status = t('Running');
+          color = 'green';
+        }
+        return (
+          <>
+            <span {...cn(`statusIcon${color} statusIcon`)}>●</span>
+            { status }
           </>
         )
       }
