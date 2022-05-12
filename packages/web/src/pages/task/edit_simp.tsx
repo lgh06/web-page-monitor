@@ -333,6 +333,8 @@ Also, you can close our page, your task will keep running until `) + taskDetail.
     <div {...innerHTML(t('Notice: One user can create max 5 tasks, and lasts max <b>7 days</b> (<b>30 days</b> if your points > 80) per task.\
       Minimum interval between two tasks is 10 minutes.'))}>
     </div>
+    <div {...innerHTML(t(`Notice: You can update a specific task's end time manually, before it will be expired. No need to create a new task.`))}>
+    </div>
     {
   router && router.query.id ? null :  <div>
     <span {...innerHTML(t('Notice: Simple Mode is only suitable for monitor <b>public web pages</b>,\

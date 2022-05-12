@@ -109,6 +109,7 @@ let trans = {
       Minimum interval between two tasks is 10 minutes.":
   "注意：一个用户可以创建最多5个任务，每个任务最长持续<b>7天</b>（若点数大于80，则可持续<b>30天</b>）。\
       两个任务之间的最小间隔为10分钟。",
+  "Notice: You can update a specific task's end time manually, before it will be expired. No need to create a new task.": "注意：在任务即将过期前，您可以手动更新一个任务的结束时间，无需创建新任务。",
   "Create Now": "立即创建",
   "Success. you will be redirected to task list page.\n\
 Also, you can close our page, your task will keep running until ":"成功，将跳转到任务列表页面。\n\
