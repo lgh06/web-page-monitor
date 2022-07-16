@@ -43,7 +43,7 @@ function toLocalString(oneDate, plusMinutes = 0, offset = 0) {
   if(!offset){
     offset = aNewDate.getTimezoneOffset();
   }
-  return new Date(aNewDate.setMinutes(aNewDate.getMinutes() - offset + plusMinutes)).toISOString().replace('T', ' ').substring(0, 16);
+  return new Date(aNewDate.setMinutes(aNewDate.getMinutes() - offset + plusMinutes)).toISOString().replace('T', ' ').substring(0, 19);
 }
 
 function checkTimes(timestampArr, firstJobMinutes = 10, betweenJobMinutes = 10) {
