@@ -80,7 +80,11 @@ const MemberRedeemPage: NextPage = () => {
         if(resp.success && resp.points && resp.email){
           alert(t(`Added points: `) + resp.points + ' ' + t(`for account: `) + resp.email);
         }else{
-          alert(t(resp.err))
+          if(String(resp.err).toLowerCase().includes("unexpected")){
+            alert(t('Please try again 30 seconds later'))
+          }else{
+            alert(t(resp.err))
+          }
         }
       } catch (error) {
         alert(t(`Error: `) + error.message)

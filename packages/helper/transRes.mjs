@@ -169,6 +169,7 @@ Also, you can close our page, your task will keep running until ":"成功，将�
   "Error: Coupon is used before": "错误：兑换代码已经使用过",
   "Add points through a coupon code": "通过兑换代码增加点数",
   "Buy a coupon code through PayPal": "通过PayPal购买兑换代码",
+  "Please try again 30 seconds later": "请半分钟后再试一次，抱歉",
   "You can get a coupon code by sending cash to ": "您可以获得兑换代码，通过转账到",
   "You should comment your email address while send payments or email us to hnnk@qq.com after paid, then we can send a coupon code to your email, manually.": 
       "您应该在付款时评论您的邮箱地址，或者付款后发送邮件到hnnk@qq.com，以便我们把兑换代码发送给您。",
